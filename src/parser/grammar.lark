@@ -1,1 +1,17 @@
+%import common.NUMBER
+%import common.LETTER
+%import common.WS
+
+sentence : [(command WS operator WS)+] command
+command : COMMAND_LITERAL [WS args]
+args : [(ARGS_LITERAL WS)+] ARGS_LITERAL
+
+operator : PIPE | LTHAN | GTHAN | AND | OR
+PIPE : "|"
+LTHAN : "<"
+GTHAN : ">"
+AND : "&"
+OR : "||"
+COMMAND_LITERAL : /[\w\d\-\+\_]+/
+ARGS_LITERAL : /\S+/
 
