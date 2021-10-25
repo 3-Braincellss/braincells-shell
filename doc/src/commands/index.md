@@ -1,5 +1,6 @@
 Module src.commands
 ===================
+This module contains stuff
 
 Sub-modules
 -----------
