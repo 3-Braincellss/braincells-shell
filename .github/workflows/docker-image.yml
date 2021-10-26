@@ -1,0 +1,18 @@
+name: Docker Image CI
+
+on:
+  pull_request
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build -t shell .
+    - name: Run unittests
+      run: docker run -p 80:8000 -ti --rm shell /comp0010/tools/test
+    - name: Generate Documentation
+      run: echo "Under construction!!!"
