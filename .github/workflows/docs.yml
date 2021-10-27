@@ -12,10 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    
     - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.head_ref }
     - name: Install pdoc3
       run: pip3 install pdoc3
     - name: Generate Docs
