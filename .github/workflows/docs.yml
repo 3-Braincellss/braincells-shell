@@ -1,29 +1,36 @@
 
 name: Generate Docs
 
-on: [pull_request]
+on:
+  pull_request:
+    branches: [main, dev]
+    
 jobs:
+
   build:
+  
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }
-      - name: Install pdoc3
-        run: pip3 install pdoc3
-      - name: Generate Docs
-        run: |
-          cd src
-          pdoc -f -o ../doc/ .
-      - name: Apply changes
-        run: |
-          git config --global user.name 'Push Bot'
-          git config --global user.email 'bozzhanov.at@gmail.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git status
-          git add -A
-          git commit -m "Documentation"
-          git push
+    
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }
+    - name: Install pdoc3
+      run: pip3 install pdoc3
+    - name: Generate Docs
+      run: |
+        cd src
+        pdoc -f -o ../doc/ .
+    - name: Apply changes
+      run: |
+        git config --global user.name 'Push Bot'
+        git config --global user.email 'bozzhanov.at@gmail.com'
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        git status
+        git add -A
+        git commit -m "Documentation"
+        git push
         
 
      
