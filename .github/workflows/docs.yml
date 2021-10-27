@@ -23,12 +23,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install pdoc3
         run: pip3 install pdoc3
-      - name: cd into directory
-        run: cd ./src
-      - name: check current dir
-        run: ls
       - name: Generate Docs
-        run: pdoc -f -o ../doc/ .
+        run: |
+          cd src
+          pdoc -f -o ../doc/ .
       - name: Apply changes
         run: |
           git config --global user.name 'Push Bot'
