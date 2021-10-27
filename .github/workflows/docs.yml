@@ -19,14 +19,7 @@ jobs:
       run: |
         cd src
         pdoc -f -o ../doc/ .
-    - name: Apply changes
-      run: |
-        git config --global user.name 'Push Bot'
-        git config --global user.email 'bozzhanov.at@gmail.com'
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        git status
-        git commit -am "Documentation"
-        git push
-        
+    - name: Add & Commit
+      uses: EndBug/add-and-commit@v7.4.0    
 
      
