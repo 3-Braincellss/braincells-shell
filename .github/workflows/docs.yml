@@ -22,7 +22,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install pdoc3
-        run: pip3 install pdoc3
+        run: |
+          pip3 install pdoc3
+          pip3 install importlib
       - name: check current dir
         run: ls
       - name: cd into directory
