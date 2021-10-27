@@ -28,7 +28,16 @@ jobs:
       - name: cd into directory
         run: cd ./src
       - name: Generate Docs
-        run: pdoc -o ../doc/
+        run: pdoc -o ../doc/ .
+      - name: check changed files
+        run: git status
+      - name: Apply changes
+        run: |
+          git config --global user.name 'Push Bot'
+          git config --global user.email 'bozzhanov.at@gmail.com'
+          git add -A
+          git commit -m "Documentation"
+          git push
         
 
      
