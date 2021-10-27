@@ -23,6 +23,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install pdoc3
         run: pip3 install pdoc3
+      - name: check current dir
+        run: ls
       - name: cd into directory
         run: cd ./src
       - name: Generate Docs
