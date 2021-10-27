@@ -28,7 +28,7 @@ jobs:
       - name: cd into directory
         run: cd ./src
       - name: Generate Docs
-        run: pdoc -o ../doc/ .
+        run: pdoc -f -o ../doc/ .
       - name: check changed files
         run: git status
       - name: Apply changes
