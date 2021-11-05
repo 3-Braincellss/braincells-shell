@@ -1,11 +1,26 @@
 """
-The main loop of our shell is here
-check
+Shell class where the code execution starts.
+All major "Shell" logic happens here.
 """
 
+
+class Shell:
+    prefix = "~~> "
+
+    def __init__(self):
+
+        pass
+
+    """ Starts up the shell """
+
+    def run(self):
+
+        while true:
+            text = input(self.prefix)
+
+            print(text)
+
+
 if __name__ == "__main__":
-
-    while true:
-        text = input()
-
-        print(text)
+    sh = Shell()
+    sh.run()
