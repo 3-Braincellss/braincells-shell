@@ -1,15 +1,15 @@
-from abc import abstractmethod, ABC
+from abc import abstractmethod, ABCMeta
 
 """
 This is an interface definition for an Operation class
 """
 
 
-class Operation(metaclass=ABC):
+class Operation(metaclass=ABCMeta):
     def __init__(self):
         pass
 
     @abstractmethod
-    def exec(inp, out):
+    def run(inp, out):
 
         pass
