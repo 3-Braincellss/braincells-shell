@@ -1,4 +1,5 @@
 from operations.call import Call
+from operations.Pipe import Pipe
 from functools import singledispatch
 from apps.app_factory import AppFactory
 
@@ -11,21 +12,23 @@ class OperationFactory:
     def __init__(self):
         self.apps = {
             "call": self._call,
+            "pipe": self._pipe,
         }
 
     def get_operation(self, op_str, data):
         return self.apps[op_str](data)
 
-    """ Creates a call object"""
-
     def _call(self, data):
+
         app_str = data["app"]
         args = data["args"]
-        a = AppFactory()
+        af = AppFactory()
 
-        app = a.get_app(app_str, args)
+        app = af.get_app(app_str, args)
 
-        return app
+        return Call(app)
 
-    def _pipe(self, app_string):
-        pass
+    def _pipe(self, data):
+        op1 = data["op1"]
+        op2 = data["op2"]
+        return Pipe(op1, op2)
