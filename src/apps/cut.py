@@ -1,5 +1,7 @@
+from apps.app import App
 
-class CutApp(app):
+
+class CutApp(App):
     """
     """
 

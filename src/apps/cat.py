@@ -1,5 +1,5 @@
-
-class CatApp(app):
+from apps.app import App
+class CatApp(App):
     """
     """
 

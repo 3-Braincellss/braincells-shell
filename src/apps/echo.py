@@ -1,5 +1,7 @@
+from apps.app import App
 
-class EchoApp(app):
+
+class EchoApp(App):
     """
     """
 

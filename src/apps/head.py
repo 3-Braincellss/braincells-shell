@@ -1,5 +1,7 @@
+from apps.app import App
 
-class HeadApp(app):
+
+class HeadApp(App):
     """
     """
 

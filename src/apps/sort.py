@@ -1,5 +1,7 @@
+from apps.app import App
 
-class SortApp(app):
+
+class SortApp(App):
     """
     """
 

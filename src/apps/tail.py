@@ -1,5 +1,7 @@
+from apps.app import App
 
-class TailApp(app):
+
+class TailApp(App):
     """
     """
 

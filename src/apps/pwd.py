@@ -1,5 +1,7 @@
+from apps.app import App
 
-class PwdApp(app):
+
+class PwdApp(App):
     """
     """
 

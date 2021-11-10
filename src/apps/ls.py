@@ -1,5 +1,7 @@
+from apps.app import App
 
-class LsApp(app):
+
+class LsApp(App):
     """
     """
 

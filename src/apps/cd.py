@@ -1,5 +1,6 @@
+from apps.app import App
 
-class CdApp(app):
+class CdApp(App):
     """
     """
 

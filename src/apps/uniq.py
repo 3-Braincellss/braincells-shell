@@ -1,5 +1,7 @@
+from apps.app import App
 
-class UniqApp(app):
+
+class UniqApp(App):
     """
     """
 

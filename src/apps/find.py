@@ -1,5 +1,7 @@
+from apps.app import App
 
-class FindApp(app):
+
+class FindApp(App):
     """
     """
 

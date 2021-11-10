@@ -1,5 +1,7 @@
+from apps.app import App
 
-class GrepApp(app):
+
+class GrepApp(App):
     """
     """
 
