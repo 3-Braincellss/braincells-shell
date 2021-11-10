@@ -3,13 +3,14 @@ class EchoApp(app):
     """
     """
 
-    def __init__(self):
+    def __init__(self, args):
+
         pass
 
-    def run(self):
+    def run(self, text):
         """
         """
-        pass
+        return text
 
     def validate_args(self):
 
