@@ -6,6 +6,6 @@ Standard pipe that redirects the output of one program to the input of another.
 
 
 class Pipe(Operation):
-    def exec(self):
+    def run(self):
 
         pass
