@@ -1,3 +1,4 @@
+import lark
 """
 Shell class where the code execution starts.
 All major "Shell" logic happens here.
@@ -5,7 +6,8 @@ All major "Shell" logic happens here.
 
 
 class Shell:
-    prefix = "~~> "
+    PREFIX = "~~> "
+    PATH_TO_GRAMMAR = "./parser/grammar.lark"
 
     def __init__(self):
 
@@ -16,8 +18,12 @@ class Shell:
     def run(self):
 
         while True:
-            text = input(self.prefix)
-
+            text = input(self.PREFIX)
+            #Create parse tree from input
+            grammar = lark.Lark.open(self.PATH_TO_GRAMMAR)
+            grammar.parse(text)
+            #Decorate tree with transformer
+            #Execute
             print(text)
 
 
