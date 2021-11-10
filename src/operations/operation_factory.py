@@ -12,10 +12,16 @@ class OperationFactory:
             "call": self._call,
         }
 
-    def get_operation(self, app_str, args):
-        return self.apps[app_str](args)
+    def get_operation(self, op_str, data):
+        return self.apps[op_str](data)
 
     """ Creates a call object"""
 
-    def _call(self, app_string):
+    def _call(self, args):
+        app_str = data["app"]
+        args = data["args"]
+
         app = AppFactory.get_app(app_str, args)
+
+    def _pipe(self, app_string):
+        pass
