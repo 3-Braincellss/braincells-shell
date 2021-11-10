@@ -1,12 +1,26 @@
-%import common.NUMBER
-%import common.LETTER
-%import common.WS
+command : pipe | seq | call
+pipe    : call "|" call | pipe "|" call
+seq     : command ";" command
+call    : ( NON_KEYWORD | quoted ) *
 
-sentence : [(command WS operator WS)+] command
-command : COMMAND_LITERAL [WS args]
-args : [(ARGS_LITERAL WS)+] ARGS_LITERAL
+NON_KEYWORD : /[^\n'"`;|]*/
 
-operator : "|" | "<" | ">" | "&" | "||"
-COMMAND_LITERAL : /[\w\d\-\+\_]+/
-ARGS_LITERAL : /\S+/
+quoted        : single_quoted | double_quoted | backquoted
+single_quoted : "'" /[^\n']*/ "'"
+backquoted    : "`" /[^\n`]*/ "`"
+double_quoted : """ ( backquoted | DOUBLE_QUOTE_CONTENT ) * """
 
+DOUBLE_QUOTE_CONTENT : /[^\n"`]*/
+
+call        : whitespace? [redirection whitespace]* argument [whitespace atom]* whitespace?
+atom        : redirection | argument
+argument    : (quoted | UNQUOTED)+
+redirection : "<" [ whitespace ] argument
+            | ">" [ whitespace ] argument
+
+UNQUOTED : /[^\s"\n;|<>]*/
+
+seq : command ";" command
+
+pipe : call "|" call |
+       pipe "|" call
