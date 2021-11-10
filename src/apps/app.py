@@ -1,11 +1,11 @@
-from abc import abstractmethod, ABC
+from abc import abstractmethod, ABCMeta
 
 """
 This module provides an interface for an App.
 """
 
 
-class App(metaclass=ABC):
+class App(metaclass=ABCMeta):
 
     args = {}
     value = {}

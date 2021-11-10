@@ -7,5 +7,9 @@ from operations.call import Call
 class TestFactory(unittest.TestCase):
     def test_call(self):
         o = OperationFactory()
-        a = o.get_operation("call", "ls")
-        self.assertIsInstance(a, Call)
+        data = {
+            "app": "echo",
+            "args": {},
+        }
+
+        a = o.get_operation("call", data)

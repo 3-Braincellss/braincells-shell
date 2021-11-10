@@ -1,5 +1,6 @@
 from operations.call import Call
 from functools import singledispatch
+from apps.app_factory import AppFactory
 
 """
 Operation object creation will be handled with this module.
@@ -17,7 +18,7 @@ class OperationFactory:
 
     """ Creates a call object"""
 
-    def _call(self, args):
+    def _call(self, data):
         app_str = data["app"]
         args = data["args"]
 
