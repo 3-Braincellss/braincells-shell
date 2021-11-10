@@ -1,15 +1,15 @@
-from ls import LsApp
-from echo import EchoApp
-from pwd import PwdApp
-from cd import CdApp
-from cat import CatApp
-from head import HeadApp
-from tail import TailApp
-from grep import GrepApp
-from cut import CutApp
-from find import FindApp
-from uniq import UniqApp
-from sort import SortApp
+from apps.ls import LsApp
+from apps.echo import EchoApp
+from apps.pwd import PwdApp
+from apps.cd import CdApp
+from apps.cat import CatApp
+from apps.head import HeadApp
+from apps.tail import TailApp
+from apps.grep import GrepApp
+from apps.cut import CutApp
+from apps.find import FindApp
+from apps.uniq import UniqApp
+from apps.sort import SortApp
 
 
 class AppFactory:
