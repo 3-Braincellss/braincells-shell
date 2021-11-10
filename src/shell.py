@@ -1,4 +1,4 @@
-import lark
+from lark import Lark
 """
 Shell class where the code execution starts.
 All major "Shell" logic happens here.
@@ -20,7 +20,7 @@ class Shell:
         while True:
             text = input(self.PREFIX)
             #Create parse tree from input
-            grammar = lark.Lark.open(self.PATH_TO_GRAMMAR)
+            grammar = Lark.open(self.PATH_TO_GRAMMAR)
             grammar.parse(text)
             #Decorate tree with transformer
             #Execute
