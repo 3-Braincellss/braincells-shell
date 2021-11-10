@@ -33,7 +33,6 @@ class AppFactory:
             "sort": self._sort,
         }
 
-    @staticmethod
     def get_app(self, app_str, args):
         app = self.apps[app_str](args)
         return app

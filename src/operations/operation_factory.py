@@ -21,8 +21,11 @@ class OperationFactory:
     def _call(self, data):
         app_str = data["app"]
         args = data["args"]
+        a = AppFactory()
 
-        app = AppFactory.get_app(app_str, args)
+        app = a.get_app(app_str, args)
+
+        return app
 
     def _pipe(self, app_string):
         pass

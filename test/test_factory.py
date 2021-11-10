@@ -9,7 +9,8 @@ class TestFactory(unittest.TestCase):
         o = OperationFactory()
         data = {
             "app": "echo",
-            "args": {},
+            "args": {"value": "hello"},
         }
 
         a = o.get_operation("call", data)
+        self.assertEqual(a.run(None), "hello")
