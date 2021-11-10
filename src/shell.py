@@ -15,7 +15,7 @@ class Shell:
 
     def run(self):
 
-        while true:
+        while True:
             text = input(self.prefix)
 
             print(text)
