@@ -19,13 +19,16 @@ class Shell:
 
         while True:
             text = input(self.PREFIX)
-            #Create parse tree from input
-            grammar = Lark.open(self.PATH_TO_GRAMMAR)
-            abstract_tree = grammar.parse(text)
-            #Decorate tree with transformer
-            #Execute
+            out = execute(text)
             print(text)
 
+    def execute(self, input_str):
+        #Create parse tree from input
+        grammar = Lark.open(self.PATH_TO_GRAMMAR)
+        abstract_tree = grammar.parse(input_str)
+        #Decorate tree with transformer
+        #Execute
+        return "" #Result of execution
 
 if __name__ == "__main__":
     sh = Shell()
