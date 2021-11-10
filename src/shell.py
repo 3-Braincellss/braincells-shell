@@ -21,7 +21,7 @@ class Shell:
             text = input(self.PREFIX)
             #Create parse tree from input
             grammar = Lark.open(self.PATH_TO_GRAMMAR)
-            grammar.parse(text)
+            abstract_tree = grammar.parse(text)
             #Decorate tree with transformer
             #Execute
             print(text)
