@@ -1,26 +1,25 @@
+%import common.LETTER
+
 command : pipe | seq | call
-pipe    : call "|" call | pipe "|" call
+pipe    : call "|" call 
+        | pipe "|" call
 seq     : command ";" command
-call    : ( NON_KEYWORD | quoted ) *
+call        : WHITESPACE? (redirection WHITESPACE)* call_body (WHITESPACE redirection)* WHITESPACE?
+call_body   : word (WHITESPACE option)*
+option     : (flag | word) (WHITESPACE (flag | word))* 
 
-NON_KEYWORD : /[^\n'"`;|]*/
+flag        : ("-" | "--") word
+word    : (quoted | UNQUOTED)
+redirection : "<" WHITESPACE word
+            | ">" WHITESPACE word
 
-quoted        : single_quoted | double_quoted | backquoted
-single_quoted : "'" /[^\n']*/ "'"
-backquoted    : "`" /[^\n`]*/ "`"
-double_quoted : """ ( backquoted | DOUBLE_QUOTE_CONTENT ) * """
+quoted        : single_quoted | double_quoted | BACKQUOTED
+double_quoted : "\"" (backquoted_call | DOUBLE_QUOTE_CONTENT)* "\""
+backquoted_call    : "`" call "`" 
+single_quoted : "'" SINGLE_QUOTE_CONTENT* "'"
 
-DOUBLE_QUOTE_CONTENT : /[^\n"`]*/
-
-call        : whitespace? [redirection whitespace]* argument [whitespace atom]* whitespace?
-atom        : redirection | argument
-argument    : (quoted | UNQUOTED)+
-redirection : "<" [ whitespace ] argument
-            | ">" [ whitespace ] argument
-
-UNQUOTED : /[^\s"\n;|<>]*/
-
-seq : command ";" command
-
-pipe : call "|" call |
-       pipe "|" call
+BACKQUOTED           : /[`][^\n`]*[`]/
+DOUBLE_QUOTE_CONTENT : /[^\n"`]+/
+SINGLE_QUOTE_CONTENT : /[^\n']+/
+UNQUOTED             : /[^\s"'`\n;|<>]+/
+WHITESPACE           : /[\s]+/
