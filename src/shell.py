@@ -21,7 +21,7 @@ class Shell:
     def run(self, command=None):
         if command:
             out = self.execute(command)
-            print(out, end="")
+            print(out)
         else:
             while True:
                 print(self.PREFIX, end="")
