@@ -8,11 +8,10 @@ class EchoApp(App):
     def __init__(self, args):
         self.args = args
 
-    def run(self, text=None):
+    def run(self, inp) -> str:
         """
         """
-        out = self.args["value"]
-        return out
+        return " ".join(self.args)
 
     def validate_args(self):
         pass
