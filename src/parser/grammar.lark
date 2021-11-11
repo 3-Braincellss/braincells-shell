@@ -4,11 +4,9 @@ command : pipe | seq | call
 pipe    : call "|" call 
         | pipe "|" call
 seq     : command ";" command
-call        : WHITESPACE? (redirection WHITESPACE)* call_body (WHITESPACE redirection)* WHITESPACE?
-call_body   : word (WHITESPACE option)*
-option     : (flag | word) (WHITESPACE (flag | word))* 
+call        : WHITESPACE? (redirection WHITESPACE)* arguments (WHITESPACE redirection)* WHITESPACE?
+arguments     : word (WHITESPACE word)* 
 
-flag        : ("-" | "--") word
 word    : (quoted | UNQUOTED)
 redirection : "<" WHITESPACE word
             | ">" WHITESPACE word

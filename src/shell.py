@@ -1,4 +1,5 @@
 from lark import Lark
+from parser import parser
 """
 Shell class where the code execution starts.
 All major "Shell" logic happens here.
@@ -19,16 +20,17 @@ class Shell:
 
         while True:
             text = input(self.PREFIX)
-            out = execute(text)
-            print(text)
+            out = self.execute(text)
+            print(out)
 
     def execute(self, input_str):
         #Create parse tree from input
-        grammar = Lark.open(self.PATH_TO_GRAMMAR)
-        abstract_tree = grammar.parse(input_str)
+
+        command = parser.run_parser(input_str)
         #Decorate tree with transformer
         #Execute
-        return "" #Result of execution
+        
+        return command.run(None)
 
 if __name__ == "__main__":
     sh = Shell()
