@@ -21,9 +21,8 @@ class App(metaclass=ABCMeta):
 
         pass
 
-    """ Raises runtime error """
-
     @abstractmethod
-    def run(self):
+    def run(self, inp):
+        """ """
 
         pass

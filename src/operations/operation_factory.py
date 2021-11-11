@@ -1,5 +1,5 @@
 from operations.call import Call
-from operations.Pipe import Pipe
+from operations.pipe import Pipe
 from functools import singledispatch
 from apps.app_factory import AppFactory
 
