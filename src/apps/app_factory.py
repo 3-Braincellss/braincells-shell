@@ -33,7 +33,7 @@ class AppFactory:
             "sort": self._sort,
         }
 
-    def get_app(self, app_str: str, args: List) -> App:
+    def get_app(self, app_str: str, args: list) -> App:
         """
         app_str - app name
         args = [array, of, strings, which, are, all, options]
