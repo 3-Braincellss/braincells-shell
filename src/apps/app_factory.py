@@ -1,3 +1,5 @@
+from apps.app import App
+
 from apps.ls import LsApp
 from apps.echo import EchoApp
 from apps.pwd import PwdApp
