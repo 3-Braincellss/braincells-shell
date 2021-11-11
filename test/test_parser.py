@@ -14,6 +14,8 @@ class TestShell(unittest.TestCase):
         print(tree.pretty())
         tree = parser.run_parser("echo \"this is space: `echo \"quotedthing\"`\"")
         print(tree.pretty())
+        tree = parser.run_parser("gcc -Wall robot.c -o a.out")
+        print(tree.pretty())
 
 
 if __name__ == "__main__":

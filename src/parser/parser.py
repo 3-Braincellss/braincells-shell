@@ -1,4 +1,15 @@
 from lark import Lark
+from lark.visitors import Transformer
+
+class T(Transformer):
+    UNQUOTED = str
+    WHITESPACE = str
+
+    def call_body(self, args):
+        print(args[0])
+        pass
+
+
 
 
 def run_parser(text):
@@ -6,4 +17,7 @@ def run_parser(text):
         LP = Lark(grammar.read(), start="command")
 
     tree = LP.parse(text)
+    print(tree)
+    print()
+    print(T(visit_tokens=True).transform(tree))
     return tree
