@@ -58,16 +58,16 @@ class AppFactory:
         return CdApp(args)
 
     def _cat(self, args):
-        return catApp(args)
+        return CatApp(args)
 
     def _head(self, args):
-        return headApp(args)
+        return HeadApp(args)
 
     def _tail(self, args):
         return TailApp(args)
 
     def _grep(self, args):
-        return grepApp(args)
+        return GrepApp(args)
 
     def _cut(self, args):
         return CutApps(args)
