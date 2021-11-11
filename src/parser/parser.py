@@ -3,6 +3,7 @@ from lark.visitors import Transformer
 from operations.operation_factory import OperationFactory
 from shell import Shell
 
+
 class T(Transformer):
     UNQUOTED = str
     DOUBLE_QUOTE_CONTENT = str
@@ -12,10 +13,7 @@ class T(Transformer):
 
     def call(self, args):
         opFactory = OperationFactory()
-        data = {
-            "app": args[0][0],
-            "args": args[0][1]
-        }
+        data = {"app": args[0][0], "args": args[0][1]}
         return opFactory.get_operation("call", data)
 
     def arguments(self, args):
@@ -40,11 +38,9 @@ class T(Transformer):
         pass
 
 
-
 def run_parser(text):
     with open("parser/grammar.lark", encoding="utf-8") as grammar:
         LP = Lark(grammar.read(), start="command")
 
     tree = LP.parse(text)
-    print(tree.pretty())
     return T(visit_tokens=True).transform(tree)

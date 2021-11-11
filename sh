@@ -2,4 +2,6 @@
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
-python "$SCRIPT_DIR/src/shell.py" "$@"
+cd comp0010/src
+
+python "shell.py" "$@"
