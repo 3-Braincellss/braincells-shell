@@ -7,8 +7,7 @@ This module provides an interface for an App.
 
 class App(metaclass=ABCMeta):
 
-    args = {}
-    value = {}
+    allow = {}
 
     def __init__(self):
 
@@ -21,8 +20,9 @@ class App(metaclass=ABCMeta):
 
         pass
 
+    """ Raises runtime error """
+
     @abstractmethod
-    def run(self, inp):
-        """ """
+    def run(self):
 
         pass
