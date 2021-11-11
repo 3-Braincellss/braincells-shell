@@ -4,6 +4,32 @@ from operations.operation_factory import OperationFactory
 from shell import Shell
 import os
 
+grammar = r"""
+%import common.LETTER
+
+command : pipe | seq | call
+pipe    : call "|" call 
+        | pipe "|" call
+seq     : command ";" command
+call        : WHITESPACE? (redirection WHITESPACE)* arguments (WHITESPACE redirection)* WHITESPACE?
+arguments     : word (WHITESPACE word)* 
+
+word    : (quoted | UNQUOTED)
+redirection : "<" WHITESPACE word
+            | ">" WHITESPACE word
+
+quoted        : single_quoted | double_quoted | BACKQUOTED
+double_quoted : "\"" (backquoted_call | DOUBLE_QUOTE_CONTENT)* "\""
+backquoted_call    : "`" call "`" 
+single_quoted : "'" SINGLE_QUOTE_CONTENT* "'"
+
+BACKQUOTED           : /[`][^\n`]*[`]/
+DOUBLE_QUOTE_CONTENT : /[^\n"`]+/
+SINGLE_QUOTE_CONTENT : /[^\n']+/
+UNQUOTED             : /[^\s"'`\n;|<>]+/
+WHITESPACE           : /[\s]+/
+"""
+
 
 class T(Transformer):
     UNQUOTED = str
@@ -40,11 +66,8 @@ class T(Transformer):
 
 
 def run_parser(text):
-    print()
-    with open(
-        os.path.abspath(".") + "/comp0010/src/parser/grammar.lark", encoding="utf-8"
-    ) as grammar:
-        LP = Lark(grammar.read(), start="command")
+
+    LP = Lark(grammar, start="command")
 
     tree = LP.parse(text)
     return T(visit_tokens=True).transform(tree)

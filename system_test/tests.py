@@ -25,7 +25,7 @@ class TestFEL(unittest.TestCase):
             "-c",
             cmdline,
         ]
-        p = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        p = subprocess.run(args, capture_output=True)
         return p.stdout.decode()
 
     @classmethod
