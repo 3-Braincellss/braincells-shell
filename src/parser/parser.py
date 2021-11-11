@@ -2,6 +2,7 @@ from lark import Lark
 from lark.visitors import Transformer
 from operations.operation_factory import OperationFactory
 from shell import Shell
+import os
 
 
 class T(Transformer):
@@ -39,7 +40,10 @@ class T(Transformer):
 
 
 def run_parser(text):
-    with open("parser/grammar.lark", encoding="utf-8") as grammar:
+    print()
+    with open(
+        os.path.abspath(".") + "/comp0010/src/parser/grammar.lark", encoding="utf-8"
+    ) as grammar:
         LP = Lark(grammar.read(), start="command")
 
     tree = LP.parse(text)
