@@ -14,7 +14,7 @@ class LsApp(App):
     def __init__(self, args):
         self.args = args
 
-    def run(self, inp):
+    def run(self, inp=None):
         """
         ls [DIRECTORY]
 
