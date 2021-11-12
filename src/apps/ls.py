@@ -22,7 +22,7 @@ class LsApp(App):
 
         if ONE OR MORE ARGUMENTS provided print files in directories specified
         """
-        ret = ""
+        ret = "\n"
         if len(self.args) == 0:
             ls_dirs = [os.getcwd()]
         else:
@@ -30,10 +30,10 @@ class LsApp(App):
 
         for path in ls_dirs:
             if len(ls_dirs) > 1:
-                ret = ret + f"  {path}:\n\n"
+                ret = ret + f"{path}:\n\n"
             files = sorted([each for each in os.listdir(path) if each[0] != '.'])
-            ret = "\n".join(files)
-        return ret
+            ret = ret +  "\n".join(files) + "\n"
+        return ret + "\n"
 
     def validate_args(self):
         """Check is all paths in args exist"""
