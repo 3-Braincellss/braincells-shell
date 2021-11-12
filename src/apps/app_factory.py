@@ -13,6 +13,8 @@ from apps.find import FindApp
 from apps.uniq import UniqApp
 from apps.sort import SortApp
 
+from exceptions.app_not_found import AppNotFoundException
+
 
 class AppFactory:
     """
@@ -41,9 +43,15 @@ class AppFactory:
         args = [array, of, strings, which, are, all, options]
 
         """
+        if app_str in self.apps:
+            app = self.apps[app_str](args)
+            return app
+        else:
+            raise AppNotFoundException(app_str)
+        
 
-        app = self.apps[app_str](args)
-        return app
+
+       
 
     def _ls(self, args):
         return LsApp(args)

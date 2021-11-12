@@ -1,5 +1,8 @@
 from lark import Lark
+from lark.exceptions import VisitError
 from parser import parser
+from exceptions.app_not_found import AppNotFoundException
+
 import sys
 
 """
@@ -26,17 +29,27 @@ class Shell:
             while True:
                 print(self.PREFIX, end="")
                 text = input()
-                out = self.execute(text)
-                print(out)
+                try: 
+                    out = self.execute(text)
+                    print(out)
+                except AppNotFoundException as anfe:
+                    print(anfe.message)
+
 
     def execute(self, input_str):
         # Create parse tree from input
+        try:
+            command = parser.run_parser(input_str)
+            return command.run(None)
+        except VisitError as ve:
+            if isinstance(ve.__context__, AppNotFoundException):
+                raise ve.__context__
+            
+            
+            
 
-        command = parser.run_parser(input_str)
-        # Decorate tree with transformer
-        # Execute
+        
 
-        return command.run(None)
 
 
 if __name__ == "__main__":
