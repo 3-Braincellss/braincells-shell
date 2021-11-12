@@ -26,7 +26,7 @@ class AppFactory:
         self.apps = {
             "ls": self._ls,
             "echo": self._echo,
-            # "pwd": self._pwd,
+            "pwd": self._pwd,
             "cd": self._cd,
             # "cat": self._cat,
             # "head": self._head,

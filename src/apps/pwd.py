@@ -1,17 +1,18 @@
 from apps.app import App
-
+import os
 
 class PwdApp(App):
     """
     """
 
-    def __init__(self):
+    def __init__(self, args):
+        ## TODO: handle options 
         pass
 
-    def run(self):
+    def run(self, inp):
         """
         """
-        pass
+        return os.path.abspath(".") + "\n"
 
     def validate_args(self):
 
