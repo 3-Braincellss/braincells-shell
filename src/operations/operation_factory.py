@@ -4,6 +4,7 @@ from functools import singledispatch
 from apps.app_factory import AppFactory
 
 from exceptions.app_not_found import AppNotFoundException
+from exceptions.app_context import AppContextException
 
 """
 Operation object creation will be handled with this module.
@@ -21,7 +22,6 @@ class OperationFactory:
         return self.apps[op_str](data)
 
     def _call(self, data):
-
         app_str = data["app"]
         args = data["args"]
         af = AppFactory()
@@ -30,9 +30,8 @@ class OperationFactory:
             return Call(app)
         except AppNotFoundException as anfe:
             raise anfe
-
-
-
+        except AppContextException as ace:
+            raise ace
 
     def _pipe(self, data):
         op1 = data["op1"]

@@ -1,4 +1,0 @@
-
-
-class AppNotFoundException(Exception):
-    pass

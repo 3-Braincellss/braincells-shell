@@ -4,10 +4,9 @@ from operations.operation_factory import OperationFactory
 from shell import Shell
 
 from exceptions.app_not_found import AppNotFoundException
+from exceptions.app_context import AppContextException
+
 import os
-
-
-
 
 
 class T(Transformer):
@@ -25,6 +24,8 @@ class T(Transformer):
             return call
         except AppNotFoundException as anfe:
             raise anfe
+        except AppContextException as ace:
+            raise ace
 
     def arguments(self, args):
         returnargs = [x for x in args if x is not None]
@@ -51,9 +52,8 @@ class T(Transformer):
 def run_parser(text):
     dirname = os.path.dirname(__file__)
     filename = os.path.join(dirname, "grammar.lark")
-    with open(filename, encoding = "utf-8") as grammar:
-        
-    
+    with open(filename, encoding="utf-8") as grammar:
+
         LP = Lark(grammar.read(), start="command")
 
     tree = LP.parse(text)
