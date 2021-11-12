@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install pdoc3
-      run: pip3 install pdoc3
+      run: pip3 install -r requirements.txt
     - name: Generate Docs
       run: |
         cd src
