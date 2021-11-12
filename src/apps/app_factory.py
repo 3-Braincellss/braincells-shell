@@ -13,6 +13,9 @@ from apps.find import FindApp
 from apps.uniq import UniqApp
 from apps.sort import SortApp
 
+from exceptions.app_not_found import AppNotFoundException
+from exceptions.app_context import AppContextException
+
 
 class AppFactory:
     """
@@ -23,27 +26,32 @@ class AppFactory:
         self.apps = {
             "ls": self._ls,
             "echo": self._echo,
-            "pwd": self._pwd,
+            # "pwd": self._pwd,
             "cd": self._cd,
-            "cat": self._cat,
-            "head": self._head,
-            "tail": self._tail,
-            "grep": self._grep,
-            "cut": self._cut,
-            "find": self._find,
-            "uniq": self._uniq,
-            "sort": self._sort,
+            # "cat": self._cat,
+            # "head": self._head,
+            # "tail": self._tail,
+            # "grep": self._grep,
+            # "cut": self._cut,
+            # "find": self._find,
+            # "uniq": self._uniq,
+            # "sort": self._sort,
         }
 
     def get_app(self, app_str: str, args: list) -> App:
         """
         app_str - app name
         args = [array, of, strings, which, are, all, options]
-
         """
-
-        app = self.apps[app_str](args)
-        return app
+        if app_str in self.apps:
+            try:
+                app = self.apps[app_str](args)
+                app.validate_args()
+                return app
+            except AppContextException as ace:
+                raise ace
+        else:
+            raise AppNotFoundException(app_str)
 
     def _ls(self, args):
         return LsApp(args)

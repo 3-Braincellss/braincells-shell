@@ -1,0 +1,4 @@
+class AppRunException(Exception):
+    def __init__(self, app_str, message="Oops, something went wrong"):
+        self.message = f"Runtime error in '{app_str}': " + self.message
+        super().__init__(self.message)

@@ -1,6 +1,14 @@
 from lark import Lark
+from lark.exceptions import VisitError
 from parser import parser
+
+from exceptions.app_not_found import AppNotFoundException
+from exceptions.app_context import AppContextException
+from exceptions.app_run import AppRunException
+from common.tools import prettify_path
+
 import sys
+import os
 
 """
 Shell class where the code execution starts.
@@ -24,19 +32,33 @@ class Shell:
             print(out)
         else:
             while True:
-                print(self.PREFIX, end="")
+                print(prettify_path(os.getcwd()) + " " + self.PREFIX, end="")
                 text = input()
-                out = self.execute(text)
-                print(out)
+                try:
+                    out = self.execute(text)
+                    print(out, end="")
+                except AppNotFoundException as anfe:
+                    print(anfe.message)
+                except AppContextException as ace:
+                    print(ace.message)
+                except AppRunException as are:
+                    print(are.message)
 
     def execute(self, input_str):
         # Create parse tree from input
-
-        command = parser.run_parser(input_str)
-        # Decorate tree with transformer
-        # Execute
-
-        return command.run(None)
+        try:
+            command = parser.run_parser(input_str)
+            output = command.run(None)
+            return output
+        except VisitError as ve:
+            if isinstance(ve.__context__, AppNotFoundException):
+                raise ve.__context__
+            if isinstance(ve.__context__, AppContextException):
+                raise ve.__context__
+            else:
+                raise ve
+        except AppRunException as are:
+            raise are
 
 
 if __name__ == "__main__":
