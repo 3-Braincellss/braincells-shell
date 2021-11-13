@@ -31,14 +31,14 @@ class Shell:
         if command:
             out = self.execute(command)
             while len(out) > 0:
-                print(out.popleft(), end = "")
+                print(out.popleft(), end="")
         else:
             while True:
                 print(prettify_path(os.getcwd()) + " " + self.PREFIX, end="")
                 text = input()
                 out = self.execute(text)
                 while len(out) > 0:
-                    print(out.popleft(), end = "")
+                    print(out.popleft(), end="")
 
     def execute(self, input_str):
         # Create parse tree from input
@@ -46,7 +46,7 @@ class Shell:
         try:
             command = parser.run_parser(input_str)
 
-            out = command.run(None,out)
+            out = command.run(None, out)
 
         except VisitError as ve:
             if isinstance(ve.__context__, AppNotFoundException):
@@ -57,7 +57,7 @@ class Shell:
                 raise ve
         except AppRunException as are:
             out.append(are.message)
-            
+
         return out
 
 
