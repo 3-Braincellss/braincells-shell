@@ -14,7 +14,9 @@ class LsApp(App):
     def __init__(self, args):
         self.args = args
 
-    def run(self, inp=None):
+
+    def run(self, inp, out):
+
         """
         ls [DIRECTORY]
 
@@ -22,7 +24,7 @@ class LsApp(App):
 
         if ONE OR MORE ARGUMENTS provided print files in directories specified
         """
-        ret = "\n"
+        out.append("\n")
         if len(self.args) == 0:
             ls_dirs = [os.getcwd()]
         else:
@@ -32,8 +34,9 @@ class LsApp(App):
             if len(ls_dirs) > 1:
                 ret = ret + f"{path}:\n\n"
             files = sorted([each for each in os.listdir(path) if each[0] != '.'])
-            ret = ret +  "\n".join(files) + "\n"
-        return ret + "\n"
+            out.append("\n".join(files) + "\n")
+        out.append("\n")
+        return out
 
     def validate_args(self):
         """
