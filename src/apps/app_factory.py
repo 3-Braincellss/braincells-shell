@@ -1,5 +1,4 @@
 from apps.app import App
-
 from apps.ls import LsApp
 from apps.echo import EchoApp
 from apps.pwd import PwdApp
@@ -40,8 +39,10 @@ class AppFactory:
 
     def get_app(self, app_str: str, args: list) -> App:
         """
-        app_str - app name
-        args = [array, of, strings, which, are, all, options]
+        Returns an app object based on the app_str given.
+        :param app_str: The string name of the app being requested.
+        :param args: Array of all the options and arguments for the app.
+        :return app:
         """
         if app_str in self.apps:
             try:
@@ -53,38 +54,50 @@ class AppFactory:
         else:
             raise AppNotFoundException(app_str)
 
-    def _ls(self, args):
+    @classmethod
+    def _ls(cls, args):
         return LsApp(args)
 
-    def _echo(self, args):
+    @classmethod
+    def _echo(cls, args):
         return EchoApp(args)
 
-    def _pwd(self, args):
+    @classmethod
+    def _pwd(cls, args):
         return PwdApp(args)
 
-    def _cd(self, args):
+    @classmethod
+    def _cd(cls, args):
         return CdApp(args)
 
-    def _cat(self, args):
+    @classmethod
+    def _cat(cls, args):
         return CatApp(args)
 
-    def _head(self, args):
+    @classmethod
+    def _head(cls, args):
         return HeadApp(args)
 
-    def _tail(self, args):
+    @classmethod
+    def _tail(cls, args):
         return TailApp(args)
 
-    def _grep(self, args):
+    @classmethod
+    def _grep(cls, args):
         return GrepApp(args)
 
-    def _cut(self, args):
-        return CutApps(args)
+    @classmethod
+    def _cut(cls, args):
+        return CutApp(args)
 
-    def _find(self, args):
+    @classmethod
+    def _find(cls, args):
         return FindApp(args)
 
-    def _uniq(self, args):
+    @classmethod
+    def _uniq(cls, args):
         return UniqApp(args)
 
-    def _sort(self, args):
+    @classmethod
+    def _sort(cls, args):
         return SortApp(args)
