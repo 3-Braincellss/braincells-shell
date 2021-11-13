@@ -1,15 +1,45 @@
 from apps.app import App
+from getopt import getopt
+from glob import glob
+from exceptions.app_run import AppRunException
 class CatApp(App):
     """
     """
 
-    def __init__(self):
+    def __init__(self, args):
+        self.args, self.options = getopt(args, "")
+        self.args = args
         pass
 
-    def run(self):
+    def run(self, inp=None):
         """
         """
-        pass
+        if inp:
+            self.args = inp.split(" ")
+        if not self.args:
+            return input()
+        out = ""
+        for path in self.args:
+            if path == "-":
+                out += input()
+                continue
+            paths = glob(path)
+            if not paths:
+                raise AppRunException("cat", f"{path} No such file or directory :/")
+            out += self._run(paths)
+        return out
+
+    def _run(self,paths):
+        out = ""
+        for path in paths:
+            try:
+                with open(path, "r") as f:
+                    out += f.read()
+            except IsADirectoryError:
+                raise AppRunException("cat", f"{path}: Is a directory")
+        return out
+
+
 
     def validate_args(self):
 

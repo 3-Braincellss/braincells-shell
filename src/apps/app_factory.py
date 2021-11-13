@@ -28,7 +28,7 @@ class AppFactory:
             "echo": self._echo,
             # "pwd": self._pwd,
             "cd": self._cd,
-            # "cat": self._cat,
+            "cat": self._cat,
             # "head": self._head,
             # "tail": self._tail,
             # "grep": self._grep,
@@ -130,4 +130,3 @@ class AppFactory:
         if unsafe:
             app = UnsafeApp(app)
         return app
-
