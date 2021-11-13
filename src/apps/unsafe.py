@@ -1,0 +1,22 @@
+from apps.app import App
+from exceptions.app_context import AppContextException
+from exceptions.app_run import AppRunException
+
+
+class UnsafeApp(App):
+
+    def __init__(self, app):
+        self.app = app
+
+    def run(self, inp=None):
+        try:
+            self.validate_args()
+            out = self.app.run(inp)
+            return out
+        except AppContextException as e:
+            return e.message
+        except AppRunException as e:
+            return e.message
+
+    def validate_args(self):
+        self.app.validate_args()
