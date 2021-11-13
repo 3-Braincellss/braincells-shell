@@ -14,7 +14,7 @@ class LsApp(App):
     def __init__(self, args):
         self.args = args
 
-    def run(self, inp):
+    def run(self, inp=None):
         """
         ls [DIRECTORY]
 
@@ -36,7 +36,10 @@ class LsApp(App):
         return ret + "\n"
 
     def validate_args(self):
-        """Check is all paths in args exist"""
+        """
+        Check is all paths in args exist.
+        :raises: AppContextException if the path given does not exist.
+        """
 
         if len(self.args) >= 1:
             for path in self.args:

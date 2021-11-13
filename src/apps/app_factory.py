@@ -11,6 +11,7 @@ from apps.cut import CutApp
 from apps.find import FindApp
 from apps.uniq import UniqApp
 from apps.sort import SortApp
+from apps.unsafe import UnsafeApp
 
 from exceptions.app_not_found import AppNotFoundException
 from exceptions.app_context import AppContextException
@@ -44,9 +45,13 @@ class AppFactory:
         :param args: Array of all the options and arguments for the app.
         :return app:
         """
+        unsafe = False
+        if app_str[0] == '_':
+            app_str = app_str[1:]
+            unsafe = True
         if app_str in self.apps:
             try:
-                app = self.apps[app_str](args)
+                app = self.apps[app_str](args, unsafe)
                 app.validate_args()
                 return app
             except AppContextException as ace:
@@ -54,50 +59,75 @@ class AppFactory:
         else:
             raise AppNotFoundException(app_str)
 
-    @classmethod
-    def _ls(cls, args):
-        return LsApp(args)
+    def _ls(self, args, unsafe):
+        app = LsApp(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
 
-    @classmethod
-    def _echo(cls, args):
-        return EchoApp(args)
+    def _echo(self, args, unsafe):
+        app = EchoApp(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
 
-    @classmethod
-    def _pwd(cls, args):
-        return PwdApp(args)
+    def _pwd(self, args, unsafe):
+        app = PwdApp(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
 
-    @classmethod
-    def _cd(cls, args):
-        return CdApp(args)
+    def _cd(self, args, unsafe):
+        app = CdApp(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
 
-    @classmethod
-    def _cat(cls, args):
-        return CatApp(args)
+    def _cat(self, args, unsafe):
+        app = CatApp(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
 
-    @classmethod
-    def _head(cls, args):
-        return HeadApp(args)
+    def _head(self, args, unsafe):
+        app = HeadApp(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
 
-    @classmethod
-    def _tail(cls, args):
-        return TailApp(args)
+    def _tail(self, args, unsafe):
+        app = TailApp(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
 
-    @classmethod
-    def _grep(cls, args):
-        return GrepApp(args)
+    def _grep(self, args, unsafe):
+        app = GrepApp(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
 
-    @classmethod
-    def _cut(cls, args):
-        return CutApp(args)
+    def _cut(self, args, unsafe):
+        app = CutApps(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
 
-    @classmethod
-    def _find(cls, args):
-        return FindApp(args)
+    def _find(self, args, unsafe):
+        app = FindApp(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
 
-    @classmethod
-    def _uniq(cls, args):
-        return UniqApp(args)
+    def _uniq(self, args, unsafe):
+        app = UniqApp(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
 
-    @classmethod
-    def _sort(cls, args):
-        return SortApp(args)
+    def _sort(self, args, unsafe):
+        app = SortApp(args)
+        if unsafe:
+            app = UnsafeApp(app)
+        return app
+
