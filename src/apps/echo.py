@@ -7,9 +7,10 @@ class EchoApp(App):
     def __init__(self, args):
         self.args = args
 
-    def run(self, inp) -> str:
+    def run(self, inp, out):
         """ """
-        return " ".join(self.args) + "\n"
+        out.append(" ".join(self.args) + "\n")
+        return out
 
     def validate_args(self):
         pass

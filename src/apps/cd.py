@@ -12,7 +12,7 @@ class CdApp(App):
     def __init__(self, args):
         self.args = args
 
-    def run(self, inp):
+    def run(self, inp, out):
         """
         cd [DIRECTORY]
 
@@ -26,7 +26,7 @@ class CdApp(App):
             os.chdir("/")
         else:
             os.chdir(self.args[0])
-        return ""
+        return out
 
     def validate_args(self):
         """
