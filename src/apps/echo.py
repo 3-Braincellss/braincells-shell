@@ -1,15 +1,24 @@
+"""
+This module represents the echo bash command.
+"""
 from apps.app import App
 
 
 class EchoApp(App):
-    """ """
+    """
+    echo [INPUT] [INPUT] ...
+    """
 
     def __init__(self, args):
         self.args = args
 
     def run(self, inp) -> str:
-        """ """
+        """
+        Returns all the input args as a space seperated string.
+        """
         return " ".join(self.args) + "\n"
 
     def validate_args(self):
-        pass
+        """
+        Checks whether the given arguments are valid.
+        """

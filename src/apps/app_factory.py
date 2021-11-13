@@ -1,5 +1,4 @@
 from apps.app import App
-
 from apps.ls import LsApp
 from apps.echo import EchoApp
 from apps.pwd import PwdApp
@@ -41,8 +40,10 @@ class AppFactory:
 
     def get_app(self, app_str: str, args: list) -> App:
         """
-        app_str - app name
-        args = [array, of, strings, which, are, all, options]
+        Returns an app object based on the app_str given.
+        :param app_str: The string name of the app being requested.
+        :param args: Array of all the options and arguments for the app.
+        :return app:
         """
         unsafe = False
         if app_str[0] == '_':
@@ -129,3 +130,4 @@ class AppFactory:
         if unsafe:
             app = UnsafeApp(app)
         return app
+
