@@ -6,27 +6,32 @@ class CatApp(App):
     """
     """
 
+    allowed_options = {}
+
     def __init__(self, args):
-        self.args, self.options = getopt(args, "")
-        self.args = args
+        self.options, self.args = getopt(args, "")
         pass
 
-    def run(self, inp=None):
+    def run(self, inp, out):
         """
+        Executes that cat command on the given arguments.
+        :param inp: The input args of the command, only used for piping
+        and redirects.
+        :param out: The output queue.
+        :return: Returns the output queue.
         """
         if inp:
             self.args = inp.split(" ")
         if not self.args:
             return input()
-        out = ""
         for path in self.args:
             if path == "-":
-                out += input()
+                out.append(input())
                 continue
             paths = glob(path)
             if not paths:
                 raise AppRunException("cat", f"{path} No such file or directory :/")
-            out += self._run(paths)
+            out.append(self._run(paths))
         return out
 
     def _run(self,paths):
@@ -42,5 +47,5 @@ class CatApp(App):
 
 
     def validate_args(self):
-
-        pass
+        for option in self.options:
+            raise AppRunException("cat", f"{option}: is an unsupported option :(")
