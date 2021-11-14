@@ -11,7 +11,7 @@ class CatApp(App):
         self.args = args
         pass
 
-    def run(self, inp=None, out):
+    def run(self, inp, out):
         """
         Executes that cat command on the given arguments.
         :param inp: The input args of the command, only used for piping
