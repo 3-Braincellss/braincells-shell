@@ -6,9 +6,10 @@ class CatApp(App):
     """
     """
 
+    allowed_options = {}
+
     def __init__(self, args):
-        self.args, self.options = getopt(args, "")
-        self.args = args
+        self.options, self.args = getopt(args, "")
         pass
 
     def run(self, inp, out):
