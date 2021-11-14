@@ -11,22 +11,26 @@ class CatApp(App):
         self.args = args
         pass
 
-    def run(self, inp=None):
+    def run(self, inp=None, out):
         """
+        Executes that cat command on the given arguments.
+        :param inp: The input args of the command, only used for piping
+        and redirects.
+        :param out: The output queue.
+        :return: Returns the output queue.
         """
         if inp:
             self.args = inp.split(" ")
         if not self.args:
             return input()
-        out = ""
         for path in self.args:
             if path == "-":
-                out += input()
+                out.append(input())
                 continue
             paths = glob(path)
             if not paths:
                 raise AppRunException("cat", f"{path} No such file or directory :/")
-            out += self._run(paths)
+            out.append(self._run(paths))
         return out
 
     def _run(self,paths):
