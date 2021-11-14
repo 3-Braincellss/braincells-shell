@@ -47,5 +47,5 @@ class CatApp(App):
 
 
     def validate_args(self):
-
-        pass
+        for option in self.options:
+            raise AppRunException("cat", f"{option}: is an unsupported option :(")
