@@ -3,8 +3,8 @@ This module represents the cd bash command
 """
 import os
 
-from apps.app import App
-from exceptions.app_context import AppContextException
+from apps import App
+from exceptions import AppContextException
 
 
 class CdApp(App):
@@ -41,5 +41,4 @@ class CdApp(App):
         if len(self.args) > 1:
             raise AppContextException("cd", "Wrong number of arguments")
         if not os.path.exists(self.args[0]):
-            raise AppContextException(
-                "cd", f"path '{self.args[0]}' doesn't exist")
+            raise AppContextException("cd", f"path '{self.args[0]}' doesn't exist")

@@ -4,22 +4,22 @@ All major "Shell" logic happens here.
 """
 
 from collections import deque
-from parser import parser
+from shellparser import run_parser
 import sys
 import os
 
 from lark.exceptions import VisitError
-from exceptions.app_not_found import AppNotFoundException
-from exceptions.app_context import AppContextException
-from exceptions.app_run import AppRunException
+from exceptions import AppNotFoundException, AppRunException, AppContextException
+
 from common.tools import prettify_path
+
 
 class Shell:
     PREFIX = "~~> "
     PATH_TO_GRAMMAR = "./parser/grammar.lark"
 
     def __init__(self):
-        """ Starts up the shell """
+        """Starts up the shell"""
         pass
 
     def run(self, command=None):
@@ -36,10 +36,10 @@ class Shell:
                     print(out.popleft(), end="")
 
     def execute(self, input_str):
-        """ Create parse tree from input """
+        """Create parse tree from input"""
         out = deque()
         try:
-            command = parser.run_parser(input_str)
+            command = run_parser(input_str)
 
             out = command.run(None, out)
 

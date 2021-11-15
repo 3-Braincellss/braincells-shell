@@ -1,10 +1,11 @@
-from apps.app import App
+from apps import App
 from getopt import getopt
 from glob import glob
-from exceptions.app_run import AppRunException
+from exceptions import AppRunException
+
+
 class CatApp(App):
-    """
-    """
+    """ """
 
     allowed_options = {}
 
@@ -34,7 +35,7 @@ class CatApp(App):
             out.append(self._run(paths))
         return out
 
-    def _run(self,paths):
+    def _run(self, paths):
         out = ""
         for path in paths:
             try:
@@ -43,8 +44,6 @@ class CatApp(App):
             except IsADirectoryError:
                 raise AppRunException("cat", f"{path}: Is a directory")
         return out
-
-
 
     def validate_args(self):
         for option in self.options:

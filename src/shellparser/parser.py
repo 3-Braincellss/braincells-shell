@@ -1,13 +1,13 @@
 import os
+
 from lark import Lark
 from lark.visitors import Transformer
-from operations.operation_factory import OperationFactory
 
-from exceptions.app_not_found import AppNotFoundException
-from exceptions.app_context import AppContextException
+from operations import OperationFactory
+from exceptions import AppNotFoundException, AppContextException
 
 
-class T(Transformer):
+class ShellTransformer(Transformer):
     UNQUOTED = str
     DOUBLE_QUOTE_CONTENT = str
 
@@ -55,4 +55,4 @@ def run_parser(text):
         lark_parser = Lark(grammar.read(), start="command")
 
     tree = lark_parser.parse(text)
-    return T(visit_tokens=True).transform(tree)
+    return ShellTransformer(visit_tokens=True).transform(tree)

@@ -1,6 +1,5 @@
-from apps.app import App
-from exceptions.app_context import AppContextException
-from exceptions.app_run import AppRunException
+from apps import App
+from exceptions import AppContextException, AppRunException
 
 
 import os
@@ -13,7 +12,6 @@ class LsApp(App):
 
     def __init__(self, args):
         self.args = args
-
 
     def run(self, inp, out):
 
@@ -31,9 +29,7 @@ class LsApp(App):
             ls_dirs = self.args
 
         for path in ls_dirs:
-            if len(ls_dirs) > 1:
-                ret = ret + f"{path}:\n\n"
-            files = sorted([each for each in os.listdir(path) if each[0] != '.'])
+            files = sorted([each for each in os.listdir(path) if each[0] != "."])
             out.append("\n".join(files) + "\n")
         out.append("\n")
         return out
@@ -44,7 +40,8 @@ class LsApp(App):
         :raises: AppContextException if the path given does not exist.
         """
 
-        if len(self.args) >= 1:
-            for path in self.args:
-                if not os.path.exists(path):
-                    raise AppContextException("ls", f"path '{path}' does not exist")
+        if len(self.args) > 1:
+            raise AppContextException("ls", "too many arguments")
+        if len(self.args) == 1:
+            if not os.path.exists(self.args[0]):
+                raise AppContextException("ls", "not a directory")

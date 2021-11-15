@@ -1,20 +1,6 @@
-from apps.app import App
-from apps.ls import LsApp
-from apps.echo import EchoApp
-from apps.pwd import PwdApp
-from apps.cd import CdApp
-from apps.cat import CatApp
-from apps.head import HeadApp
-from apps.tail import TailApp
-from apps.grep import GrepApp
-from apps.cut import CutApp
-from apps.find import FindApp
-from apps.uniq import UniqApp
-from apps.sort import SortApp
-from apps.unsafe import UnsafeApp
+from apps import App, LsApp, EchoApp, CdApp, CatApp
 
-from exceptions.app_not_found import AppNotFoundException
-from exceptions.app_context import AppContextException
+from exceptions import AppNotFoundException, AppContextException
 
 
 class AppFactory:
@@ -46,7 +32,7 @@ class AppFactory:
         :return app:
         """
         unsafe = False
-        if app_str[0] == '_':
+        if app_str[0] == "_":
             app_str = app_str[1:]
             unsafe = True
         if app_str in self.apps:
