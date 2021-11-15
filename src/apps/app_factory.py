@@ -32,7 +32,7 @@ class AppFactory:
             # "head": self._head,
             # "tail": self._tail,
             # "grep": self._grep,
-            # "cut": self._cut,
+            "cut": self._cut,
             # "find": self._find,
             # "uniq": self._uniq,
             # "sort": self._sort,
@@ -108,7 +108,7 @@ class AppFactory:
         return app
 
     def _cut(self, args, unsafe):
-        app = CutApps(args)
+        app = CutApp(args)
         if unsafe:
             app = UnsafeApp(app)
         return app
