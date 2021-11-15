@@ -11,7 +11,7 @@ Functions
 Classes
 -------
 
-`ShellTransformer(visit_tokens=True)`
+`ShellTransformer(visit_tokens: bool = True)`
 :   Transformers visit each node of the tree, and run the appropriate method on it according to the node's data.
     
     Methods are provided by the user via inheritance, and called according to ``tree.data``.
@@ -23,6 +23,8 @@ Classes
     
     ``Transformer`` can do anything ``Visitor`` can do, but because it reconstructs the tree,
     it is slightly less efficient.
+    
+    To discard a node, return Discard (``lark.visitors.Discard``).
     
     All these classes implement the transformer interface:
     
@@ -41,6 +43,8 @@ Classes
 
     * lark.visitors.Transformer
     * lark.visitors._Decoratable
+    * abc.ABC
+    * typing.Generic
 
     ### Class variables
 
