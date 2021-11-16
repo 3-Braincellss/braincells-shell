@@ -9,30 +9,48 @@ class CutApp(App):
 
     def __init__(self, args):
         self.options, self.args = getopt(args, "b:")
-        pass
 
     def run(self, inp, out):
         """
         """
-        ## TODO: implement cutting out bytes from specified ranges
-        self._get_ranges()
-        out.append(self.args)
+        if inp:
+            self.options, self.args = getopt(args, "b:")
+        positions = self._get_positions()
+        if not self.args:
+            out.append(self._run(input(), positions))
+            return out
+        for arg in self.args:
+            if arg == "-":
+                out.append(self._run(input(), positions))
+            else:
+                contents = read_file(arg)
+                out.append(self._run(args, ranges))
         return out
 
-    def _get_ranges(self):
+
+    def _run(self, string, positions):
+        offset = 0
+        for position in positions:
+            if position-offset > len(string):
+                return string
+            string = string[:position-offset] + string[position-offset+1:]
+            offset += 1
+        return string
+
+    def _get_positions(self):
         string_ranges = self.options[0][1].split(",")
-        ranges = []
+        positions = []
         for range in string_ranges:
             if "-" in range:
-                ranges.append(self._get_range(range))
+                positions.extend(self._get_range(range))
             else:
-                ranges.append(self._get_singleton(range)) ## TODO: implement this
-        print(ranges)
-        return ranges
+                positions.append(self._get_singleton(range))
+        positions.sort()
+        return positions
 
     def _get_range(self, range):
         try:
-            start, end = new_range.split("-")
+            start, end = range.split("-")
         except ValueError:
             raise AppRunException("cut", f"Invalid option argument: {range}")
         new_range = []
@@ -44,7 +62,7 @@ class CutApp(App):
             new_range.append(self._get_boundary(end, True))
         except ValueError:
             raise AppRunException("cut", f"Invalid range value: {end}")
-        return new_range
+        return self._validate_and_unfold_range(new_range)
 
     def _get_boundary(self, num, is_end):
         if num == "" and is_end:
@@ -55,17 +73,28 @@ class CutApp(App):
             raise ValueError
         return int(num)
 
+    def _get_singleton(self, num):
+        if not self._validate_int(num):
+            raise AppRunException("cut", f"Invalid option argument: {num}")
+        return int(num)
+
     def _validate_int(self, num):
-        digits = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+        digits = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
         for char in num:
             if char not in digits:
                 return False
         return True
 
+    def _validate_and_unfold_range(self, val):
+        if val[0] > val[1]:
+            raise AppRunException(
+                "cut", f"Invalid decreasing range: {val[0]}-{val[1]}")
+        return val
+
     def validate_args(self):
         if not self.options:
             raise AppRunException(
-                "cut", "Missing option: -b byte_cut_start-byte_cut_end,.. >=[")
+                "cut", "Missing option: -b [RANGE],.. >=[")
         if len(self.options) != 1:
             raise AppRunException("cut", "Invalid number of options >=[")
         if self.options[0][0] != '-b':
