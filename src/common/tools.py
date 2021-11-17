@@ -19,3 +19,15 @@ def read_from_file(path, app_str):
             return text
     except FileNotFound:
         raise AppRunException(app_str, f"{path}: No such file or directory")
+
+def read_lines_from_file(path, app_str):
+    """
+    Reads from a file and returns the lines of the file.
+    :param path: The path of the file to be read.
+    """
+    try:
+        with open(path, "r") as f:
+            text = f.readlines()
+            return text
+    except FileNotFound:
+        raise AppRunException(app_str, f"{path}: No such file or directory")
