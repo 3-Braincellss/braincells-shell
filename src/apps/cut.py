@@ -1,7 +1,7 @@
 from apps.app import App
 from exceptions.app_run import AppRunException
 from getopt import getopt
-from common.tools import read_from_file
+from common.tools import read_from_file, read_lines_from_file
 
 
 class CutApp(App):
@@ -18,23 +18,30 @@ class CutApp(App):
             self.options, self.args = getopt(args, "b:")
         positions = self._get_positions()
         if not self.args:
-            out.append(self._run(input(), positions))
+            out.append(self._cut_from_string(input(), positions))
             return out
         for arg in self.args:
             if arg == "-":
-                out.append(self._run(input(), positions))
+                out.append(self._cut_from_string(input(), positions))
             else:
-                contents = read_from_file(arg, "cut")
+                contents = read_lines_from_file(arg, "cut")
                 out.append(self._run(contents, positions))
         return out
 
 
-    def _run(self, string, positions):
+    def _run(self, strings, positions):
+        new_string = ""
+        for string in strings:
+            new_string += self._cut_from_string(string, positions)
+        return new_string
+
+    def _cut_from_string(self, string, positions):
         new_string = ""
         new_positions = self._unfold(positions, len(string))
         for i in range(len(string)):
-            if i+1 not in new_positions:
+            if i+1 in new_positions:
                 new_string +=  string[i]
+        new_string += "\n"
         return new_string
 
     def _unfold(self, positions, length):
