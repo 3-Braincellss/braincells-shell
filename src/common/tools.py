@@ -1,3 +1,5 @@
+from exceptions.app_run import AppRunException
+
 def prettify_path(path):
     """Prettifies a given path"""
     words = []
@@ -7,3 +9,27 @@ def prettify_path(path):
         words[i] = words[i][0]
     ret = "/".join(words)
     return ret
+
+def read_from_file(path, app_str):
+    """
+    Reads from a file and returns its contents
+    :param path: The path of the file to be read.
+    """
+    try:
+        with open(path, "r") as f:
+            text = f.read()
+            return text
+    except OSError:
+        raise AppRunException(app_str, f"{path}: No such file or directory\n")
+
+def read_lines_from_file(path, app_str):
+    """
+    Reads from a file and returns the lines of the file.
+    :param path: The path of the file to be read.
+    """
+    try:
+        with open(path, "r") as f:
+            text = f.readlines()
+            return text
+    except OSError:
+        raise AppRunException(app_str, f"{path}: No such file or directory\n")
