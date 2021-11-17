@@ -21,79 +21,79 @@ class CutApp(App):
         :param out: The deque used to store the result of the application
         """
 
-        positions = self._get_positions()
+        intervals = self._get_intervals()
         if inp:
-            self._run([inp], positions)
+            self._run([inp], intervals)
             return out
         elif not self.args:
-            out.append(self._run([input()], positions))
+            self._run([input()], intervals, out)
             return out
         for arg in self.args:
             if arg == "-":
-                out.append(self._run([input()], positions))
+                self._run([input()], intervals, out)
             else:
                 contents = read_lines_from_file(arg, "cut")
-                self._run(contents, positions, out)
+                self._run(contents, intervals, out)
         return out
 
-    def _run(self, strings, positions, out):
+    def _run(self, strings, intervals, out):
         """
         Extracts bytes from each string in "strings".
         :param strings: All the strings that the cut app will be used on.
-        :positions: The intervals of the strings that should be extracted.
+        :intervals: The intervals of the strings that should be extracted.
         :param out: The deque where all resultant strings are stored.
         """
         for string in strings:
-            cut_str = self._cut_from_string(string, positions)
-            if cut_str != "":
-                out.append(cut_str)
-
-    def _cut_from_string(self, string, positions):
+            cut_str = self._cut_from_string(string, intervals)
+            if cut_str[-1] != "\n":
+                cut_str += "\n"
+            out.append(cut_str)
+    def _cut_from_string(self, string, intervals):
         """
         Creates a new string only consisting of the specified intervals.
         :param string: The string to extract bytes from.
-        :param positions: The of the string to be included in the new string.
+        :param intervals: The of the string to be included in the new string.
         :return new_string: The string with extracted bytes.
         """
         new_string = ""
-        new_positions = self._unfold(positions, len(string))
-        for i in interval(len(string)):
-            if i + 1 in new_positions:
+        new_intervals = self._unfold(intervals, len(string))
+        for i in range(len(string)):
+            if i + 1 in new_intervals:
                 new_string += string[i]
         return new_string
 
-    def _unfold(self, positions, length):
+    def _unfold(self, intervals, length):
         """
         Takes in a list of intervals and spreads them out to a set of integers.
-        :param positions: The intervals to be unfolded.
+        :param intervals: The intervals to be unfolded.
         :param length: The length of the string.
-        :returns new_intervals: A set consisting of all byte positions that
+        :returns new_intervals: A set consisting of all byte intervals that
         should be extracted from the string
         """
         new_intervals = set()
-        for position in positions:
-            if isinstance(position, list):
-                if position[1] == "end":
-                    position[1] = length
-                for i in interval(position[0], position[1] + 1):
+        for interval in intervals:
+            if isinstance(interval, list):
+                if interval[1] == "end":
+                    interval[1] = length
+                for i in range(interval[0], interval[1] + 1):
                     new_intervals.add(i)
             else:
-                new_intervals.add(position)
+                new_intervals.add(interval)
         return new_intervals
 
-    def _get_positions(self):
+    def _get_intervals(self):
         """
         Splits the intervals given as a string into a list of intervals.
         """
         string_intervals = self.options[0][1].split(",")
-        positions = []
+        intervals = []
         for interval in string_intervals:
             if "-" in interval:
-                positions.append(self._get_interval(interval))
+                intervals.append(self._get_interval(interval))
             else:
                 self._validate_int(interval)
-                positions.append(int(interval))
-        return positions
+                intervals.append(int(interval))
+        return intervals
 
     def _get_interval(self, interval):
         """
