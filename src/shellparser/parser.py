@@ -1,15 +1,13 @@
-from lark import Lark
-from lark.visitors import Transformer
-from operations.operation_factory import OperationFactory
-from shell import Shell
-
-from exceptions.app_not_found import AppNotFoundException
-from exceptions.app_context import AppContextException
-
 import os
 
+from lark import Lark
+from lark.visitors import Transformer
 
-class T(Transformer):
+from operations import OperationFactory
+from exceptions import AppNotFoundException, AppContextException
+
+
+class ShellTransformer(Transformer):
     UNQUOTED = str
     DOUBLE_QUOTE_CONTENT = str
 
@@ -17,10 +15,10 @@ class T(Transformer):
         return args[0]
 
     def call(self, args):
-        opFactory = OperationFactory()
+        op_factory = OperationFactory()
         data = {"app": args[0][0], "args": args[0][1]}
         try:
-            call = opFactory.get_operation("call", data)
+            call = op_factory.get_operation("call", data)
             return call
         except AppNotFoundException as anfe:
             raise anfe
@@ -54,7 +52,7 @@ def run_parser(text):
     filename = os.path.join(dirname, "grammar.lark")
     with open(filename, encoding="utf-8") as grammar:
 
-        LP = Lark(grammar.read(), start="command")
+        lark_parser = Lark(grammar.read(), start="command")
 
-    tree = LP.parse(text)
-    return T(visit_tokens=True).transform(tree)
+    tree = lark_parser.parse(text)
+    return ShellTransformer(visit_tokens=True).transform(tree)

@@ -1,10 +1,8 @@
-from operations.call import Call
-from operations.pipe import Pipe
 from functools import singledispatch
-from apps.app_factory import AppFactory
+from apps import AppFactory
 
-from exceptions.app_not_found import AppNotFoundException
-from exceptions.app_context import AppContextException
+from exceptions import AppNotFoundException, AppContextException
+from operations import Call, Pipe
 
 """
 Operation object creation will be handled with this module.
