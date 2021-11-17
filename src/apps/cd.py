@@ -29,7 +29,10 @@ class CdApp(App):
         if len(self.args) == 0:
             os.chdir("/")
         else:
-            os.chdir(self.args[0])
+            try:
+                os.chdir(self.args[0])
+            except OSError:
+                raise AppRunException("cd", f"{self.args[0]} is not a directory.")
         return out
 
     def validate_args(self):
