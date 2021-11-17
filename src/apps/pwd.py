@@ -14,11 +14,12 @@ class PwdApp(App):
         self.args = args
         pass
 
-    def run(self, inp):
+    def run(self, out, inp):
         """
         """
         self.validate_args()
-        return os.path.abspath(".") + "\n"
+        out.append(os.path.abspath(".") + "\n")
+        return out
 
     def validate_args(self):
         for option in self.args:
