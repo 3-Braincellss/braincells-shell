@@ -22,17 +22,19 @@ class CutApp(App):
             return out
         for arg in self.args:
             if arg == "-":
-                out.append(self._cut_from_string(input(), positions))
+                cut_str = (self._cut_from_string(input(), positions))
             else:
                 contents = read_lines_from_file(arg, "cut")
-                out.append(self._run(contents, positions))
+                self._run(contents, positions, out)
         return out
 
 
-    def _run(self, strings, positions):
+    def _run(self, strings, positions, out):
         new_string = ""
         for string in strings:
-            new_string += self._cut_from_string(string, positions)
+            cut_str = self._cut_from_string(string, positions)
+            if cut_str != "":
+                out.append(cut_str)
         return new_string
 
     def _cut_from_string(self, string, positions):
@@ -41,7 +43,6 @@ class CutApp(App):
         for i in range(len(string)):
             if i+1 in new_positions:
                 new_string +=  string[i]
-        new_string += "\n"
         return new_string
 
     def _unfold(self, positions, length):

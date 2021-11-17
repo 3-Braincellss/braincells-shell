@@ -20,7 +20,7 @@ RUN cd /comp0010 && python -m pip install -r requirements.txt
 RUN echo "hello" > smth.txt
 RUN echo "hello" > smth1.txt
 RUN echo "hello" > smth2.txt
-RUN echo "hello \n world \n nice" > smth3.txt
+RUN echo "hello\nworld\nnice" > smth3.txt
 
 ENV DEBIAN_FRONTEND=
 
