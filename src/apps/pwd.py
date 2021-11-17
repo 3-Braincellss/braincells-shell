@@ -1,6 +1,5 @@
 from apps.app import App
-from exceptions.app_context import AppContextException
-from exceptions.app_run import AppRunException
+from exceptions import AppRunException
 import os
 
 class PwdApp(App):
@@ -14,11 +13,12 @@ class PwdApp(App):
         self.args = args
         pass
 
-    def run(self, inp):
+    def run(self, inp, out):
         """
         """
         self.validate_args()
-        return os.path.abspath(".") + "\n"
+        out.append(os.path.abspath(".") + "\n")
+        return out
 
     def validate_args(self):
         for option in self.args:
