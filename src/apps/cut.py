@@ -1,6 +1,7 @@
 from apps.app import App
 from exceptions.app_run import AppRunException
 from getopt import getopt
+from common.tools import read_from_file
 
 
 class CutApp(App):
@@ -23,8 +24,8 @@ class CutApp(App):
             if arg == "-":
                 out.append(self._run(input(), positions))
             else:
-                contents = read_file(arg)
-                out.append(self._run(args, ranges))
+                contents = read_from_file(arg, "cut")
+                out.append(self._run(contents, positions))
         return out
 
 
