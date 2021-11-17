@@ -3,8 +3,9 @@ Namespace src
 
 Sub-modules
 -----------
-* src.commands
+* src.apps
 * src.common
-* src.operators
-* src.parser
+* src.exceptions
+* src.operations
 * src.shell
+* src.shellparser
