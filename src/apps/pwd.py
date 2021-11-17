@@ -13,7 +13,7 @@ class PwdApp(App):
         self.args = args
         pass
 
-    def run(self, out, inp):
+    def run(self, inp, out):
         """
         """
         self.validate_args()
