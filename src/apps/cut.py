@@ -29,23 +29,33 @@ class CutApp(App):
 
 
     def _run(self, string, positions):
-        offset = 0
+        new_string = ""
+        new_positions = self._unfold(positions, len(string))
+        for i in range(len(string)):
+            if i+1 not in new_positions:
+                new_string +=  string[i]
+        return new_string
+
+    def _unfold(self, positions, length):
+        new_ranges = set()
         for position in positions:
-            if position-offset > len(string):
-                return string
-            string = string[:position-offset] + string[position-offset+1:]
-            offset += 1
-        return string
+            if isinstance(position, list):
+                if position[1] == "end":
+                    position[1] = length
+                for i in range(position[0], position[1]+1):
+                    new_ranges.add(i)
+            else:
+                new_ranges.add(position)
+        return new_ranges
 
     def _get_positions(self):
         string_ranges = self.options[0][1].split(",")
         positions = []
         for range in string_ranges:
             if "-" in range:
-                positions.extend(self._get_range(range))
+                positions.append(self._get_range(range))
             else:
                 positions.append(self._get_singleton(range))
-        positions.sort()
         return positions
 
     def _get_range(self, range):
@@ -62,34 +72,33 @@ class CutApp(App):
             new_range.append(self._get_boundary(end, True))
         except ValueError:
             raise AppRunException("cut", f"Invalid range value: {end}")
-        return self._validate_and_unfold_range(new_range)
+        return self._validate_range(new_range)
 
     def _get_boundary(self, num, is_end):
         if num == "" and is_end:
             return "end"
         if num == "" and not is_end:
-            return 0
-        if not self._validate_int(num):
-            raise ValueError
+            return 1
+        self._validate_int(num)
         return int(num)
 
     def _get_singleton(self, num):
-        if not self._validate_int(num):
-            raise AppRunException("cut", f"Invalid option argument: {num}")
+        self._validate_int(num)
         return int(num)
 
     def _validate_int(self, num):
         digits = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
         for char in num:
             if char not in digits:
-                return False
-        return True
+                raise AppRunException("cut", "Invalid option argument {num}")
+        if num == "0":
+            raise AppRunException("cut", "Cut ranges are 1 indexed.")
 
-    def _validate_and_unfold_range(self, val):
-        if val[0] > val[1]:
+    def _validate_range(self, vals):
+        if vals[1] != "end" and vals[0] > vals[1]:
             raise AppRunException(
-                "cut", f"Invalid decreasing range: {val[0]}-{val[1]}")
-        return val
+                "cut", f"Invalid decreasing range: {vals[0]}-{vals[1]}")
+        return vals
 
     def validate_args(self):
         if not self.options:
