@@ -4,7 +4,7 @@ This module represents the cd bash command
 import os
 
 from apps import App
-from exceptions import AppContextException
+from exceptions import AppContextException, AppRunException
 
 
 class CdApp(App):
