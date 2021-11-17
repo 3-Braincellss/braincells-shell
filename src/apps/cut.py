@@ -1,6 +1,6 @@
-from apps.app import App
-from exceptions.app_run import AppRunException
+from apps import App
 from getopt import getopt
+from exceptions import AppRunException
 from common.tools import read_from_file, read_lines_from_file
 
 
@@ -48,6 +48,7 @@ class CutApp(App):
             if cut_str[-1] != "\n":
                 cut_str += "\n"
             out.append(cut_str)
+
     def _cut_from_string(self, string, intervals):
         """
         Creates a new string only consisting of the specified intervals.
@@ -132,7 +133,6 @@ class CutApp(App):
             return 1
         self._validate_int(num)
         return int(num)
-
 
     def _validate_int(self, num):
         """
