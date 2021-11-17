@@ -6,6 +6,9 @@ from common.tools import read_from_file, read_lines_from_file
 
 class CutApp(App):
     """
+    Executes bash application cut:
+    cut -b [INTERVALS] [PATHS]*
+    If paths is empty or '-' stdin is used
     """
 
     def __init__(self, args):
@@ -13,77 +16,116 @@ class CutApp(App):
 
     def run(self, inp, out):
         """
+        Executes the cut command extracting specified bytes from text.
+        :param inp: The string text to cut bytes from.
+        :param out: The deque used to store the result of the application
         """
-        if inp:
-            self.options, self.args = getopt(args, "b:")
+
         positions = self._get_positions()
-        if not self.args:
-            out.append(self._cut_from_string(input(), positions))
+        if inp:
+            self._run([inp], positions)
+            return out
+        elif not self.args:
+            out.append(self._run([input()], positions))
             return out
         for arg in self.args:
             if arg == "-":
-                cut_str = (self._cut_from_string(input(), positions))
+                out.append(self._run([input()], positions))
             else:
                 contents = read_lines_from_file(arg, "cut")
                 self._run(contents, positions, out)
         return out
 
-
     def _run(self, strings, positions, out):
-        new_string = ""
+        """
+        Extracts bytes from each string in "strings".
+        :param strings: All the strings that the cut app will be used on.
+        :positions: The intervals of the strings that should be extracted.
+        :param out: The deque where all resultant strings are stored.
+        """
         for string in strings:
             cut_str = self._cut_from_string(string, positions)
             if cut_str != "":
                 out.append(cut_str)
-        return new_string
 
     def _cut_from_string(self, string, positions):
+        """
+        Creates a new string only consisting of the specified intervals.
+        :param string: The string to extract bytes from.
+        :param positions: The of the string to be included in the new string.
+        :return new_string: The string with extracted bytes.
+        """
         new_string = ""
         new_positions = self._unfold(positions, len(string))
-        for i in range(len(string)):
-            if i+1 in new_positions:
-                new_string +=  string[i]
+        for i in interval(len(string)):
+            if i + 1 in new_positions:
+                new_string += string[i]
         return new_string
 
     def _unfold(self, positions, length):
-        new_ranges = set()
+        """
+        Takes in a list of intervals and spreads them out to a set of integers.
+        :param positions: The intervals to be unfolded.
+        :param length: The length of the string.
+        :returns new_intervals: A set consisting of all byte positions that
+        should be extracted from the string
+        """
+        new_intervals = set()
         for position in positions:
             if isinstance(position, list):
                 if position[1] == "end":
                     position[1] = length
-                for i in range(position[0], position[1]+1):
-                    new_ranges.add(i)
+                for i in interval(position[0], position[1] + 1):
+                    new_intervals.add(i)
             else:
-                new_ranges.add(position)
-        return new_ranges
+                new_intervals.add(position)
+        return new_intervals
 
     def _get_positions(self):
-        string_ranges = self.options[0][1].split(",")
+        """
+        Splits the intervals given as a string into a list of intervals.
+        """
+        string_intervals = self.options[0][1].split(",")
         positions = []
-        for range in string_ranges:
-            if "-" in range:
-                positions.append(self._get_range(range))
+        for interval in string_intervals:
+            if "-" in interval:
+                positions.append(self._get_interval(interval))
             else:
-                positions.append(self._get_singleton(range))
+                self._validate_int(interval)
+                positions.append(int(interval))
         return positions
 
-    def _get_range(self, range):
+    def _get_interval(self, interval):
+        """
+        Converts an interval into a tuple consisting of ints or 'end'
+        :param interval: The interval being converted into a tuple.
+        :raises AppRunException: If an interval is invalid.
+        :returns new_interval: The new interval
+        """
         try:
-            start, end = range.split("-")
+            start, end = interval.split("-")
         except ValueError:
-            raise AppRunException("cut", f"Invalid option argument: {range}")
-        new_range = []
+            raise AppRunException(
+                "cut", f"Invalid option argument: {interval}")
+        new_interval = []
         try:
-            new_range.append(self._get_boundary(start, False))
+            new_interval.append(self._get_boundary(start, False))
         except ValueError:
-            raise AppRunException("cut", f"Invalid range value: {start}")
+            raise AppRunException("cut", f"Invalid interval value: {start}")
         try:
-            new_range.append(self._get_boundary(end, True))
+            new_interval.append(self._get_boundary(end, True))
         except ValueError:
-            raise AppRunException("cut", f"Invalid range value: {end}")
-        return self._validate_range(new_range)
+            raise AppRunException("cut", f"Invalid interval value: {end}")
+        self._validate_interval(new_interval)
+        return new_interval
 
     def _get_boundary(self, num, is_end):
+        """
+        Converts a string interval value into an int or the string "end"
+        :param num: The value to be converted.
+        :param is_end: Whether or not the interval value is the last element of the interval
+        :returns num: The converted value.
+        """
         if num == "" and is_end:
             return "end"
         if num == "" and not is_end:
@@ -91,28 +133,39 @@ class CutApp(App):
         self._validate_int(num)
         return int(num)
 
-    def _get_singleton(self, num):
-        self._validate_int(num)
-        return int(num)
 
     def _validate_int(self, num):
+        """
+        Determines whether a number can be represented as a positive integer.
+        :param num: The string to be checked.
+        :raises AppRunException: If the string given is invalid (not a positive integer)
+        """
         digits = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
         for char in num:
             if char not in digits:
                 raise AppRunException("cut", "Invalid option argument {num}")
         if num == "0":
-            raise AppRunException("cut", "Cut ranges are 1 indexed.")
+            raise AppRunException("cut", "Cut intervals are 1 indexed.")
 
-    def _validate_range(self, vals):
-        if vals[1] != "end" and vals[0] > vals[1]:
+    def _validate_interval(self, interval):
+        """
+        Ensures the interval is increasing.
+        :param interval: The interval to be checked.
+        :raises AppRunException: If the interval is not increasing
+        """
+        if interval[1] != "end" and interval[0] > interval[1]:
             raise AppRunException(
-                "cut", f"Invalid decreasing range: {vals[0]}-{vals[1]}")
-        return vals
+                "cut", f"Invalid decreasing interval: {interval[0]}-{interval[1]}")
 
     def validate_args(self):
+        """
+        Ensures the options are valid.
+        :raises AppRunException: If -b option is missing or -b is not the only option.
+
+        """
         if not self.options:
             raise AppRunException(
-                "cut", "Missing option: -b [RANGE],.. >=[")
+                "cut", "Missing option: -b [INTERVAL],.. >=[")
         if len(self.options) != 1:
             raise AppRunException("cut", "Invalid number of options >=[")
         if self.options[0][0] != '-b':
