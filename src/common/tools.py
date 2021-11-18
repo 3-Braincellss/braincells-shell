@@ -1,4 +1,6 @@
+
 from exceptions.app_run import AppRunException
+
 
 def prettify_path(path):
     """Prettifies a given path"""
@@ -19,8 +21,10 @@ def read_from_file(path, app_str):
         with open(path, "r") as f:
             text = f.read()
             return text
+
     except OSError:
         raise AppRunException(app_str, f"{path}: No such file or directory\n")
+
 
 def read_lines_from_file(path, app_str):
     """
@@ -31,5 +35,6 @@ def read_lines_from_file(path, app_str):
         with open(path, "r") as f:
             text = f.readlines()
             return text
+
     except OSError:
         raise AppRunException(app_str, f"{path}: No such file or directory\n")
