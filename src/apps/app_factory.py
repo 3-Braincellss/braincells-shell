@@ -1,4 +1,4 @@
-from apps import App, LsApp, EchoApp, CdApp, CatApp
+from apps import App, LsApp, EchoApp, CdApp, CatApp, SortApp
 
 from exceptions import AppNotFoundException, AppContextException
 
@@ -21,7 +21,7 @@ class AppFactory:
             # "cut": self._cut,
             # "find": self._find,
             # "uniq": self._uniq,
-            # "sort": self._sort,
+            "sort": self._sort,
         }
 
     def get_app(self, app_str: str, args: list) -> App:
