@@ -12,6 +12,7 @@ def prettify_path(path):
     ret = "/".join(words)
     return ret
 
+
 def read_from_file(path, app_str):
     """
     Reads from a file and returns its contents
@@ -24,6 +25,8 @@ def read_from_file(path, app_str):
 
     except OSError:
         raise AppRunException(app_str, f"{path}: No such file or directory\n")
+    except IsADirectoryError:
+        raise AppRunException(app_str, f"{path}: Is a directory")
 
 
 def read_lines_from_file(path, app_str):
@@ -38,3 +41,5 @@ def read_lines_from_file(path, app_str):
 
     except OSError:
         raise AppRunException(app_str, f"{path}: No such file or directory\n")
+    except IsADirectoryError:
+        raise AppRunException(app_str, f"{path}: Is a directory")

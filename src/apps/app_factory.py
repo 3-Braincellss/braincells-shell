@@ -1,4 +1,4 @@
-from apps import App, LsApp, EchoApp, CdApp, CatApp, CutApp, PwdApp, HeadApp, TailApp, SortApp
+from apps import App, LsApp, EchoApp, CdApp, CatApp, CutApp, PwdApp, HeadApp, TailApp, SortApp, GrepApp
 from exceptions import AppNotFoundException, AppContextException
 
 
@@ -16,7 +16,7 @@ class AppFactory:
             "cat": self._cat,
             "head": self._head,
             "tail": self._tail,
-            # "grep": self._grep,
+            "grep": self._grep,
             "cut": self._cut,
             # "find": self._find,
             # "uniq": self._uniq,
