@@ -21,6 +21,9 @@ class GrepApp(App):
             return out
         paths = self.args[1:]
         for path in paths:
+            if path == "-":
+                self._run([input()], out)
+                continue
             contents = read_lines_from_file(path, "grep")
             self._run(contents, out)
         return out
