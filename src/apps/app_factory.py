@@ -1,4 +1,4 @@
-from apps import App, LsApp, EchoApp, CdApp, CatApp, CutApp, PwdApp, HeadApp, TailApp, SortApp, import GrepApp
+from apps import App, LsApp, EchoApp, CdApp, CatApp, CutApp, PwdApp, HeadApp, TailApp, SortApp, GrepApp
 from exceptions import AppNotFoundException, AppContextException
 
 
