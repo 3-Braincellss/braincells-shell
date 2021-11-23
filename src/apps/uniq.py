@@ -70,5 +70,5 @@ class UniqApp(App):
             raise AppRunException("uniq", "too many arguments")
         if len(self.options) > 1:
             raise AppRunException("uniq", "too many options")
-        if self.options[0][0] != "-i":
+        if self.options and self.options[0][0] != "-i":
             raise AppRunException("uniq", f"invalid option {option}")
