@@ -11,7 +11,7 @@ class EchoApp(App):
 
     def __init__(self, args):
         self.args = args
-        
+
     def run(self, inp, out):
         """
         Returns all the input args as a space seperated string.

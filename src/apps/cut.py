@@ -124,7 +124,8 @@ class CutApp(App):
         """
         Converts a string interval value into an int or the string "end"
         :param num: The value to be converted.
-        :param is_end: Whether or not the interval value is the last element of the interval
+        :param is_end: Whether or not the interval value is the last element of
+        the interval
         :returns num: The converted value.
         """
         if num == "" and is_end:
@@ -138,7 +139,8 @@ class CutApp(App):
         """
         Determines whether a number can be represented as a positive integer.
         :param num: The string to be checked.
-        :raises AppRunException: If the string given is invalid (not a positive integer)
+        :raises AppRunException: If the string given is invalid (not a positive
+        integer)
         """
         digits = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
         for char in num:
@@ -160,8 +162,8 @@ class CutApp(App):
     def validate_args(self):
         """
         Ensures the options are valid.
-        :raises AppRunException: If -b option is missing or -b is not the only option.
-
+        :raises AppRunException: If -b option is missing or -b is not the only
+        option.
         """
         if not self.options:
             raise AppRunException(

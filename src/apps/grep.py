@@ -6,7 +6,10 @@ import re
 
 
 class GrepApp(App):
+
     """
+    Application representing the bash command:
+    grep [PATTERN] [FILE]*
     """
 
     def __init__(self, args):
@@ -14,6 +17,9 @@ class GrepApp(App):
 
     def run(self, inp, out):
         """
+        Performs the grep operation on all specified paths.
+        :param inp: The input args of the command, only used for piping
+        and redirects.
         """
         self.pattern = self.args[0]
         if len(self.args) == 1:
