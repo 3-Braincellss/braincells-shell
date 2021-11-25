@@ -24,7 +24,7 @@ class CatApp(App):
         :return: Returns the output queue.
         """
         if inp:
-            out.append(inp)
+            out.extend(inp)
             return out
 
         if not self.args:
