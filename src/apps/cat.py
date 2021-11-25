@@ -25,7 +25,7 @@ class CatApp(App):
         :return: Returns the output queue.
         """
         if inp:
-            self.args = inp.split(" ")
+            self.args = inp
         if not self.args:
             return input()
         for path in self.args:
