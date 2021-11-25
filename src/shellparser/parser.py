@@ -60,5 +60,4 @@ def run_parser(text):
         lark_parser = Lark(grammar.read(), start="command")
 
     tree = lark_parser.parse(text)
-    print(tree.pretty())
     return ShellTransformer(visit_tokens=True).transform(tree)
