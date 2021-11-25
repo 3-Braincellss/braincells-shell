@@ -1,9 +1,9 @@
 %import common.LETTER
 
-command : pipe | seq | call
+command : pipe | seq | call | WHITESPACE
+seq     : command ";" command
 pipe    : call "|" call 
         | pipe "|" call
-seq     : command ";" command
 call        : WHITESPACE? (redirection WHITESPACE)* arguments (WHITESPACE redirection)* WHITESPACE?
 arguments     : word (WHITESPACE word)* 
 

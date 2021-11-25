@@ -12,11 +12,36 @@ class ShellTransformer(Transformer):
     DOUBLE_QUOTE_CONTENT = str
 
     def command(self, args):
-        return args[0]
+        returnargs = [x for x in args if x is not None]
+        return returnargs
+    
+    def sequence(self, args):
+
+        op_factory = OperationFactory()
+        data = {"op1": args[0], "op2": args[1]}
+        try:
+            pipe = op_factory.get_operation("pipe", data)
+            return pipe
+        except AppNotFoundException as anfe:
+            raise anfe
+        except AppContextException as ace:
+            raise ace
+
+    def pipe(self, args):
+        op_factory = OperationFactory()
+        data = {"op1": args[0], "op2": args[1]}
+        try:
+            pipe = op_factory.get_operation("pipe", data)
+            return pipe
+        except AppNotFoundException as anfe:
+            raise anfe
+        except AppContextException as ace:
+            raise ace
 
     def call(self, args):
+        returnargs = [x for x in args if x is not None]
         op_factory = OperationFactory()
-        data = {"app": args[0][0], "args": args[0][1]}
+        data = {"app": returnargs[0][0], "args": returnargs[0][1]}
         try:
             call = op_factory.get_operation("call", data)
             return call

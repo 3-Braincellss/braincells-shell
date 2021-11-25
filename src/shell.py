@@ -39,9 +39,10 @@ class Shell:
         """Create parse tree from input"""
         out = deque()
         try:
-            command = run_parser(input_str)
+            command = run_parser(input_str + " ")
 
-            out = command.run(None, out)
+            if command:
+                out = command[0].run(None, out)
 
         except VisitError as ve:
             if isinstance(ve.__context__, AppNotFoundException):

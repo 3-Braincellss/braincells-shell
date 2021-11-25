@@ -13,7 +13,7 @@ class CdApp(App):
     cd [DIRECTORY]
     """
 
-    def __init__(self, args):
+    def __init__(self, args=[]):
         self.args = args
 
     def run(self, inp, out):
@@ -28,6 +28,8 @@ class CdApp(App):
 
         If NO DIRECTORY is given changes directory to the root
         """
+        if inp:
+            self.args[0] = inp
         if len(self.args) == 0:
             os.chdir("/")
         else:

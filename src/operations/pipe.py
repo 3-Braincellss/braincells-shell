@@ -4,7 +4,8 @@ from collections import deque
 
 class Pipe(Operation):
     """
-    Standard pipe that redirects the output of one program to the input of another.
+    Standard pipe that redirects the output of one program to the input of
+    another.
     """
 
     def __init__(self, cm1, cm2):
