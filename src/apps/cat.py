@@ -29,7 +29,6 @@ class CatApp(App):
 
         if not self.args:
             out.append(input())
-            out.append("\n")
             return out
         for path in self.args:
             if path == "-":
@@ -66,4 +65,5 @@ class CatApp(App):
         :raises AppRunException: If any option is given.
         """
         for option in self.options:
-            raise AppRunException("cat", f"{option}: is an unsupported option :(")
+            raise AppRunException("cat", f"{option}: is an unsupported option \
+            :(")

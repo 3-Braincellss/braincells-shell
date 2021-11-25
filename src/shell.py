@@ -33,7 +33,7 @@ class Shell:
                 text = input()
                 out = self.execute(text)
                 while len(out) > 0:
-                    print(out.popleft(), end="")
+                    print(out.popleft())
 
     def execute(self, input_str):
         """Create parse tree from input"""

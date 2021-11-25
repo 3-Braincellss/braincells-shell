@@ -44,9 +44,7 @@ class CutApp(App):
         :param out: The deque where all resultant strings are stored.
         """
         for string in strings:
-            cut_str = self._cut_from_string(string, intervals)
-            if cut_str[-1] != "\n":
-                cut_str += "\n"
+            cut_str = self._cut_from_string(string, intervals).rstrip()
             out.append(cut_str)
 
     def _cut_from_string(self, string, intervals):
@@ -74,9 +72,12 @@ class CutApp(App):
         new_intervals = set()
         for interval in intervals:
             if isinstance(interval, list):
+                low = interval[0]
                 if interval[1] == "end":
-                    interval[1] = length
-                for i in range(interval[0], interval[1] + 1):
+                    high = length
+                else:
+                    high = interval[1]
+                for i in range(low, high + 1):
                     new_intervals.add(i)
             else:
                 new_intervals.add(interval)
