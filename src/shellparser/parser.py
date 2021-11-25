@@ -15,13 +15,13 @@ class ShellTransformer(Transformer):
         returnargs = [x for x in args if x is not None]
         return returnargs
     
-    def sequence(self, args):
-
+    def seq(self, args):
+        print(args)
         op_factory = OperationFactory()
-        data = {"op1": args[0], "op2": args[1]}
+        data = {"op1": args[0][0], "op2": args[1][0]}
         try:
-            pipe = op_factory.get_operation("pipe", data)
-            return pipe
+            seq = op_factory.get_operation("seq", data)
+            return seq
         except AppNotFoundException as anfe:
             raise anfe
         except AppContextException as ace:
@@ -80,4 +80,5 @@ def run_parser(text):
         lark_parser = Lark(grammar.read(), start="command")
 
     tree = lark_parser.parse(text)
+    print(tree.pretty())
     return ShellTransformer(visit_tokens=True).transform(tree)
