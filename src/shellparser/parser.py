@@ -62,6 +62,10 @@ class ShellTransformer(Transformer):
     def double_quoted(self, args):
         returnargs = [x for x in args if x is not None]
         return "".join(returnargs)
+    
+    def single_quoted(self, args):
+        returnargs = [x for x in args if x is not None]
+        return "".join(returnargs)
 
     def backquoted_call(self, args):
         out = args[0].run(None)
