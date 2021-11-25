@@ -31,6 +31,7 @@ class CatApp(App):
             out.append(input())
             out.append("\n")
             return out
+
         for path in self.args:
             if path == "-":
                 out.append(input())

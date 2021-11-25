@@ -15,4 +15,4 @@ class Sequence(Operation):
 
         # None is passed since it's impossible to pass an input to a sequence
         out = self.cm1.run(None, out)
-        return out.extend(cm2.run(None, out))
+        return out.extend(self.cm2.run(None, out))
