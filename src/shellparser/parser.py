@@ -16,12 +16,20 @@ class ShellTransformer(Transformer):
         return returnargs
     
     def sequence(self, args):
-        returnargs = [x for x in args if x is not None]
-        return returnargs
+
+        op_factory = OperationFactory()
+        data = {"op1": args[0], "op2": args[1]}
+        try:
+            pipe = op_factory.get_operation("pipe", data)
+            return pipe
+        except AppNotFoundException as anfe:
+            raise anfe
+        except AppContextException as ace:
+            raise ace
 
     def pipe(self, args):
         op_factory = OperationFactory()
-        data = {"op1": args[0], "op2": args[0]}
+        data = {"op1": args[0], "op2": args[1]}
         try:
             pipe = op_factory.get_operation("pipe", data)
             return pipe
