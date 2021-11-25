@@ -22,6 +22,10 @@ class HeadApp(App):
         if inp:
             self._run(inp, lines, out)
             return out
+        if not self.args:
+            for _ in range(lines):
+                out.append(input())
+            return out
         if len(self.args) > 1:
             for arg in self.args:
                 out.extend("\n--> " + arg + " <--\n")
