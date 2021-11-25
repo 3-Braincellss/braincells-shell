@@ -39,7 +39,7 @@ class Shell:
         """Create parse tree from input"""
         out = deque()
         try:
-            command = run_parser(input_str)
+            command = run_parser(input_str + " ")
 
             if command:
                 out = command[0].run(None, out)
