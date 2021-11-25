@@ -14,7 +14,6 @@ class CatApp(App):
 
     def __init__(self, args):
         self.options, self.args = getopt(args, "")
-        pass
 
     def run(self, inp, out):
         """
@@ -25,17 +24,23 @@ class CatApp(App):
         :return: Returns the output queue.
         """
         if inp:
-            self.args = inp.split(" ")
+            out.append(inp)
+            return out
         if not self.args:
-            return input()
+            out.append(input())
+            out.append("\n")
+            return out
         for path in self.args:
             if path == "-":
                 out.append(input())
                 continue
             paths = glob(path)
             if not paths:
-                raise AppRunException("cat", f"{path} No such file or directory \
-                :/")
+                raise AppRunException(
+                    "cat",
+                    f"{path} No such file or directory \
+                :/",
+                )
             out.append(self._run(paths))
         return out
 
