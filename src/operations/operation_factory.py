@@ -2,7 +2,12 @@ from functools import singledispatch
 from apps import AppFactory
 
 from exceptions import AppNotFoundException, AppContextException
-from operations import Call, Pipe
+
+from operations import (
+    Call,
+    Pipe,
+    Sequence,
+)
 
 """
 Operation object creation will be handled with this module.
@@ -14,6 +19,7 @@ class OperationFactory:
         self.apps = {
             "call": self._call,
             "pipe": self._pipe,
+            "seq": self._seq,
         }
 
     def get_operation(self, op_str, data):
@@ -35,3 +41,8 @@ class OperationFactory:
         op1 = data["op1"]
         op2 = data["op2"]
         return Pipe(op1, op2)
+
+    def _seq(self, data):
+        op1 = data["op1"]
+        op2 = data["op2"]
+        return Sequence(op1, op2)
