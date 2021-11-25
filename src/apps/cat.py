@@ -5,7 +5,10 @@ from exceptions import AppRunException
 
 
 class CatApp(App):
-    """ """
+    """
+    Application representing the bash command:
+    cat [FILES]...
+    """
 
     allowed_options = {}
 
@@ -31,11 +34,17 @@ class CatApp(App):
                 continue
             paths = glob(path)
             if not paths:
-                raise AppRunException("cat", f"{path} No such file or directory :/")
+                raise AppRunException("cat", f"{path} No such file or directory \
+                :/")
             out.append(self._run(paths))
         return out
 
     def _run(self, paths):
+        """
+        Reads all the contents in the given list of paths.
+        :param paths: The paths to read from.
+        :return out: The text of all the files.
+        """
         out = ""
         for path in paths:
             try:
@@ -46,5 +55,9 @@ class CatApp(App):
         return out
 
     def validate_args(self):
+        """
+        Ensures the options are valid.
+        :raises AppRunException: If any option is given.
+        """
         for option in self.options:
             raise AppRunException("cat", f"{option}: is an unsupported option :(")

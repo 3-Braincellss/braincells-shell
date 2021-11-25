@@ -1,5 +1,4 @@
-from apps import App, LsApp, EchoApp, CdApp, CatApp
-
+from apps import App, LsApp, EchoApp, CdApp, CatApp, CutApp, PwdApp, HeadApp, TailApp, SortApp, GrepApp, UniqApp
 from exceptions import AppNotFoundException, AppContextException
 
 
@@ -12,16 +11,16 @@ class AppFactory:
         self.apps = {
             "ls": self._ls,
             "echo": self._echo,
-            # "pwd": self._pwd,
+            "pwd": self._pwd,
             "cd": self._cd,
             "cat": self._cat,
-            # "head": self._head,
-            # "tail": self._tail,
-            # "grep": self._grep,
-            # "cut": self._cut,
+            "head": self._head,
+            "tail": self._tail,
+            "grep": self._grep,
+            "cut": self._cut,
             # "find": self._find,
-            # "uniq": self._uniq,
-            # "sort": self._sort,
+            "uniq": self._uniq,
+            "sort": self._sort,
         }
 
     def get_app(self, app_str: str, args: list) -> App:
@@ -94,7 +93,7 @@ class AppFactory:
         return app
 
     def _cut(self, args, unsafe):
-        app = CutApps(args)
+        app = CutApp(args)
         if unsafe:
             app = UnsafeApp(app)
         return app
