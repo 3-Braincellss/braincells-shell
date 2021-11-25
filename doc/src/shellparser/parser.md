@@ -92,7 +92,16 @@ Classes
     `double_quoted(self, args)`
     :
 
+    `pipe(self, args)`
+    :
+
     `quoted(self, args)`
+    :
+
+    `seq(self, args)`
+    :
+
+    `single_quoted(self, args)`
     :
 
     `word(self, args)`

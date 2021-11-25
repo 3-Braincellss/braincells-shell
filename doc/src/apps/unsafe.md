@@ -13,7 +13,7 @@ Classes
 
     ### Methods
 
-    `run(self, inp=None)`
+    `run(self, inp, out)`
     :   Runs the application.
 
     `validate_args(self)`

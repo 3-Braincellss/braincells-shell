@@ -5,7 +5,8 @@ Classes
 -------
 
 `CatApp(args)`
-:   
+:   Application representing the bash command:
+    cat [FILES]...
 
     ### Ancestors (in MRO)
 
@@ -26,4 +27,5 @@ Classes
         :return: Returns the output queue.
 
     `validate_args(self)`
-    :   Checks whether the given args are appropriate for the application.
+    :   Ensures the options are valid.
+        :raises AppRunException: If any option is given.

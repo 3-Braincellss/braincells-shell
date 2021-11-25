@@ -4,8 +4,8 @@ Module src.apps.head
 Classes
 -------
 
-`HeadApp()`
-:   
+`HeadApp(args)`
+:   head [OPTIONS] [FILE]
 
     ### Ancestors (in MRO)
 
@@ -13,7 +13,7 @@ Classes
 
     ### Methods
 
-    `run(self)`
+    `run(self, inp, out)`
     :
 
     `validate_args(self)`
