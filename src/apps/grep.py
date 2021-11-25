@@ -36,11 +36,8 @@ class GrepApp(App):
 
     def _run(self, lines, out):
         for line in lines:
-            if re.match(self.pattern, line):
-                x = line
-                if x[-1] != "\n":
-                    x += "\n"
-                out.append(x)
+            if re.search(self.pattern, line):
+                out.append(line.rstrip())
 
     def validate_args(self):
         if not self.args:
