@@ -12,6 +12,11 @@ class ShellTransformer(Transformer):
     DOUBLE_QUOTE_CONTENT = str
 
     def command(self, args):
+        returnargs = [x for x in args if x is not None]
+        return returnargs
+
+    def pipe(self, args):
+        print(args)
         return args[0]
 
     def call(self, args):
@@ -55,4 +60,5 @@ def run_parser(text):
         lark_parser = Lark(grammar.read(), start="command")
 
     tree = lark_parser.parse(text)
+    print(tree.pretty())
     return ShellTransformer(visit_tokens=True).transform(tree)
