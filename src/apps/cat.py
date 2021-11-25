@@ -26,6 +26,7 @@ class CatApp(App):
         if inp:
             out.append(inp)
             return out
+
         if not self.args:
             out.append(input())
             out.append("\n")
