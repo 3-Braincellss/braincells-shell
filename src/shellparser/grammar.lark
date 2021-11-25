@@ -11,12 +11,12 @@ word    : (quoted | UNQUOTED)
 redirection : "<" WHITESPACE word
             | ">" WHITESPACE word
 
-quoted        : single_quoted | double_quoted | BACKQUOTED
-double_quoted : "\"" (backquoted_call | DOUBLE_QUOTE_CONTENT)* "\""
-backquoted_call    : "`" call "`" 
+quoted        : single_quoted | double_quoted | back_quoted
+double_quoted : "\"" (back_quoted | DOUBLE_QUOTE_CONTENT)* "\""
+back_quoted    : "`" BACKQUOTED "`" 
 single_quoted : "'" SINGLE_QUOTE_CONTENT* "'"
 
-BACKQUOTED           : /[`][^\n`]*[`]/
+BACKQUOTED           : /[^\n`]+/
 DOUBLE_QUOTE_CONTENT : /[^\n"`]+/
 SINGLE_QUOTE_CONTENT : /[^\n']+/
 UNQUOTED             : /[^\s"'`\n;|<>]+/
