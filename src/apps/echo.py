@@ -16,7 +16,7 @@ class EchoApp(App):
         """
         Returns all the input args as a space seperated string.
         """
-        out.append(" ".join(self.args) + "\n")
+        out.append(" ".join(self.args))
         return out
 
     def validate_args(self):

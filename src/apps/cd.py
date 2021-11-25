@@ -29,7 +29,8 @@ class CdApp(App):
         If NO DIRECTORY is given changes directory to the root
         """
         if inp:
-            self.args[0] = inp
+            self.args = inp
+        print(self.args)
         if len(self.args) == 0:
             os.chdir("/")
         else:
@@ -45,9 +46,8 @@ class CdApp(App):
         Check that the number of arguments is greater than 1
         and if the given path exists.
         """
-
         if len(self.args) > 1:
             raise AppContextException("cd", "Wrong number of arguments")
-        if not os.path.exists(self.args[0]):
+        if self.args and not os.path.exists(self.args[0]):
             raise AppContextException("cd", f"path '{self.args[0]}' doesn't \
             exist")
