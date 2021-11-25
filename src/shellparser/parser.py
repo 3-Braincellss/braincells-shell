@@ -7,9 +7,11 @@ from operations import OperationFactory
 from exceptions import AppNotFoundException, AppContextException
 
 
+
 class ShellTransformer(Transformer):
     UNQUOTED = str
     DOUBLE_QUOTE_CONTENT = str
+    BACKQUOTED = str
 
     def command(self, args):
         return args[0]
@@ -30,21 +32,29 @@ class ShellTransformer(Transformer):
         return (returnargs[0], returnargs[1:])
 
     def word(self, args):
+        
         return args[0]
 
     def quoted(self, args):
+
         return args[0]
 
     def double_quoted(self, args):
+
         returnargs = [x for x in args if x is not None]
         return "".join(returnargs)
 
-    def backquoted_call(self, args):
-        out = args[0].run(None)
-        return out
+    def back_quoted(self, args):
+        from shell import Shell
+
+        s = Shell()
+        thing = "".join(s.execute(args[0])).strip()
+        
+        return thing
 
     def WHITESPACE(self, tok):
         pass
+    
 
 
 def run_parser(text):
