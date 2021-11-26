@@ -115,6 +115,3 @@ Classes
 
     `single_quoted(self, args)`
     :
-
-    `word(self, args)`
-    :
