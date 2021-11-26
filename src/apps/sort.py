@@ -4,7 +4,7 @@ from getopt import getopt, GetoptError
 
 from apps import App
 from exceptions import AppContextException, AppRunException
-
+from common.tools import read_lines_from_file
 
 class SortApp(App):
     """
@@ -41,6 +41,8 @@ class SortApp(App):
                 lines = sorted(f.readlines(), reverse=rev)
                 for line in lines:
                     out.append(line)
+            contents = read_lines_from_file(args[0], "sort")
+            self._run(contents, rev, out)
         return out
 
     def validate_args(self):
