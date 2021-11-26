@@ -41,7 +41,7 @@ class CatApp(App):
                     f"{path} No such file or directory \
                 :/",
                 )
-            out.append(self._run(paths))
+            out.extend(self._run(paths))
         return out
 
     def _run(self, paths):
@@ -50,11 +50,11 @@ class CatApp(App):
         :param paths: The paths to read from.
         :return out: The text of all the files.
         """
-        out = ""
+        out = []
         for path in paths:
             try:
                 with open(path, "r") as f:
-                    out += f.read()
+                    out.extend(f.read().split("\n"))
             except IsADirectoryError:
                 raise AppRunException("cat", f"{path}: Is a directory")
         return out
