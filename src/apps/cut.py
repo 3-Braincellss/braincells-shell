@@ -23,7 +23,7 @@ class CutApp(App):
 
         intervals = self._get_intervals()
         if inp:
-            self._run([inp], intervals)
+            self._run(inp, intervals, out)
             return out
         elif not self.args:
             self._run([input()], intervals, out)
