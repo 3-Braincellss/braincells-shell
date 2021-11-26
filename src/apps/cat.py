@@ -1,6 +1,7 @@
 from apps import App
 from getopt import getopt
 from glob import glob
+from common.tools import read_lines_from_file
 from exceptions import AppRunException
 
 
@@ -52,11 +53,8 @@ class CatApp(App):
         """
         out = []
         for path in paths:
-            try:
-                with open(path, "r") as f:
-                    out.extend(f.read().split("\n"))
-            except IsADirectoryError:
-                raise AppRunException("cat", f"{path}: Is a directory")
+            contents = map(str.strip, read_lines_from_file(path, "tail"))
+            out.extend(contents)
         return out
 
     def validate_args(self):
