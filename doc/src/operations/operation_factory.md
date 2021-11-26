@@ -5,7 +5,7 @@ Classes
 -------
 
 `OperationFactory()`
-:   
+:   Operation object creation will be handled with this module.
 
     ### Methods
 
