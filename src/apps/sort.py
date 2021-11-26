@@ -9,21 +9,21 @@ from common.tools import read_lines_from_file
 class SortApp(App):
     """
     Sorts the contents of a file/stdin line by line and prints the result to stdout.
+
+    sort [OPTIONS] [FILE]
+
+    OPTIONS:
+
+        -r sorts lines in reverse order
+
+    FILE is the name of the file. If not specified, uses stdin.
     """
 
     def __init__(self, args):
         self.args = args
 
     def run(self, inp, out):
-        """
-        sort [OPTIONS] [FILE]
-
-        OPTIONS:
-
-            -r sorts lines in reverse order
-
-        FILE is the name of the file. If not specified, uses stdin.
-        """
+        """ """
 
         opts = self.args[0]
         args = self.args[1]

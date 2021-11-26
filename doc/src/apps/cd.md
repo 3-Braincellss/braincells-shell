@@ -5,7 +5,7 @@ This module represents the cd bash command
 Classes
 -------
 
-`CdApp(args)`
+`CdApp(args=[])`
 :   Application representing the bash command:
     cd [DIRECTORY]
 
@@ -18,9 +18,11 @@ Classes
     `run(self, inp, out)`
     :   Changes current working directory
         
-        If a FULL DIRECTORY is supplied changes current directory to the given one
+        If a FULL DIRECTORY is supplied changes current directory to the given
+        one
         
-        If a RELATIVE DIRECTORY is supplied changed current directory to the given one
+        If a RELATIVE DIRECTORY is supplied changed current directory to the
+        given one
         
         If NO DIRECTORY is given changes directory to the root
 

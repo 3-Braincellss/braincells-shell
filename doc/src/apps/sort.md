@@ -4,8 +4,16 @@ Module src.apps.sort
 Classes
 -------
 
-`SortApp()`
-:   
+`SortApp(args)`
+:   Sorts the contents of a file/stdin line by line and prints the result to stdout.
+    
+    sort [OPTIONS] [FILE]
+    
+    OPTIONS:
+    
+        -r sorts lines in reverse order
+    
+    FILE is the name of the file. If not specified, uses stdin.
 
     ### Ancestors (in MRO)
 
@@ -13,7 +21,7 @@ Classes
 
     ### Methods
 
-    `run(self)`
+    `run(self, inp, out)`
     :
 
     `validate_args(self)`

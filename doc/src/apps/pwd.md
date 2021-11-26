@@ -4,16 +4,21 @@ Module src.apps.pwd
 Classes
 -------
 
-`PwdApp()`
+`PwdApp(args)`
 :   
 
     ### Ancestors (in MRO)
 
     * apps.app.App
 
+    ### Class variables
+
+    `allowed_options`
+    :
+
     ### Methods
 
-    `run(self)`
+    `run(self, inp, out)`
     :
 
     `validate_args(self)`

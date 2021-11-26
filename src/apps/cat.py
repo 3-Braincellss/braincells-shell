@@ -31,6 +31,7 @@ class CatApp(App):
         if not self.args:
             out.append(input())
             return out
+
         for path in self.args:
             if path == "-":
                 out.append(input())

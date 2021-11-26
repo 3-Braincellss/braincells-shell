@@ -5,7 +5,8 @@ Classes
 -------
 
 `Pipe(cm1, cm2)`
-:   Standard pipe that redirects the output of one program to the input of another.
+:   Standard pipe that redirects the output of one program to the input of
+    another.
 
     ### Ancestors (in MRO)
 

@@ -6,67 +6,84 @@ from lark.visitors import Transformer
 from operations import OperationFactory
 from exceptions import AppNotFoundException, AppContextException
 
+from glob import glob
+
 
 class ShellTransformer(Transformer):
     UNQUOTED = str
     DOUBLE_QUOTE_CONTENT = str
+    BACKQUOTED = str
 
     def command(self, args):
         returnargs = [x for x in args if x is not None]
         return returnargs
-    
-    def sequence(self, args):
 
+    def seq(self, args):
         op_factory = OperationFactory()
-        data = {"op1": args[0], "op2": args[1]}
-        try:
-            pipe = op_factory.get_operation("pipe", data)
-            return pipe
-        except AppNotFoundException as anfe:
-            raise anfe
-        except AppContextException as ace:
-            raise ace
+        data = {"op1": args[0][0], "op2": args[1][0]}
+
+        try:  # Exception propagation
+            seq = op_factory.get_operation("seq", data)
+        except Exception as e:
+            raise e
+
+        return seq
 
     def pipe(self, args):
         op_factory = OperationFactory()
         data = {"op1": args[0], "op2": args[1]}
         try:
             pipe = op_factory.get_operation("pipe", data)
-            return pipe
-        except AppNotFoundException as anfe:
-            raise anfe
-        except AppContextException as ace:
-            raise ace
+        except Exception as e:
+            raise e
+
+        return pipe
 
     def call(self, args):
         returnargs = [x for x in args if x is not None]
+
+        call_args = []
+
+        for each in returnargs[1:]:
+            globbing = glob(each)
+            if globbing:
+                call_args.extend(globbing)
+            else:
+                call_args.append(each)
+
         op_factory = OperationFactory()
-        data = {"app": returnargs[0][0], "args": returnargs[0][1]}
+        data = {"app": returnargs[0], "args": call_args}
+
         try:
             call = op_factory.get_operation("call", data)
-            return call
-        except AppNotFoundException as anfe:
-            raise anfe
-        except AppContextException as ace:
-            raise ace
+
+        except Exception as e:
+            raise e
+
+        return call
 
     def arguments(self, args):
         returnargs = [x for x in args if x is not None]
-        return (returnargs[0], returnargs[1:])
-
-    def word(self, args):
-        return args[0]
+        return "".join(returnargs)
 
     def quoted(self, args):
         return args[0]
 
     def double_quoted(self, args):
+
         returnargs = [x for x in args if x is not None]
         return "".join(returnargs)
 
-    def backquoted_call(self, args):
-        out = args[0].run(None)
-        return out
+    def single_quoted(self, args):
+        returnargs = [x for x in args if x is not None]
+        return "".join(returnargs)
+
+    def back_quoted(self, args):
+        from shell import Shell
+
+        s = Shell()
+        thing = "".join(s.execute(args[0])).strip()
+        return thing
 
     def WHITESPACE(self, tok):
         pass
