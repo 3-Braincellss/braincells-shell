@@ -42,17 +42,10 @@ class ShellTransformer(Transformer):
     def call(self, args):
         returnargs = [x for x in args if x is not None]
 
-        call_args = []
 
-        for each in returnargs[1:]:
-            globbing = glob(each)
-            if globbing:
-                call_args.extend(globbing)
-            else:
-                call_args.append(each)
 
         op_factory = OperationFactory()
-        data = {"app": returnargs[0], "args": call_args}
+        data = {"app": returnargs[0], "args": returnargs[1:]}
 
         try:
             call = op_factory.get_operation("call", data)

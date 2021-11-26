@@ -14,6 +14,7 @@ from apps import (
     UnsafeApp,
 )
 from exceptions import AppNotFoundException, AppContextException
+from common.tools import simple_globbing
 
 
 class AppFactory:
@@ -23,19 +24,24 @@ class AppFactory:
 
     def __init__(self):
         self.apps = {
-            "ls": self._ls,
-            "echo": self._echo,
-            "pwd": self._pwd,
-            "cd": self._cd,
-            "cat": self._cat,
-            "head": self._head,
-            "tail": self._tail,
-            "grep": self._grep,
-            "cut": self._cut,
+            "ls": LsApp,
+            "echo": EchoApp,
+            "pwd": PwdApp,
+            "cd": CdApp,
+            "cat": CatApp,
+            "head": HeadApp,
+            "tail": TailApp,
+            "grep": GrepApp,
+            "cut": CutApp,
             # "find": self._find,
-            "uniq": self._uniq,
-            "sort": self._sort,
+            "uniq": UniqApp,
+            "sort": SortApp,
         }
+
+        # Apps that don't require globbing
+        self.no_glob = set(
+            "find",
+        )
 
     def get_app(self, app_str: str, args: list) -> App:
         """
@@ -49,73 +55,23 @@ class AppFactory:
             app_str = app_str[1:]
             unsafe = True
         if app_str in self.apps:
+            # conditional globbing to take in account for functions like 'find'
+            
+            if not app_str in self.no_glob:
+                args = simple_globbing(args)
+                
             try:
                 app = self.apps[app_str](args)
-                if unsafe:
-                    app = UnsafeApp(app)
-                else:
-                    app.validate_args()
-                return app
             except AppContextException as ace:
                 raise ace
+
+            if unsafe:
+                app = UnsafeApp(app)
+            else:
+                app.validate_args()
+            return app
+
+            
         else:
             raise AppNotFoundException(app_str)
 
-    def _ls(self, args):
-        app = LsApp(args)
-
-        return app
-
-    def _echo(self, args):
-        app = EchoApp(args)
-
-        return app
-
-    def _pwd(self, args):
-        app = PwdApp(args)
-
-        return app
-
-    def _cd(self, args):
-        app = CdApp(args)
-
-        return app
-
-    def _cat(self, args):
-        app = CatApp(args)
-
-        return app
-
-    def _head(self, args):
-        app = HeadApp(args)
-
-        return app
-
-    def _tail(self, args):
-        app = TailApp(args)
-
-        return app
-
-    def _grep(self, args):
-        app = GrepApp(args)
-
-        return app
-
-    def _cut(self, args):
-        app = CutApp(args)
-
-        return app
-
-    def _find(self, args):
-        app = FindApp(args)
-
-        return app
-
-    def _uniq(self, args):
-        app = UniqApp(args)
-
-        return app
-
-    def _sort(self, args):
-        app = SortApp(args)
-        return app

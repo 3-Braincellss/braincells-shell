@@ -1,6 +1,8 @@
 
 from exceptions.app_run import AppRunException
 
+from glob import glob
+
 
 def prettify_path(path):
     """Prettifies a given path"""
@@ -11,6 +13,18 @@ def prettify_path(path):
         words[i] = words[i][0]
     ret = "/".join(words)
     return ret
+
+def simple_globbing(args):
+    return_args = []
+    for each in args:
+        globbing = glob(each)
+        if globbing:
+            return_args.extend(globbing)
+        else:
+            return_args.append(each)
+
+    return return_args
+    
 
 
 def read_from_file(path, app_str):
