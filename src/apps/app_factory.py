@@ -12,6 +12,7 @@ from apps import (
     GrepApp,
     UniqApp,
     UnsafeApp,
+    FindApp,
 )
 from exceptions import AppNotFoundException, AppContextException
 
@@ -32,7 +33,7 @@ class AppFactory:
             "tail": self._tail,
             "grep": self._grep,
             "cut": self._cut,
-            # "find": self._find,
+            "find": self._find,
             "uniq": self._uniq,
             "sort": self._sort,
         }
