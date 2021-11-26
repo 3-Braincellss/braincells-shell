@@ -27,7 +27,7 @@ class GrepApp(App):
 
         if len(self.args) == 1:
 
-            lines = "".join(inp).split("\n") if inp else [input()]
+            lines = inp if inp else [input()]
             self._run(lines, out)
             return out
         paths = self.args[1:]
