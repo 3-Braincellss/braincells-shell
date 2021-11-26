@@ -1,3 +1,0 @@
-class LRedirect(Operation):
-    def __init__(self):
-        pass
