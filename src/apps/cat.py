@@ -3,6 +3,7 @@ from getopt import getopt
 from glob import glob
 from common.tools import read_lines_from_file
 from exceptions import AppRunException
+from common.tools import read_lines_from_file
 
 
 class CatApp(App):
@@ -32,30 +33,20 @@ class CatApp(App):
             out.append(input())
             return out
 
-        for path in self.args:
-            if path == "-":
-                out.append(input())
-                continue
-            paths = glob(path)
-            if not paths:
-                raise AppRunException(
-                    "cat",
-                    f"{path} No such file or directory \
-                :/",
-                )
-            out.extend(self._run(paths))
+        self._run(self.args, out)
+
         return out
 
-    def _run(self, paths):
+    def _run(self, paths, out):
         """
         Reads all the contents in the given list of paths.
         :param paths: The paths to read from.
         :return out: The text of all the files.
         """
-        out = []
+
         for path in paths:
-            contents = map(str.strip, read_lines_from_file(path, "tail"))
-            out.extend(contents)
+            out.extend(read_lines_from_file(path, "cat"))
+
         return out
 
     def validate_args(self):
