@@ -28,9 +28,6 @@ class CdApp(App):
 
         If NO DIRECTORY is given changes directory to the root
         """
-        if inp:
-            self.args = inp
-        print(self.args)
         if len(self.args) == 0:
             os.chdir("/")
         else:
