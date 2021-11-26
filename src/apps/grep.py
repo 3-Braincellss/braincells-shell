@@ -44,7 +44,8 @@ class GrepApp(App):
             if re.search(self.pattern, line):
                 if multiple:
                     x = f"{path}:{line.rstrip()}"
-
+                else:
+                    x = line.rstrip()
                 out.append(x)
 
     def validate_args(self):
