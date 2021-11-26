@@ -10,6 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: install pylint
+      run: pip3 install pylint
     - name: Build the Docker image
       run: docker build -t shell .
     - name: Prepare System tests
@@ -17,5 +19,8 @@ jobs:
     - name: Run System tests
       continue-on-error: True
       run: python system_test/tests.py -v
+    - name: Run pylint
+      continue-on-error: True
+      run: pylint src
     - name: Generate Documentation
       run: echo "Under construction!!!"
