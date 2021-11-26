@@ -17,3 +17,7 @@ Functions
 `read_lines_from_file(path, app_str)`
 :   Reads from a file and returns the lines of the file.
     :param path: The path of the file to be read.
+
+    
+`simple_globbing(args)`
+:
