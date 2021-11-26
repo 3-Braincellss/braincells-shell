@@ -38,15 +38,13 @@ class Shell:
                 except VisitError as ve:
                     # A dirty way of handling excpetions but visit error from lark doesn't propagate those properly
                     if isinstance(
-                        ve.__context__, (AppContextException, AppNotFoundException)
+                        ve.__context__,
+                        (AppContextException, AppNotFoundException, AppRunException),
                     ):
                         out = deque()
                         out.append(ve.__context__.message)
                     else:
                         raise ve
-                except AppRunException as are:
-                    out = deque()
-                    out.append(are.message)
 
                 while len(out) > 0:
                     print(out.popleft(), end="")
