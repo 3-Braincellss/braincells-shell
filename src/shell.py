@@ -27,7 +27,7 @@ class Shell:
 
             out = self.execute(command)
             while len(out) > 0:
-                print(out.popleft(), end="")
+                print(out.popleft())
         else:
             while True:
                 print(prettify_path(os.getcwd()) + " " + self.PREFIX, end="")
@@ -47,7 +47,7 @@ class Shell:
                         raise ve
 
                 while len(out) > 0:
-                    print(out.popleft(), end="")
+                    print(out.popleft())
 
     def execute(self, input_str):
         """Create parse tree from input"""

@@ -1,6 +1,7 @@
 from apps import App
 from getopt import getopt
 from glob import glob
+from common.tools import read_lines_from_file
 from exceptions import AppRunException
 from common.tools import read_lines_from_file
 
@@ -30,10 +31,10 @@ class CatApp(App):
 
         if not self.args:
             out.append(input())
-            out.append("\n")
             return out
 
         self._run(self.args, out)
+
         return out
 
     def _run(self, paths, out):
@@ -42,8 +43,9 @@ class CatApp(App):
         :param paths: The paths to read from.
         :return out: The text of all the files.
         """
+
         for path in paths:
-            out.extend(read_lines_from_file(path, "cat"))
+            out.extend(map(str.rstrip, read_lines_from_file(path, "cat")))
 
         return out
 
@@ -53,4 +55,5 @@ class CatApp(App):
         :raises AppRunException: If any option is given.
         """
         for option in self.options:
-            raise AppRunException("cat", f"{option}: is an unsupported option :(")
+            raise AppRunException("cat", f"{option}: is an unsupported option \
+            :(")
