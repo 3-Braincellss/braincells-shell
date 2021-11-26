@@ -27,7 +27,7 @@ class GrepApp(App):
 
         if len(self.args) == 1:
 
-            lines = "".join(inp).split("\n") if inp else [input()]
+            lines = inp if inp else [input()]
             self._run(lines, out)
             return out
         paths = self.args[1:]
@@ -42,13 +42,10 @@ class GrepApp(App):
     def _run(self, lines, out, path=None, multiple=False):
         for line in lines:
             if re.search(self.pattern, line):
-                x = line
-                if x[-1] != "\n":
-                    x += "\n"
-
                 if multiple:
-                    x = f"{path}:{x}"
-
+                    x = f"{path}:{line.rstrip()}"
+                else:
+                    x = line.rstrip()
                 out.append(x)
 
     def validate_args(self):

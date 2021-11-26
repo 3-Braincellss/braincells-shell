@@ -20,7 +20,7 @@ class UniqApp(App):
         """
         case = False if self.options else True
         if inp:
-            contents = inp.split("\n")
+            contents = inp
         elif not self.args:
             contents = [input()]
         else:
@@ -38,12 +38,12 @@ class UniqApp(App):
         :param lines: The lines to filter through.
         :param deque: The output deque
         """
-        out.append(lines[0])
+        out.append(lines[0].strip("\n"))
         prev = lines[0]
         for i in range(1,len(lines)):
             if lines[i] != prev:
                 prev = lines[i]
-                out.append(lines[i])
+                out.append(lines[i].strip("\n"))
 
     def _run_unsensitive(self, lines, out):
         """

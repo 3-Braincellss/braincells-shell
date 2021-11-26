@@ -4,7 +4,7 @@ from getopt import getopt, GetoptError
 
 from apps import App
 from exceptions import AppContextException, AppRunException
-
+from common.tools import read_lines_from_file
 
 class SortApp(App):
     """
@@ -33,15 +33,17 @@ class SortApp(App):
 
         # if args array is non zero then use file as the input
         if args:
-            # check if file exists
-            if not os.path.isfile(args[0]):
-                raise AppRunException("sort", f"{args[0]} is not a file")
+            contents = read_lines_from_file(args[0], "sort")
+            self._run(contents, rev, out)
+        elif inp:
+            self._run(inp, rev, out)
 
-            with open(args[0], "r") as f:
-                lines = sorted(f.readlines(), reverse=rev)
-                for line in lines:
-                    out.append(line)
         return out
+
+    def _run(self, text, rev, out):
+        lines = sorted(text, reverse=rev)
+        for line in lines:
+            out.append(line.strip())
 
     def validate_args(self):
 

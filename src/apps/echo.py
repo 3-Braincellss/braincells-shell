@@ -16,6 +16,10 @@ class EchoApp(App):
         """
         Returns all the input args as a space seperated string.
         """
+
+        if inp:
+            self.args = inp
+            
         out.append(" ".join(self.args))
         return out
 

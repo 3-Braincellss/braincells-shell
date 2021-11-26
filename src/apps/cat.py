@@ -1,7 +1,9 @@
 from apps import App
 from getopt import getopt
 from glob import glob
+from common.tools import read_lines_from_file
 from exceptions import AppRunException
+from common.tools import read_lines_from_file
 
 
 class CatApp(App):
@@ -29,36 +31,22 @@ class CatApp(App):
 
         if not self.args:
             out.append(input())
-            out.append("\n")
             return out
 
-        for path in self.args:
-            if path == "-":
-                out.append(input())
-                continue
-            paths = glob(path)
-            if not paths:
-                raise AppRunException(
-                    "cat",
-                    f"{path} No such file or directory \
-                :/",
-                )
-            out.append(self._run(paths))
+        self._run(self.args, out)
+
         return out
 
-    def _run(self, paths):
+    def _run(self, paths, out):
         """
         Reads all the contents in the given list of paths.
         :param paths: The paths to read from.
         :return out: The text of all the files.
         """
-        out = ""
+
         for path in paths:
-            try:
-                with open(path, "r") as f:
-                    out += f.read()
-            except IsADirectoryError:
-                raise AppRunException("cat", f"{path}: Is a directory")
+            out.extend(map(str.rstrip, read_lines_from_file(path, "cat")))
+
         return out
 
     def validate_args(self):
@@ -67,4 +55,5 @@ class CatApp(App):
         :raises AppRunException: If any option is given.
         """
         for option in self.options:
-            raise AppRunException("cat", f"{option}: is an unsupported option :(")
+            raise AppRunException("cat", f"{option}: is an unsupported option \
+            :(")
