@@ -42,7 +42,7 @@ class ShellTransformer(Transformer):
     def call(self, args):
         returnargs = [x for x in args if x is not None]
         op_factory = OperationFactory()
-        data = {"app": returnargs[0], "args": returnargs[1]}
+        data = {"app": returnargs[0], "args": returnargs[1:]}
         try:
             call = op_factory.get_operation("call", data)
             return call
@@ -59,7 +59,6 @@ class ShellTransformer(Transformer):
         return args[0]
 
     def double_quoted(self, args):
-
         returnargs = [x for x in args if x is not None]
         return "".join(returnargs)
     
