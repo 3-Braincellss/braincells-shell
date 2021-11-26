@@ -22,6 +22,9 @@ class GrepApp(App):
         and redirects.
         """
         self.pattern = self.args[0]
+        if inp:
+            self._run(inp, out)
+            return out
         if len(self.args) == 1:
             self._run([input()], out)
             return out
@@ -37,7 +40,7 @@ class GrepApp(App):
     def _run(self, lines, out):
         for line in lines:
             if re.search(self.pattern, line):
-                out.append(line.rstrip())
+                out.append(line.strip("\n"))
 
     def validate_args(self):
         if not self.args:
