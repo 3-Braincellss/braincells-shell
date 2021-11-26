@@ -45,7 +45,7 @@ class CatApp(App):
         """
 
         for path in paths:
-            out.extend(read_lines_from_file(path, "cat"))
+            out.extend(map(str.rstrip, read_lines_from_file(path, "cat")))
 
         return out
 
