@@ -6,6 +6,14 @@ Classes
 
 `SortApp(args)`
 :   Sorts the contents of a file/stdin line by line and prints the result to stdout.
+    
+    sort [OPTIONS] [FILE]
+    
+    OPTIONS:
+    
+        -r sorts lines in reverse order
+    
+    FILE is the name of the file. If not specified, uses stdin.
 
     ### Ancestors (in MRO)
 
@@ -14,13 +22,7 @@ Classes
     ### Methods
 
     `run(self, inp, out)`
-    :   sort [OPTIONS] [FILE]
-        
-        OPTIONS:
-        
-            -r sorts lines in reverse order
-        
-        FILE is the name of the file. If not specified, uses stdin.
+    :
 
     `validate_args(self)`
     :   Checks whether the given args are appropriate for the application.
