@@ -22,8 +22,11 @@ class GrepApp(App):
         and redirects.
         """
         self.pattern = self.args[0]
+
         if len(self.args) == 1:
-            self._run([input()], out)
+
+            lines = "".join(inp).split("\n") if inp else [input()]
+            self._run(lines, out)
             return out
         paths = self.args[1:]
         for path in paths:
@@ -36,7 +39,7 @@ class GrepApp(App):
 
     def _run(self, lines, out):
         for line in lines:
-            if re.match(self.pattern, line):
+            if re.search(self.pattern, line):
                 x = line
                 if x[-1] != "\n":
                     x += "\n"

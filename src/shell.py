@@ -24,6 +24,7 @@ class Shell:
 
     def run(self, command=None):
         if command:
+
             out = self.execute(command)
             while len(out) > 0:
                 print(out.popleft(), end="")
@@ -31,7 +32,22 @@ class Shell:
             while True:
                 print(prettify_path(os.getcwd()) + " " + self.PREFIX, end="")
                 text = input()
-                out = self.execute(text)
+
+                try:
+                    out = self.execute(text)
+                except VisitError as ve:
+                    # A dirty way of handling excpetions but visit error from lark doesn't propagate those properly
+                    if isinstance(
+                        ve.__context__, (AppContextException, AppNotFoundException)
+                    ):
+                        out = deque()
+                        out.append(ve.__context__.message)
+                    else:
+                        raise ve
+                except AppRunException as are:
+                    out = deque()
+                    out.append(are.message)
+
                 while len(out) > 0:
                     print(out.popleft(), end="")
 
@@ -43,16 +59,8 @@ class Shell:
 
             if command:
                 out = command[0].run(None, out)
-
-        except VisitError as ve:
-            if isinstance(ve.__context__, AppNotFoundException):
-                out.append(ve.__context__.message)
-            elif isinstance(ve.__context__, AppContextException):
-                out.append(ve.__context__.message)
-            else:
-                raise ve
-        except AppRunException as are:
-            out.append(are.message)
+        except Exception as e:
+            raise e
 
         return out
 
