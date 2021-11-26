@@ -14,14 +14,14 @@ class OperationFactory:
     """
 
     def __init__(self):
-        self.apps = {
+        self.ops = {
             "call": self._call,
             "pipe": self._pipe,
             "seq": self._seq,
         }
 
     def get_operation(self, op_str, data):
-        return self.apps[op_str](data)
+        return self.ops[op_str](data)
 
     def _call(self, data):
         app_str = data["app"]
