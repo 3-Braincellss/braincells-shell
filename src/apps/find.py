@@ -18,5 +18,9 @@ class FindApp(App):
         pass
 
     def validate_args(self):
-
-        pass
+        if not self.options:
+            raise AppRunException("find", "No pattern supplied. usage: find \
+            [PATH] -name PATTERN ")
+        if len(self.args) > 1:
+            raise AppRunException("find", "Too many arguments supplied usage: \
+            find [PATH] -name PATTERN")
