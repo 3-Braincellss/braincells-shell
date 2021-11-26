@@ -36,17 +36,18 @@ class GrepApp(App):
                 self._run([input()], out)
                 continue
             contents = read_lines_from_file(path, "grep")
-            self._run(contents, out, len(paths) > 1)
+            self._run(contents, out, path)
         return out
 
-    def _run(self, lines, out, paths=False):
+    def _run(self, lines, out, path=None):
         for line in lines:
             if re.search(self.pattern, line):
                 x = line
                 if x[-1] != "\n":
                     x += "\n"
-                if paths:
-                    x = f"{os.getcwd()}:{x}"
+                if path is not None:
+
+                    x = f"{path}:{x}"
                 out.append(x)
 
     def validate_args(self):
