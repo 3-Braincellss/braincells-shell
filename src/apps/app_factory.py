@@ -13,65 +13,87 @@ from apps import (
     UniqApp,
     UnsafeApp,
 )
-from exceptions import AppNotFoundException, AppContextException
+from exceptions import AppNotFoundException
 from common.tools import simple_globbing
 
 
 class AppFactory:
-    """
-    Creates an app object given the app_str
-    """
+    """A class that is used to create app objects
 
-    def __init__(self):
-        self.apps = {
-            "ls": LsApp,
-            "echo": EchoApp,
-            "pwd": PwdApp,
-            "cd": CdApp,
-            "cat": CatApp,
-            "head": HeadApp,
-            "tail": TailApp,
-            "grep": GrepApp,
-            "cut": CutApp,
-            # "find": self._find,
-            "uniq": UniqApp,
-            "sort": SortApp,
-        }
+    Attributes
+    ----------
+    apps: dict
+        A dictionary that maps app names to concrete app classes.
 
-        # Apps that don't require globbing
-        self.no_glob = set(
-            "find",
-        )
+    no_glob: set
+        A set of apps that don't require filename expansion or globbing
 
-    def get_app(self, app_str: str, args: list) -> App:
-        """
+    Methods
+    -------
+    get_app(self, app_str, args)
         Returns an app object based on the app_str given.
-        :param app_str: The string name of the app being requested.
-        :param args: Array of all the options and arguments for the app.
-        :return app:
-        """
-        unsafe = False
-        if app_str[0] == "_":
-            app_str = app_str[1:]
-            unsafe = True
-        if app_str in self.apps:
-            # conditional globbing to take in account for functions like 'find'
-            
-            if not app_str in self.no_glob:
-                args = simple_globbing(args)
-                
-            try:
-                app = self.apps[app_str](args)
-            except AppContextException as ace:
-                raise ace
+    """
 
-            if unsafe:
-                app = UnsafeApp(app)
-            else:
-                app.validate_args()
+    apps = {
+        "ls": LsApp,
+        "echo": EchoApp,
+        "pwd": PwdApp,
+        "cd": CdApp,
+        "cat": CatApp,
+        "head": HeadApp,
+        "tail": TailApp,
+        "grep": GrepApp,
+        "cut": CutApp,
+        # "find": self._find,
+        "uniq": UniqApp,
+        "sort": SortApp,
+    }
+
+    no_glob = set(
+        "find",
+    )
+
+    @staticmethod
+    def get_app(app_str: str, args: list) -> App:
+        """Returns an app object based on the app_str given.
+
+        Parameters
+        ----------
+        app_str: str
+            A string that represents the command to be called.
+            If app_str starts with '_' the app will be treated as unsafe
+
+        args: list
+            A List of arguments that should be passed to the app.
+
+        Raises
+        ------
+        AppNotFountException
+            If an app is not found in the apps dictionary.
+
+        Returns
+        -------
+        app: App
+            An app object that is ready to be run
+        """
+
+        # check if an app is unsafe
+        unsafe = app_str[0] == "_"
+        _app_str = app_str[1:] if unsafe else app_str
+
+        if _app_str in AppFactory.apps:
+
+            # conditional globbing to take in account for functions like 'find'
+            if not _app_str in AppFactory.no_glob:
+                args = simple_globbing(args)
+
+            # initialise app using the constructors dictionary
+            _app = AppFactory.apps[_app_str](args)
+
+            # Apply the decorator if it's unsafe
+            app = UnsafeApp(_app) if unsafe else _app
+
             return app
 
-            
         else:
-            raise AppNotFoundException(app_str)
-
+            raise AppNotFoundException(_app_str)
