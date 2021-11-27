@@ -18,7 +18,7 @@ class UnsafeApp(App):
         #     out.append(e.message)
         #     return out
         except Exception as e:
-            out.append(e)
+            out.append(str(e))
             return out
 
     def validate_args(self):
