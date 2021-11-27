@@ -8,8 +8,10 @@ call        : WHITESPACE? (redirection WHITESPACE)* arguments (WHITESPACE argume
 
 arguments     : (quoted | UNQUOTED)+ 
 
-redirection : "<" WHITESPACE arguments
-            | ">" WHITESPACE arguments
+redirection : l_redirection | r_redirection
+
+l_redirection : "<" WHITESPACE? arguments
+r_redirection : ">" WHITESPACE? arguments
 
 quoted        : single_quoted | double_quoted | back_quoted
 double_quoted : "\"" (back_quoted | DOUBLE_QUOTE_CONTENT)* "\""
