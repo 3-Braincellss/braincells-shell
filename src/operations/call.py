@@ -4,6 +4,7 @@ An operation primitive that contains an up that it runs.
 from operations import Operation
 from apps import AppFactory
 from collections import deque
+from common.tools import read_lines_from_file
 
 
 class Call(Operation):
