@@ -9,5 +9,5 @@ Classes
 
     ### Methods
 
-    `run(inp, out)`
+    `run(self, inp, out)`
     :
