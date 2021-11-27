@@ -34,8 +34,11 @@ class CdApp(App):
             try:
                 os.chdir(self.args[0])
             except OSError:
-                raise AppRunException("cd", f"{self.args[0]} is not a directory\
-                .")
+                raise AppRunException(
+                    "cd",
+                    f"{self.args[0]} is not a directory\
+                .",
+                )
         return out
 
     def validate_args(self):
@@ -46,5 +49,8 @@ class CdApp(App):
         if len(self.args) > 1:
             raise AppContextException("cd", "Wrong number of arguments")
         if self.args and not os.path.exists(self.args[0]):
-            raise AppContextException("cd", f"path '{self.args[0]}' doesn't \
-            exist")
+            raise AppContextException(
+                "cd",
+                f"path '{self.args[0]}' doesn't \
+            exist",
+            )

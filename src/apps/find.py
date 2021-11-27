@@ -6,8 +6,7 @@ from exceptions import AppRunException
 
 
 class FindApp(App):
-    """
-    """
+    """ """
 
     def __init__(self, args):
         for i in range(len(args)):
@@ -38,8 +37,14 @@ class FindApp(App):
 
     def validate_args(self):
         if not self.options:
-            raise AppRunException("find", "No pattern supplied. usage: find \
-            [PATH] -name PATTERN ")
+            raise AppRunException(
+                "find",
+                "No pattern supplied. usage: find \
+            [PATH] -name PATTERN ",
+            )
         if len(self.args) > 1:
-            raise AppRunException("find", "Too many arguments supplied usage: \
-            find [PATH] -name PATTERN")
+            raise AppRunException(
+                "find",
+                "Too many arguments supplied usage: \
+            find [PATH] -name PATTERN",
+            )

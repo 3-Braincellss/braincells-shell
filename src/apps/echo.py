@@ -19,7 +19,7 @@ class EchoApp(App):
 
         if inp:
             self.args = inp
-            
+
         out.append(" ".join(self.args))
         return out
 

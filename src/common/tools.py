@@ -1,4 +1,3 @@
-
 from exceptions.app_run import AppRunException
 
 from glob import glob
@@ -14,6 +13,7 @@ def prettify_path(path):
     ret = "/".join(words)
     return ret
 
+
 def simple_globbing(args):
     return_args = []
     for each in args:
@@ -24,7 +24,6 @@ def simple_globbing(args):
             return_args.append(each)
 
     return return_args
-    
 
 
 def read_from_file(path, app_str):

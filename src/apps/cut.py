@@ -107,8 +107,7 @@ class CutApp(App):
         try:
             start, end = interval.split("-")
         except ValueError:
-            raise AppRunException(
-                "cut", f"Invalid option argument: {interval}")
+            raise AppRunException("cut", f"Invalid option argument: {interval}")
         new_interval = []
         try:
             new_interval.append(self._get_boundary(start, False))
@@ -158,7 +157,8 @@ class CutApp(App):
         """
         if interval[1] != "end" and interval[0] > interval[1]:
             raise AppRunException(
-                "cut", f"Invalid decreasing interval: {interval[0]}-{interval[1]}")
+                "cut", f"Invalid decreasing interval: {interval[0]}-{interval[1]}"
+            )
 
     def validate_args(self):
         """
@@ -167,10 +167,8 @@ class CutApp(App):
         option.
         """
         if not self.options:
-            raise AppRunException(
-                "cut", "Missing option: -b [INTERVAL],.. >=[")
+            raise AppRunException("cut", "Missing option: -b [INTERVAL],.. >=[")
         if len(self.options) != 1:
             raise AppRunException("cut", "Invalid number of options >=[")
-        if self.options[0][0] != '-b':
-            raise AppRunException(
-                "cut", f"Invalid option: {self.options[0][0]}")
+        if self.options[0][0] != "-b":
+            raise AppRunException("cut", f"Invalid option: {self.options[0][0]}")
