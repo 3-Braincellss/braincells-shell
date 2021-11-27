@@ -56,7 +56,7 @@ class ShellTransformer(Transformer):
         from shell import Shell
 
         s = Shell()
-        thing = "".join(s.execute(args[0])).strip()
+        thing = " ".join(s.execute(args[0])).strip()
         return thing
 
     def WHITESPACE(self, tok):
