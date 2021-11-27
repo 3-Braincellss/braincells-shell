@@ -9,13 +9,17 @@ class UnsafeApp(App):
 
     def run(self, inp, out):
         try:
-            self.validate_args()
             out = self.app.run(inp, out)
             return out
-        except AppContextException as e:
-            return out.append(e.message)
-        except AppRunException as e:
-            return out.append(e.message)
+        # except AppContextException as e:
+        #     out.append(e.message)
+        #     return out
+        # except AppRunException as e:
+        #     out.append(e.message)
+        #     return out
+        except Exception as e:
+            out.append(e)
+            return out
 
     def validate_args(self):
-        self.app.validate_args()
+        pass

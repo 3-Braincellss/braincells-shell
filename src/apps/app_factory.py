@@ -84,7 +84,7 @@ class AppFactory:
         if _app_str in AppFactory.apps:
 
             # conditional globbing to take in account for functions like 'find'
-            if not _app_str in AppFactory.no_glob:
+            if _app_str not in AppFactory.no_glob:
                 args = simple_globbing(args)
 
             # initialise app using the constructors dictionary
@@ -92,7 +92,6 @@ class AppFactory:
 
             # Apply the decorator if it's unsafe
             app = UnsafeApp(_app) if unsafe else _app
-
             return app
 
         else:
