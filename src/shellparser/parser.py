@@ -28,37 +28,46 @@ class ShellTransformer(Transformer):
         pipe = OperationFactory.get_operation("pipe", data)
 
         return pipe
-    
+
     def redirection(self, args):
         return args[0]
+
     def l_redirection(self, args):
         returnargs = [x for x in args if x is not None]
         return ("left_red", returnargs[0])
+
     def r_redirection(self, args):
         returnargs = [x for x in args if x is not None]
         return ("right_red", returnargs[0])
 
     def call(self, args):
-        print(args)
         returnargs = [x for x in args if x is not None and not isinstance(x, tuple)]
-        right_string = [x for x in args if x is not None and isinstance(x, tuple) and x[0] == 'right_red']
-        left_string = [x for x in args if x is not None and isinstance(x, tuple) and x[0] == 'left_red']
+        right_string = [
+            x
+            for x in args
+            if x is not None and isinstance(x, tuple) and x[0] == "right_red"
+        ]
+        left_string = [
+            x
+            for x in args
+            if x is not None and isinstance(x, tuple) and x[0] == "left_red"
+        ]
 
-        if (len(right_string) != 0):
+        if len(right_string) != 0:
             right_red = right_string[0][1]
         else:
             right_red = None
 
-        if (len(left_string) != 0):
+        if len(left_string) != 0:
             left_red = left_string[0][1]
-        else: 
+        else:
             left_red = None
 
         data = {
-            "app": returnargs[0], 
-            "args": returnargs[1:], 
-            "left_red": left_red, 
-            "right_red": right_red
+            "app": returnargs[0],
+            "args": returnargs[1:],
+            "left_red": left_red,
+            "right_red": right_red,
         }
         call = OperationFactory.get_operation("call", data)
 

@@ -25,12 +25,13 @@ class Call(Operation):
 
         if self.right_red is not None:
             _out = deque()
-            with open(self.fname, "w") as f:
-                out = self.op.run(inp, out)
+            with open(self.right_red, "w") as f:
+                self.app.validate_args()
+                out = self.app.run(_inp, out)
                 for line in out:
                     f.write(line)
                     f.write("\n")
-
-        self.app.validate_args()
-        out = self.app.run(_inp, _out)
-        return out
+        else:
+            self.app.validate_args()
+            self.app.run(_inp, _out)
+        return _out
