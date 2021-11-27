@@ -9,7 +9,6 @@ Classes
     
     Attributes
     ----------
-    
     operations: dict
         Maps operation names to concrete operation classes
     
