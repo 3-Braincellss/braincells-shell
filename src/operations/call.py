@@ -3,7 +3,7 @@ An operation primitive that contains an up that it runs.
 """
 from operations import Operation
 from apps import AppFactory
-from deque import deque
+from collections import deque
 
 
 class Call(Operation):
