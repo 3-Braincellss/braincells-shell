@@ -50,7 +50,7 @@ class AppFactory:
     }
 
     no_glob = set(
-        "find",
+        ["find"]
     )
 
     @staticmethod
