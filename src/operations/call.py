@@ -31,7 +31,7 @@ class Call(Operation):
                 for line in out:
                     f.write(line)
                     f.write("\n")
-                return _out
+                return deque()
         else:
             self.app.validate_args()
             self.app.run(_inp, _out)
