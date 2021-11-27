@@ -1,48 +1,47 @@
-from functools import singledispatch
-from apps import AppFactory
-
-from exceptions import AppNotFoundException, AppContextException
-
 from operations import (
     Call,
     Pipe,
     Sequence,
+    Operation,
 )
-
-"""
-Operation object creation will be handled with this module.
-"""
 
 
 class OperationFactory:
-    def __init__(self):
-        self.apps = {
-            "call": self._call,
-            "pipe": self._pipe,
-            "seq": self._seq,
-        }
+    """A class that is used to create operations objects
 
-    def get_operation(self, op_str, data):
-        return self.apps[op_str](data)
+    Attributes
+    ----------
+    operations: dict
+        Maps operation names to concrete operation classes
 
-    def _call(self, data):
-        app_str = data["app"]
-        args = data["args"]
-        af = AppFactory()
-        try:
-            app = af.get_app(app_str, args)
-            return Call(app)
-        except AppNotFoundException as anfe:
-            raise anfe
-        except AppContextException as ace:
-            raise ace
+    Methods
+    -------
 
-    def _pipe(self, data):
-        op1 = data["op1"]
-        op2 = data["op2"]
-        return Pipe(op1, op2)
+    get_operation(op_str, data): Operation
+        Returns an operation object given the operation name and context data
 
-    def _seq(self, data):
-        op1 = data["op1"]
-        op2 = data["op2"]
-        return Sequence(op1, op2)
+
+    """
+
+    operations = {
+        "call": Call,
+        "pipe": Pipe,
+        "seq": Sequence,
+    }
+
+    @staticmethod
+    def get_operation(op_str: str, data: dict) -> Operation:
+        """Returns an operation object given the operation name and context data
+
+        Parameters
+        ----------
+
+        op_str: str
+            name of the operation
+
+        data: dict
+            a dictionary containing information required for initialisation of a
+            certain concrete Operation object
+            Maps property name to arbitrarily typed data.
+        """
+        return OperationFactory.operations[op_str](data)

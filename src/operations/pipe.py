@@ -8,11 +8,11 @@ class Pipe(Operation):
     another.
     """
 
-    def __init__(self, cm1, cm2):
-        self.cm1 = cm1
-        self.cm2 = cm2
+    def __init__(self, data):
+        self.op1 = data["op1"]
+        self.op2 = data["op2"]
 
     def run(self, inp, out):
-        out = self.cm1.run(inp, out)
+        out = self.op1.run(inp, out)
         new_out = deque()
-        return self.cm2.run(out, new_out)
+        return self.op2.run(out, new_out)

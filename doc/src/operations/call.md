@@ -5,7 +5,7 @@ An operation primitive that contains an up that it runs.
 Classes
 -------
 
-`Call(app)`
+`Call(data)`
 :   
 
     ### Ancestors (in MRO)

@@ -4,7 +4,7 @@ Module src.operations.operation
 Classes
 -------
 
-`Operation()`
+`Operation(data)`
 :   
 
     ### Methods

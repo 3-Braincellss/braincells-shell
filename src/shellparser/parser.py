@@ -4,9 +4,6 @@ from lark import Lark
 from lark.visitors import Transformer
 
 from operations import OperationFactory
-from exceptions import AppNotFoundException, AppContextException
-
-from glob import glob
 
 
 class ShellTransformer(Transformer):
@@ -19,46 +16,23 @@ class ShellTransformer(Transformer):
         return returnargs
 
     def seq(self, args):
-        op_factory = OperationFactory()
         data = {"op1": args[0][0], "op2": args[1][0]}
-
-        try:  # Exception propagation
-            seq = op_factory.get_operation("seq", data)
-        except Exception as e:
-            raise e
+        seq = OperationFactory.get_operation("seq", data)
 
         return seq
 
     def pipe(self, args):
-        op_factory = OperationFactory()
+
         data = {"op1": args[0], "op2": args[1]}
-        try:
-            pipe = op_factory.get_operation("pipe", data)
-        except Exception as e:
-            raise e
+        pipe = OperationFactory.get_operation("pipe", data)
 
         return pipe
 
     def call(self, args):
         returnargs = [x for x in args if x is not None]
 
-        call_args = []
-
-        for each in returnargs[1:]:
-            globbing = glob(each)
-            if globbing:
-                call_args.extend(globbing)
-            else:
-                call_args.append(each)
-
-        op_factory = OperationFactory()
-        data = {"app": returnargs[0], "args": call_args}
-
-        try:
-            call = op_factory.get_operation("call", data)
-
-        except Exception as e:
-            raise e
+        data = {"app": returnargs[0], "args": returnargs[1:]}
+        call = OperationFactory.get_operation("call", data)
 
         return call
 

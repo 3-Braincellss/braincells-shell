@@ -24,7 +24,6 @@ class Shell:
 
     def run(self, command=None):
         if command:
-
             out = self.execute(command)
             while len(out) > 0:
                 print(out.popleft())
@@ -35,8 +34,12 @@ class Shell:
 
                 try:
                     out = self.execute(text)
+                except AppRunException as are:
+                    out = deque()
+                    out.append(are.message)
                 except VisitError as ve:
-                    # A dirty way of handling excpetions but visit error from lark doesn't propagate those properly
+                    # Lark's Visit error hides all other exceptions in the context
+                    # So to check for our defined exceptions we check the context of the visit error
                     if isinstance(
                         ve.__context__,
                         (AppContextException, AppNotFoundException, AppRunException),
@@ -52,13 +55,11 @@ class Shell:
     def execute(self, input_str):
         """Create parse tree from input"""
         out = deque()
-        try:
-            command = run_parser(input_str + " ")
 
-            if command:
-                out = command[0].run(None, out)
-        except Exception as e:
-            raise e
+        command = run_parser(input_str + " ")
+
+        if command:
+            out = command[0].run(None, out)
 
         return out
 
