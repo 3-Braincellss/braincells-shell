@@ -9,7 +9,11 @@ import sys
 import os
 
 from lark.exceptions import VisitError
-from exceptions import AppNotFoundException, AppRunException, AppContextException
+from exceptions import (
+    AppNotFoundException,
+    AppRunException,
+    AppContextException,
+)
 
 from common.tools import prettify_path
 
@@ -38,6 +42,10 @@ class Shell:
                     out = deque()
                     out.append(are.message)
 
+                except AppContextException as ace:
+                    out = deque()
+                    out.append(ace.message)
+
                 except VisitError as ve:
                     # Lark's Visit error hides all other exceptions in the context
                     # So to check for our defined exceptions we check the context of the visit error
@@ -49,7 +57,7 @@ class Shell:
                         out.append(ve.__context__.message)
                     else:
                         raise ve
-                        
+
                 while len(out) > 0:
                     print(out.popleft())
 

@@ -43,4 +43,6 @@ class TailApp(App):
         #         "tail", "Missing option: [FILE]")
         if self.options:
             if self.options[0][0] != "-n":
-                raise AppContextException("tail", f"Invalid option: {self.options[0][0]}")
+                raise AppContextException(
+                    "tail", f"Invalid option: {self.options[0][0]}"
+                )

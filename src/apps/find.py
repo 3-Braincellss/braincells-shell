@@ -16,8 +16,7 @@ class FindApp(App):
         self.options, self.args = gnu_getopt(args, "", ["name="])
 
     def run(self, inp, out):
-        """
-        """
+        """ """
         root = "" if not self.args else self.args[0]
         self.pattern = self.options[0][1]
         self._run(root, out)
@@ -31,7 +30,7 @@ class FindApp(App):
         for file in matched_files:
             if not os.path.isdir(file):
                 if root != "":
-                    out.append(file[2:]) #Omit the ./
+                    out.append(file[2:])  # Omit the ./
                 else:
                     out.append(file)
 
