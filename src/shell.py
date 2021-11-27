@@ -16,7 +16,6 @@ from common.tools import prettify_path
 
 class Shell:
     PREFIX = "~~> "
-    PATH_TO_GRAMMAR = "./parser/grammar.lark"
 
     def __init__(self):
         """Starts up the shell"""
