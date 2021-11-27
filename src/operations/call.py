@@ -18,7 +18,6 @@ class Call(Operation):
 
     def run(self, inp, out):
         _inp = inp
-        _out = out
         if self.left_red is not None and not inp:
             lines = deque(read_lines_from_file(self.left_red, "redirect"))
             _inp = deque(map(str.rstrip, lines))
@@ -28,11 +27,10 @@ class Call(Operation):
             with open(self.right_red, "w") as f:
                 self.app.validate_args()
                 _out = self.app.run(_inp, _out)
-                for line in out:
+                for line in _out:
                     f.write(line)
                     f.write("\n")
-                return deque()
         else:
             self.app.validate_args()
-            self.app.run(_inp, _out)
-        return _out
+            self.app.run(_inp, out)
+        return out
