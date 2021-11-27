@@ -17,7 +17,7 @@ class Call(Operation):
     def run(self, inp, out):
         _inp = inp
         _out = out
-        if self.left_red is not none and not inp:
+        if self.left_red is not None and not inp:
             lines = deque(read_lines_from_file(self.left_red, "redirect"))
             _inp = deque(lines)
 

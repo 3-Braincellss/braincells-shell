@@ -49,9 +49,7 @@ class AppFactory:
         "sort": SortApp,
     }
 
-    no_glob = set(
-        ["find"]
-    )
+    no_glob = set(["find"])
 
     @staticmethod
     def get_app(app_str: str, args: list) -> App:
