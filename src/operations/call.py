@@ -21,7 +21,7 @@ class Call(Operation):
         _out = out
         if self.left_red is not None and not inp:
             lines = deque(read_lines_from_file(self.left_red, "redirect"))
-            _inp = deque(lines)
+            _inp = deque(map(rstrip, line))
 
         if self.right_red is not None:
             _out = deque()
