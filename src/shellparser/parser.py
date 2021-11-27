@@ -16,16 +16,15 @@ class ShellTransformer(Transformer):
         return returnargs
 
     def seq(self, args):
-        op_factory = OperationFactory()
         data = {"op1": args[0][0], "op2": args[1][0]}
-        seq = op_factory.get_operation("seq", data)
+        seq = OperationFactory.get_operation("seq", data)
 
         return seq
 
     def pipe(self, args):
-        op_factory = OperationFactory()
+
         data = {"op1": args[0], "op2": args[1]}
-        pipe = op_factory.get_operation("pipe", data)
+        pipe = OperationFactory.get_operation("pipe", data)
 
         return pipe
 

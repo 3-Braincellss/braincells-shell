@@ -6,6 +6,7 @@ from apps import App
 from exceptions import AppContextException, AppRunException
 from common.tools import read_lines_from_file
 
+
 class SortApp(App):
     """
     Sorts the contents of a file/stdin line by line and prints the result to stdout.
@@ -43,7 +44,7 @@ class SortApp(App):
     def _run(self, text, rev, out):
         lines = sorted(text, reverse=rev)
         for line in lines:
-            out.append(line.strip())
+            out.append(line.rstrip())
 
     def validate_args(self):
 

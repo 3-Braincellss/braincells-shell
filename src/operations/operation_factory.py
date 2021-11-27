@@ -7,12 +7,10 @@ from operations import (
 
 
 class OperationFactory:
-
     """A class that is used to create operations objects
 
     Attributes
     ----------
-
     operations: dict
         Maps operation names to concrete operation classes
 
