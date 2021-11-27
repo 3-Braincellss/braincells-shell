@@ -13,21 +13,27 @@ class FindApp(App):
         if args:
             args[0] = "-"+args[0]
         self.options, self.args = getopt(args, "", ["name="])
-        print(self.args)
-        print(self.options)
 
     def run(self, inp, out):
         """
         """
-        root = os.getcwd() if not self.args else self.args[0]
+        root = None if not self.args else self.args[0]
         self.pattern = self.options[0][1]
         self._run(root, out)
         return out
 
     def _run(self, root, out):
-        matched_files = glob(root+"/"+self.pattern, recursive=True)
+        original_path = os.getcwd()
+        try:
+            if root:
+                os.chdir(root)
+        except OSError:
+            raise AppRunException("find", f"{root}: No such file or directory")
+        matched_files = glob(f"**/{self.pattern}", recursive=True)
         for file in matched_files:
-            out.append(file)
+            if not os.path.isdir(file):
+                out.append(file)
+        os.chdir(original_path)
 
     def validate_args(self):
         if not self.options:
