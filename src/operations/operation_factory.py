@@ -3,6 +3,8 @@ from operations import (
     Pipe,
     Sequence,
     Operation,
+    LeftRedirect,
+    RightRedirect,
 )
 
 
@@ -27,6 +29,8 @@ class OperationFactory:
         "call": Call,
         "pipe": Pipe,
         "seq": Sequence,
+        "leftR": LeftRedirect,
+        "rightR": RightRedirect,
     }
 
     @staticmethod
