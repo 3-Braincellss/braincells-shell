@@ -14,8 +14,7 @@ class TailApp(App):
         self.options, self.args = getopt(args, "n:")
 
     def run(self, inp, out):
-        """
-        """
+        """ """
         out = deque()
         if self.options:
             lines = int(self.options[0][1])
@@ -35,7 +34,7 @@ class TailApp(App):
         return out
 
     def _run(self, text, lines, out):
-        start = 0 if len(text)-lines < 0 else len(text)-lines
+        start = 0 if len(text) - lines < 0 else len(text) - lines
         for i in range(start, len(text)):
             out.append(text[i].strip("\n"))
 
@@ -44,6 +43,5 @@ class TailApp(App):
         #     raise AppRunException(
         #         "tail", "Missing option: [FILE]")
         if self.options:
-            if self.options[0][0] != '-n':
-                raise AppRunException(
-                    "tail", f"Invalid option: {self.options[0][0]}")
+            if self.options[0][0] != "-n":
+                raise AppRunException("tail", f"Invalid option: {self.options[0][0]}")

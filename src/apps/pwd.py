@@ -2,9 +2,9 @@ from apps.app import App
 from exceptions import AppRunException
 import os
 
+
 class PwdApp(App):
-    """
-    """
+    """ """
 
     allowed_options = {"-L", "-P"}
 
@@ -14,8 +14,7 @@ class PwdApp(App):
         pass
 
     def run(self, inp, out):
-        """
-        """
+        """ """
         self.validate_args()
         out.append(os.path.abspath(".") + "\n")
         return out

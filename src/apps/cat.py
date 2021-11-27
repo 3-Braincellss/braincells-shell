@@ -55,5 +55,8 @@ class CatApp(App):
         :raises AppRunException: If any option is given.
         """
         for option in self.options:
-            raise AppRunException("cat", f"{option}: is an unsupported option \
-            :(")
+            raise AppRunException(
+                "cat",
+                f"{option}: is an unsupported option \
+            :(",
+            )

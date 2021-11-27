@@ -13,8 +13,7 @@ class HeadApp(App):
         self.options, self.args = getopt(args, "n:")
 
     def run(self, inp, out):
-        """
-        """
+        """ """
         if self.options:
             lines = int(self.options[0][1])
         else:
@@ -47,6 +46,5 @@ class HeadApp(App):
         #     raise AppRunException(
         #         "head", "Missing option: [FILE]")
         if self.options:
-            if self.options[0][0] != '-n':
-                raise AppRunException(
-                    "head", f"Invalid option: {self.options[0][0]}")
+            if self.options[0][0] != "-n":
+                raise AppRunException("head", f"Invalid option: {self.options[0][0]}")

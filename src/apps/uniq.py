@@ -3,9 +3,9 @@ from getopt import getopt
 from exceptions import AppRunException
 from common.tools import read_lines_from_file
 
+
 class UniqApp(App):
-    """
-    """
+    """ """
 
     def __init__(self, args):
         self.options, self.args = getopt(args, "i")
@@ -40,7 +40,7 @@ class UniqApp(App):
         """
         out.append(lines[0].strip("\n"))
         prev = lines[0]
-        for i in range(1,len(lines)):
+        for i in range(1, len(lines)):
             if lines[i] != prev:
                 prev = lines[i]
                 out.append(lines[i].strip("\n"))
@@ -54,11 +54,10 @@ class UniqApp(App):
         """
         out.append(lines[0])
         prev = lines[0]
-        for i in range(1,len(lines)):
+        for i in range(1, len(lines)):
             if lines[i].upper() != prev.upper():
                 prev = lines[i]
                 out.append(lines[i])
-
 
     def validate_args(self):
         """
