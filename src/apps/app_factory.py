@@ -44,7 +44,7 @@ class AppFactory:
         "tail": TailApp,
         "grep": GrepApp,
         "cut": CutApp,
-        # "find": self._find,
+        "find": FindApp,
         "uniq": UniqApp,
         "sort": SortApp,
     }
