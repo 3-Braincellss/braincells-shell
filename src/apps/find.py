@@ -1,7 +1,7 @@
 from apps.app import App
 import os
 from glob import glob
-from getopt import getopt
+from getopt import gnu_getopt
 from exceptions import AppRunException
 
 
@@ -9,20 +9,31 @@ class FindApp(App):
     """ """
 
     def __init__(self, args):
-        self.options, self.args = getopt(args, "name:")
-        print(self.args)
+        for i in range(len(args)):
+            if args[i] == "-name":
+                args[i] = "--name"
+                break
+        self.options, self.args = gnu_getopt(args, "", ["name="])
 
     def run(self, inp, out):
-        """ """
-        root = os.getcwd() if self.args is None else self.args[0]
+        """
+        """
+        root = "" if not self.args else self.args[0]
         self.pattern = self.options[0][1]
         self._run(root, out)
         return out
 
     def _run(self, root, out):
-        matched_files = glob(root + "/" + self.pattern, recursive=True)
+        try:
+            matched_files = glob(f"./{root}/**/{self.pattern}", recursive=True)
+        except OSError:
+            raise AppRunException("find", f"{root}: No such file or directory")
         for file in matched_files:
-            out.append(file)
+            if not os.path.isdir(file):
+                if root != "":
+                    out.append(file[2:]) #Omit the ./
+                else:
+                    out.append(file)
 
     def validate_args(self):
         if not self.options:
