@@ -27,7 +27,7 @@ class Call(Operation):
             with open(self.right_red, "w") as f:
                 self.app.validate_args()
                 _out = self.app.run(_inp, _out)
-                for line in out:
+                for line in _out:
                     f.write(line)
                     f.write("\n")
         else:
