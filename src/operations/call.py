@@ -27,10 +27,11 @@ class Call(Operation):
             _out = deque()
             with open(self.right_red, "w") as f:
                 self.app.validate_args()
-                out = self.app.run(_inp, out)
+                _out = self.app.run(_inp, _out)
                 for line in out:
                     f.write(line)
                     f.write("\n")
+                return _out
         else:
             self.app.validate_args()
             self.app.run(_inp, _out)
