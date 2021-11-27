@@ -104,10 +104,19 @@ Classes
     `double_quoted(self, args)`
     :
 
+    `l_redirection(self, args)`
+    :
+
     `pipe(self, args)`
     :
 
     `quoted(self, args)`
+    :
+
+    `r_redirection(self, args)`
+    :
+
+    `redirection(self, args)`
     :
 
     `seq(self, args)`
