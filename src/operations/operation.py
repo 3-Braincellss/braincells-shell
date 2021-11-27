@@ -10,6 +10,6 @@ class Operation(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def run(inp, out):
+    def run(self, inp, out):
 
         pass
