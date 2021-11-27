@@ -4,7 +4,7 @@ Module src.apps.find
 Classes
 -------
 
-`FindApp()`
+`FindApp(args)`
 :   
 
     ### Ancestors (in MRO)
@@ -13,7 +13,7 @@ Classes
 
     ### Methods
 
-    `run(self)`
+    `run(self, inp, out)`
     :
 
     `validate_args(self)`

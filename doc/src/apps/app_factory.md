@@ -6,7 +6,6 @@ Classes
 
 `AppFactory()`
 :   A class that is used to create app objects
-    
     Attributes
     ----------
     apps: dict
