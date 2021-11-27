@@ -12,6 +12,7 @@ from apps import (
     GrepApp,
     UniqApp,
     UnsafeApp,
+    FindApp,
 )
 from exceptions import AppNotFoundException
 from common.tools import simple_globbing
@@ -19,7 +20,6 @@ from common.tools import simple_globbing
 
 class AppFactory:
     """A class that is used to create app objects
-
     Attributes
     ----------
     apps: dict
