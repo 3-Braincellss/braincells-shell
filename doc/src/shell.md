@@ -11,9 +11,6 @@ Classes
 
     ### Class variables
 
-    `PATH_TO_GRAMMAR`
-    :
-
     `PREFIX`
     :
 
