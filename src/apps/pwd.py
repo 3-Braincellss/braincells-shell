@@ -22,4 +22,4 @@ class PwdApp(App):
     def validate_args(self):
         for option in self.args:
             if option not in PwdApp.allowed_options:
-                raise AppRunException("pwd", f"{option}: invalid option")
+                raise AppContextException("pwd", f"{option}: invalid option")

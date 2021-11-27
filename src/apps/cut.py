@@ -1,6 +1,6 @@
 from apps import App
 from getopt import getopt
-from exceptions import AppRunException
+from exceptions import AppRunException, AppContextException
 from common.tools import read_from_file, read_lines_from_file
 
 
@@ -167,8 +167,8 @@ class CutApp(App):
         option.
         """
         if not self.options:
-            raise AppRunException("cut", "Missing option: -b [INTERVAL],.. >=[")
+            raise AppContextException("cut", "Missing option: -b [INTERVAL],.. >=[")
         if len(self.options) != 1:
-            raise AppRunException("cut", "Invalid number of options >=[")
+            raise AppContextException("cut", "Invalid number of options >=[")
         if self.options[0][0] != "-b":
-            raise AppRunException("cut", f"Invalid option: {self.options[0][0]}")
+            raise AppContextException("cut", f"Invalid option: {self.options[0][0]}")

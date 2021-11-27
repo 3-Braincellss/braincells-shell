@@ -1,3 +1,5 @@
+from apps.app import App
+from exceptions import AppRunException
 import os
 
 from getopt import getopt, GetoptError
@@ -19,6 +21,23 @@ class SortApp(App):
 
     FILE is the name of the file. If not specified, uses stdin.
     """
+
+
+class PwdApp(App):
+    """ """
+
+    allowed_options = {"-L", "-P"}
+
+    def __init__(self, args):
+        # TODO: handle options
+        self.args = args
+        pass
+
+    def run(self, inp, out):
+        """ """
+        self.validate_args()
+        out.append(os.path.abspath(".") + "\n")
+        return out
 
     def __init__(self, args):
         self.args = args

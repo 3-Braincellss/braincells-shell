@@ -47,4 +47,4 @@ class HeadApp(App):
         #         "head", "Missing option: [FILE]")
         if self.options:
             if self.options[0][0] != "-n":
-                raise AppRunException("head", f"Invalid option: {self.options[0][0]}")
+                raise AppContextException("head", f"Invalid option: {self.options[0][0]}")

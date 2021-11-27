@@ -2,7 +2,7 @@ from apps import App
 from getopt import getopt
 from glob import glob
 from common.tools import read_lines_from_file
-from exceptions import AppRunException
+from exceptions import AppRunException, AppContextException
 from common.tools import read_lines_from_file
 
 
@@ -55,7 +55,7 @@ class CatApp(App):
         :raises AppRunException: If any option is given.
         """
         for option in self.options:
-            raise AppRunException(
+            raise AppContextException(
                 "cat",
                 f"{option}: is an unsupported option \
             :(",

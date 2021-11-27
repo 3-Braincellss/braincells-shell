@@ -6,5 +6,5 @@ class AppContextException(Exception):
     """
 
     def __init__(self, app_str, message="GO AWAY >=["):
-        self.message = f"Context error in '{app_str}': " + message + "\n"
+        self.message = f"Context error in '{app_str}': " + message
         super().__init__(self.message)

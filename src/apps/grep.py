@@ -50,4 +50,4 @@ class GrepApp(App):
 
     def validate_args(self):
         if not self.args:
-            raise AppRunException("grep", "Usage: grep [PATTERN] [FILE]...")
+            raise AppContextException("grep", "Usage: grep [PATTERN] [FILE]...")

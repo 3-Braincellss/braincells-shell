@@ -33,11 +33,11 @@ class Shell:
 
                 try:
                     out = self.execute(text)
-                    
+
                 except AppRunException as are:
                     out = deque()
                     out.append(are.message)
-                    
+
                 except VisitError as ve:
                     # Lark's Visit error hides all other exceptions in the context
                     # So to check for our defined exceptions we check the context of the visit error
@@ -49,7 +49,7 @@ class Shell:
                         out.append(ve.__context__.message)
                     else:
                         raise ve
-
+                        
                 while len(out) > 0:
                     print(out.popleft())
 

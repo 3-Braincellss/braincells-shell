@@ -44,4 +44,4 @@ class LsApp(App):
             raise AppContextException("ls", "too many arguments")
         if len(self.args) == 1:
             if not os.path.exists(self.args[0]):
-                raise AppContextException("ls", "not a directory")
+                raise AppContextException("ls", f"{self.args[0]}: not a directory")
