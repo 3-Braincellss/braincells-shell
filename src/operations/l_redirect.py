@@ -2,7 +2,7 @@ from collections import deque
 import os
 from operations import Operation
 
-from commmon.tools import read_lines_from_file
+from common.tools import read_lines_from_file
 
 
 class LeftRedirect(Operation):
