@@ -4,7 +4,7 @@ Module src.operations.sequence
 Classes
 -------
 
-`Sequence(cm1, cm2)`
+`Sequence(data)`
 :   
 
     ### Ancestors (in MRO)
