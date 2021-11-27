@@ -10,13 +10,16 @@ class FindApp(App):
     """
 
     def __init__(self, args):
-        self.options, self.args = getopt(args, "name:")
+        if args:
+            args[0] = "-"+args[0]
+        self.options, self.args = getopt(args, "", ["name="])
         print(self.args)
+        print(self.options)
 
     def run(self, inp, out):
         """
         """
-        root = os.getcwd() if self.args is None else self.args[0]
+        root = os.getcwd() if not self.args else self.args[0]
         self.pattern = self.options[0][1]
         self._run(root, out)
         return out
