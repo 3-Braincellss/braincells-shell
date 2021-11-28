@@ -1,64 +1,76 @@
-from lark import Lark
-from lark.exceptions import VisitError
-from parser import parser
-
-from exceptions.app_not_found import AppNotFoundException
-from exceptions.app_context import AppContextException
-from exceptions.app_run import AppRunException
-from common.tools import prettify_path
-
-import sys
-import os
-
 """
 Shell class where the code execution starts.
 All major "Shell" logic happens here.
 """
 
+from collections import deque
+from shellparser import run_parser
+import sys
+import os
+
+from lark.exceptions import VisitError
+from exceptions import (
+    AppNotFoundException,
+    AppRunException,
+    AppContextException,
+)
+
+from common.tools import prettify_path
+
 
 class Shell:
     PREFIX = "~~> "
-    PATH_TO_GRAMMAR = "./parser/grammar.lark"
 
     def __init__(self):
-
+        """Starts up the shell"""
         pass
-
-    """ Starts up the shell """
 
     def run(self, command=None):
         if command:
             out = self.execute(command)
-            print(out)
+            while len(out) > 0:
+                print(out.popleft())
         else:
             while True:
                 print(prettify_path(os.getcwd()) + " " + self.PREFIX, end="")
                 text = input()
+
                 try:
                     out = self.execute(text)
-                    print(out, end="")
-                except AppNotFoundException as anfe:
-                    print(anfe.message)
-                except AppContextException as ace:
-                    print(ace.message)
+
                 except AppRunException as are:
-                    print(are.message)
+                    out = deque()
+                    out.append(are.message)
+
+                except AppContextException as ace:
+                    out = deque()
+                    out.append(ace.message)
+
+                except VisitError as ve:
+                    # Lark's Visit error hides all other exceptions in the context
+                    # So to check for our defined exceptions we check the context of the visit error
+                    if isinstance(
+                        ve.__context__,
+                        (AppContextException, AppNotFoundException, AppRunException),
+                    ):
+                        out = deque()
+                        out.append(ve.__context__.message)
+                    else:
+                        raise ve
+
+                while len(out) > 0:
+                    print(out.popleft())
 
     def execute(self, input_str):
-        # Create parse tree from input
-        try:
-            command = parser.run_parser(input_str)
-            output = command.run(None)
-            return output
-        except VisitError as ve:
-            if isinstance(ve.__context__, AppNotFoundException):
-                raise ve.__context__
-            if isinstance(ve.__context__, AppContextException):
-                raise ve.__context__
-            else:
-                raise ve
-        except AppRunException as are:
-            raise are
+        """Create parse tree from input"""
+        out = deque()
+
+        command = run_parser(input_str + " ")
+
+        if command:
+            out = command[0].run(None, out)
+
+        return out
 
 
 if __name__ == "__main__":

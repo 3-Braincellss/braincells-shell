@@ -1,90 +1,96 @@
-from apps.app import App
-
-from apps.ls import LsApp
-from apps.echo import EchoApp
-from apps.pwd import PwdApp
-from apps.cd import CdApp
-from apps.cat import CatApp
-from apps.head import HeadApp
-from apps.tail import TailApp
-from apps.grep import GrepApp
-from apps.cut import CutApp
-from apps.find import FindApp
-from apps.uniq import UniqApp
-from apps.sort import SortApp
-
-from exceptions.app_not_found import AppNotFoundException
-from exceptions.app_context import AppContextException
+from apps import (
+    App,
+    LsApp,
+    EchoApp,
+    CdApp,
+    CatApp,
+    CutApp,
+    PwdApp,
+    HeadApp,
+    TailApp,
+    SortApp,
+    GrepApp,
+    UniqApp,
+    UnsafeApp,
+    FindApp,
+)
+from exceptions import AppNotFoundException
+from common.tools import simple_globbing
 
 
 class AppFactory:
-    """
-    Creates an app object given the app_str
+    """A class that is used to create app objects
+    Attributes
+    ----------
+    apps: dict
+        A dictionary that maps app names to concrete app classes.
+
+    no_glob: set
+        A set of apps that don't require filename expansion or globbing
+
+    Methods
+    -------
+    get_app(self, app_str, args)
+        Returns an app object based on the app_str given.
     """
 
-    def __init__(self):
-        self.apps = {
-            "ls": self._ls,
-            "echo": self._echo,
-            # "pwd": self._pwd,
-            "cd": self._cd,
-            # "cat": self._cat,
-            # "head": self._head,
-            # "tail": self._tail,
-            # "grep": self._grep,
-            # "cut": self._cut,
-            # "find": self._find,
-            # "uniq": self._uniq,
-            # "sort": self._sort,
-        }
+    apps = {
+        "ls": LsApp,
+        "echo": EchoApp,
+        "pwd": PwdApp,
+        "cd": CdApp,
+        "cat": CatApp,
+        "head": HeadApp,
+        "tail": TailApp,
+        "grep": GrepApp,
+        "cut": CutApp,
+        "find": FindApp,
+        "uniq": UniqApp,
+        "sort": SortApp,
+    }
 
-    def get_app(self, app_str: str, args: list) -> App:
+    no_glob = set(["find"])
+
+    @staticmethod
+    def get_app(app_str: str, args: list) -> App:
+        """Returns an app object based on the app_str given.
+
+        Parameters
+        ----------
+        app_str: str
+            A string that represents the command to be called.
+            If app_str starts with '_' the app will be treated as unsafe
+
+        args: list
+            A List of arguments that should be passed to the app.
+
+        Raises
+        ------
+        AppNotFountException
+            If an app is not found in the apps dictionary.
+
+        Returns
+        -------
+        app: App
+            An app object that is ready to be run
         """
-        app_str - app name
-        args = [array, of, strings, which, are, all, options]
-        """
-        if app_str in self.apps:
-            try:
-                app = self.apps[app_str](args)
-                app.validate_args()
-                return app
-            except AppContextException as ace:
-                raise ace
+
+        # check if an app is unsafe
+        unsafe = app_str[0] == "_"
+        _app_str = app_str[1:] if unsafe else app_str
+
+        if _app_str in AppFactory.apps:
+
+            # conditional globbing to take in account for functions like 'find'
+            if _app_str not in AppFactory.no_glob:
+                args = simple_globbing(args)
+
+            # initialise app using the constructors dictionary
+            _app = AppFactory.apps[_app_str](args)
+
+            # Apply the decorator if it's unsafe
+            app = UnsafeApp(_app) if unsafe else _app
+            return app
+
         else:
-            raise AppNotFoundException(app_str)
-
-    def _ls(self, args):
-        return LsApp(args)
-
-    def _echo(self, args):
-        return EchoApp(args)
-
-    def _pwd(self, args):
-        return PwdApp(args)
-
-    def _cd(self, args):
-        return CdApp(args)
-
-    def _cat(self, args):
-        return CatApp(args)
-
-    def _head(self, args):
-        return HeadApp(args)
-
-    def _tail(self, args):
-        return TailApp(args)
-
-    def _grep(self, args):
-        return GrepApp(args)
-
-    def _cut(self, args):
-        return CutApps(args)
-
-    def _find(self, args):
-        return FindApp(args)
-
-    def _uniq(self, args):
-        return UniqApp(args)
-
-    def _sort(self, args):
-        return SortApp(args)
+            raise AppNotFoundException(_app_str)
