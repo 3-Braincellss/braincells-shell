@@ -1,11 +1,6 @@
 src.operations package
 ======================
 
-.. automodule:: src.operations
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Submodules
 ----------
 
@@ -45,6 +40,14 @@ src.operations.sequence module
 ------------------------------
 
 .. automodule:: src.operations.sequence
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: src.operations
    :members:
    :undoc-members:
    :show-inheritance:

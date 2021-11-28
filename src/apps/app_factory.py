@@ -45,7 +45,7 @@ class AppFactory:
         """Returns an app object based on the app_str given.
 
         Args:
-            app_str (obj:`str`): A string that represents the command to be called.
+            app_str (:obj:`str`): A string that represents the command to be called.
                 If app_str starts with '_' the app will be treated as unsafe
             opts (:obj:`list`): A List of arguments that should be passed to the app.
 

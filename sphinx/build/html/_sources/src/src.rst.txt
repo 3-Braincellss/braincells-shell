@@ -1,11 +1,6 @@
 src package
 ===========
 
-.. automodule:: src
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Subpackages
 -----------
 
@@ -24,6 +19,14 @@ src.shell module
 ----------------
 
 .. automodule:: src.shell
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: src
    :members:
    :undoc-members:
    :show-inheritance:

@@ -22,11 +22,10 @@ If you want to look at how the documentation above was implemented here are our 
    :maxdepth: 1
    :caption: Source docs
 
-   src/shell
-   src/apps
-   src/exceptions
-   src/operations
-   src/shellparser
+   src/src.apps
+   src/src.exceptions
+   src/src.operations
+   src/src.shellparser
 
    
 

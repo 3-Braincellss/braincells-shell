@@ -1,11 +1,6 @@
 src.apps package
 ================
 
-.. automodule:: src.apps
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Submodules
 ----------
 
@@ -125,6 +120,14 @@ src.apps.unsafe module
 ----------------------
 
 .. automodule:: src.apps.unsafe
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: src.apps
    :members:
    :undoc-members:
    :show-inheritance:

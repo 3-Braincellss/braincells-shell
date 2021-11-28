@@ -1,11 +1,6 @@
 src.exceptions package
 ======================
 
-.. automodule:: src.exceptions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Submodules
 ----------
 
@@ -29,6 +24,14 @@ src.exceptions.app\_run module
 ------------------------------
 
 .. automodule:: src.exceptions.app_run
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: src.exceptions
    :members:
    :undoc-members:
    :show-inheritance:
