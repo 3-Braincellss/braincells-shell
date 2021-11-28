@@ -17,7 +17,6 @@ jobs:
     - name: Prepare System tests
       run: docker build -t comp0010-system-test .
     - name: Run System tests
-      continue-on-error: True
       run: python system_test/tests.py -v
     - name: Run pylint
       continue-on-error: True
