@@ -19,20 +19,7 @@ from common.tools import simple_globbing
 
 
 class AppFactory:
-    """A class that is used to create app objects
-    Attributes
-    ----------
-    apps: dict
-        A dictionary that maps app names to concrete app classes.
-
-    no_glob: set
-        A set of apps that don't require filename expansion or globbing
-
-    Methods
-    -------
-    get_app(self, app_str, args)
-        Returns an app object based on the app_str given.
-    """
+    """A class that is used to create app objects"""
 
     apps = {
         "ls": LsApp,
@@ -48,31 +35,22 @@ class AppFactory:
         "uniq": UniqApp,
         "sort": SortApp,
     }
+    """dict: A dictionary that maps app names to their classes"""
 
     no_glob = set(["find"])
+    """set: A set of apps that don't require globbing"""
 
     @staticmethod
-    def get_app(app_str: str, args: list) -> App:
+    def get_app(app_str: str, opts: list) -> App:
         """Returns an app object based on the app_str given.
 
-        Parameters
-        ----------
-        app_str: str
-            A string that represents the command to be called.
-            If app_str starts with '_' the app will be treated as unsafe
+        Args:
+            app_str (obj:`str`): A string that represents the command to be called.
+                If app_str starts with '_' the app will be treated as unsafe
+            opts (:obj:`list`): A List of arguments that should be passed to the app.
 
-        args: list
-            A List of arguments that should be passed to the app.
-
-        Raises
-        ------
-        AppNotFountException
-            If an app is not found in the apps dictionary.
-
-        Returns
-        -------
-        app: App
-            An app object that is ready to be run
+        Returns:
+            app (:obj:`App`): An app object that is ready to be run
         """
 
         # check if an app is unsafe
@@ -83,10 +61,10 @@ class AppFactory:
 
             # conditional globbing to take in account for functions like 'find'
             if _app_str not in AppFactory.no_glob:
-                args = simple_globbing(args)
+                opts = simple_globbing(opts)
 
             # initialise app using the constructors dictionary
-            _app = AppFactory.apps[_app_str](args)
+            _app = AppFactory.apps[_app_str](opts)
 
             # Apply the decorator if it's unsafe
             app = UnsafeApp(_app) if unsafe else _app

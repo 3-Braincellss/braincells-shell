@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>apps package &mdash; COMP0010-Shell v1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> COMP0010-Shell
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../doc/language.html">Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc/applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc/interface.html">Command Line Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Source docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../src/shell.html">shell module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../src/apps.html">apps package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../src/exceptions.html">exceptions package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../src/operations.html">operations package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../src/shellparser.html">shellparser package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">COMP0010-Shell</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>apps package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/shell/apps.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-apps">
+<span id="apps-package"></span><h1>apps package<a class="headerlink" href="#module-apps" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-apps.app">
+<span id="apps-app-module"></span><h2>apps.app module<a class="headerlink" href="#module-apps.app" title="Permalink to this headline"></a></h2>
+<p>This module provides an interface for an App.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.app.App">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.app.</span></span><span class="sig-name descname"><span class="pre">App</span></span><a class="headerlink" href="#apps.app.App" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An abstract class representing the format of all Apps.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="apps.app.App.allowed_options">
+<span class="sig-name descname"><span class="pre">allowed_options</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#apps.app.App.allowed_options" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.app.App.run">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.app.App.run" title="Permalink to this definition"></a></dt>
+<dd><p>Runs the application.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.app.App.validate_args">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.app.App.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the given args are appropriate for the application.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.app_factory">
+<span id="apps-app-factory-module"></span><h2>apps.app_factory module<a class="headerlink" href="#module-apps.app_factory" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.app_factory.AppFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.app_factory.</span></span><span class="sig-name descname"><span class="pre">AppFactory</span></span><a class="headerlink" href="#apps.app_factory.AppFactory" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that is used to create app objects</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="apps.app_factory.AppFactory.apps">
+<span class="sig-name descname"><span class="pre">apps</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cat':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.cat.CatApp'&gt;,</span> <span class="pre">'cd':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.cd.CdApp'&gt;,</span> <span class="pre">'cut':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.cut.CutApp'&gt;,</span> <span class="pre">'echo':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.echo.EchoApp'&gt;,</span> <span class="pre">'find':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.find.FindApp'&gt;,</span> <span class="pre">'grep':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.grep.GrepApp'&gt;,</span> <span class="pre">'head':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.head.HeadApp'&gt;,</span> <span class="pre">'ls':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.ls.LsApp'&gt;,</span> <span class="pre">'pwd':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.pwd.PwdApp'&gt;,</span> <span class="pre">'sort':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.sort.SortApp'&gt;,</span> <span class="pre">'tail':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.tail.TailApp'&gt;,</span> <span class="pre">'uniq':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.uniq.UniqApp'&gt;}</span></em><a class="headerlink" href="#apps.app_factory.AppFactory.apps" title="Permalink to this definition"></a></dt>
+<dd><p>dict: A dictionary that maps app names to their classes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.app_factory.AppFactory.get_app">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><span class="pre">apps.app.App</span></a></span></span><a class="headerlink" href="#apps.app_factory.AppFactory.get_app" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an app object based on the app_str given.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>app_str (obj:<cite>str</cite>): A string that represents the command to be called.</dt><dd><p>If app_str starts with ‘_’ the app will be treated as unsafe</p>
+</dd>
+</dl>
+<p>opts (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>): A List of arguments that should be passed to the app.</p>
+</dd>
+<dt>Returns:</dt><dd><p>app (<code class="xref py py-obj docutils literal notranslate"><span class="pre">App</span></code>): An app object that is ready to be run</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="apps.app_factory.AppFactory.no_glob">
+<span class="sig-name descname"><span class="pre">no_glob</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'find'}</span></em><a class="headerlink" href="#apps.app_factory.AppFactory.no_glob" title="Permalink to this definition"></a></dt>
+<dd><p>set: A set of apps that don’t require globbing</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.cat">
+<span id="apps-cat-module"></span><h2>apps.cat module<a class="headerlink" href="#module-apps.cat" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.cat.CatApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.cat.</span></span><span class="sig-name descname"><span class="pre">CatApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.cat.CatApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>Application representing the bash command:
+cat [FILES]…</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="apps.cat.CatApp.allowed_options">
+<span class="sig-name descname"><span class="pre">allowed_options</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#apps.cat.CatApp.allowed_options" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.cat.CatApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.cat.CatApp.run" title="Permalink to this definition"></a></dt>
+<dd><p>Executes that cat command on the given arguments.
+:param inp: The input args of the command, only used for piping
+and redirects.
+:param out: The output queue.
+:return: Returns the output queue.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.cat.CatApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.cat.CatApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Ensures the options are valid.
+:raises AppRunException: If any option is given.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.cd">
+<span id="apps-cd-module"></span><h2>apps.cd module<a class="headerlink" href="#module-apps.cd" title="Permalink to this headline"></a></h2>
+<p>This module represents the cd bash command</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.cd.CdApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.cd.</span></span><span class="sig-name descname"><span class="pre">CdApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.cd.CdApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>Application representing the bash command:
+cd [DIRECTORY]</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.cd.CdApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.cd.CdApp.run" title="Permalink to this definition"></a></dt>
+<dd><p>Changes current working directory</p>
+<p>If a FULL DIRECTORY is supplied changes current directory to the given
+one</p>
+<p>If a RELATIVE DIRECTORY is supplied changed current directory to the
+given one</p>
+<p>If NO DIRECTORY is given changes directory to the root</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.cd.CdApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.cd.CdApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Check that the number of arguments is greater than 1
+and if the given path exists.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.cut">
+<span id="apps-cut-module"></span><h2>apps.cut module<a class="headerlink" href="#module-apps.cut" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.cut.CutApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.cut.</span></span><span class="sig-name descname"><span class="pre">CutApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.cut.CutApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>Executes bash application cut:
+cut -b [INTERVALS] [PATHS]*
+If paths is empty or ‘-’ stdin is used</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.cut.CutApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.cut.CutApp.run" title="Permalink to this definition"></a></dt>
+<dd><p>Executes the cut command extracting specified bytes from text.
+:param inp: The string text to cut bytes from.
+:param out: The deque used to store the result of the application</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.cut.CutApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.cut.CutApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Ensures the options are valid.
+:raises AppRunException: If -b option is missing or -b is not the only
+option.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.echo">
+<span id="apps-echo-module"></span><h2>apps.echo module<a class="headerlink" href="#module-apps.echo" title="Permalink to this headline"></a></h2>
+<p>This module represents the echo bash command.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.echo.EchoApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.echo.</span></span><span class="sig-name descname"><span class="pre">EchoApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.echo.EchoApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>echo [INPUT] [INPUT] …</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.echo.EchoApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.echo.EchoApp.run" title="Permalink to this definition"></a></dt>
+<dd><p>Returns all the input args as a space seperated string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.echo.EchoApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.echo.EchoApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the given arguments are valid.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.find">
+<span id="apps-find-module"></span><h2>apps.find module<a class="headerlink" href="#module-apps.find" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.find.FindApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.find.</span></span><span class="sig-name descname"><span class="pre">FindApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.find.FindApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.find.FindApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.find.FindApp.run" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.find.FindApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.find.FindApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the given args are appropriate for the application.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.grep">
+<span id="apps-grep-module"></span><h2>apps.grep module<a class="headerlink" href="#module-apps.grep" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.grep.GrepApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.grep.</span></span><span class="sig-name descname"><span class="pre">GrepApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.grep.GrepApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>Application representing the bash command:
+grep [PATTERN] [FILE]*</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.grep.GrepApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.grep.GrepApp.run" title="Permalink to this definition"></a></dt>
+<dd><p>Performs the grep operation on all specified paths.
+:param inp: The input args of the command, only used for piping
+and redirects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.grep.GrepApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.grep.GrepApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the given args are appropriate for the application.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.head">
+<span id="apps-head-module"></span><h2>apps.head module<a class="headerlink" href="#module-apps.head" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.head.HeadApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.head.</span></span><span class="sig-name descname"><span class="pre">HeadApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.head.HeadApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>head [OPTIONS] [FILE]</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.head.HeadApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.head.HeadApp.run" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.head.HeadApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.head.HeadApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the given args are appropriate for the application.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.ls">
+<span id="apps-ls-module"></span><h2>apps.ls module<a class="headerlink" href="#module-apps.ls" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.ls.LsApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.ls.</span></span><span class="sig-name descname"><span class="pre">LsApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.ls.LsApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>Lists all apps in the current or given directory</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.ls.LsApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.ls.LsApp.run" title="Permalink to this definition"></a></dt>
+<dd><p>ls [DIRECTORY]</p>
+<p>if NO ARGUMENTS provided print files in the current directory</p>
+<p>if ONE OR MORE ARGUMENTS provided print files in directories specified</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.ls.LsApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.ls.LsApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Check is all paths in args exist.
+:raises: AppContextException if the path given does not exist.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.pwd">
+<span id="apps-pwd-module"></span><h2>apps.pwd module<a class="headerlink" href="#module-apps.pwd" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.pwd.PwdApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.pwd.</span></span><span class="sig-name descname"><span class="pre">PwdApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.pwd.PwdApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="apps.pwd.PwdApp.allowed_options">
+<span class="sig-name descname"><span class="pre">allowed_options</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'-L',</span> <span class="pre">'-P'}</span></em><a class="headerlink" href="#apps.pwd.PwdApp.allowed_options" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.pwd.PwdApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.pwd.PwdApp.run" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.pwd.PwdApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.pwd.PwdApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the given args are appropriate for the application.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.sort">
+<span id="apps-sort-module"></span><h2>apps.sort module<a class="headerlink" href="#module-apps.sort" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.sort.SortApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.sort.</span></span><span class="sig-name descname"><span class="pre">SortApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.sort.SortApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>Sorts the contents of a file/stdin line by line and prints the result to stdout.</p>
+<p>sort [OPTIONS] [FILE]</p>
+<p>OPTIONS:</p>
+<blockquote>
+<div><p>-r sorts lines in reverse order</p>
+</div></blockquote>
+<p>FILE is the name of the file. If not specified, uses stdin.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.sort.SortApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.sort.SortApp.run" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.sort.SortApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.sort.SortApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the given args are appropriate for the application.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.tail">
+<span id="apps-tail-module"></span><h2>apps.tail module<a class="headerlink" href="#module-apps.tail" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.tail.TailApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.tail.</span></span><span class="sig-name descname"><span class="pre">TailApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.tail.TailApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>head [OPTIONS] [FILE]</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.tail.TailApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.tail.TailApp.run" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.tail.TailApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.tail.TailApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the given args are appropriate for the application.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.uniq">
+<span id="apps-uniq-module"></span><h2>apps.uniq module<a class="headerlink" href="#module-apps.uniq" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.uniq.UniqApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.uniq.</span></span><span class="sig-name descname"><span class="pre">UniqApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.uniq.UniqApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.uniq.UniqApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.uniq.UniqApp.run" title="Permalink to this definition"></a></dt>
+<dd><p>Executes that uniq command on the given arguments.
+:param inp: The input args of the command, only used for piping
+and redirects.
+:param out: The output deque.
+:return: Returns the output deque.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.uniq.UniqApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.uniq.UniqApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Ensures the options are valid.
+:raises AppRunException: If any other option other than -i is
+given, or multiple paths are given as args</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-apps.unsafe">
+<span id="apps-unsafe-module"></span><h2>apps.unsafe module<a class="headerlink" href="#module-apps.unsafe" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.unsafe.UnsafeApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">apps.unsafe.</span></span><span class="sig-name descname"><span class="pre">UnsafeApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.unsafe.UnsafeApp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../src/apps.html#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.unsafe.UnsafeApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.unsafe.UnsafeApp.run" title="Permalink to this definition"></a></dt>
+<dd><p>Runs the application.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.unsafe.UnsafeApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.unsafe.UnsafeApp.validate_args" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether the given args are appropriate for the application.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Adi Bozzhanov, Ilya Kosorukov, Oluwaponmile Femi-Sunmaila.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

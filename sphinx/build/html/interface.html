@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command Line Interface &mdash; COMP0010-Shell v1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> COMP0010-Shell
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="language.html">Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">COMP0010-Shell</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Command Line Interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/interface.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="command-line-interface">
+<h1>Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline"></a></h1>
+<p>COMP0010 Shell should be executed in a Docker container. To build a container image (let’s call it <code class="docutils literal notranslate"><span class="pre">shell</span></code>), run</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker build -t shell .
+</pre></div>
+</div>
+<p>To execute the shell in interactive mode, run</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker run -it --rm shell /comp0010/sh
+</pre></div>
+</div>
+<p>To execute the shell in non-interactive mode (to evaluate a specific command such as <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">foo</span></code>), run</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker run --rm shell /comp0010/sh -c &#39;echo foo&#39;
+</pre></div>
+</div>
+<p>To execute unit tests, run</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker run -p 80:8000 -ti --rm shell /comp0010/tools/test
+</pre></div>
+</div>
+<p>Then, the results of unit testing will be available at <a class="reference external" href="http://localhost">http://localhost</a></p>
+<p>To execute code analysis, run</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker run -p 80:8000 -ti --rm shell /comp0010/tools/analysis
+</pre></div>
+</div>
+<p>Then, the results of code analysis will be available at <a class="reference external" href="http://localhost">http://localhost</a></p>
+<p>To execute test coverage, run</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker run -p 80:8000 -ti --rm shell /comp0010/tools/coverage
+</pre></div>
+</div>
+<p>Then, the results of coverage computation will be available at <a class="reference external" href="http://localhost">http://localhost</a></p>
+<p>To execute system tests, your first need to build a Docker image named <code class="docutils literal notranslate"><span class="pre">comp0010-system-test</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker build -t comp0010-system-test .
+</pre></div>
+</div>
+<p>Then, execute system tests using the following command (Python 3.7 or higher is required):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python system_test/tests.py -v
+</pre></div>
+</div>
+<p>Individual system tests (e.g. <code class="docutils literal notranslate"><span class="pre">test_cat</span></code>) can be executed as</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python system_test/tests.py -v TestShell.test_cat
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Adi Bozzhanov, Ilya Kosorukov, Oluwaponmile Femi-Sunmaila.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
