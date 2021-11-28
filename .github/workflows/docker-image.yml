@@ -10,8 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: install pylint
-      run: pip3 install pylint
+    - name: install requirements
+      run: pip3 install -r requirements.txt
     - name: Build the Docker image
       run: docker build -t shell .
     - name: Prepare System tests
