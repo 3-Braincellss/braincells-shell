@@ -1,6 +1,6 @@
 from apps.app import App
 from getopt import getopt
-from exceptions.app_run import AppRunException
+from exceptions import AppRunException
 from common.tools import read_lines_from_file
 
 

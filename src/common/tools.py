@@ -1,4 +1,4 @@
-from exceptions.app_run import AppRunException
+from exceptions import AppRunException
 
 from glob import glob
 
