@@ -35,7 +35,7 @@ class AppFactory:
         "uniq": UniqApp,
         "sort": SortApp,
     }
-    """dict: A dictionary that maps app names to their classes"""
+    """(:obj:`dict`): A dictionary that maps app names to their classes"""
 
     no_glob = set(["find"])
     """set: A set of apps that don't require globbing"""

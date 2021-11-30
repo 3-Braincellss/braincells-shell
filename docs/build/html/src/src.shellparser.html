@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
 
   
   
@@ -89,11 +91,29 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html#running">Running</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">COMP0010 Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../doc/language.html">Language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../doc/applications.html">Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../doc/interface.html">Command Line Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extra Functionality</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Added Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Program Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#file-structure">File Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#architectures">Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#testing">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#code-style">Code style</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Source docs</span></p>
 <ul class="current">
@@ -186,7 +206,7 @@
 <span id="src-shellparser-parser-module"></span><h2>src.shellparser.parser module<a class="headerlink" href="#module-src.shellparser.parser" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.shellparser.parser.ShellTransformer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ShellTransformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visit_tokens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.shellparser.parser.ShellTransformer" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">ShellTransformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visit_tokens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.shellparser.parser.ShellTransformer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">lark.visitors.Transformer</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="src.shellparser.parser.ShellTransformer.UNQUOTED">

@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
 
   
   
@@ -89,11 +91,29 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html#running">Running</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">COMP0010 Shell</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../doc/language.html">Language</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../doc/applications.html">Applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../doc/interface.html">Command Line Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extra Functionality</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Added Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Program Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#file-structure">File Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#architectures">Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#testing">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#code-style">Code style</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Source docs</span></p>
 <ul class="current">
@@ -191,7 +211,7 @@
 <p>An operation primitive that contains an up that it runs.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.operations.call.Call">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.call.Call" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.call.Call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">operations.operation.Operation</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.operations.call.Call.run">
@@ -205,11 +225,11 @@
 <span id="src-operations-operation-module"></span><h2>src.operations.operation module<a class="headerlink" href="#module-src.operations.operation" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.operations.operation.Operation">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.operation.Operation" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.operation.Operation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.operations.operation.Operation.run">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.operation.Operation.run" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.operation.Operation.run" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -219,7 +239,7 @@
 <span id="src-operations-operation-factory-module"></span><h2>src.operations.operation_factory module<a class="headerlink" href="#module-src.operations.operation_factory" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.operations.operation_factory.OperationFactory">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OperationFactory</span></span><a class="headerlink" href="#src.operations.operation_factory.OperationFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">OperationFactory</span></span><a class="headerlink" href="#src.operations.operation_factory.OperationFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class that is used to create operations objects</p>
 <dl class="py attribute">
@@ -241,12 +261,12 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">operations</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'call':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.call.Call'&gt;,</span> <span class="pre">'pipe':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.pipe.Pipe'&gt;,</span> <span class="pre">'seq':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.sequence.Sequence'&gt;}</span></em><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">operations</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'call':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.call.Call'&gt;,</span> <span class="pre">'pipe':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.pipe.Pipe'&gt;,</span> <span class="pre">'seq':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.sequence.Sequence'&gt;}</span></em><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.operations.operation_factory.OperationFactory.get_operation">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">operations.operation.Operation</span></span></span><a class="headerlink" href="#src.operations.operation_factory.OperationFactory.get_operation" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op_str</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">operations.operation.Operation</span></span></span><a class="headerlink" href="#src.operations.operation_factory.OperationFactory.get_operation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an operation object given the operation name and context data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -267,7 +287,7 @@ Maps property name to arbitrarily typed data.</p></li>
 <span id="src-operations-pipe-module"></span><h2>src.operations.pipe module<a class="headerlink" href="#module-src.operations.pipe" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.operations.pipe.Pipe">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Pipe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.pipe.Pipe" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Pipe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.pipe.Pipe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">operations.operation.Operation</span></code></p>
 <p>Standard pipe that redirects the output of one program to the input of
 another.</p>
@@ -283,7 +303,7 @@ another.</p>
 <span id="src-operations-sequence-module"></span><h2>src.operations.sequence module<a class="headerlink" href="#module-src.operations.sequence" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.operations.sequence.Sequence">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.sequence.Sequence" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.sequence.Sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">operations.operation.Operation</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.operations.sequence.Sequence.run">
