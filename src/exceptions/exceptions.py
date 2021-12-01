@@ -16,7 +16,8 @@ class AppException(Exception, metaclass=ABCMeta):
     """
 
     def __init__(self, app_str, message="Sorry"):
-        pass
+        self.message = message
+        self.app_str = app_str
 
 
 class AppContextException(AppException):

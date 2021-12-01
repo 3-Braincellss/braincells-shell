@@ -3,29 +3,36 @@ Shell class where the code execution starts.
 All major "Shell" logic happens here.
 """
 
-from collections import deque
-from shellparser import run_parser
 import sys
 import os
 
+from collections import deque
 from lark.exceptions import VisitError
-from exceptions import (
-    AppNotFoundException,
-    AppRunException,
-    AppContextException,
-)
 
+from shellparser import run_parser
+from exceptions import AppException
 from common.tools import prettify_path
 
 
 class Shell:
-    PREFIX = "~~> "
+    """Main shell class which can start the execution."""
 
-    def __init__(self):
-        """Starts up the shell"""
-        pass
+    PREFIX = "~~> "
+    """ String that separates current directory section from user input"""
 
     def run(self, command=None):
+        """Runs the shell.
+
+        This method can be run in 2 ways.
+        1) In case no arguments are passed, shell will run in an **interactive mode**.
+
+        2) If a string is passed, then shell will interpret the string as a command,
+        execute this command and print output to **stdout**.
+
+        Parameters:
+            command (:obj:`str`): a string representation of a command to execute.
+        """
+
         if command:
             out = self.execute(command)
             while len(out) > 0:
@@ -37,31 +44,24 @@ class Shell:
 
                 try:
                     out = self.execute(text)
-
-                except AppRunException as are:
+                except AppException as err:
                     out = deque()
-                    out.append(are.message)
+                    out.append(err.message)
 
-                except AppContextException as ace:
-                    out = deque()
-                    out.append(ace.message)
-
-                except VisitError as ve:
+                except VisitError as err:
                     # Lark's Visit error hides all other exceptions in the context
                     # So to check for our defined exceptions we check the context of the visit error
-                    if isinstance(
-                        ve.__context__,
-                        (AppContextException, AppNotFoundException, AppRunException),
-                    ):
+                    if isinstance(err.__context__, AppException):
                         out = deque()
-                        out.append(ve.__context__.message)
+                        out.append(err.__context__.message)
                     else:
-                        raise ve
+                        raise err
 
                 while len(out) > 0:
                     print(out.popleft())
 
-    def execute(self, input_str):
+    @staticmethod
+    def execute(input_str):
         """Create parse tree from input"""
         out = deque()
 
@@ -74,10 +74,10 @@ class Shell:
 
 
 if __name__ == "__main__":
-    args_num = len(sys.argv) - 1
+    ARGS_NUM = len(sys.argv) - 1
     sh = Shell()
-    if args_num > 0:
-        if args_num != 2:
+    if ARGS_NUM > 0:
+        if ARGS_NUM != 2:
             raise ValueError("wrong number of command line arguments")
         if sys.argv[1] != "-c":
             raise ValueError(f"unexpected command line argument {sys.argv[1]}")
