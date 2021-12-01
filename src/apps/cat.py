@@ -12,10 +12,10 @@ from apps import App
 
 
 class CatApp(App):
-    """ A class representing the cat command line instruction
+    """A class representing the cat command line instruction
 
-        Args:
-            args (:obj: `list`): Contains all the arguments and options of the cat instruction
+    Args:
+        args (:obj: `list`): Contains all the arguments and options of the cat instruction
 
     """
 
@@ -55,8 +55,8 @@ class CatApp(App):
     def validate_args(self):
         """Ensures that no options have been supplied to the application.
 
-            Raises:
-                AppContextError: If an option has been supplied to the application.
+        Raises:
+            AppContextError: If an option has been supplied to the application.
         """
         for option in self._options:
             raise AppContextException(

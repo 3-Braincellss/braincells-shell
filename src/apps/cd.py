@@ -11,10 +11,10 @@ from apps import App
 
 
 class CdApp(App):
-    """ A class representing the cd shell instruction
+    """A class representing the cd shell instruction
 
-        Args:
-            args (:obj: `list`): Contains all the arguments and options of the instruction
+    Args:
+        args (:obj: `list`): Contains all the arguments and options of the instruction
 
     """
 

@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
 
   
   
@@ -128,7 +130,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-src.shell">src.shell module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-src">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -202,8 +203,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="src-package">
-<h1>src package<a class="headerlink" href="#src-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-src">
+<span id="src-package"></span><h1>src package<a class="headerlink" href="#module-src" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -225,13 +226,11 @@
 <li class="toctree-l2"><a class="reference internal" href="src.apps.html#module-src.apps.tail">src.apps.tail module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.apps.html#module-src.apps.uniq">src.apps.uniq module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.apps.html#module-src.apps.unsafe">src.apps.unsafe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.apps.html#module-src.apps">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="src.exceptions.html">src.exceptions package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="src.exceptions.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.exceptions.html#module-src.exceptions.exceptions">src.exceptions.exceptions module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.exceptions.html#module-src.exceptions">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="src.operations.html">src.operations package</a><ul>
@@ -241,13 +240,11 @@
 <li class="toctree-l2"><a class="reference internal" href="src.operations.html#module-src.operations.operation_factory">src.operations.operation_factory module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.operations.html#module-src.operations.pipe">src.operations.pipe module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.operations.html#module-src.operations.sequence">src.operations.sequence module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.operations.html#module-src.operations">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="src.shellparser.html">src.shellparser package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="src.shellparser.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.shellparser.html#module-src.shellparser.parser">src.shellparser.parser module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.shellparser.html#module-src.shellparser">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -262,12 +259,12 @@
 All major “Shell” logic happens here.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.shell.Shell">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Shell</span></span><a class="headerlink" href="#src.shell.Shell" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Shell</span></span><a class="headerlink" href="#src.shell.Shell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Main shell class which can start the execution.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="src.shell.Shell.PREFIX">
-<span class="sig-name descname"><span class="pre">PREFIX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'~~&gt;</span> <span class="pre">'</span></em><a class="headerlink" href="#src.shell.Shell.PREFIX" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">PREFIX</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'~~&gt;</span> <span class="pre">'</span></em><a class="headerlink" href="#src.shell.Shell.PREFIX" title="Permalink to this definition">¶</a></dt>
 <dd><p>String that separates current directory section from user input.</p>
 </dd></dl>
 
@@ -292,7 +289,7 @@ execute this command and print output to <strong>stdout</strong>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.shell.Shell.execute">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.shell.Shell.execute" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.shell.Shell.execute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parses and executes the input string</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -315,9 +312,6 @@ execute this command and print output to <strong>stdout</strong>.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-src">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
