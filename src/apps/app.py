@@ -1,17 +1,15 @@
-"""
-This module provides an interface for an App.
-"""
+"""This module provides an interface for an App."""
 from abc import abstractmethod, ABCMeta
 
 
 class App(metaclass=ABCMeta):
-    """
-    An abstract class representing the format of all Apps.
+    """An abstract class representing the format of all Apps.
+
+    Args:
+        args (:obj: `list`): Contains all the arguments and options of the application.
     """
 
-    allowed_options = {}
-
-    def __init__(self):
+    def __init__(self, args):
         pass
 
     @abstractmethod
@@ -19,11 +17,17 @@ class App(metaclass=ABCMeta):
         """
         Checks whether the given args are appropriate for the application.
         """
-        pass
 
     @abstractmethod
-    def run(self):
+    def run(self, inp, out):
+        """Executes the application on the given arguments.
+
+        Args:
+            inp (:obj: `deque`, optional): The input args of the command, only used for piping
+                and redirects.
+            out (:obj: `deque`): The output deque, used to store the result of execution.
+
+        Returns:
+            ``deque``: The deque filled with the results of application execution.
+
         """
-        Runs the application.
-        """
-        pass
