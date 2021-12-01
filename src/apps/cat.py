@@ -1,4 +1,4 @@
-"""Module representing cat application:
+"""Module representing the cat application:
 Usage in shell: cat [FILES]...
 """
 
@@ -12,14 +12,15 @@ class CatApp(App):
     """ A class representing the cat command line instruction
 
         Args:
-            args (:obj: `list`): Contains all the arguments and options of the instruction
+            args (:obj: `list`): Contains all the arguments and options of the cat instruction
+
     """
 
     def __init__(self, args):
         self._options, self._args = getopt(args, "")
 
     def run(self, inp, out):
-        """Executes that cat command on the given arguments.
+        """Executes the cat command on the given arguments.
 
         Args:
             inp (:obj: `deque`, optional): The input args of the command, only used for piping
