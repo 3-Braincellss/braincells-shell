@@ -1,6 +1,4 @@
 """
-Exceptions:
-
 This module contains exceptions that shell will be raising and handling.
 There is one common interface ``AppExcpetion`` and 3 concrete implementations
 of that interface.

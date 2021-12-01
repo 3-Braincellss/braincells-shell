@@ -1,5 +1,5 @@
 """
-Shell class where the code execution starts.
+Shell module where the code execution starts.
 All major "Shell" logic happens here.
 """
 
