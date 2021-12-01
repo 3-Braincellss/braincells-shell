@@ -58,6 +58,7 @@ All development related information that will make it easier to understand our c
    src/src.operations
    src/src.shellparser
    src/src.exceptions
+   src/src
    
 
    

@@ -92,8 +92,7 @@ class ShellTransformer(Transformer):
     def back_quoted(self, args):
         from shell import Shell
 
-        s = Shell()
-        thing = " ".join(s.execute(args[0])).strip()
+        thing = " ".join(Shell.execute(args[0])).strip()
         return thing
 
     def WHITESPACE(self, tok):

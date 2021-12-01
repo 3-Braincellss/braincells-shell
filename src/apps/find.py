@@ -2,7 +2,7 @@ from apps.app import App
 import os
 from glob import glob
 from getopt import gnu_getopt
-from exceptions import AppRunException
+from exceptions import AppRunException, AppContextException
 
 
 class FindApp(App):
