@@ -1,6 +1,6 @@
 from apps.app import App
 from getopt import getopt
-from exceptions.app_run import AppRunException
+from exceptions import AppRunException
 from common.tools import read_lines_from_file
 
 
@@ -47,4 +47,6 @@ class HeadApp(App):
         #         "head", "Missing option: [FILE]")
         if self.options:
             if self.options[0][0] != "-n":
-                raise AppContextException("head", f"Invalid option: {self.options[0][0]}")
+                raise AppContextException(
+                    "head", f"Invalid option: {self.options[0][0]}"
+                )

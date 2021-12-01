@@ -1,5 +1,5 @@
-Namespace src
-=============
+Module src
+==========
 
 Sub-modules
 -----------

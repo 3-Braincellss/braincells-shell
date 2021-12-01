@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Applications &mdash; COMP0010-Shell v1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Command Line Interface" href="interface.html" />
+    <link rel="prev" title="Language" href="language.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> COMP0010-Shell
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html#running">Running</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">COMP0010 Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="language.html">Language</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pwd">pwd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cd">cd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ls">ls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cat">cat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#echo">echo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#head">head</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tail">tail</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#grep">grep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cut">cut</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#find">find</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uniq">uniq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sort">sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unsafe-applications">Unsafe applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">Command Line Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extra Functionality</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Added Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Program Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#file-structure">File Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#architectures">Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#testing">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#code-style">Code style</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Source docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../src/src.apps.html">src.apps package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../src/src.operations.html">src.operations package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../src/src.shellparser.html">src.shellparser package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../src/src.exceptions.html">src.exceptions package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">COMP0010-Shell</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Applications</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/doc/applications.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="applications">
+<h1>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h1>
+<p>COMP0010 Shell provides implementations of widely-used UNIX applications: <a class="reference external" href="https://en.wikipedia.org/wiki/Cd_(command)">cd</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Pwd">pwd</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Ls">ls</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Cat_(Unix)">cat</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Echo_(command)">echo</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Head_(Unix)">head</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Tail_(Unix)">tail</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Grep">grep</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Find_(Unix)">find</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Sort_(Unix)">sort</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Uniq">uniq</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Cut_(Unix)">cut</a>, and also their unsafe versions.</p>
+<p>Compared to most UNIX shells, COMP0010 Shell has some important differences in handling applications:</p>
+<ul class="simple">
+<li><p>Applications are executed inside the shell process, rather than new separate processes.</p></li>
+<li><p>Applications throw exceptions instead of using exit codes and stderr.</p></li>
+<li><p>Applications do not read stdin directly from keyboard, but can only receive it from redirections or pipelines. If an application expects data from stdin, but it is not provided, the application should throw an exception.</p></li>
+</ul>
+<div class="section" id="pwd">
+<h2>pwd<a class="headerlink" href="#pwd" title="Permalink to this headline">¶</a></h2>
+<p>Outputs the current working directory followed by a newline.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pwd</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cd">
+<h2>cd<a class="headerlink" href="#cd" title="Permalink to this headline">¶</a></h2>
+<p>Changes the current working directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PATH</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PATH</span></code> is a relative path to the target directory.</p></li>
+</ul>
+</div>
+<div class="section" id="ls">
+<h2>ls<a class="headerlink" href="#ls" title="Permalink to this headline">¶</a></h2>
+<p>Lists the content of a directory. It prints a list of files and directories separated by tabs and followed by a newline. Ignores files and directories whose names start with <code class="docutils literal notranslate"><span class="pre">.</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="p">[</span><span class="n">PATH</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PATH</span></code> is the directory. If not specified, list the current directory.</p></li>
+</ul>
+</div>
+<div class="section" id="cat">
+<h2>cat<a class="headerlink" href="#cat" title="Permalink to this headline">¶</a></h2>
+<p>Concatenates the content of given files and prints it to stdout:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="p">[</span><span class="n">FILE</span><span class="p">]</span><span class="o">...</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE</span></code>(s) is the name(s) of the file(s) to contatenate. If no files are specified, uses stdin.</p></li>
+</ul>
+</div>
+<div class="section" id="echo">
+<h2>echo<a class="headerlink" href="#echo" title="Permalink to this headline">¶</a></h2>
+<p>Prints its arguments separated by spaces and followed by a newline to stdout:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="p">[</span><span class="n">ARG</span><span class="p">]</span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="head">
+<h2>head<a class="headerlink" href="#head" title="Permalink to this headline">¶</a></h2>
+<p>Prints the first N lines of a given file or stdin. If there are less than N lines, prints only the existing lines without raising an exception.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">head</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="p">[</span><span class="n">FILE</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OPTIONS</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">15</span></code> means printing the first 15 lines. If not specified, prints the first 10 lines.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE</span></code> is the name of the file. If not specified, uses stdin.</p></li>
+</ul>
+</div>
+<div class="section" id="tail">
+<h2>tail<a class="headerlink" href="#tail" title="Permalink to this headline">¶</a></h2>
+<p>Prints the last N lines of a given file or stdin. If there are less than N lines, prints only the existing lines without raising an exception.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tail</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="p">[</span><span class="n">FILE</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OPTIONS</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">15</span></code> means printing the last 15 lines. If not specified, prints the last 10 lines.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE</span></code> is the name of the file. If not specified, uses stdin.</p></li>
+</ul>
+</div>
+<div class="section" id="grep">
+<h2>grep<a class="headerlink" href="#grep" title="Permalink to this headline">¶</a></h2>
+<p>Searches for lines containing a match to the specified pattern. The output of the command is the list of lines. Each line is printed followed by a newline.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grep</span> <span class="n">PATTERN</span> <span class="p">[</span><span class="n">FILE</span><span class="p">]</span><span class="o">...</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PATTERN</span></code> is a regular expression in <a class="reference external" href="https://en.wikipedia.org/wiki/Perl_Compatible_Regular_Expressions">PCRE</a> format.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE</span></code>(s) is the name(s) of the file(s). When multiple files are provided, the found lines should be prefixed with the corresponding file paths and colon symbols. If no file is specified, uses stdin.</p></li>
+</ul>
+</div>
+<div class="section" id="cut">
+<h2>cut<a class="headerlink" href="#cut" title="Permalink to this headline">¶</a></h2>
+<p>Cuts out sections from each line of a given file or stdin and prints the result to stdout.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cut</span> <span class="n">OPTIONS</span> <span class="p">[</span><span class="n">FILE</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OPTION</span></code> specifies the bytes to extract from each line:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">1,2,3</span></code> extracts 1st, 2nd and 3rd bytes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">1-3,5-7</span></code> extracts the bytes from 1st to 3rd and from 5th to 7th.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">-3,5-</span></code> extracts the bytes from the beginning of line to 3rd, and from 5th to the end of line.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE</span></code> is the name of the file. If not specified, uses stdin.</p></li>
+</ul>
+</div>
+<div class="section" id="find">
+<h2>find<a class="headerlink" href="#find" title="Permalink to this headline">¶</a></h2>
+<p>Recursively searches for files with matching names. Outputs the list of relative paths, each followed by a newline.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">find</span> <span class="p">[</span><span class="n">PATH</span><span class="p">]</span> <span class="o">-</span><span class="n">name</span> <span class="n">PATTERN</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PATTERN</span></code> is a file name with some parts replaced with <code class="docutils literal notranslate"><span class="pre">*</span></code> (asterisk).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PATH</span></code> is the root directory for search. If not specified, uses the current directory.</p></li>
+</ul>
+</div>
+<div class="section" id="uniq">
+<h2>uniq<a class="headerlink" href="#uniq" title="Permalink to this headline">¶</a></h2>
+<p>Detects and deletes adjacent duplicate lines from an input file/stdin and prints the result to stdout.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uniq</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="p">[</span><span class="n">FILE</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OPTIONS</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span></code> ignores case when doing comparison (case insensitive)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE</span></code> is the name of the file. If not specified, uses stdin.</p></li>
+</ul>
+</div>
+<div class="section" id="sort">
+<h2>sort<a class="headerlink" href="#sort" title="Permalink to this headline">¶</a></h2>
+<p>Sorts the contents of a file/stdin line by line and prints the result to stdout.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sort</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="p">[</span><span class="n">FILE</span><span class="p">]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OPTIONS</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code> sorts lines in reverse order</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILE</span></code> is the name of the file. If not specified, uses stdin.</p></li>
+</ul>
+</div>
+<div class="section" id="unsafe-applications">
+<h2>Unsafe applications<a class="headerlink" href="#unsafe-applications" title="Permalink to this headline">¶</a></h2>
+<p>In COMP0010 Shell, each application has an unsafe variant. An unsafe version of an application is an application that has the same semantics as the original application, but instead of raising exceptions, it prints the error message to its stdout. This feature can be used to prevent long sequences from terminating early when some intermediate commands fail. The names of unsafe applications are prefixed with <code class="docutils literal notranslate"><span class="pre">_</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">_ls</span></code> and <code class="docutils literal notranslate"><span class="pre">_grep</span></code>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="interface.html" class="btn btn-neutral float-right" title="Command Line Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="language.html" class="btn btn-neutral float-left" title="Language" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Adi Bozzhanov, Ilya Kosorukov, Oluwaponmile Femi-Sunmaila.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

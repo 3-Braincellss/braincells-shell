@@ -1,6 +1,6 @@
 from apps.app import App
-from exceptions.app_context import AppContextException
-from exceptions.app_run import AppRunException
+from exceptions import AppContextException
+from exceptions import AppRunException
 
 
 class UnsafeApp(App):

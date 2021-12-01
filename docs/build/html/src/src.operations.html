@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>src.operations package &mdash; COMP0010-Shell v1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="src.shellparser package" href="src.shellparser.html" />
+    <link rel="prev" title="src.apps package" href="src.apps.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> COMP0010-Shell
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html#running">Running</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">COMP0010 Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc/language.html">Language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc/applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc/interface.html">Command Line Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extra Functionality</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features.html">Added Features</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Program Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#file-structure">File Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#architectures">Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#testing">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html#code-style">Code style</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Source docs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="src.apps.html">src.apps package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">src.operations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.operations.call">src.operations.call module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.operations.operation">src.operations.operation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.operations.operation_factory">src.operations.operation_factory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.operations.pipe">src.operations.pipe module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.operations.sequence">src.operations.sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-src.operations">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.shellparser.html">src.shellparser package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.exceptions.html">src.exceptions package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">COMP0010-Shell</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+<div class="git-ribbon">
+  <a href="http://github.com/SwissDataScienceCenter" rel="me">Join us on GitHub</a>
+</div>
+
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>src.operations package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/src/src.operations.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="src-operations-package">
+<h1>src.operations package<a class="headerlink" href="#src-operations-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.operations.call">
+<span id="src-operations-call-module"></span><h2>src.operations.call module<a class="headerlink" href="#module-src.operations.call" title="Permalink to this headline">¶</a></h2>
+<p>An operation primitive that contains an up that it runs.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.operations.call.Call">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.call.Call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">operations.operation.Operation</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.operations.call.Call.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.call.Call.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.operations.operation">
+<span id="src-operations-operation-module"></span><h2>src.operations.operation module<a class="headerlink" href="#module-src.operations.operation" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.operations.operation.Operation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.operation.Operation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.operations.operation.Operation.run">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.operation.Operation.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.operations.operation_factory">
+<span id="src-operations-operation-factory-module"></span><h2>src.operations.operation_factory module<a class="headerlink" href="#module-src.operations.operation_factory" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.operations.operation_factory.OperationFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OperationFactory</span></span><a class="headerlink" href="#src.operations.operation_factory.OperationFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that is used to create operations objects</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.operations.operation_factory.OperationFactory.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><a class="headerlink" href="#src.operations.operation_factory.OperationFactory.operations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps operation names to concrete operation classes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_operation(op_str,</span> <span class="pre">data):</span> <span class="pre">Operation</span></span></dt>
+<dd><p>Returns an operation object given the operation name and context data</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">operations</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'call':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.call.Call'&gt;,</span> <span class="pre">'pipe':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.pipe.Pipe'&gt;,</span> <span class="pre">'seq':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.sequence.Sequence'&gt;}</span></em><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.operations.operation_factory.OperationFactory.get_operation">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">operations.operation.Operation</span></span></span><a class="headerlink" href="#src.operations.operation_factory.OperationFactory.get_operation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an operation object given the operation name and context data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>op_str</strong> (<em>str</em>) – name of the operation</p></li>
+<li><p><strong>data</strong> (<em>dict</em>) – a dictionary containing information required for initialisation of a
+certain concrete Operation object
+Maps property name to arbitrarily typed data.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.operations.pipe">
+<span id="src-operations-pipe-module"></span><h2>src.operations.pipe module<a class="headerlink" href="#module-src.operations.pipe" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.operations.pipe.Pipe">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Pipe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.pipe.Pipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">operations.operation.Operation</span></code></p>
+<p>Standard pipe that redirects the output of one program to the input of
+another.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.operations.pipe.Pipe.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.pipe.Pipe.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.operations.sequence">
+<span id="src-operations-sequence-module"></span><h2>src.operations.sequence module<a class="headerlink" href="#module-src.operations.sequence" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.operations.sequence.Sequence">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.sequence.Sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">operations.operation.Operation</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.operations.sequence.Sequence.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.sequence.Sequence.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.operations">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.operations" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="src.shellparser.html" class="btn btn-neutral float-right" title="src.shellparser package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="src.apps.html" class="btn btn-neutral float-left" title="src.apps package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Adi Bozzhanov, Ilya Kosorukov, Oluwaponmile Femi-Sunmaila.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
