@@ -15,7 +15,9 @@ class AppException(Exception, metaclass=ABCMeta):
         message (:obj:`str`): Part of the message that will occur once an exception is raised.
     """
 
+    @abstractmethod
     def __init__(self, app_str, message="Sorry"):
+        super().__init__(app_str, message)
         self.message = message
         self.app_str = app_str
 
@@ -33,8 +35,8 @@ class AppContextException(AppException):
     """
 
     def __init__(self, app_str, message="GO AWAY >=["):
-        self.message = f"Context error in '{app_str}': " + message
-        super().__init__(self.message)
+        super().__init__(app_str, message)
+        self.message = f"Context error in {app_str}: " + message
 
 
 class AppNotFoundException(AppException):
@@ -46,9 +48,8 @@ class AppNotFoundException(AppException):
     """
 
     def __init__(self, app_str, message=""):
-        self.app_str = app_str
+        super().__init__(app_str, message)
         self.message = f"Command '{self.app_str}' doesn't exist. Sorry :( \n"
-        super().__init__(self.message)
 
 
 class AppRunException(AppException):
@@ -63,5 +64,5 @@ class AppRunException(AppException):
     """
 
     def __init__(self, app_str, message="Oops, something went wrong"):
+        super().__init__(app_str, message)
         self.message = f"Runtime error in '{app_str}': " + message
-        super().__init__(self.message)

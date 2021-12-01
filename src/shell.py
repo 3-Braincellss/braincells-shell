@@ -18,13 +18,19 @@ class Shell:
     """Main shell class which can start the execution."""
 
     PREFIX = "~~> "
-    """ String that separates current directory section from user input"""
+    """ String that separates current directory section from user input."""
 
     def run(self, command=None):
         """Runs the shell.
 
         This method can be run in 2 ways.
+
         1) In case no arguments are passed, shell will run in an **interactive mode**.
+        In other words, run an infinite loop prompting user to input a command.
+        If a command is valid and can be executed, shell will print the output of the command
+        to stdout. In case an error occurs at any point, shell will discard any accumulated output,
+        and print out the error message.
+
 
         2) If a string is passed, then shell will interpret the string as a command,
         execute this command and print output to **stdout**.
@@ -48,24 +54,34 @@ class Shell:
                     out = deque()
                     out.append(err.message)
 
-                except VisitError as err:
-                    # Lark's Visit error hides all other exceptions in the context
-                    # So to check for our defined exceptions we check the context of the visit error
-                    if isinstance(err.__context__, AppException):
-                        out = deque()
-                        out.append(err.__context__.message)
-                    else:
-                        raise err
-
                 while len(out) > 0:
                     print(out.popleft())
 
     @staticmethod
     def execute(input_str):
-        """Create parse tree from input"""
-        out = deque()
+        """Parses and executes the input string
 
-        command = run_parser(input_str + " ")
+        Parameters:
+            input_str (:obj:`str`): input string representing a command.
+
+        Returns:
+            ``deque``: a deque object each value of which is a single line of the output.
+
+        Raises:
+            AppException: in case parsing fails, our a command cannot be run.
+            VisitError: in case syntax checking fails
+        """
+
+        out = deque()
+        try:
+            command = run_parser(input_str + " ")
+        except VisitError as err:
+            # A hacky way to go around the problem with lark
+            # Lark's Visit error hides all other exceptions in the context
+            # So to check for our defined exceptions we check the context of the visit error
+            if isinstance(err.__context__, AppException):
+                raise err.__context__
+            raise err
 
         if command:
             out = command[0].run(None, out)
