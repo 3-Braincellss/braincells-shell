@@ -1,5 +1,8 @@
 """Module representing the cat application:
 Usage in shell: cat [FILES]...
+
+Example:
+    cat bee-movie-script.txt
 """
 
 from getopt import getopt
