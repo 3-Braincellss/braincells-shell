@@ -1,3 +1,10 @@
+"""Module representing the cut application:
+Usage in shell: cut -b[RANGES] [FILES]...
+
+Example:
+    cut -b 0-23 rick-roll.txt
+"""
+
 from apps import App
 from getopt import getopt
 from exceptions import AppRunException, AppContextException
@@ -107,7 +114,8 @@ class CutApp(App):
         try:
             start, end = interval.split("-")
         except ValueError:
-            raise AppRunException("cut", f"Invalid option argument: {interval}")
+            raise AppRunException(
+                "cut", f"Invalid option argument: {interval}")
         new_interval = []
         try:
             new_interval.append(self._get_boundary(start, False))
@@ -167,8 +175,10 @@ class CutApp(App):
         option.
         """
         if not self.options:
-            raise AppContextException("cut", "Missing option: -b [INTERVAL],.. >=[")
+            raise AppContextException(
+                "cut", "Missing option: -b [INTERVAL],.. >=[")
         if len(self.options) != 1:
             raise AppContextException("cut", "Invalid number of options >=[")
         if self.options[0][0] != "-b":
-            raise AppContextException("cut", f"Invalid option: {self.options[0][0]}")
+            raise AppContextException(
+                "cut", f"Invalid option: {self.options[0][0]}")
