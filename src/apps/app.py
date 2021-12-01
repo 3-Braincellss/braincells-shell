@@ -9,11 +9,6 @@ class App(metaclass=ABCMeta):
     An abstract class representing the format of all Apps.
     """
 
-    allowed_options = {}
-
-    def __init__(self):
-        pass
-
     @abstractmethod
     def validate_args(self):
         """
@@ -22,7 +17,7 @@ class App(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def run(self):
+    def run(self, inp, out):
         """
         Runs the application.
         """
