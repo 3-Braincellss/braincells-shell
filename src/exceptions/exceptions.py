@@ -22,7 +22,7 @@ class ShellError(Exception, metaclass=ABCMeta):
     """
 
     @abstractmethod
-    def __init__(self, app_str, message="Sorry"):
+    def __init__(self, app_str, message="Err"):
         super().__init__(app_str, message)
         self.message = message
         self.app_str = app_str
@@ -31,10 +31,10 @@ class ShellError(Exception, metaclass=ABCMeta):
 class ContextError(ShellError):
     """Context errors that prevent apps from being run
 
-    Each app has a `validate_args()` method that is run right before the app is run.
+    Each app has a ``validate_args()`` method that is run right before the app is run.
     This method will check options that are passed to the app
-    and raise `AppContextException` if they don't make sense.
-    `AppContextException` exists to prevent apps from running
+    and raise ``ContextError`` if they don't make sense.
+    ``ContextError`` exists to prevent apps from running
     when they are doomed to fail based on options alone,
     which should hopefully prevent wasting some CPU power when it's unnecessary.
 
@@ -57,7 +57,7 @@ class AppNotFoundError(ShellError):
 
     def __init__(self, app_str, message=""):
         super().__init__(app_str, message)
-        self.message = f"Command '{self.app_str}' doesn't exist. Sorry :( \n"
+        self.message = f"I don't know about '{self.app_str}' command. Sorry :("
 
 
 class RunError(ShellError):

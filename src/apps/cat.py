@@ -15,23 +15,25 @@ class CatApp(App):
     """A class representing the cat command line instruction
 
     Args:
-        args (:obj: `list`): Contains all the arguments and options of the cat instruction
+        args (:obj:`list`): Contains all the arguments and options of the cat instruction
 
     """
 
     def __init__(self, args):
+        super().__init__(args)
         self._options, self._args = getopt(args, "")
 
     def run(self, inp, out):
         """Executes the cat command on the given arguments.
 
         Args:
-            inp (:obj: `deque`, optional): The input args of the command, only used for piping
+            inp (:obj:`deque`, optional): The input args of the command, only used for piping
                 and redirects.
-            out (:obj: `deque`): The output deque, used to store the result of execution.
+            out (:obj:`deque`): The output deque, used to store the result of execution.
 
         Returns:
-            ``deque``: The deque filled with the results of application execution.
+            ``deque``: Each value of this ``deque`` will be a single line from the input file
+            or piped data.
 
         """
         if inp:
@@ -56,7 +58,7 @@ class CatApp(App):
         """Ensures that no options have been supplied to the application.
 
         Raises:
-            AppContextError: If an option has been supplied to the application.
+            ContextError: If an option has been supplied to the application.
         """
         for option in self._options:
             raise ContextError(

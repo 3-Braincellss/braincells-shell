@@ -21,12 +21,6 @@ class Shell:
 
     PREFIX = "~~> "
     """ String that separates current directory section from user input."""
-    USERNAME = getpass.getuser()
-    """ Just the username. """
-    HOSTNAME = socket.gethostname()
-    """ Just the hostname """
-    USER_HOST = f"[{USERNAME}@{HOSTNAME}] "
-    """ Combintation of username and the host name"""
 
     def run(self, command=None):
         """Runs the shell.
@@ -46,6 +40,9 @@ class Shell:
         Parameters:
             command (:obj:`str`): a string representation of a command to execute.
         """
+        username = getpass.getuser()
+        hostname = socket.gethostname()
+        user_host = f"[{username}@{hostname}]"
 
         if command:
             out = self.execute(command)
@@ -53,10 +50,8 @@ class Shell:
                 print(out.popleft())
         else:
             while True:
-                print(
-                    self.USER_HOST + prettify_path(os.getcwd()) + " " + self.PREFIX,
-                    end="",
-                )
+                cur_dir = prettify_path(os.getcwd())
+                print(f"{user_host} {cur_dir} {self.PREFIX}", end="")
                 text = input()
 
                 try:
@@ -79,8 +74,8 @@ class Shell:
             ``deque``: a deque object each value of which is a single line of the output.
 
         Raises:
-            AppException: in case parsing fails, our a command cannot be run.
-            VisitError: in case syntax checking fails
+            ShellError: in case parsing fails, our a command cannot be run.
+            VisitError: in case syntax checking fails.
         """
 
         out = deque()

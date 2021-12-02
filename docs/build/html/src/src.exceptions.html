@@ -224,7 +224,7 @@ of that interface.</p>
 commmon exception interface.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="src.exceptions.exceptions.ShellError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ShellError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Sorry'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.exceptions.exceptions.ShellError" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ShellError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Err'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.exceptions.exceptions.ShellError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Exception interface for our errors</p>
 <p>Some exceptions that are raised within our shell are expected behaviour.
@@ -262,10 +262,10 @@ These exceptions are handled on the highest level of command execution.</p>
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ContextError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GO</span> <span class="pre">AWAY</span> <span class="pre">&gt;=['</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.exceptions.exceptions.ContextError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#src.exceptions.exceptions.ShellError" title="src.exceptions.exceptions.ShellError"><code class="xref py py-class docutils literal notranslate"><span class="pre">src.exceptions.exceptions.ShellError</span></code></a></p>
 <p>Context errors that prevent apps from being run</p>
-<p>Each app has a <cite>validate_args()</cite> method that is run right before the app is run.
+<p>Each app has a <code class="docutils literal notranslate"><span class="pre">validate_args()</span></code> method that is run right before the app is run.
 This method will check options that are passed to the app
-and raise <cite>AppContextException</cite> if they don’t make sense.
-<cite>AppContextException</cite> exists to prevent apps from running
+and raise <code class="docutils literal notranslate"><span class="pre">ContextError</span></code> if they don’t make sense.
+<code class="docutils literal notranslate"><span class="pre">ContextError</span></code> exists to prevent apps from running
 when they are doomed to fail based on options alone,
 which should hopefully prevent wasting some CPU power when it’s unnecessary.</p>
 <p>These errors <strong>WILL</strong> be ignored with <strong>unsafe</strong> apps.</p>
