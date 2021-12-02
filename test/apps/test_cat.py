@@ -1,10 +1,38 @@
-from hypothesis import given, strategies as st
 import unittest
+from hypothesis import given, strategies as st
+from common.tools import read_lines_from_file
+from collections import deque
+from apps import CatApp
+from exceptions import ContextError
+from unittest.mock import patch
 
 
 class TestCat(unittest.TestCase):
-    pass
 
+    @staticmethod
+    def filter_ws(arr):
+        return list(filter(lambda x: (x != ""), arr))
 
-if __name__ == "__main__":
-    unittest.main()
+    @given(st.from_regex("([a-zA-Z0-9]+\n)+", fullmatch=True))
+    def test_cat_read_contents_is_file_contents(self, text):
+        expected = self.filter_ws(text.split("\n"))
+        with open("test.txt", "w") as file:
+            file.write(text)
+        out = []
+        CatApp(["test.txt"]).run(None, out)
+        out = self.filter_ws(out)
+        self.assertEqual(out, expected)
+
+    @ given(st.from_regex("([a-zA-Z0-9 ]+\n)+", fullmatch=True))
+    def test_cat_input_redirection(self, text):
+        inp = deque(text.split("\n"))
+        out = []
+        CatApp([]).run(inp, out)
+        out = self.filter_ws(out)
+        expected = self.filter_ws(text.split("\n"))
+        self.assertEqual(out, expected)
+
+    @ given(st.from_regex("-[a-zA-z]", fullmatch=True))
+    def test_cat_accepts_no_options(self, text):
+        with self.assertRaises(ContextError):
+            app = CatApp([text])

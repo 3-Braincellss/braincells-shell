@@ -5,7 +5,7 @@ Example:
     cat bee-movie-script.txt
 """
 
-from getopt import getopt
+from getopt import getopt, GetoptError
 from common.tools import read_lines_from_file
 from exceptions import ContextError
 from apps import App
@@ -21,7 +21,10 @@ class CatApp(App):
 
     def __init__(self, args):
         super().__init__(args)
-        self._options, self.args = getopt(self.args, "")
+        try:
+            self._options, self.args = getopt(self.args, "")
+        except GetoptError as e:
+            raise ContextError("cat", str(e))
 
     def run(self, inp, out):
         """Executes the cat command on the given arguments.
@@ -51,18 +54,10 @@ class CatApp(App):
     @classmethod
     def _run(cls, paths, out):
         for path in paths:
-            out.extend(map(str.rstrip, read_lines_from_file(path, "cat")))
+            contents = read_lines_from_file(path, "cat")
+            for line in contents:
+                out.append(line.rstrip("\n"))
         return out
 
     def validate_args(self):
-        """Ensures that no options have been supplied to the application.
-
-        Raises:
-            ContextError: If an option has been supplied to the application.
-        """
-        for option in self._options:
-            raise ContextError(
-                "cat",
-                f"{option}: is an unsupported option \
-            :(",
-            )
+        pass
