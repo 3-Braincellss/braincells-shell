@@ -16,3 +16,6 @@ class Pipe(Operation):
         out = self.op1.run(inp, out)
         new_out = deque()
         return self.op2.run(out, new_out)
+
+    def validate_context(self, ctx):
+        pass

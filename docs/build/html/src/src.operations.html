@@ -228,32 +228,86 @@
 <p>An operation primitive that contains an up that it runs.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.operations.call.Call">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.call.Call" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.call.Call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">operations.operation.Operation</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.operations.call.Call.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.call.Call.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Runs the operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – Piped input to the operation.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">out</span></code>) – output of all operations that were run before the current one</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.operations.call.Call.validate_context">
+<span class="sig-name descname"><span class="pre">validate_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.call.Call.validate_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if context of the operation is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to some arbitrarily typed data</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="src.exceptions.html#src.exceptions.exceptions.ContextError" title="src.exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct keys or the values
+    of the dictionary are not properly typed</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 </div>
 <div class="section" id="module-src.operations.operation">
 <span id="src-operations-operation-module"></span><h2>src.operations.operation module<a class="headerlink" href="#module-src.operations.operation" title="Permalink to this headline">¶</a></h2>
+<p>This is an interface definition for an Operation class.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.operations.operation.Operation">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.operation.Operation" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.operation.Operation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Interface for an operation</p>
+<p>Operations are created on the transforming stage.
+Operations are either a <code class="docutils literal notranslate"><span class="pre">Call</span></code> or some connective that
+combines multiple operations such as <code class="docutils literal notranslate"><span class="pre">Pipe</span></code>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.operations.operation.Operation.run">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.operation.Operation.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Runs the operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – Piped input to the operation.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">out</span></code>) – output of all operations that were run before the current one</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.operations.operation.Operation.validate_context">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.operation.Operation.validate_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if context of the operation is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to some arbitrarily typed data</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="src.exceptions.html#src.exceptions.exceptions.ContextError" title="src.exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct keys or the values
+    of the dictionary are not properly typed</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 </div>
 <div class="section" id="module-src.operations.operation_factory">
 <span id="src-operations-operation-factory-module"></span><h2>src.operations.operation_factory module<a class="headerlink" href="#module-src.operations.operation_factory" title="Permalink to this headline">¶</a></h2>
+<p>Operation Factory is used to create operation objects on given string.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.operations.operation_factory.OperationFactory">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OperationFactory</span></span><a class="headerlink" href="#src.operations.operation_factory.OperationFactory" title="Permalink to this definition">¶</a></dt>
@@ -261,38 +315,28 @@
 <p>A class that is used to create operations objects</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="src.operations.operation_factory.OperationFactory.operations">
-<span class="sig-name descname"><span class="pre">operations</span></span><a class="headerlink" href="#src.operations.operation_factory.OperationFactory.operations" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maps operation names to concrete operation classes</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">operations</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'call':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.call.Call'&gt;,</span> <span class="pre">'pipe':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.pipe.Pipe'&gt;,</span> <span class="pre">'seq':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.sequence.Sequence'&gt;}</span></em><a class="headerlink" href="#src.operations.operation_factory.OperationFactory.operations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operations <code class="docutils literal notranslate"><span class="pre">dict</span></code> that maps operation names to their classes</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">get_operation(op_str,</span> <span class="pre">data):</span> <span class="pre">Operation</span></span></dt>
-<dd><p>Returns an operation object given the operation name and context data</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">operations</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'call':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.call.Call'&gt;,</span> <span class="pre">'pipe':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.pipe.Pipe'&gt;,</span> <span class="pre">'seq':</span> <span class="pre">&lt;class</span> <span class="pre">'operations.sequence.Sequence'&gt;}</span></em><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.operations.operation_factory.OperationFactory.get_operation">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">operations.operation.Operation</span></span></span><a class="headerlink" href="#src.operations.operation_factory.OperationFactory.get_operation" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.operation_factory.OperationFactory.get_operation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an operation object given the operation name and context data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>op_str</strong> (<em>str</em>) – name of the operation</p></li>
-<li><p><strong>data</strong> (<em>dict</em>) – a dictionary containing information required for initialisation of a
-certain concrete Operation object
+<li><p><strong>op_str</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Name of the operation.</p></li>
+<li><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – a context dictionary containing information required
+for initialisation of a certain concrete <code class="docutils literal notranslate"><span class="pre">Operation</span></code> object
 Maps property name to arbitrarily typed data.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Concrete operation object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#src.operations.operation.Operation" title="src.operations.operation.Operation">Operation</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -311,7 +355,31 @@ another.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.operations.pipe.Pipe.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.pipe.Pipe.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Runs the operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – Piped input to the operation.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">out</span></code>) – output of all operations that were run before the current one</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.operations.pipe.Pipe.validate_context">
+<span class="sig-name descname"><span class="pre">validate_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.pipe.Pipe.validate_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if context of the operation is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to some arbitrarily typed data</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="src.exceptions.html#src.exceptions.exceptions.ContextError" title="src.exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct keys or the values
+    of the dictionary are not properly typed</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -325,7 +393,31 @@ another.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.operations.sequence.Sequence.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.sequence.Sequence.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Runs the operation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – Piped input to the operation.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">out</span></code>) – output of all operations that were run before the current one</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.operations.sequence.Sequence.validate_context">
+<span class="sig-name descname"><span class="pre">validate_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.operations.sequence.Sequence.validate_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if context of the operation is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to some arbitrarily typed data</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="src.exceptions.html#src.exceptions.exceptions.ContextError" title="src.exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct keys or the values
+    of the dictionary are not properly typed</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

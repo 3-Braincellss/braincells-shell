@@ -8,13 +8,13 @@ from common.tools import read_lines_from_file
 
 
 class Call(Operation):
-    def __init__(self, data):
+    def __init__(self, ctx):
         self.app = AppFactory.get_app(
-            data["app"],
-            data["args"],
+            ctx["app"],
+            ctx["args"],
         )
-        self.left_red = data["left_red"]
-        self.right_red = data["right_red"]
+        self.left_red = ctx["left_red"]
+        self.right_red = ctx["right_red"]
 
     def run(self, inp, out):
         _inp = inp
@@ -34,3 +34,6 @@ class Call(Operation):
             self.app.validate_args()
             self.app.run(_inp, out)
         return out
+
+    def validate_context(self, ctx):
+        pass
