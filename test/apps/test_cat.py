@@ -1,7 +1,6 @@
 import unittest
 from hypothesis import given, strategies as st
 from common.tools import read_lines_from_file
-from collections import deque
 from apps import CatApp
 from exceptions import ContextError
 from unittest.mock import patch
