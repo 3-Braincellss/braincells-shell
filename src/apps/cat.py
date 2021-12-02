@@ -7,42 +7,44 @@ Example:
 
 from getopt import getopt
 from common.tools import read_lines_from_file
-from exceptions import AppContextException
+from exceptions import ContextError
 from apps import App
 
 
 class CatApp(App):
-    """ A class representing the cat command line instruction
+    """A class representing the cat command line instruction
 
-        Args:
-            args (:obj: `list`): Contains all the arguments and options of the cat instruction
+    Args:
+        args (:obj:`list`): Contains all the arguments and options of the cat instruction
 
     """
 
     def __init__(self, args):
-        self._options, self._args = getopt(args, "")
+        super().__init__(args)
+        self._options, self.args = getopt(self.args, "")
 
     def run(self, inp, out):
         """Executes the cat command on the given arguments.
 
         Args:
-            inp (:obj: `deque`, optional): The input args of the command, only used for piping
+            inp (:obj:`deque`, optional): The input args of the command, only used for piping
                 and redirects.
-            out (:obj: `deque`): The output deque, used to store the result of execution.
+            out (:obj:`deque`): The output deque, used to store the result of execution.
 
         Returns:
-            ``deque``: The deque filled with the results of application execution.
+            ``deque``: Each value of this ``deque`` will be a single line from the input file
+            or piped data.
 
         """
         if inp:
             out.extend(inp)
             return out
 
-        if not self._args:
+        if not self.args:
             out.append(input())
             return out
 
-        self._run(self._args, out)
+        self._run(self.args, out)
 
         return out
 
@@ -55,11 +57,11 @@ class CatApp(App):
     def validate_args(self):
         """Ensures that no options have been supplied to the application.
 
-            Raises:
-                AppContextError: If an option has been supplied to the application.
+        Raises:
+            ContextError: If an option has been supplied to the application.
         """
         for option in self._options:
-            raise AppContextException(
+            raise ContextError(
                 "cat",
                 f"{option}: is an unsupported option \
             :(",

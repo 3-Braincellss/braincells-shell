@@ -1,4 +1,4 @@
-from exceptions import AppRunException
+from exceptions import RunError
 
 from glob import glob
 
@@ -37,9 +37,9 @@ def read_from_file(path, app_str):
             return text
 
     except OSError:
-        raise AppRunException(app_str, f"{path}: No such file or directory\n")
+        raise RunError(app_str, f"{path}: No such file or directory\n")
     except IsADirectoryError:
-        raise AppRunException(app_str, f"{path}: Is a directory")
+        raise RunError(app_str, f"{path}: Is a directory")
 
 
 def read_lines_from_file(path, app_str):
@@ -53,6 +53,6 @@ def read_lines_from_file(path, app_str):
             return text
 
     except OSError:
-        raise AppRunException(app_str, f"{path}: No such file or directory\n")
+        raise RunError(app_str, f"{path}: No such file or directory\n")
     except IsADirectoryError:
-        raise AppRunException(app_str, f"{path}: Is a directory")
+        raise RunError(app_str, f"{path}: Is a directory")

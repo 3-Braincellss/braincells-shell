@@ -14,7 +14,7 @@ from apps import (
     UnsafeApp,
     FindApp,
 )
-from exceptions import AppNotFoundException
+from exceptions import AppNotFoundError
 from common.tools import simple_globbing
 
 
@@ -71,4 +71,4 @@ class AppFactory:
             return app
 
         else:
-            raise AppNotFoundException(_app_str)
+            raise AppNotFoundError(_app_str)

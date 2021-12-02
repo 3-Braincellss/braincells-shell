@@ -128,7 +128,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-src.shell">src.shell module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-src">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -202,8 +201,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="src-package">
-<h1>src package<a class="headerlink" href="#src-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-src">
+<span id="src-package"></span><h1>src package<a class="headerlink" href="#module-src" title="Permalink to this headline">¶</a></h1>
+<p>This shell is created for educational purposes.</p>
+<p>It implements some of the standard bash commands as well as some other
+features.</p>
 <div class="section" id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -225,13 +227,11 @@
 <li class="toctree-l2"><a class="reference internal" href="src.apps.html#module-src.apps.tail">src.apps.tail module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.apps.html#module-src.apps.uniq">src.apps.uniq module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.apps.html#module-src.apps.unsafe">src.apps.unsafe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.apps.html#module-src.apps">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="src.exceptions.html">src.exceptions package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="src.exceptions.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.exceptions.html#module-src.exceptions.exceptions">src.exceptions.exceptions module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.exceptions.html#module-src.exceptions">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="src.operations.html">src.operations package</a><ul>
@@ -241,13 +241,11 @@
 <li class="toctree-l2"><a class="reference internal" href="src.operations.html#module-src.operations.operation_factory">src.operations.operation_factory module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.operations.html#module-src.operations.pipe">src.operations.pipe module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.operations.html#module-src.operations.sequence">src.operations.sequence module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.operations.html#module-src.operations">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="src.shellparser.html">src.shellparser package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="src.shellparser.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.shellparser.html#module-src.shellparser.parser">src.shellparser.parser module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.shellparser.html#module-src.shellparser">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -258,7 +256,7 @@
 </div>
 <div class="section" id="module-src.shell">
 <span id="src-shell-module"></span><h2>src.shell module<a class="headerlink" href="#module-src.shell" title="Permalink to this headline">¶</a></h2>
-<p>Shell class where the code execution starts.
+<p>Shell module where the code execution starts.
 All major “Shell” logic happens here.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="src.shell.Shell">
@@ -306,8 +304,8 @@ execute this command and print output to <strong>stdout</strong>.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="src.exceptions.html#src.exceptions.exceptions.AppException" title="src.exceptions.exceptions.AppException"><strong>AppException</strong></a> – in case parsing fails, our a command cannot be run.</p></li>
-<li><p><strong>VisitError</strong> – in case syntax checking fails</p></li>
+<li><p><a class="reference internal" href="src.exceptions.html#src.exceptions.exceptions.ShellError" title="src.exceptions.exceptions.ShellError"><strong>ShellError</strong></a> – in case parsing fails, our a command cannot be run.</p></li>
+<li><p><strong>VisitError</strong> – in case syntax checking fails.</p></li>
 </ul>
 </dd>
 </dl>
@@ -315,9 +313,6 @@ execute this command and print output to <strong>stdout</strong>.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-src">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

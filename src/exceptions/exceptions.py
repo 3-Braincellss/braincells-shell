@@ -1,13 +1,19 @@
+"""
+Here you can find all of our exception types and the definition of our
+commmon exception interface.
+"""
+
 from abc import abstractmethod, ABCMeta
 
 
-class AppException(Exception, metaclass=ABCMeta):
+class ShellError(Exception, metaclass=ABCMeta):
     """Exception interface for our errors
 
     Some exceptions that are raised within our shell are expected behaviour.
     App exceptions will only stop or prevent apps from running.
     They will not cause the whole shell process to stop.
-    All app exceptions are aware of the app that caused an exception and aware of an appropriate message to show.
+    All app exceptions are aware of the app that caused an exception
+    and aware of an appropriate message to show.
     These exceptions are handled on the highest level of command execution.
 
     Attributes:
@@ -16,20 +22,21 @@ class AppException(Exception, metaclass=ABCMeta):
     """
 
     @abstractmethod
-    def __init__(self, app_str, message="Sorry"):
+    def __init__(self, app_str, message="Err"):
         super().__init__(app_str, message)
         self.message = message
         self.app_str = app_str
 
 
-class AppContextException(AppException):
+class ContextError(ShellError):
     """Context errors that prevent apps from being run
 
-    Each app has a `validate_args()` method that is run right before the app is run.
+    Each app has a ``validate_args()`` method that is run right before the app is run.
     This method will check options that are passed to the app
-    and raise `AppContextException` if they don't make sense.
-    `AppContextException` exists to prevent apps from running when they are doomed to fail
-    based on options alone, which should hopefully prevent wasting some CPU power when it's unnecessary.
+    and raise ``ContextError`` if they don't make sense.
+    ``ContextError`` exists to prevent apps from running
+    when they are doomed to fail based on options alone,
+    which should hopefully prevent wasting some CPU power when it's unnecessary.
 
     These errors **WILL** be ignored with **unsafe** apps.
     """
@@ -39,20 +46,21 @@ class AppContextException(AppException):
         self.message = f"Context error in {app_str}: " + message
 
 
-class AppNotFoundException(AppException):
+class AppNotFoundError(ShellError):
     """Errors that occur when shell doesn't know the app you are trying to run
 
-    These errors are called by the `AppFactory`, in case it is not aware of the app you are trying to run.
-    Using an unsafe signature will not prevent this error from appearing.
+    These errors are called by the `AppFactory`, in case it is not aware of
+    the app you are trying to run. Using an unsafe signature will not
+    prevent this error from appearing.
 
     """
 
     def __init__(self, app_str, message=""):
         super().__init__(app_str, message)
-        self.message = f"Command '{self.app_str}' doesn't exist. Sorry :( \n"
+        self.message = f"I don't know about '{self.app_str}' command. Sorry :("
 
 
-class AppRunException(AppException):
+class RunError(ShellError):
     """Errors that occur during app's runtime
 
     Even if an app passes context checking phase, it can still cause some errors.

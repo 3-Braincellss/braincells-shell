@@ -121,7 +121,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">src.exceptions package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-src.exceptions.exceptions">src.exceptions.exceptions module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-src.exceptions">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
@@ -130,7 +129,6 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">src.exceptions package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-src.exceptions.exceptions">src.exceptions.exceptions module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-src.exceptions">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="src.operations.html">src.operations package</a></li>
@@ -139,7 +137,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="src.html#module-src.shell">src.shell module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.html#module-src">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -213,26 +210,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="src-exceptions-package">
-<h1>src.exceptions package<a class="headerlink" href="#src-exceptions-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-src.exceptions">
+<span id="src-exceptions-package"></span><h1>src.exceptions package<a class="headerlink" href="#module-src.exceptions" title="Permalink to this headline">¶</a></h1>
+<p>This module contains exceptions that shell will be raising and handling.
+There is one common interface <code class="docutils literal notranslate"><span class="pre">AppExcpetion</span></code> and 3 concrete implementations
+of that interface.</p>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-src.exceptions.exceptions">
 <span id="src-exceptions-exceptions-module"></span><h2>src.exceptions.exceptions module<a class="headerlink" href="#module-src.exceptions.exceptions" title="Permalink to this headline">¶</a></h2>
+<p>Here you can find all of our exception types and the definition of our
+commmon exception interface.</p>
 <dl class="py exception">
-<dt class="sig sig-object py" id="src.exceptions.exceptions.AppException">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AppException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Sorry'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.exceptions.exceptions.AppException" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="src.exceptions.exceptions.ShellError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ShellError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Err'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.exceptions.exceptions.ShellError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Exception interface for our errors</p>
 <p>Some exceptions that are raised within our shell are expected behaviour.
 App exceptions will only stop or prevent apps from running.
 They will not cause the whole shell process to stop.
-All app exceptions are aware of the app that caused an exception and aware of an appropriate message to show.
+All app exceptions are aware of the app that caused an exception
+and aware of an appropriate message to show.
 These exceptions are handled on the highest level of command execution.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="src.exceptions.exceptions.AppException.app_str">
-<span class="sig-name descname"><span class="pre">app_str</span></span><a class="headerlink" href="#src.exceptions.exceptions.AppException.app_str" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="src.exceptions.exceptions.ShellError.app_str">
+<span class="sig-name descname"><span class="pre">app_str</span></span><a class="headerlink" href="#src.exceptions.exceptions.ShellError.app_str" title="Permalink to this definition">¶</a></dt>
 <dd><p>Name of the app.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -242,8 +245,8 @@ These exceptions are handled on the highest level of command execution.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="src.exceptions.exceptions.AppException.message">
-<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#src.exceptions.exceptions.AppException.message" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="src.exceptions.exceptions.ShellError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#src.exceptions.exceptions.ShellError.message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Part of the message that will occur once an exception is raised.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -255,40 +258,39 @@ These exceptions are handled on the highest level of command execution.</p>
 </dd></dl>
 
 <dl class="py exception">
-<dt class="sig sig-object py" id="src.exceptions.exceptions.AppContextException">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AppContextException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GO</span> <span class="pre">AWAY</span> <span class="pre">&gt;=['</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.exceptions.exceptions.AppContextException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#src.exceptions.exceptions.AppException" title="src.exceptions.exceptions.AppException"><code class="xref py py-class docutils literal notranslate"><span class="pre">src.exceptions.exceptions.AppException</span></code></a></p>
+<dt class="sig sig-object py" id="src.exceptions.exceptions.ContextError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ContextError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GO</span> <span class="pre">AWAY</span> <span class="pre">&gt;=['</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.exceptions.exceptions.ContextError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.exceptions.exceptions.ShellError" title="src.exceptions.exceptions.ShellError"><code class="xref py py-class docutils literal notranslate"><span class="pre">src.exceptions.exceptions.ShellError</span></code></a></p>
 <p>Context errors that prevent apps from being run</p>
-<p>Each app has a <cite>validate_args()</cite> method that is run right before the app is run.
+<p>Each app has a <code class="docutils literal notranslate"><span class="pre">validate_args()</span></code> method that is run right before the app is run.
 This method will check options that are passed to the app
-and raise <cite>AppContextException</cite> if they don’t make sense.
-<cite>AppContextException</cite> exists to prevent apps from running when they are doomed to fail
-based on options alone, which should hopefully prevent wasting some CPU power when it’s unnecessary.</p>
+and raise <code class="docutils literal notranslate"><span class="pre">ContextError</span></code> if they don’t make sense.
+<code class="docutils literal notranslate"><span class="pre">ContextError</span></code> exists to prevent apps from running
+when they are doomed to fail based on options alone,
+which should hopefully prevent wasting some CPU power when it’s unnecessary.</p>
 <p>These errors <strong>WILL</strong> be ignored with <strong>unsafe</strong> apps.</p>
 </dd></dl>
 
 <dl class="py exception">
-<dt class="sig sig-object py" id="src.exceptions.exceptions.AppNotFoundException">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AppNotFoundException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.exceptions.exceptions.AppNotFoundException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#src.exceptions.exceptions.AppException" title="src.exceptions.exceptions.AppException"><code class="xref py py-class docutils literal notranslate"><span class="pre">src.exceptions.exceptions.AppException</span></code></a></p>
+<dt class="sig sig-object py" id="src.exceptions.exceptions.AppNotFoundError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AppNotFoundError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.exceptions.exceptions.AppNotFoundError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.exceptions.exceptions.ShellError" title="src.exceptions.exceptions.ShellError"><code class="xref py py-class docutils literal notranslate"><span class="pre">src.exceptions.exceptions.ShellError</span></code></a></p>
 <p>Errors that occur when shell doesn’t know the app you are trying to run</p>
-<p>These errors are called by the <cite>AppFactory</cite>, in case it is not aware of the app you are trying to run.
-Using an unsafe signature will not prevent this error from appearing.</p>
+<p>These errors are called by the <cite>AppFactory</cite>, in case it is not aware of
+the app you are trying to run. Using an unsafe signature will not
+prevent this error from appearing.</p>
 </dd></dl>
 
 <dl class="py exception">
-<dt class="sig sig-object py" id="src.exceptions.exceptions.AppRunException">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AppRunException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Oops,</span> <span class="pre">something</span> <span class="pre">went</span> <span class="pre">wrong'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.exceptions.exceptions.AppRunException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#src.exceptions.exceptions.AppException" title="src.exceptions.exceptions.AppException"><code class="xref py py-class docutils literal notranslate"><span class="pre">src.exceptions.exceptions.AppException</span></code></a></p>
+<dt class="sig sig-object py" id="src.exceptions.exceptions.RunError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RunError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Oops,</span> <span class="pre">something</span> <span class="pre">went</span> <span class="pre">wrong'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.exceptions.exceptions.RunError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.exceptions.exceptions.ShellError" title="src.exceptions.exceptions.ShellError"><code class="xref py py-class docutils literal notranslate"><span class="pre">src.exceptions.exceptions.ShellError</span></code></a></p>
 <p>Errors that occur during app’s runtime</p>
 <p>Even if an app passes context checking phase, it can still cause some errors.
 Whenever this happens an <cite>AppRunException</cite> is raised.</p>
 <p>These errors <strong>WILL</strong> be ignored with <em>unsafe</em> apps.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="module-src.exceptions">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.exceptions" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

@@ -216,29 +216,17 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="src/src.apps.html#src.apps.app.App.allowed_options">allowed_options (App attribute)</a>
-
-      <ul>
-        <li><a href="src/src.apps.html#src.apps.cat.CatApp.allowed_options">(CatApp attribute)</a>
+      <li><a href="src/src.apps.html#src.apps.pwd.PwdApp.allowed_options">allowed_options (PwdApp attribute)</a>
 </li>
-        <li><a href="src/src.apps.html#src.apps.pwd.PwdApp.allowed_options">(PwdApp attribute)</a>
-</li>
-      </ul></li>
       <li><a href="src/src.apps.html#src.apps.app.App">App (class in src.apps.app)</a>
 </li>
-      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.AppException.app_str">app_str (AppException attribute)</a>
-</li>
-      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.AppContextException">AppContextException</a>
+      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.ShellError.app_str">app_str (ShellError attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.AppException">AppException</a>
-</li>
       <li><a href="src/src.apps.html#src.apps.app_factory.AppFactory">AppFactory (class in src.apps.app_factory)</a>
 </li>
-      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.AppNotFoundException">AppNotFoundException</a>
-</li>
-      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.AppRunException">AppRunException</a>
+      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.AppNotFoundError">AppNotFoundError</a>
 </li>
       <li><a href="src/src.apps.html#src.apps.app_factory.AppFactory.apps">apps (AppFactory attribute)</a>
 </li>
@@ -273,6 +261,8 @@
       <li><a href="src/src.apps.html#src.apps.cd.CdApp">CdApp (class in src.apps.cd)</a>
 </li>
       <li><a href="src/src.shellparser.html#src.shellparser.parser.ShellTransformer.command">command() (ShellTransformer method)</a>
+</li>
+      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.ContextError">ContextError</a>
 </li>
       <li><a href="src/src.apps.html#src.apps.cut.CutApp">CutApp (class in src.apps.cut)</a>
 </li>
@@ -318,7 +308,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="src/src.operations.html#src.operations.operation_factory.OperationFactory.get_operation">get_operation() (OperationFactory static method)</a>
+      <li><a href="src/src.operations.html#src.operations.operation_factory.OperationFactory.get_operation">get_operation() (OperationFactory class method)</a>
 </li>
       <li><a href="src/src.apps.html#src.apps.grep.GrepApp">GrepApp (class in src.apps.grep)</a>
 </li>
@@ -348,7 +338,7 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.AppException.message">message (AppException attribute)</a>
+      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.ShellError.message">message (ShellError attribute)</a>
 </li>
       <li>
     module
@@ -431,7 +421,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="src/src.operations.html#src.operations.operation_factory.OperationFactory">OperationFactory (class in src.operations.operation_factory)</a>
 </li>
-      <li><a href="src/src.operations.html#id0">operations (OperationFactory attribute)</a>, <a href="src/src.operations.html#src.operations.operation_factory.OperationFactory.operations">[1]</a>
+      <li><a href="src/src.operations.html#src.operations.operation_factory.OperationFactory.operations">operations (OperationFactory attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -511,6 +501,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="src/src.shellparser.html#src.shellparser.parser.run_parser">run_parser() (in module src.shellparser.parser)</a>
 </li>
+      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.RunError">RunError</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -522,6 +514,8 @@
       <li><a href="src/src.operations.html#src.operations.sequence.Sequence">Sequence (class in src.operations.sequence)</a>
 </li>
       <li><a href="src/src.html#src.shell.Shell">Shell (class in src.shell)</a>
+</li>
+      <li><a href="src/src.exceptions.html#src.exceptions.exceptions.ShellError">ShellError</a>
 </li>
       <li><a href="src/src.shellparser.html#src.shellparser.parser.ShellTransformer">ShellTransformer (class in src.shellparser.parser)</a>
 </li>
@@ -613,6 +607,8 @@
         <li><a href="src/src.apps.html#module-src.apps.ls">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     src.apps.pwd
 
@@ -620,8 +616,6 @@
         <li><a href="src/src.apps.html#module-src.apps.pwd">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     src.apps.sort
 
@@ -783,6 +777,18 @@
         <li><a href="src/src.apps.html#src.apps.uniq.UniqApp.validate_args">(UniqApp method)</a>
 </li>
         <li><a href="src/src.apps.html#src.apps.unsafe.UnsafeApp.validate_args">(UnsafeApp method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="src/src.operations.html#src.operations.call.Call.validate_context">validate_context() (Call method)</a>
+
+      <ul>
+        <li><a href="src/src.operations.html#src.operations.operation.Operation.validate_context">(Operation method)</a>
+</li>
+        <li><a href="src/src.operations.html#src.operations.pipe.Pipe.validate_context">(Pipe method)</a>
+</li>
+        <li><a href="src/src.operations.html#src.operations.sequence.Sequence.validate_context">(Sequence method)</a>
 </li>
       </ul></li>
   </ul></td>

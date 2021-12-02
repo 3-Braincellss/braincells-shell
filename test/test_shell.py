@@ -2,7 +2,7 @@ import unittest
 import subprocess
 
 from shell import Shell
-from exceptions import AppNotFoundException, AppContextException, AppRunException
+from exceptions import AppNotFoundError, ContextError, RunError
 
 
 class TestShell(unittest.TestCase):
@@ -37,17 +37,17 @@ class TestShell(unittest.TestCase):
     def test_run_app_not_found(self):
         sh = Shell()
 
-        with self.assertRaises(AppNotFoundException):
+        with self.assertRaises(AppNotFoundError):
             sh.run("gcc make file")
 
     def test_run_app_context(self):
         sh = Shell()
 
-        with self.assertRaises(AppContextException):
+        with self.assertRaises(ContextError):
             sh.run("ls one two three")
 
     def test_run_app_run_exception(self):
         sh = Shell()
 
-        with self.assertRaises(AppRunException):
+        with self.assertRaises(RunError):
             sh.run("cat wakanadaaaaaaaaaaaaaaaaa")

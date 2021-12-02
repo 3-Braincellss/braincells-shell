@@ -1,5 +1,5 @@
 from apps import App
-from exceptions import AppContextException, AppRunException
+from exceptions import ContextError, RunError
 
 
 import os
@@ -41,7 +41,7 @@ class LsApp(App):
         """
 
         if len(self.args) > 1:
-            raise AppContextException("ls", "too many arguments")
+            raise ContextError("ls", "too many arguments")
         if len(self.args) == 1:
             if not os.path.exists(self.args[0]):
-                raise AppContextException("ls", f"{self.args[0]}: not a directory")
+                raise ContextError("ls", f"{self.args[0]}: not a directory")

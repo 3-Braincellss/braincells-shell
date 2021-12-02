@@ -3,7 +3,7 @@ import os
 from getopt import getopt, GetoptError
 
 from apps import App
-from exceptions import AppContextException, AppRunException
+from exceptions import ContextError, RunError
 from common.tools import read_lines_from_file
 
 
@@ -50,14 +50,14 @@ class SortApp(App):
 
         # possible number of args: 0 - 2
         if len(self.args) > 2:
-            raise AppContextException("sort", "too many arguments")
+            raise ContextError("sort", "too many arguments")
 
         # check options and arguments
         try:
             opts, args = getopt(self.args, "r")
 
         except GetoptError as goe:
-            raise AppContextException("sort", "bad options")
+            raise ContextError("sort", "bad options")
 
         # after splitting self.args into opts and args
         self.args = opts, args

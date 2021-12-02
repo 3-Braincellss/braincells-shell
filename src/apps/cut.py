@@ -7,7 +7,7 @@ Example:
 
 from apps import App
 from getopt import getopt
-from exceptions import AppRunException, AppContextException
+from exceptions import RunError, ContextError
 from common.tools import read_from_file, read_lines_from_file
 
 
@@ -114,17 +114,17 @@ class CutApp(App):
         try:
             start, end = interval.split("-")
         except ValueError:
-            raise AppRunException(
-                "cut", f"Invalid option argument: {interval}")
+            raise RunError("cut", f"Invalid option argument: {interval}")
+
         new_interval = []
         try:
             new_interval.append(self._get_boundary(start, False))
         except ValueError:
-            raise AppRunException("cut", f"Invalid interval value: {start}")
+            raise RunError("cut", f"Invalid interval value: {start}")
         try:
             new_interval.append(self._get_boundary(end, True))
         except ValueError:
-            raise AppRunException("cut", f"Invalid interval value: {end}")
+            raise RunError("cut", f"Invalid interval value: {end}")
         self._validate_interval(new_interval)
         return new_interval
 
@@ -153,9 +153,9 @@ class CutApp(App):
         digits = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
         for char in num:
             if char not in digits:
-                raise AppRunException("cut", "Invalid option argument {num}")
+                raise RunError("cut", "Invalid option argument {num}")
         if num == "0":
-            raise AppRunException("cut", "Cut intervals are 1 indexed.")
+            raise RunError("cut", "Cut intervals are 1 indexed.")
 
     def _validate_interval(self, interval):
         """
@@ -164,7 +164,7 @@ class CutApp(App):
         :raises AppRunException: If the interval is not increasing
         """
         if interval[1] != "end" and interval[0] > interval[1]:
-            raise AppRunException(
+            raise RunError(
                 "cut", f"Invalid decreasing interval: {interval[0]}-{interval[1]}"
             )
 
@@ -175,10 +175,11 @@ class CutApp(App):
         option.
         """
         if not self.options:
-            raise AppContextException(
-                "cut", "Missing option: -b [INTERVAL],.. >=[")
+
+            raise ContextError("cut", "Missing option: -b [INTERVAL],.. >=[")
+
         if len(self.options) != 1:
-            raise AppContextException("cut", "Invalid number of options >=[")
+            raise ContextError("cut", "Invalid number of options >=[")
         if self.options[0][0] != "-b":
-            raise AppContextException(
-                "cut", f"Invalid option: {self.options[0][0]}")
+            raise ContextError("cut", f"Invalid option: {self.options[0][0]}")
+

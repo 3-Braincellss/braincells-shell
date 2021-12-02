@@ -1,16 +1,18 @@
 """
-Shell class where the code execution starts.
+Shell module where the code execution starts.
 All major "Shell" logic happens here.
 """
 
 import sys
 import os
+import getpass
+import socket
 
 from collections import deque
 from lark.exceptions import VisitError
 
 from shellparser import run_parser
-from exceptions import AppException
+from exceptions import ShellError
 from common.tools import prettify_path
 
 
@@ -38,6 +40,9 @@ class Shell:
         Parameters:
             command (:obj:`str`): a string representation of a command to execute.
         """
+        username = getpass.getuser()
+        hostname = socket.gethostname()
+        user_host = f"[{username}@{hostname}]"
 
         if command:
             out = self.execute(command)
@@ -45,12 +50,13 @@ class Shell:
                 print(out.popleft())
         else:
             while True:
-                print(prettify_path(os.getcwd()) + " " + self.PREFIX, end="")
+                cur_dir = prettify_path(os.getcwd())
+                print(f"{user_host} {cur_dir} {self.PREFIX}", end="")
                 text = input()
 
                 try:
                     out = self.execute(text)
-                except AppException as err:
+                except ShellError as err:
                     out = deque()
                     out.append(err.message)
 
@@ -68,8 +74,8 @@ class Shell:
             ``deque``: a deque object each value of which is a single line of the output.
 
         Raises:
-            AppException: in case parsing fails, our a command cannot be run.
-            VisitError: in case syntax checking fails
+            ShellError: in case parsing fails, our a command cannot be run.
+            VisitError: in case syntax checking fails.
         """
 
         out = deque()
@@ -79,7 +85,7 @@ class Shell:
             # A hacky way to go around the problem with lark
             # Lark's Visit error hides all other exceptions in the context
             # So to check for our defined exceptions we check the context of the visit error
-            if isinstance(err.__context__, AppException):
+            if isinstance(err.__context__, ShellError):
                 raise err.__context__
             raise err
 

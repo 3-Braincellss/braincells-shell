@@ -2,7 +2,7 @@ from apps.app import App
 import os
 from glob import glob
 from getopt import gnu_getopt
-from exceptions import AppRunException, AppContextException
+from exceptions import RunError, ContextError
 
 
 class FindApp(App):
@@ -26,7 +26,7 @@ class FindApp(App):
         try:
             matched_files = glob(f"./{root}/**/{self.pattern}", recursive=True)
         except OSError:
-            raise AppRunException("find", f"{root}: No such file or directory")
+            raise RunError("find", f"{root}: No such file or directory")
         for file in matched_files:
             if not os.path.isdir(file):
                 if root != "":
@@ -36,13 +36,13 @@ class FindApp(App):
 
     def validate_args(self):
         if not self.options:
-            raise AppContextException(
+            raise ContextError(
                 "find",
                 "No pattern supplied. usage: find \
             [PATH] -name PATTERN ",
             )
         if len(self.args) > 1:
-            raise AppContextException(
+            raise ContextError(
                 "find",
                 "Too many arguments supplied usage: \
             find [PATH] -name PATTERN",
