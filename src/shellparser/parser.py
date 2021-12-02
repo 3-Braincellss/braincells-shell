@@ -1,55 +1,78 @@
+"""Module which handles parsing and transforming the parse tree"""
 import os
-from typing import Tuple
-
 from lark import Lark
 from lark.visitors import Transformer
-
 from operations import OperationFactory
 
 
 class ShellTransformer(Transformer):
-    UNQUOTED = str
-    DOUBLE_QUOTE_CONTENT = str
-    BACKQUOTED = str
-
+    """Custom transformer inheriting lark.visitors.Transformer"""
     def command(self, args):
+        """Starting point of grammar
+
+        Parameters:
+            args (list): List of possible `None` and a single operation
+                object to be executed
+
+        Returns:
+            Operation: Operation object to be executed
+        """
+
+        # Removes `None`
         returnargs = [x for x in args if x is not None]
-        return returnargs
+        return returnargs[0]
 
     def seq(self, args):
-        data = {"op1": args[0][0], "op2": args[1][0]}
+        """Proccesses data for sequence operation object and creates the object
+
+        Parameters:
+            args (list): List of two operation objects
+
+        Returns:
+            Operation: A sequence operation object
+
+        """
+        data = {"op1": args[0], "op2": args[1]}
         seq = OperationFactory.get_operation("seq", data)
 
         return seq
 
     def pipe(self, args):
+        """Proccesses data for pipe operation object and creates the object
 
+        Parameters:
+            args (list): List of two operation objects
+
+        Returns:
+            Operation: A pipe operation object
+
+        """
         data = {"op1": args[0], "op2": args[1]}
         pipe = OperationFactory.get_operation("pipe", data)
 
         return pipe
 
-    def redirection(self, args):
-        return args[0]
-
-    def l_redirection(self, args):
-        returnargs = [x for x in args if x is not None]
-        return ("left_red", returnargs[0])
-
-    def r_redirection(self, args):
-        returnargs = [x for x in args if x is not None]
-        return ("right_red", returnargs[0])
-
     def call(self, args):
-        returnargs = [x for x in args if x is not None and not isinstance(x, tuple)]
+        """Processes data for the call operation and created the call
+        operation object
+
+        Parameters:
+            args (list): List of strings possible `None` and possible `tuple`
+
+        Returns:
+            Operation: A call operation object.
+        """
+
+        # Removes `None` and `tuple`
+        returnargs = [
+            x for x in args if x is not None and not isinstance(x, tuple)
+        ]
         right_string = [
-            x
-            for x in args
+            x for x in args
             if x is not None and isinstance(x, tuple) and x[0] == "right_red"
         ]
         left_string = [
-            x
-            for x in args
+            x for x in args
             if x is not None and isinstance(x, tuple) and x[0] == "left_red"
         ]
 
@@ -73,37 +96,138 @@ class ShellTransformer(Transformer):
 
         return call
 
-    def arguments(self, args):
+    def redirection(self, args):
+        """Passes redirection type and path higher up the parse tree
+
+        Parameters:
+            args (list): List of single tuple
+
+        Returns:
+            tuple: (str: redirection type, str: path)
+
+        """
+        return args[0]
+
+    def l_redirection(self, args):
+        """Handles input redirection
+
+        Parameters:
+            args (list): List of a possible `None` and file input string
+
+        Returns:
+            tuple: ("left_red", str: path)
+
+        """
+
+        # Removes whitespaces (which are `None`)
         returnargs = [x for x in args if x is not None]
-        return "".join(returnargs)
+        return ("left_red", returnargs[0])
+
+    def r_redirection(self, args):
+        """Handles output redirection
+
+        Parameters:
+            args (list): List of a possible `None` and file output string
+
+        Returns:
+            tuple: ("right_red", str: path)
+
+        """
+
+        # Removes whitespaces (which are `None`)
+        returnargs = [x for x in args if x is not None]
+        return ("right_red", returnargs[0])
+
+    def arguments(self, args):
+        """Passes a string that was quoted or unquoted higher up the parse tree
+
+        Parameters:
+            args (list): A list of a single string
+
+        Returns:
+            str: the string that was in the list
+        """
+        return args[0]
 
     def quoted(self, args):
+        """Passes on the string that was inside any type of quote higher up
+            the parse tree
+
+        Parameters:
+            args (list): A list of a single string of the text inside the quotes
+
+        Returns:
+            str: the string that was in the quotes
+        """
         return args[0]
 
     def double_quoted(self, args):
+        """Returns the string of what was in the double quotes
 
-        returnargs = [x for x in args if x is not None]
-        return "".join(returnargs)
+        Parameters:
+            args (list): A list of a strings of the text inside the double
+                quotes and possibly output from backquote calls
+
+        Returns:
+            str: the string that was in the double quotes
+        """
+        return "".join(args)
 
     def single_quoted(self, args):
-        returnargs = [x for x in args if x is not None]
-        return "".join(returnargs)
+        """Returns the string of what was in the single quotes
+
+        Parameters:
+            args (list): A list of a single string of the text inside the
+                single quotes
+
+        Returns:
+            str: the string that was in the single quotes
+        """
+        return args[0]
 
     def back_quoted(self, args):
-        from shell import Shell
+        """Created a Shell instance and executes the string that
+        was inside the back quotes
 
-        thing = " ".join(Shell.execute(args[0])).strip()
-        return thing
+        Parameters:
+            args (list): A list of a single string of the text inside the
+                back quotes
 
-    def WHITESPACE(self, tok):
+        Returns:
+            str: the output string from the command that was run
+        """
+        from shell import Shell  # putting this at top level causes circular import pylint: disable=import-outside-toplevel
+
+        string = " ".join(Shell.execute(args[0])).strip()
+        return string
+
+    def WHITESPACE(self, tok):  # pylint: disable=invalid-name
+        """Replaces any amount of whitespace with a None
+
+        Parameters:
+            tok (str): the whitespace string
+        """
         pass
+
+    UNQUOTED = str
+    DOUBLE_QUOTE_CONTENT = str
+    SINGLE_QUOTE_CONTENT = str
+    BACKQUOTED = str
 
 
 def run_parser(text):
+    """Parses input string
+
+    Parameters:
+        text (:obj:`str`): input string
+
+    Returns:
+        Operation: Concrete operation object.
+    """
+
     dirname = os.path.dirname(__file__)
     filename = os.path.join(dirname, "grammar.lark")
     with open(filename, encoding="utf-8") as grammar:
-
         lark_parser = Lark(grammar.read(), start="command")
 
     tree = lark_parser.parse(text)

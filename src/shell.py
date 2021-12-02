@@ -90,7 +90,7 @@ class Shell:
             raise err
 
         if command:
-            out = command[0].run(None, out)
+            out = command.run(None, out)
 
         return out
 
