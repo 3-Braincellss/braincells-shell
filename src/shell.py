@@ -20,10 +20,14 @@ class Shell:
     """Main shell class which can start the execution."""
 
     PREFIX = "~~> "
+        """ String that separates current directory section from user input."""
     USERNAME = getpass.getuser()
+    """ Just the username. """
     HOSTNAME = socket.gethostname()
+    """ Just the hostname """
     USER_HOST = f"[{USERNAME}@{HOSTNAME}] "
-    """ String that separates current directory section from user input."""
+    """ Combintation of username and the host name"""
+
 
     def run(self, command=None):
         """Runs the shell.
