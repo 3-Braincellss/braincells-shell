@@ -18,7 +18,7 @@ class OperationFactory:
     """Operations ``dict`` that maps operation names to their classes"""
 
     @classmethod
-    def get_operation(cls, op_str):
+    def get_operation(cls, op_str, ctx):
         """Returns an operation object given the operation name and context data
 
         Parameters:
