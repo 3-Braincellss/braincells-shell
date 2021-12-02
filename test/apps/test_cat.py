@@ -5,6 +5,7 @@ from collections import deque
 from apps import CatApp
 from exceptions import ContextError
 from unittest.mock import patch
+import os
 
 
 class TestCat(unittest.TestCase):
@@ -20,6 +21,7 @@ class TestCat(unittest.TestCase):
             file.write(text)
         out = []
         CatApp(["test.txt"]).run(None, out)
+        os.remove("test.txt")
         out = self.filter_ws(out)
         self.assertEqual(out, expected)
 
@@ -36,3 +38,8 @@ class TestCat(unittest.TestCase):
     def test_cat_accepts_no_options(self, text):
         with self.assertRaises(ContextError):
             app = CatApp([text])
+
+    @ given(st.from_regex("([a-zA-Z0-9 ]+\n)+", fullmatch=True))
+    def test_cat_validation_never_does_anything(self, text):
+        app = CatApp([text])
+        app.validate_args()
