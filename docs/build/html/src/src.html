@@ -269,6 +269,24 @@ All major “Shell” logic happens here.</p>
 <dd><p>String that separates current directory section from user input.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.shell.Shell.USERNAME">
+<span class="sig-name descname"><span class="pre">USERNAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mow'</span></em><a class="headerlink" href="#src.shell.Shell.USERNAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just the username.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.shell.Shell.HOSTNAME">
+<span class="sig-name descname"><span class="pre">HOSTNAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'fedora'</span></em><a class="headerlink" href="#src.shell.Shell.HOSTNAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just the hostname</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.shell.Shell.USER_HOST">
+<span class="sig-name descname"><span class="pre">USER_HOST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'[mow&#64;fedora]</span> <span class="pre">'</span></em><a class="headerlink" href="#src.shell.Shell.USER_HOST" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combintation of username and the host name</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="src.shell.Shell.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.shell.Shell.run" title="Permalink to this definition">¶</a></dt>
@@ -304,7 +322,7 @@ execute this command and print output to <strong>stdout</strong>.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="src.exceptions.html#src.exceptions.exceptions.AppException" title="src.exceptions.exceptions.AppException"><strong>AppException</strong></a> – in case parsing fails, our a command cannot be run.</p></li>
+<li><p><strong>AppException</strong> – in case parsing fails, our a command cannot be run.</p></li>
 <li><p><strong>VisitError</strong> – in case syntax checking fails</p></li>
 </ul>
 </dd>
