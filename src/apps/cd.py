@@ -18,9 +18,6 @@ class CdApp(App):
 
     """
 
-    def __init__(self, args):
-        super().__init__(args)
-
     def run(self, inp, out):
         """Executes the cd command on the given arguments.
 

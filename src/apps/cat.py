@@ -21,7 +21,7 @@ class CatApp(App):
 
     def __init__(self, args):
         super().__init__(args)
-        self._options, self._args = getopt(args, "")
+        self._options, self.args = getopt(self.args, "")
 
     def run(self, inp, out):
         """Executes the cat command on the given arguments.
@@ -40,11 +40,11 @@ class CatApp(App):
             out.extend(inp)
             return out
 
-        if not self._args:
+        if not self.args:
             out.append(input())
             return out
 
-        self._run(self._args, out)
+        self._run(self.args, out)
 
         return out
 
