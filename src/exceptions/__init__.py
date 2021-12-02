@@ -6,8 +6,8 @@ of that interface.
 """
 
 from .exceptions import (
-    AppException,
-    AppContextException,
-    AppRunException,
-    AppNotFoundException,
+    ShellError,
+    ContextError,
+    RunError,
+    AppNotFoundError,
 )

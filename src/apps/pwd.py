@@ -1,5 +1,5 @@
 from apps.app import App
-from exceptions import AppRunException
+from exceptions import RunError
 import os
 
 

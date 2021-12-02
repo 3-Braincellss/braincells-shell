@@ -7,7 +7,7 @@ Example:
 
 from getopt import getopt
 from common.tools import read_lines_from_file
-from exceptions import AppContextException
+from exceptions import ContextError
 from apps import App
 
 
@@ -59,7 +59,7 @@ class CatApp(App):
             AppContextError: If an option has been supplied to the application.
         """
         for option in self._options:
-            raise AppContextException(
+            raise ContextError(
                 "cat",
                 f"{option}: is an unsupported option \
             :(",

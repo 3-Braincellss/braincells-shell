@@ -5,12 +5,14 @@ All major "Shell" logic happens here.
 
 import sys
 import os
+import getpass
+import socket
 
 from collections import deque
 from lark.exceptions import VisitError
 
 from shellparser import run_parser
-from exceptions import AppException
+from exceptions import ShellError
 from common.tools import prettify_path
 
 
@@ -18,6 +20,9 @@ class Shell:
     """Main shell class which can start the execution."""
 
     PREFIX = "~~> "
+    USERNAME = getpass.getuser()
+    HOSTNAME = socket.gethostname()
+    USER_HOST = f"[{USERNAME}@{HOSTNAME}] "
     """ String that separates current directory section from user input."""
 
     def run(self, command=None):
@@ -45,12 +50,15 @@ class Shell:
                 print(out.popleft())
         else:
             while True:
-                print(prettify_path(os.getcwd()) + " " + self.PREFIX, end="")
+                print(
+                    self.USER_HOST + prettify_path(os.getcwd()) + " " + self.PREFIX,
+                    end="",
+                )
                 text = input()
 
                 try:
                     out = self.execute(text)
-                except AppException as err:
+                except ShellError as err:
                     out = deque()
                     out.append(err.message)
 
@@ -79,7 +87,7 @@ class Shell:
             # A hacky way to go around the problem with lark
             # Lark's Visit error hides all other exceptions in the context
             # So to check for our defined exceptions we check the context of the visit error
-            if isinstance(err.__context__, AppException):
+            if isinstance(err.__context__, ShellError):
                 raise err.__context__
             raise err
 

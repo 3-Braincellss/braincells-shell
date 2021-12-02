@@ -6,7 +6,7 @@ commmon exception interface.
 from abc import abstractmethod, ABCMeta
 
 
-class AppException(Exception, metaclass=ABCMeta):
+class ShellError(Exception, metaclass=ABCMeta):
     """Exception interface for our errors
 
     Some exceptions that are raised within our shell are expected behaviour.
@@ -28,7 +28,7 @@ class AppException(Exception, metaclass=ABCMeta):
         self.app_str = app_str
 
 
-class AppContextException(AppException):
+class ContextError(ShellError):
     """Context errors that prevent apps from being run
 
     Each app has a `validate_args()` method that is run right before the app is run.
@@ -46,7 +46,7 @@ class AppContextException(AppException):
         self.message = f"Context error in {app_str}: " + message
 
 
-class AppNotFoundException(AppException):
+class AppNotFoundError(ShellError):
     """Errors that occur when shell doesn't know the app you are trying to run
 
     These errors are called by the `AppFactory`, in case it is not aware of
@@ -60,7 +60,7 @@ class AppNotFoundException(AppException):
         self.message = f"Command '{self.app_str}' doesn't exist. Sorry :( \n"
 
 
-class AppRunException(AppException):
+class RunError(ShellError):
     """Errors that occur during app's runtime
 
     Even if an app passes context checking phase, it can still cause some errors.

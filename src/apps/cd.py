@@ -6,7 +6,7 @@ Example:
 """
 import os
 
-from exceptions import AppContextException, AppRunException
+from exceptions import ContextError, RunError
 from apps import App
 
 
@@ -47,7 +47,7 @@ class CdApp(App):
             try:
                 os.chdir(self._args[0])
             except OSError:
-                raise AppRunException(
+                raise RunError(
                     "cd",
                     f"{self._args[0]} is not a directory\
                 .",
@@ -62,9 +62,9 @@ class CdApp(App):
                 not exist.
         """
         if len(self._args) > 1:
-            raise AppContextException("cd", "Wrong number of arguments")
+            raise ContextError("cd", "Wrong number of arguments")
         if self._args and not os.path.exists(self._args[0]):
-            raise AppContextException(
+            raise ContextError(
                 "cd",
                 f"path '{self._args[0]}' doesn't \
             exist",
