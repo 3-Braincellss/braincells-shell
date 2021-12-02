@@ -26,7 +26,7 @@ class TestCat(unittest.TestCase):
 
     @ given(st.from_regex("([a-zA-Z0-9 ]+\n)+", fullmatch=True))
     def test_cat_input_redirection(self, text):
-        inp = deque(text.split("\n"))
+        inp = text.split("\n")
         out = []
         CatApp([]).run(inp, out)
         out = self.filter_ws(out)
