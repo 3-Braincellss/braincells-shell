@@ -2,7 +2,7 @@
 cut
 ===
 Module representing the cut application
-Usage in shell: cut -b[RANGES] [FILES]...
+Usage in shell: cut -b [RANGES] [FILES]...
 
 Example:
     cut -b 0-23 rick-roll.txt
@@ -19,7 +19,7 @@ class CutApp(App):
 
     Args:
         args (:obj:`list`): Contains all the arguments and options
-        of the instruction
+            of the instruction
 
     """
 
