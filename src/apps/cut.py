@@ -18,9 +18,11 @@ class CutApp(App):
     """A class representing the cut shell instruction
 
     Args:
-        args (:obj:`list`): Contains all the arguments and options of the instruction
+        args (:obj:`list`): Contains all the arguments and options
+        of the instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -35,17 +37,18 @@ class CutApp(App):
         If no arguments are given then the bytes are taken from stdin.
 
         Args:
-            inp (:obj:`deque`, *optional*): The input args of the command, only used for piping
-                and redirects.
-            out (:obj:`deque`): The output deque, used to store the result of execution.
+            inp (:obj:`deque`, *optional*): The input args of the command,
+                only used for piping and redirects.
+            out (:obj:`deque`): The output deque, used to store
+                the result of execution.
 
         Returns:
-            ``deque``: The deque will contain the contents of the file, seperated by line, after
-            removing bytes.
+            ``deque``: The deque will contain the contents of the file,
+                seperated by line after removing bytes.
 
         Raises:
-            AppRunException: If the intervals specified by the -b option are invalid. Or the
-                paths specified do not exist.
+            AppRunException: If the intervals specified by the -b option
+                are invalid. Or the paths specified do not exist.
         """
 
         intervals = self._get_intervals()
