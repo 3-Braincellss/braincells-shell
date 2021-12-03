@@ -47,7 +47,7 @@ class CutApp(App):
                 seperated by line after removing bytes.
 
         Raises:
-            AppRunException: If the intervals specified by the -b option
+            RunError: If the intervals specified by the -b option
                 are invalid. Or the paths specified do not exist.
         """
 
@@ -132,7 +132,7 @@ class CutApp(App):
         """
         Converts an interval into a tuple consisting of ints or 'end'
         :param interval: The interval being converted into a tuple.
-        :raises AppRunException: If an interval is invalid.
+        :raises RunError: If an interval is invalid.
         :returns new_interval: The new interval
         """
         try:
@@ -173,7 +173,7 @@ class CutApp(App):
         """
         Determines whether a number can be represented as a positive integer.
         :param num: The string to be checked.
-        :raises AppRunException: If the string given is invalid (not a positive
+        :raises RunError: If the string given is invalid (not a positive
         integer)
         """
         digits = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
@@ -188,7 +188,7 @@ class CutApp(App):
         """
         Ensures the interval is increasing.
         :param interval: The interval to be checked.
-        :raises AppRunException: If the interval is not increasing
+        :raises RunError: If the interval is not increasing
         """
         if interval[1] != "end" and interval[0] > interval[1]:
             raise RunError(
