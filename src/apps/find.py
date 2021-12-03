@@ -1,3 +1,7 @@
+"""
+find
+====
+"""
 from apps.app import App
 import os
 from glob import glob
@@ -7,7 +11,6 @@ from exceptions import RunError, ContextError
 
 class FindApp(App):
     """ """
-
     def __init__(self, args):
         for i in range(len(args)):
             if args[i] == "-name":

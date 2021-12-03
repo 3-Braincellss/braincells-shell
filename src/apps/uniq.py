@@ -1,3 +1,7 @@
+"""
+uniq
+====
+"""
 from apps import App
 from getopt import getopt
 from exceptions import RunError
@@ -6,7 +10,6 @@ from common.tools import read_lines_from_file
 
 class UniqApp(App):
     """ """
-
     def __init__(self, args):
         self.options, self.args = getopt(args, "i")
 

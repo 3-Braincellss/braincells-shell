@@ -1,4 +1,7 @@
-"""Module representing the cut application:
+"""
+cut
+===
+Module representing the cut application:
 Usage in shell: cut -b[RANGES] [FILES]...
 
 Example:
@@ -17,7 +20,6 @@ class CutApp(App):
     cut -b [INTERVALS] [PATHS]*
     If paths is empty or '-' stdin is used
     """
-
     def __init__(self, args):
         self.options, self.args = getopt(args, "b:")
 
@@ -165,8 +167,8 @@ class CutApp(App):
         """
         if interval[1] != "end" and interval[0] > interval[1]:
             raise RunError(
-                "cut", f"Invalid decreasing interval: {interval[0]}-{interval[1]}"
-            )
+                "cut",
+                f"Invalid decreasing interval: {interval[0]}-{interval[1]}")
 
     def validate_args(self):
         """
@@ -182,4 +184,3 @@ class CutApp(App):
             raise ContextError("cut", "Invalid number of options >=[")
         if self.options[0][0] != "-b":
             raise ContextError("cut", f"Invalid option: {self.options[0][0]}")
-

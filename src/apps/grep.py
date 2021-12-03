@@ -1,3 +1,8 @@
+"""
+grep
+====
+"""
+
 import re
 import os
 
@@ -8,12 +13,10 @@ from common.tools import read_lines_from_file
 
 
 class GrepApp(App):
-
     """
     Application representing the bash command:
     grep [PATTERN] [FILE]*
     """
-
     def __init__(self, args):
         self.option, self.args = getopt(args, "")
 
@@ -50,4 +53,5 @@ class GrepApp(App):
 
     def validate_args(self):
         if not self.args:
-            raise AppContextException("grep", "Usage: grep [PATTERN] [FILE]...")
+            raise AppContextException("grep",
+                                      "Usage: grep [PATTERN] [FILE]...")

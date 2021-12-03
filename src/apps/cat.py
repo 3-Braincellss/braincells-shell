@@ -1,4 +1,7 @@
-"""Module representing the cat application:
+"""
+cat
+===
+Module representing the cat application:
 Usage in shell: cat [FILES]...
 
 Example:
@@ -18,7 +21,6 @@ class CatApp(App):
         args (:obj:`list`): Contains all the arguments and options of the cat instruction
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         try:

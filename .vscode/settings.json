@@ -1,5 +1,5 @@
 {
-    "python.formatting.provider": "black",
+    "python.formatting.provider": "yapf",
     "[python]": {
         "editor.formatOnPaste": false,
         "editor.formatOnSaveMode": "file",
@@ -7,5 +7,6 @@
     },
     "python.envFile": "${workspaceRoot}/.env",
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "restructuredtext.confPath": "${workspaceFolder}/docs/source"
 }

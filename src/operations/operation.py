@@ -1,4 +1,6 @@
 """
+operation
+=========
 This is an interface definition for an Operation class.
 """
 
@@ -13,7 +15,6 @@ class Operation(metaclass=ABCMeta):
     combines multiple operations such as ``Pipe``.
 
     """
-
     def __init__(self, ctx):
         pass
 
