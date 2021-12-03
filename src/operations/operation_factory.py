@@ -1,4 +1,7 @@
-"""Operation Factory is used to create operation objects on given string."""
+"""
+operation_factory
+=================
+Operation Factory is used to create operation objects on given string."""
 
 from operations import (
     Call,
@@ -16,7 +19,6 @@ class OperationFactory:
         "seq": Sequence,
     }
     """Operations ``dict`` that maps operation names to their classes"""
-
     @classmethod
     def get_operation(cls, op_str, ctx):
         """Returns an operation object given the operation name and context data

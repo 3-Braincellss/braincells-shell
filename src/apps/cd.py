@@ -1,4 +1,7 @@
-"""Module representing the shell cd application
+"""
+cd
+==
+Module representing the shell cd application
 Usage in shell: cd PATH
 
 Example:
@@ -17,7 +20,6 @@ class CdApp(App):
         args (:obj:`list`): Contains all the arguments and options of the instruction
 
     """
-
     def run(self, inp, out):
         """Executes the cd command on the given arguments.
 

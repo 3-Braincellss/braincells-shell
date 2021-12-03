@@ -1,4 +1,7 @@
-"""Module which handles parsing and transforming the parse tree"""
+"""
+parser
+======
+Module which handles parsing and transforming the parse tree"""
 import os
 from lark import Lark
 from lark.visitors import Transformer

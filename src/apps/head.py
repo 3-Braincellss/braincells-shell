@@ -1,3 +1,7 @@
+"""
+head
+====
+"""
 from apps.app import App
 from getopt import getopt
 from exceptions import RunError
@@ -8,7 +12,6 @@ class HeadApp(App):
     """
     head [OPTIONS] [FILE]
     """
-
     def __init__(self, args):
         self.options, self.args = getopt(args, "n:")
 
@@ -48,5 +51,4 @@ class HeadApp(App):
         if self.options:
             if self.options[0][0] != "-n":
                 raise AppContextException(
-                    "head", f"Invalid option: {self.options[0][0]}"
-                )
+                    "head", f"Invalid option: {self.options[0][0]}")

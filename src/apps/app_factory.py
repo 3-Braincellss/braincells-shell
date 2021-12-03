@@ -1,3 +1,7 @@
+"""
+app_factory
+===========
+"""
 from apps import (
     App,
     LsApp,
@@ -39,7 +43,6 @@ class AppFactory:
 
     no_glob = set(["find"])
     """set: A set of apps that don't require globbing"""
-
     @staticmethod
     def get_app(app_str: str, opts: list) -> App:
         """Returns an app object based on the app_str given.
@@ -50,7 +53,7 @@ class AppFactory:
             opts (:obj:`list`): A List of arguments that should be passed to the app.
 
         Returns:
-            app (:obj:`App`): An app object that is ready to be run
+            App: An app object that is ready to be run
         """
 
         # check if an app is unsafe
