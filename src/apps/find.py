@@ -1,6 +1,11 @@
 """
 find
 ====
+Module representing the find application
+Usage in shell: find -name [PATTERN] [PATH]
+
+Example:
+    find -name *.py project/spaghetti-code
 """
 from apps.app import App
 import os
@@ -10,16 +15,41 @@ from exceptions import RunError, ContextError
 
 
 class FindApp(App):
-    """ """
+    """A class representing the find shell instruction
+
+    Args:
+        args (:obj:`list`): Contains all the arguments and options
+        of the instruction
+
+    """
+
     def __init__(self, args):
+        super().__init__(args)
         for i in range(len(args)):
             if args[i] == "-name":
-                args[i] = "--name"
-                break
+                args[i] = "--name"  # getopt only recognises long options with
+                break              # a -- prefix
         self.options, self.args = gnu_getopt(args, "", ["name="])
 
     def run(self, inp, out):
-        """ """
+        """ Executes the find command on the given path.
+
+        Will match all files with the pattern supplied in the name option.
+        If no path is supplied the current directory is used.
+
+        Args:
+            inp (:obj:`deque`, *optional*): The input args of the command,
+                only used for piping and redirects.
+            out (:obj:`deque`): The output deque, used to store
+                the result of execution.
+
+        Returns:
+            ``deque``: The output deque will contain each of the files that
+            matched the specified pattern
+
+        Raises:
+            RunError: If the root path supplied does not exist.
+        """
         root = "" if not self.args else self.args[0]
         self.pattern = self.options[0][1]
         self._run(root, out)
@@ -29,7 +59,8 @@ class FindApp(App):
         try:
             matched_files = glob(f"./{root}/**/{self.pattern}", recursive=True)
         except OSError:
-            raise RunError("find", f"{root}: No such file or directory")
+            raise RunError(
+                "find", f"{root}: No such file or directory") from None
         for file in matched_files:
             if not os.path.isdir(file):
                 if root != "":
@@ -38,6 +69,13 @@ class FindApp(App):
                     out.append(file)
 
     def validate_args(self):
+        """Ensures that the -name option is present and only one argument is
+        given
+
+        Raises:
+            ContextError: If more than one argument is given or the -name
+                option is missing.
+        """
         if not self.options:
             raise ContextError(
                 "find",

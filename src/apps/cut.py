@@ -1,7 +1,7 @@
 """
 cut
 ===
-Module representing the cut application:
+Module representing the cut application
 Usage in shell: cut -b[RANGES] [FILES]...
 
 Example:
@@ -196,16 +196,10 @@ class CutApp(App):
                 f"Invalid decreasing interval: {interval[0]}-{interval[1]}")
 
     def validate_args(self):
-        """
-        Ensures the options are valid.
-        :raises AppRunException: If -b option is missing or -b is not the only
-        option.
+        """Ensures the options are valid.
+
+        Raises:
+            AppRunException: If -b option is missing.
         """
         if not self.options:
-
             raise ContextError("cut", "Missing option: -b [INTERVAL],.. >=[")
-
-        if len(self.options) != 1:
-            raise ContextError("cut", "Invalid number of options >=[")
-        if self.options[0][0] != "-b":
-            raise ContextError("cut", f"Invalid option: {self.options[0][0]}")
