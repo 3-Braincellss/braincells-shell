@@ -18,27 +18,30 @@ class CatApp(App):
     """A class representing the cat command line instruction
 
     Args:
-        args (:obj:`list`): Contains all the arguments and options of the cat instruction
+        args (:obj:`list`): Contains all the arguments and options of the cat
+            instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:
             self._options, self.args = getopt(self.args, "")
         except GetoptError as e:
-            raise ContextError("cat", str(e))
+            raise ContextError("cat", str(e)) from None
 
     def run(self, inp, out):
         """Executes the cat command on the given arguments.
 
         Args:
-            inp (:obj:`deque`, optional): The input args of the command, only used for piping
-                and redirects.
-            out (:obj:`deque`): The output deque, used to store the result of execution.
+            inp (:obj:`deque`, optional): The input args of the command, only
+                used for piping and redirects.
+            out (:obj:`deque`): The output deque, used to store the result of
+                execution.
 
         Returns:
-            ``deque``: Each value of this ``deque`` will be a single line from the input file
-            or piped data.
+            ``deque``: Each value of this ``deque`` will be a single line from
+                the input file or piped data.
 
         """
         if inp:
