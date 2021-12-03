@@ -1,4 +1,7 @@
 """
+Shell
+=====
+
 Shell module where the code execution starts.
 All major "Shell" logic happens here.
 """
@@ -21,7 +24,6 @@ class Shell:
 
     PREFIX = "~~> "
     """ String that separates current directory section from user input."""
-
     def run(self, command=None):
         """Runs the shell.
 
@@ -90,7 +92,7 @@ class Shell:
             raise err
 
         if command:
-            out = command[0].run(None, out)
+            out = command.run(None, out)
 
         return out
 

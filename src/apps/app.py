@@ -1,4 +1,8 @@
-"""This module provides an interface for an App."""
+"""
+app
+===
+This module provides an interface for an App.
+"""
 from abc import abstractmethod, ABCMeta
 
 
@@ -8,7 +12,6 @@ class App(metaclass=ABCMeta):
     Args:
         args (:obj:`list`): Contains all the arguments and options of the application.
     """
-
     def __init__(self, args):
         self.args = args
 

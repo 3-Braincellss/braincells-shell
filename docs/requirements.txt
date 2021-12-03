@@ -1,4 +1,5 @@
+sphinx
 renku-sphinx-theme
 sphinx-markdown-tables
 recommonmark
-sphinx-apidoc
+

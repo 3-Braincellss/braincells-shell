@@ -1,4 +1,9 @@
 """
+exceptions
+==========
+**TODO: SPLIT IN SEPARATE FILES**
+=================================
+
 Here you can find all of our exception types and the definition of our
 commmon exception interface.
 """
@@ -7,7 +12,8 @@ from abc import abstractmethod, ABCMeta
 
 
 class ShellError(Exception, metaclass=ABCMeta):
-    """Exception interface for our errors
+    """
+    Exception interface for our errors
 
     Some exceptions that are raised within our shell are expected behaviour.
     App exceptions will only stop or prevent apps from running.
@@ -20,7 +26,6 @@ class ShellError(Exception, metaclass=ABCMeta):
         app_str (:obj:`str`): Name of the app.
         message (:obj:`str`): Part of the message that will occur once an exception is raised.
     """
-
     @abstractmethod
     def __init__(self, app_str, message="Err"):
         super().__init__(app_str, message)
@@ -40,7 +45,6 @@ class ContextError(ShellError):
 
     These errors **WILL** be ignored with **unsafe** apps.
     """
-
     def __init__(self, app_str, message="GO AWAY >=["):
         super().__init__(app_str, message)
         self.message = f"Context error in {app_str}: " + message
@@ -54,7 +58,6 @@ class AppNotFoundError(ShellError):
     prevent this error from appearing.
 
     """
-
     def __init__(self, app_str, message=""):
         super().__init__(app_str, message)
         self.message = f"I don't know about '{self.app_str}' command. Sorry :("
@@ -70,7 +73,6 @@ class RunError(ShellError):
 
 
     """
-
     def __init__(self, app_str, message="Oops, something went wrong"):
         super().__init__(app_str, message)
         self.message = f"Runtime error in '{app_str}': " + message

@@ -1,6 +1,9 @@
+"""
+ls
+==
+"""
 from apps import App
 from exceptions import ContextError, RunError
-
 
 import os
 
@@ -9,12 +12,10 @@ class LsApp(App):
     """
     Lists all apps in the current or given directory
     """
-
     def __init__(self, args):
         self.args = args
 
     def run(self, inp, out):
-
         """
         ls [DIRECTORY]
 
@@ -29,7 +30,8 @@ class LsApp(App):
             ls_dirs = self.args
 
         for path in ls_dirs:
-            files = sorted([each for each in os.listdir(path) if each[0] != "."])
+            files = sorted(
+                [each for each in os.listdir(path) if each[0] != "."])
             out.append("\n".join(files) + "\n")
         out.append("\n")
         return out

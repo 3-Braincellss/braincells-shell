@@ -1,3 +1,6 @@
+"""
+text from apps/__init__.py
+"""
 from .app import App
 from .ls import LsApp
 from .echo import EchoApp

@@ -1,4 +1,6 @@
 """
+echo
+====
 This module represents the echo bash command.
 """
 from apps.app import App
@@ -8,7 +10,6 @@ class EchoApp(App):
     """
     echo [INPUT] [INPUT] ...
     """
-
     def __init__(self, args):
         self.args = args
 
@@ -16,9 +17,6 @@ class EchoApp(App):
         """
         Returns all the input args as a space seperated string.
         """
-
-        if inp:
-            self.args = inp
 
         out.append(" ".join(self.args))
         return out

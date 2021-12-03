@@ -1,3 +1,7 @@
+"""
+tail
+====
+"""
 from apps.app import App
 from getopt import getopt
 from exceptions import RunError
@@ -9,7 +13,6 @@ class TailApp(App):
     """
     head [OPTIONS] [FILE]
     """
-
     def __init__(self, args):
         self.options, self.args = getopt(args, "n:")
 
@@ -44,5 +47,4 @@ class TailApp(App):
         if self.options:
             if self.options[0][0] != "-n":
                 raise AppContextException(
-                    "tail", f"Invalid option: {self.options[0][0]}"
-                )
+                    "tail", f"Invalid option: {self.options[0][0]}")

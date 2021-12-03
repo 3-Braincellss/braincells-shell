@@ -1,4 +1,7 @@
-"""Module representing the cut application:
+"""
+cut
+===
+Module representing the cut application:
 Usage in shell: cut -b[RANGES] [FILES]...
 
 Example:
@@ -18,7 +21,6 @@ class CutApp(App):
         args (:obj:`list`): Contains all the arguments and options of the instruction
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -187,8 +189,8 @@ class CutApp(App):
         """
         if interval[1] != "end" and interval[0] > interval[1]:
             raise RunError(
-                "cut", f"Invalid decreasing interval: {interval[0]}-{interval[1]}"
-            )
+                "cut",
+                f"Invalid decreasing interval: {interval[0]}-{interval[1]}")
 
     def validate_args(self):
         """

@@ -1,3 +1,7 @@
+"""
+sort
+====
+"""
 import os
 
 from getopt import getopt, GetoptError
@@ -19,7 +23,6 @@ class SortApp(App):
 
     FILE is the name of the file. If not specified, uses stdin.
     """
-
     def __init__(self, args):
         self.args = args
 
