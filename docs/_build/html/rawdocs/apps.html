@@ -218,7 +218,8 @@
 <p>An abstract class representing the format of all Apps.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options of the application.</p>
+<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options of
+the application.</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -235,13 +236,18 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command, only used for piping
-and redirects.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store the result of execution.</p></li>
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command,
+only used for piping and redirects.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store the
+result of execution.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The deque filled with the results of application execution.</p>
+<dd class="field-even"><p><dl class="simple">
+<dt>The deque filled with the results of application</dt><dd><p>execution.</p>
+</dd>
+</dl>
+</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
@@ -342,11 +348,8 @@ execution.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>Each value of this <code class="docutils literal notranslate"><span class="pre">deque</span></code> will be a single line from</dt><dd><p>the input file or piped data.</p>
-</dd>
-</dl>
-</p>
+<dd class="field-even"><p>Each value of this <code class="docutils literal notranslate"><span class="pre">deque</span></code> will be a single line from
+the input file or piped data.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
