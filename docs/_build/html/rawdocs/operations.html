@@ -117,7 +117,7 @@
 <li class="toctree-l1"><a class="reference internal" href="common.html">common</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">operations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#call">call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#call">Call</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#operation">operation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#operation-factory">operation_factory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pipe">pipe</a></li>
@@ -198,8 +198,8 @@
   <div class="section" id="module-operations">
 <span id="operations"></span><h1>operations<a class="headerlink" href="#module-operations" title="Permalink to this headline">¶</a></h1>
 <span class="target" id="module-operations.call"></span><div class="section" id="call">
-<h2>call<a class="headerlink" href="#call" title="Permalink to this headline">¶</a></h2>
-<p>An operation primitive that contains an up that it runs.</p>
+<h2>Call<a class="headerlink" href="#call" title="Permalink to this headline">¶</a></h2>
+<p>An operation primitive that contains an app that it runs.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="operations.call.Call">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operations.call.Call" title="Permalink to this definition">¶</a></dt>
@@ -207,13 +207,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="operations.call.Call.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operations.call.Call.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Runs the operation</p>
+<dd><p>Handles possible redirections and runs the app.</p>
+<p>Can handle both input and output redirections.</p>
+<p>In case there is an input redirection and some piped input
+it will prioritise redirected input.</p>
+<p>In case there is an output redirection will create an empty
+<code class="docutils literal notranslate"><span class="pre">deque</span></code> for the output and store results in the output file.
+Will return any output that was passed as the argument.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – Piped input to the operation.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">out</span></code>) – output of all operations that were run before the current one</p></li>
-</ul>
+<dd class="field-odd"><p><strong>inp</strong><strong>(</strong><strong>)</strong> – </p>
 </dd>
 </dl>
 </dd></dl>
@@ -224,11 +227,12 @@
 <dd><p>Checks if context of the operation is valid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to some arbitrarily typed data</p>
+<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to
+some arbitrarily typed data</p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct keys or the values
-    of the dictionary are not properly typed</p>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct
+    keys or the values of the dictionary are not properly typed</p>
 </dd>
 </dl>
 </dd></dl>
@@ -255,7 +259,8 @@ combines multiple operations such as <code class="docutils literal notranslate">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – Piped input to the operation.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">out</span></code>) – output of all operations that were run before the current one</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">out</span></code>) – output of all operations that were
+run before the current one</p></li>
 </ul>
 </dd>
 </dl>
@@ -267,11 +272,12 @@ combines multiple operations such as <code class="docutils literal notranslate">
 <dd><p>Checks if context of the operation is valid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to some arbitrarily typed data</p>
+<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to
+some arbitrarily typed data</p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct keys or the values
-    of the dictionary are not properly typed</p>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct
+    keys or the values of the dictionary are not properly typed</p>
 </dd>
 </dl>
 </dd></dl>
@@ -334,7 +340,8 @@ another.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – Piped input to the operation.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">out</span></code>) – output of all operations that were run before the current one</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">out</span></code>) – output of all operations that were
+run before the current one</p></li>
 </ul>
 </dd>
 </dl>
@@ -346,11 +353,12 @@ another.</p>
 <dd><p>Checks if context of the operation is valid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to some arbitrarily typed data</p>
+<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to
+some arbitrarily typed data</p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct keys or the values
-    of the dictionary are not properly typed</p>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct
+    keys or the values of the dictionary are not properly typed</p>
 </dd>
 </dl>
 </dd></dl>
@@ -372,7 +380,8 @@ another.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – Piped input to the operation.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">out</span></code>) – output of all operations that were run before the current one</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">out</span></code>) – output of all operations that were
+run before the current one</p></li>
 </ul>
 </dd>
 </dl>
@@ -384,11 +393,12 @@ another.</p>
 <dd><p>Checks if context of the operation is valid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to some arbitrarily typed data</p>
+<dd class="field-odd"><p><strong>ctx</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>) – Dictionary that maps value string to
+some arbitrarily typed data</p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct keys or the values
-    of the dictionary are not properly typed</p>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the context provided doesn’t contain the correct
+    keys or the values of the dictionary are not properly typed</p>
 </dd>
 </dl>
 </dd></dl>
