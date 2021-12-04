@@ -254,11 +254,12 @@ and redirects.</p></li>
 </div>
 <span class="target" id="module-apps.app_factory"></span><div class="section" id="app-factory">
 <h2>app_factory<a class="headerlink" href="#app-factory" title="Permalink to this headline">¶</a></h2>
+<p>Module for creating applications.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="apps.app_factory.AppFactory">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AppFactory</span></span><a class="headerlink" href="#apps.app_factory.AppFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A class that is used to create app objects</p>
+<p>A class used to create app objects</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="apps.app_factory.AppFactory.apps">
 <span class="sig-name descname"><span class="pre">apps</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cat':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.cat.CatApp'&gt;,</span> <span class="pre">'cd':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.cd.CdApp'&gt;,</span> <span class="pre">'cut':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.cut.CutApp'&gt;,</span> <span class="pre">'echo':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.echo.EchoApp'&gt;,</span> <span class="pre">'find':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.find.FindApp'&gt;,</span> <span class="pre">'grep':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.grep.GrepApp'&gt;,</span> <span class="pre">'head':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.head.HeadApp'&gt;,</span> <span class="pre">'ls':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.ls.LsApp'&gt;,</span> <span class="pre">'pwd':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.pwd.PwdApp'&gt;,</span> <span class="pre">'sort':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.sort.SortApp'&gt;,</span> <span class="pre">'tail':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.tail.TailApp'&gt;,</span> <span class="pre">'uniq':</span> <span class="pre">&lt;class</span> <span class="pre">'apps.uniq.UniqApp'&gt;}</span></em><a class="headerlink" href="#apps.app_factory.AppFactory.apps" title="Permalink to this definition">¶</a></dt>
@@ -288,9 +289,11 @@ and redirects.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>app_str</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – A string that represents the command to be called.
-If app_str starts with ‘_’ the app will be treated as unsafe</p></li>
-<li><p><strong>opts</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – A List of arguments that should be passed to the app.</p></li>
+<li><p><strong>app_str</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – A string that represents the command
+to be called. If app_str starts with ‘_’ the app will
+be treated as unsafe</p></li>
+<li><p><strong>opts</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – A List of arguments that should be
+passed to the app.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -298,6 +301,9 @@ If app_str starts with ‘_’ the app will be treated as unsafe</p></li>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#apps.app.App" title="apps.app.App">App</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.AppNotFoundError" title="exceptions.exceptions.AppNotFoundError"><strong>AppNotFoundError</strong></a> – If an app that doesn’t exist is requested for.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -360,7 +366,7 @@ execution.</p></li>
 </div>
 <span class="target" id="module-apps.cd"></span><div class="section" id="cd">
 <h2>cd<a class="headerlink" href="#cd" title="Permalink to this headline">¶</a></h2>
-<p>Module representing the shell cd application
+<p>Module representing the cd application
 Usage in shell: cd PATH</p>
 <p class="rubric">Example</p>
 <p><cite>cd foo/bar/baz</cite></p>
@@ -371,27 +377,35 @@ Usage in shell: cd PATH</p>
 <p>A class representing the cd shell instruction</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options of the instruction</p>
+<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options of
+the instruction.</p>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.cd.CdApp.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.cd.CdApp.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Executes the cd command on the given arguments.</p>
-<p>If no arguments are given, the current directory is changed to the users <strong>HOME</strong> directory.
-If not the users current working directory is changed to the directory given. This path
-can be relative or absolute.</p>
+<p>If no arguments are given, the current directory is changed to the
+users <strong>HOME</strong> directory. If not the users current working directory
+is changed to the directory given. This path can be relative or
+absolute.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command, only used for piping
-and redirects. In context of this specific application, it does not support
-piping and will therefore be ignored.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store the result of execution.</p></li>
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command, only
+used for piping and redirects. In context of this specific
+application, it does not support piping and will therefore
+be ignored.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store the result
+of execution.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Since the cd application does not return anything, output will be unaltered.</p>
+<dd class="field-even"><p><dl class="simple">
+<dt>Since the cd application does not return anything,</dt><dd><p>output will be unaltered.</p>
+</dd>
+</dl>
+</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
@@ -405,11 +419,12 @@ piping and will therefore be ignored.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.cd.CdApp.validate_args">
 <span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.cd.CdApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check that the number of arguments is greater than 1 and if the given path exists.</p>
+<dd><p>Check that the number of arguments is greater than 1 and if
+the given path exists.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If more than one argument is supplied or the path given does
-    not exist.</p>
+<dd class="field-odd"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If more than one argument is supplied or
+    the path given does not exist.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -422,7 +437,7 @@ piping and will therefore be ignored.</p></li>
 <p>Module representing the cut application
 Usage in shell: cut -b [RANGES] [FILES]…</p>
 <p class="rubric">Example</p>
-<p>cut -b 0-23 rick-roll.txt</p>
+<p><cite>cut -b 0-23 rick-roll.txt</cite></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="apps.cut.CutApp">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CutApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.cut.CutApp" title="Permalink to this definition">¶</a></dt>
@@ -665,7 +680,7 @@ the result of execution.</p></li>
 <p>Module representing the head application
 Usage in shell: head [OPTIONS] [FILE]</p>
 <p class="rubric">Example</p>
-<p>head -n 12 text.txt</p>
+<p><cite>head -n 12 text.txt</cite></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="apps.head.HeadApp">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HeadApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.head.HeadApp" title="Permalink to this definition">¶</a></dt>
@@ -715,24 +730,62 @@ the result of execution.</p></li>
 </div>
 <span class="target" id="module-apps.ls"></span><div class="section" id="ls">
 <h2>ls<a class="headerlink" href="#ls" title="Permalink to this headline">¶</a></h2>
+<p>Module representing the ls application
+Usage in shell: ls [PATH]</p>
+<p class="rubric">Example</p>
+<p><cite>ls super/secret/directory</cite></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="apps.ls.LsApp">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LsApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.ls.LsApp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
-<p>Lists all apps in the current or given directory</p>
+<p>A class representing the ls shell instruction</p>
+<p>Lists all files and directory in the specified directories. If none is
+given, lists the files and directories in the current directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options of the</p></li>
+<li><p><strong>instruction.</strong> – </p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.ls.LsApp.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.ls.LsApp.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>ls [DIRECTORY]</p>
-<p>if NO ARGUMENTS provided print files in the current directory</p>
-<p>if ONE OR MORE ARGUMENTS provided print files in directories specified</p>
+<dd><p>Executes the ls command on the given argument.</p>
+<p>Lists all files/directories in a specified directory. If none is
+given, lists the files/directories in the current directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command, only
+used for piping and redirects.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store the result of
+execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Contains all of the files in the specified and current
+directory.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If the path supplied is not a directory.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.ls.LsApp.validate_args">
 <span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.ls.LsApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check is all paths in args exist.
-:raises: AppContextException if the path given does not exist.</p>
+<dd><p>Ensures at most one valid path is given.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ContextError if too many paths are given.</strong> – </p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -740,127 +793,39 @@ the result of execution.</p></li>
 </div>
 <span class="target" id="module-apps.pwd"></span><div class="section" id="pwd">
 <h2>pwd<a class="headerlink" href="#pwd" title="Permalink to this headline">¶</a></h2>
+<p>Module representing the pwd application
+Usage in shell: pwd</p>
+<p class="rubric">Example</p>
+<p><cite>pwd</cite></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="apps.pwd.PwdApp">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PwdApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.pwd.PwdApp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="apps.pwd.PwdApp.allowed_options">
-<span class="sig-name descname"><span class="pre">allowed_options</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'-L',</span> <span class="pre">'-P'}</span></em><a class="headerlink" href="#apps.pwd.PwdApp.allowed_options" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<p>A class representing the pwd shell instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options of
+the instruction, which should be empty.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.pwd.PwdApp.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.pwd.PwdApp.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="apps.pwd.PwdApp.validate_args">
-<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.pwd.PwdApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether the given args are appropriate for the application.</p>
-<p>Does <strong>NOT</strong> affect actual execution behaviour</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<span class="target" id="module-apps.sort"></span><div class="section" id="sort">
-<h2>sort<a class="headerlink" href="#sort" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="apps.sort.SortApp">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SortApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.sort.SortApp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
-<p>Sorts the contents of a file/stdin line by line and prints the result to stdout.</p>
-<p>sort [OPTIONS] [FILE]</p>
-<p>OPTIONS:</p>
-<blockquote>
-<div><p>-r sorts lines in reverse order</p>
-</div></blockquote>
-<p>FILE is the name of the file. If not specified, uses stdin.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="apps.sort.SortApp.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.sort.SortApp.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="apps.sort.SortApp.validate_args">
-<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.sort.SortApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether the given args are appropriate for the application.</p>
-<p>Does <strong>NOT</strong> affect actual execution behaviour</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<span class="target" id="module-apps.tail"></span><div class="section" id="tail">
-<h2>tail<a class="headerlink" href="#tail" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="apps.tail.TailApp">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TailApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.tail.TailApp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
-<p>head [OPTIONS] [FILE]</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="apps.tail.TailApp.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.tail.TailApp.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="apps.tail.TailApp.validate_args">
-<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.tail.TailApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether the given args are appropriate for the application.</p>
-<p>Does <strong>NOT</strong> affect actual execution behaviour</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<span class="target" id="module-apps.uniq"></span><div class="section" id="uniq">
-<h2>uniq<a class="headerlink" href="#uniq" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="apps.uniq.UniqApp">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UniqApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.uniq.UniqApp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="apps.uniq.UniqApp.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.uniq.UniqApp.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Executes that uniq command on the given arguments.
-:param inp: The input args of the command, only used for piping
-and redirects.
-:param out: The output deque.
-:return: Returns the output deque.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="apps.uniq.UniqApp.validate_args">
-<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.uniq.UniqApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ensures the options are valid.
-:raises AppRunException: If any other option other than -i is
-given, or multiple paths are given as args</p>
-</dd></dl>
-
-</dd></dl>
-
-</div>
-<span class="target" id="module-apps.unsafe"></span><div class="section" id="unsafe">
-<h2>unsafe<a class="headerlink" href="#unsafe" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="apps.unsafe.UnsafeApp">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UnsafeApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.unsafe.UnsafeApp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="apps.unsafe.UnsafeApp.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.unsafe.UnsafeApp.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Executes the application on the given arguments.</p>
+<dd><p>Executes the pwd command.</p>
+<p>Prints the path to the current working directory from root.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command, only used for piping
-and redirects.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store the result of execution.</p></li>
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command, only
+used for piping and redirects. In context of this specific
+application, it does not support piping and will therefore
+be ignored.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store the result
+of execution.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The deque filled with the results of application execution.</p>
+<dd class="field-even"><p>Will contain the current working directory.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
@@ -869,10 +834,215 @@ and redirects.</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="apps.pwd.PwdApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.pwd.PwdApp.validate_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures that no arguments are passed to the application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If any argument is passed to the application.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<span class="target" id="module-apps.sort"></span><div class="section" id="sort">
+<h2>sort<a class="headerlink" href="#sort" title="Permalink to this headline">¶</a></h2>
+<p>Module representing the sort application
+Usage in shell: sort [OPTIONS] [FILE]</p>
+<p class="rubric">Example</p>
+<p><cite>sort my-life.txt</cite></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.sort.SortApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SortApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.sort.SortApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>A class representing the sort shell instruction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options of
+the instruction.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.sort.SortApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.sort.SortApp.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the sort command on the given arguments.</p>
+<p>Sorts the contents of a file/stdin line by line and prints the result
+to stdout. If the -r option is present then the result is reversed.
+If no file is supplied, sorts the text supplied by stdin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command, only
+used for piping and redirects.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store the result
+of execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Contains the file, sorted by line.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.RunError" title="exceptions.exceptions.RunError"><strong>RunError</strong></a> – If the path supplied is not a directory.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.sort.SortApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.sort.SortApp.validate_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures that the correct amount of arguments are supplied.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If too many arguments are given.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<span class="target" id="module-apps.tail"></span><div class="section" id="tail">
+<h2>tail<a class="headerlink" href="#tail" title="Permalink to this headline">¶</a></h2>
+<p>Module representing the tail application
+Usage in shell: tail [OPTIONS] [FILE]</p>
+<p class="rubric">Example</p>
+<p><cite>tail [OPTIONS] [FILES]</cite></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.tail.TailApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TailApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.tail.TailApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>A class representing the tail shell command</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options of
+the instruction.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.tail.TailApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.tail.TailApp.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the tail command on the given arguments.</p>
+<p>Returns the last few lines of a file. The amount is specified by
+the -n option. If this option is not supplied it is defaulted to 10.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command,
+only used for piping and redirects.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store
+the result of execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The deque will contain the last few lines of the file.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.RunError" title="exceptions.exceptions.RunError"><strong>RunError</strong></a> – If any of the paths specified do not exist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.tail.TailApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.tail.TailApp.validate_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>No args need to be checked for this application.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<span class="target" id="module-apps.uniq"></span><div class="section" id="uniq">
+<h2>uniq<a class="headerlink" href="#uniq" title="Permalink to this headline">¶</a></h2>
+<p>Module representing the uniq application
+Usage in shell: uniq [OPTIONS] [FILE]..</p>
+<p class="rubric">Example</p>
+<p><cite>uniq -i test-ans.txt</cite></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.uniq.UniqApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UniqApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.uniq.UniqApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>Class representing the uniq shell application</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options
+of the instruction</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.uniq.UniqApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.uniq.UniqApp.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the uniq command on the given arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command,
+only used for piping and redirects.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store
+the result of execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The deque will contain all lines of the file that are</dt><dd><p>identical to the previous line in the file.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.RunError" title="exceptions.exceptions.RunError"><strong>RunError</strong></a> – If any of the paths specified do not exist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.uniq.UniqApp.validate_args">
+<span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.uniq.UniqApp.validate_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>No args need to be checked for this application</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<span class="target" id="module-apps.unsafe"></span><div class="section" id="unsafe">
+<h2>unsafe<a class="headerlink" href="#unsafe" title="Permalink to this headline">¶</a></h2>
+<p>Module representing the unsafe application decorator.
+Usage in shell: _application [OPTIONS] [ARGS]</p>
+<p class="rubric">Example</p>
+<p><cite>_head file-that-does-not-exist.txt</cite></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="apps.unsafe.UnsafeApp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UnsafeApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.unsafe.UnsafeApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>A class representing the unsafe shell application decorator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>app</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">App</span></code>) – The application be decorated.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="apps.unsafe.UnsafeApp.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.unsafe.UnsafeApp.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the application supplied.</p>
+<p>If the application causes some error, instead of raising said error,
+the error message is added to the output deque, otherwise the output
+is added to the deque like normal.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="apps.unsafe.UnsafeApp.validate_args">
 <span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.unsafe.UnsafeApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether the given args are appropriate for the application.</p>
-<p>Does <strong>NOT</strong> affect actual execution behaviour</p>
+<dd><p>No validation needed for an unsafe application</p>
 </dd></dl>
 
 </dd></dl>
