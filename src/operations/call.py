@@ -10,7 +10,24 @@ from common.tools import read_lines_from_file
 
 
 class Call(Operation):
+    """Call operation that executes some app.
+
+    Attributes:
+        app(App): The app to be run.
+        left_red(:obj:`str`): File name from the left redirection.
+            ``None`` if no left redirection was done.
+        right_red(:obj:`str`): File name from the right redirection.
+            ``None`` if no right redirection was done.
+        
+
+    """
     def __init__(self, ctx):
+        """ Interprets the context and initialises app properties.
+        
+        
+
+
+        """
         super().__init__(ctx)
         self.app = AppFactory.get_app(
             ctx["app"],
@@ -30,13 +47,6 @@ class Call(Operation):
         In case there is an output redirection will create an empty
         ``deque`` for the output and store results in the output file.
         Will return any output that was passed as the argument.
-
-        Parameters:
-            inp()
-        
-        
-
-
         """
 
         _inp = inp

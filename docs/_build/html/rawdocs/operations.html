@@ -118,7 +118,7 @@
 <li class="toctree-l1"><a class="reference internal" href="exceptions.html">exceptions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">operations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#call">Call</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#operation">operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operation">Operation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#operation-factory">operation_factory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pipe">pipe</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sequence">sequence</a></li>
@@ -204,6 +204,42 @@
 <dt class="sig sig-object py" id="operations.call.Call">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operations.call.Call" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#operations.operation.Operation" title="operations.operation.Operation"><code class="xref py py-class docutils literal notranslate"><span class="pre">operations.operation.Operation</span></code></a></p>
+<p>Call operation that executes some app.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="operations.call.Call.app">
+<span class="sig-name descname"><span class="pre">app</span></span><a class="headerlink" href="#operations.call.Call.app" title="Permalink to this definition">¶</a></dt>
+<dd><p>The app to be run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="apps.html#apps.app.App" title="apps.app.App">App</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="operations.call.Call.left_red">
+<span class="sig-name descname"><span class="pre">left_red</span></span><a class="headerlink" href="#operations.call.Call.left_red" title="Permalink to this definition">¶</a></dt>
+<dd><p>File name from the left redirection.
+<code class="docutils literal notranslate"><span class="pre">None</span></code> if no left redirection was done.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="operations.call.Call.right_red">
+<span class="sig-name descname"><span class="pre">right_red</span></span><a class="headerlink" href="#operations.call.Call.right_red" title="Permalink to this definition">¶</a></dt>
+<dd><p>File name from the right redirection.
+<code class="docutils literal notranslate"><span class="pre">None</span></code> if no right redirection was done.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="operations.call.Call.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#operations.call.Call.run" title="Permalink to this definition">¶</a></dt>
@@ -214,11 +250,6 @@ it will prioritise redirected input.</p>
 <p>In case there is an output redirection will create an empty
 <code class="docutils literal notranslate"><span class="pre">deque</span></code> for the output and store results in the output file.
 Will return any output that was passed as the argument.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>inp</strong><strong>(</strong><strong>)</strong> – </p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -241,7 +272,7 @@ some arbitrarily typed data</p>
 
 </div>
 <span class="target" id="module-operations.operation"></span><div class="section" id="operation">
-<h2>operation<a class="headerlink" href="#operation" title="Permalink to this headline">¶</a></h2>
+<h2>Operation<a class="headerlink" href="#operation" title="Permalink to this headline">¶</a></h2>
 <p>This is an interface definition for an Operation class.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="operations.operation.Operation">

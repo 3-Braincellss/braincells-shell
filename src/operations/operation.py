@@ -1,5 +1,5 @@
 """
-operation
+Operation
 =========
 This is an interface definition for an Operation class.
 """
