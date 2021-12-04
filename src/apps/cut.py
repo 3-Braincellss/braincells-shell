@@ -5,7 +5,7 @@ Module representing the cut application
 Usage in shell: cut -b [RANGES] [FILES]...
 
 Example:
-    cut -b 0-23 rick-roll.txt
+    `cut -b 0-23 rick-roll.txt`
 """
 
 from getopt import getopt, GetoptError
