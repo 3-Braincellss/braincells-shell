@@ -5,7 +5,7 @@ Module representing the head application
 Usage in shell: head [OPTIONS] [FILE]
 
 Example:
-    head -n 12 text.txt
+    `head -n 12 text.txt`
 """
 from apps.app import App
 from getopt import getopt, GetoptError
