@@ -41,7 +41,7 @@ class CatApp(App):
 
         Returns:
             ``deque``: Each value of this ``deque`` will be a single line from
-                the input file or piped data.
+            the input file or piped data.
 
         """
         if inp:

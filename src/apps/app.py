@@ -10,8 +10,10 @@ class App(metaclass=ABCMeta):
     """An abstract class representing the format of all Apps.
 
     Args:
-        args (:obj:`list`): Contains all the arguments and options of the application.
+        args (:obj:`list`): Contains all the arguments and options of
+            the application.
     """
+
     def __init__(self, args):
         self.args = args
 
@@ -28,11 +30,13 @@ class App(metaclass=ABCMeta):
         """Executes the application on the given arguments.
 
         Args:
-            inp (:obj:`deque`, *optional*): The input args of the command, only used for piping
-                and redirects.
-            out (:obj:`deque`): The output deque, used to store the result of execution.
+            inp (:obj:`deque`, *optional*): The input args of the command,
+                only used for piping and redirects.
+            out (:obj:`deque`): The output deque, used to store the
+                result of execution.
 
         Returns:
-            ``deque``: The deque filled with the results of application execution.
+            ``deque``: The deque filled with the results of application
+                execution.
 
         """
