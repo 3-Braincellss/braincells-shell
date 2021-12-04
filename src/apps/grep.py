@@ -45,7 +45,7 @@ class GrepApp(App):
 
         Returns:
             ``deque``: The deque will contain the lines of the files,
-                which match the pattern supplied.
+            which match the pattern supplied.
 
         Raises:
             RunError: If the path specified does not exist/is not a valid file.

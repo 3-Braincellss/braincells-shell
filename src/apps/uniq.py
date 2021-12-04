@@ -40,7 +40,7 @@ class UniqApp(App):
 
         Returns:
             ``deque``: The deque will contain all lines of the file that are
-                identical to the previous line in the file.
+            identical to the previous line in the file.
 
         Raises:
             RunError: If any of the paths specified do not exist.

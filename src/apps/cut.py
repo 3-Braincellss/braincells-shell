@@ -44,7 +44,7 @@ class CutApp(App):
 
         Returns:
             ``deque``: The deque will contain the contents of the file,
-                seperated by line after removing bytes.
+            seperated by line after removing bytes.
 
         Raises:
             RunError: If the intervals specified by the -b option

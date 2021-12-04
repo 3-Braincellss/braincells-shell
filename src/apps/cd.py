@@ -40,7 +40,7 @@ class CdApp(App):
 
         Returns:
             ``deque``: Since the cd application does not return anything,
-                output will be unaltered.
+            output will be unaltered.
 
         Raises:
             RunError: If the path supplied is not a directory.

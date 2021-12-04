@@ -37,6 +37,6 @@ class App(metaclass=ABCMeta):
 
         Returns:
             ``deque``: The deque filled with the results of application
-                execution.
+            execution.
 
         """

@@ -36,7 +36,7 @@ class EchoApp(App):
 
         Returns:
             ``deque``: The deque will contain the input arguments,
-                each seperated by whitespace.
+            each seperated by whitespace.
         """
 
         out.append(" ".join(self.args))
