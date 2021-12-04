@@ -229,7 +229,8 @@ These exceptions are handled on the highest level of command execution.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="exceptions.exceptions.ShellError.message">
 <span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#exceptions.exceptions.ShellError.message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Part of the message that will occur once an exception is raised.</p>
+<dd><p>Part of the message that will occur once
+an exception is raised.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></p>
@@ -244,8 +245,8 @@ These exceptions are handled on the highest level of command execution.</p>
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ContextError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GO</span> <span class="pre">AWAY</span> <span class="pre">&gt;=['</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.exceptions.ContextError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#exceptions.exceptions.ShellError" title="exceptions.exceptions.ShellError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.exceptions.ShellError</span></code></a></p>
 <p>Context errors that prevent apps from being run</p>
-<p>Each app has a <code class="docutils literal notranslate"><span class="pre">validate_args()</span></code> method that is run right before the app is run.
-This method will check options that are passed to the app
+<p>Each app has a <code class="docutils literal notranslate"><span class="pre">validate_args()</span></code> method that is run right before the
+app is run. This method will check options that are passed to the app
 and raise <code class="docutils literal notranslate"><span class="pre">ContextError</span></code> if they don’t make sense.
 <code class="docutils literal notranslate"><span class="pre">ContextError</span></code> exists to prevent apps from running
 when they are doomed to fail based on options alone,
@@ -268,8 +269,8 @@ prevent this error from appearing.</p>
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RunError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Oops,</span> <span class="pre">something</span> <span class="pre">went</span> <span class="pre">wrong'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exceptions.exceptions.RunError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#exceptions.exceptions.ShellError" title="exceptions.exceptions.ShellError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.exceptions.ShellError</span></code></a></p>
 <p>Errors that occur during app’s runtime</p>
-<p>Even if an app passes context checking phase, it can still cause some errors.
-Whenever this happens an <cite>AppRunException</cite> is raised.</p>
+<p>Even if an app passes context checking phase, it can still cause some
+errors. Whenever this happens an <cite>AppRunException</cite> is raised.</p>
 <p>These errors <strong>WILL</strong> be ignored with <em>unsafe</em> apps.</p>
 </dd></dl>
 

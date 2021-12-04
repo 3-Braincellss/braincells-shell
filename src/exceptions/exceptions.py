@@ -24,7 +24,8 @@ class ShellError(Exception, metaclass=ABCMeta):
 
     Attributes:
         app_str (:obj:`str`): Name of the app.
-        message (:obj:`str`): Part of the message that will occur once an exception is raised.
+        message (:obj:`str`): Part of the message that will occur once
+            an exception is raised.
     """
     @abstractmethod
     def __init__(self, app_str, message="Err"):
@@ -36,8 +37,8 @@ class ShellError(Exception, metaclass=ABCMeta):
 class ContextError(ShellError):
     """Context errors that prevent apps from being run
 
-    Each app has a ``validate_args()`` method that is run right before the app is run.
-    This method will check options that are passed to the app
+    Each app has a ``validate_args()`` method that is run right before the
+    app is run. This method will check options that are passed to the app
     and raise ``ContextError`` if they don't make sense.
     ``ContextError`` exists to prevent apps from running
     when they are doomed to fail based on options alone,
@@ -66,8 +67,8 @@ class AppNotFoundError(ShellError):
 class RunError(ShellError):
     """Errors that occur during app's runtime
 
-    Even if an app passes context checking phase, it can still cause some errors.
-    Whenever this happens an `AppRunException` is raised.
+    Even if an app passes context checking phase, it can still cause some
+    errors. Whenever this happens an `AppRunException` is raised.
 
     These errors **WILL** be ignored with *unsafe* apps.
 
