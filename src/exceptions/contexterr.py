@@ -5,7 +5,6 @@ Context Error
 They prevent apps from being run.
 """
 
-
 from exceptions import ShellError
 
 

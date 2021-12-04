@@ -21,7 +21,6 @@ class CdApp(App):
             the instruction.
 
     """
-
     def run(self, inp, out):
         """Executes the cd command on the given arguments.
 

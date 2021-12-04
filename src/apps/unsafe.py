@@ -17,7 +17,6 @@ class UnsafeApp(App):
     Args:
         app (:obj:`App`): The application be decorated.
     """
-
     def __init__(self, app):
         super().__init__(app)
         self.app = app

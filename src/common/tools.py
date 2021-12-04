@@ -76,7 +76,8 @@ def read_from_file(path, app_str):
         raise RunError(app_str, f"{path}: Is a directory") from err
 
     except OSError as err:
-        raise RunError(app_str, f"{path}: No such file or directory\n") from err
+        raise RunError(app_str,
+                       f"{path}: No such file or directory\n") from err
 
 
 def read_lines_from_file(path, app_str):
@@ -92,14 +93,13 @@ def read_lines_from_file(path, app_str):
         RunError: If a given path is a directory or a given path doesn't exist.
     """
     try:
-        with open(path, "r", encoding = "utf-8") as f:
+        with open(path, "r", encoding="utf-8") as f:
             text = f.readlines()
             return text
-
 
     except IsADirectoryError as err:
         raise RunError(app_str, f"{path}: Is a directory") from err
 
     except OSError as err:
-        raise RunError(app_str, f"{path}: No such file or directory\n") from err
-
+        raise RunError(app_str,
+                       f"{path}: No such file or directory\n") from err

@@ -7,6 +7,7 @@ An error that is raised whenever an app is not found.
 
 from exceptions import ShellError
 
+
 class AppNotFoundError(ShellError):
     """Errors that occur when shell doesn't know the app you are trying to run
 
@@ -18,4 +19,3 @@ class AppNotFoundError(ShellError):
     def __init__(self, app_str, message=""):
         super().__init__(app_str, message)
         self.message = f"I don't know about '{self.app_str}' command. Sorry :("
-

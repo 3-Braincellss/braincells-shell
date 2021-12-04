@@ -21,7 +21,6 @@ class PwdApp(App):
             the instruction, which should be empty.
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         self.args = args

@@ -13,7 +13,6 @@ class App(metaclass=ABCMeta):
         args (:obj:`list`): Contains all the arguments and options of
             the application.
     """
-
     def __init__(self, args):
         self.args = args
 

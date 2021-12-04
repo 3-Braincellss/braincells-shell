@@ -5,8 +5,8 @@ Run Error
 Errors that are raised during runtime.
 """
 
-
 from exceptions import ShellError
+
 
 class RunError(ShellError):
     """Errors that occur during app's runtime

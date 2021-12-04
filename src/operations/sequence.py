@@ -7,7 +7,6 @@ Sequence operation denoted as ';' will sequentially call 2 commands in a row.
 from operations.operation import Operation
 
 
-
 class Sequence(Operation):
     """ Sequence Class
 

@@ -5,7 +5,7 @@ Module representing the find application
 Usage in shell: find -name [PATTERN] [PATH]
 
 Example:
-    find -name \*.py project/spaghetti-code
+    ``find -name *.py project/spaghetti-code``
 """
 from apps.app import App
 import os
@@ -22,13 +22,12 @@ class FindApp(App):
         of the instruction
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         for i in range(len(args)):
             if args[i] == "-name":
                 args[i] = "--name"  # getopt only recognises long options with
-                break              # a -- prefix
+                break  # a -- prefix
         self.options, self.args = gnu_getopt(args, "", ["name="])
 
     def run(self, inp, out):
@@ -59,8 +58,8 @@ class FindApp(App):
         try:
             matched_files = glob(f"./{root}/**/{self.pattern}", recursive=True)
         except OSError:
-            raise RunError(
-                "find", f"{root}: No such file or directory") from None
+            raise RunError("find",
+                           f"{root}: No such file or directory") from None
         for file in matched_files:
             if not os.path.isdir(file):
                 if root != "":

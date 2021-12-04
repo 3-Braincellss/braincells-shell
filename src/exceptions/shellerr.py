@@ -7,6 +7,7 @@ General error interface
 
 from abc import abstractmethod, ABCMeta
 
+
 class ShellError(Exception, metaclass=ABCMeta):
     """
     Exception interface for our errors

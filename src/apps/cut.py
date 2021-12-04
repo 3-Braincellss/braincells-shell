@@ -22,7 +22,6 @@ class CutApp(App):
             of the instruction
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -138,8 +137,8 @@ class CutApp(App):
         try:
             start, end = interval.split("-")
         except ValueError:
-            raise RunError(
-                "cut", f"Invalid option argument: {interval}") from None
+            raise RunError("cut",
+                           f"Invalid option argument: {interval}") from None
 
         new_interval = []
         try:
