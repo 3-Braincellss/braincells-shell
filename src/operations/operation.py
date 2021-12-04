@@ -16,7 +16,7 @@ class Operation(metaclass=ABCMeta):
 
     """
     def __init__(self, ctx):
-        pass
+        self.ctx = ctx
 
     @abstractmethod
     def run(self, inp, out):
@@ -24,7 +24,8 @@ class Operation(metaclass=ABCMeta):
 
         Parameters:
             inp(:obj:`deque`): Piped input to the operation.
-            out(:obj:`out`): output of all operations that were run before the current one
+            out(:obj:`out`): output of all operations that were
+                run before the current one
         """
 
     @abstractmethod
@@ -32,10 +33,11 @@ class Operation(metaclass=ABCMeta):
         """Checks if context of the operation is valid.
 
         Parameters:
-            ctx(:obj:`dict`): Dictionary that maps value string to some arbitrarily typed data
+            ctx(:obj:`dict`): Dictionary that maps value string to
+                some arbitrarily typed data
 
         Raises:
-            ContextError: If the context provided doesn't contain the correct keys or the values
-                of the dictionary are not properly typed
+            ContextError: If the context provided doesn't contain the correct
+                keys or the values of the dictionary are not properly typed
 
         """

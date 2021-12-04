@@ -1,7 +1,7 @@
 """
-call
+Call
 ====
-An operation primitive that contains an up that it runs.
+An operation primitive that contains an app that it runs.
 """
 from operations import Operation
 from apps import AppFactory
@@ -11,6 +11,7 @@ from common.tools import read_lines_from_file
 
 class Call(Operation):
     def __init__(self, ctx):
+        super().__init__(ctx)
         self.app = AppFactory.get_app(
             ctx["app"],
             ctx["args"],
@@ -19,8 +20,27 @@ class Call(Operation):
         self.right_red = ctx["right_red"]
 
     def run(self, inp, out):
+        """Handles possible redirections and runs the app.
+        
+        Can handle both input and output redirections.
+        
+        In case there is an input redirection and some piped input
+        it will prioritise redirected input.
+        
+        In case there is an output redirection will create an empty
+        ``deque`` for the output and store results in the output file.
+        Will return any output that was passed as the argument.
+
+        Parameters:
+            inp()
+        
+        
+
+
+        """
+
         _inp = inp
-        if self.left_red is not None and not inp:
+        if self.left_red is not None:
             lines = deque(read_lines_from_file(self.left_red, "redirect"))
             _inp = deque(map(str.rstrip, lines))
 

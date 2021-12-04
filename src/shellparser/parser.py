@@ -150,7 +150,7 @@ class ShellTransformer(Transformer):
         Returns:
             str: the string that was in the list
         """
-        return args[0]
+        return "".join(args)
 
     def quoted(self, args):
         """Passes on the string that was inside any type of quote higher up

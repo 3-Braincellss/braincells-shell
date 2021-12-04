@@ -318,7 +318,8 @@ Usage in shell: cat [FILES]…</p>
 <p>A class representing the cat command line instruction</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options of the cat instruction</p>
+<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options of the cat
+instruction</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -328,14 +329,18 @@ Usage in shell: cat [FILES]…</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, optional) – The input args of the command, only used for piping
-and redirects.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store the result of execution.</p></li>
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, optional) – The input args of the command, only
+used for piping and redirects.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store the result of
+execution.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Each value of this <code class="docutils literal notranslate"><span class="pre">deque</span></code> will be a single line from the input file
-or piped data.</p>
+<dd class="field-even"><p><dl class="simple">
+<dt>Each value of this <code class="docutils literal notranslate"><span class="pre">deque</span></code> will be a single line from</dt><dd><p>the input file or piped data.</p>
+</dd>
+</dl>
+</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
@@ -346,12 +351,8 @@ or piped data.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.cat.CatApp.validate_args">
 <span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.cat.CatApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ensures that no options have been supplied to the application.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If an option has been supplied to the application.</p>
-</dd>
-</dl>
+<dd><p>Checks whether the given args are appropriate for the application.</p>
+<p>Does <strong>NOT</strong> affect actual execution behaviour</p>
 </dd></dl>
 
 </dd></dl>
@@ -418,31 +419,62 @@ piping and will therefore be ignored.</p></li>
 </div>
 <span class="target" id="module-apps.cut"></span><div class="section" id="cut">
 <h2>cut<a class="headerlink" href="#cut" title="Permalink to this headline">¶</a></h2>
-<p>Module representing the cut application:
-Usage in shell: cut -b[RANGES] [FILES]…</p>
+<p>Module representing the cut application
+Usage in shell: cut -b [RANGES] [FILES]…</p>
 <p class="rubric">Example</p>
 <p>cut -b 0-23 rick-roll.txt</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="apps.cut.CutApp">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CutApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.cut.CutApp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
-<p>Executes bash application cut:
-cut -b [INTERVALS] [PATHS]*
-If paths is empty or ‘-‘ stdin is used</p>
+<p>A class representing the cut shell instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options
+of the instruction</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.cut.CutApp.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.cut.CutApp.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Executes the cut command extracting specified bytes from text.
-:param inp: The string text to cut bytes from.
-:param out: The deque used to store the result of the application</p>
+<dd><p>Executes the cut command on the given arguments.</p>
+<p>Removes the bytes not specified in the -b option.
+If no arguments are given then the bytes are taken from stdin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command,
+only used for piping and redirects.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store
+the result of execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The deque will contain the contents of the file,</dt><dd><p>seperated by line after removing bytes.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.RunError" title="exceptions.exceptions.RunError"><strong>RunError</strong></a> – If the intervals specified by the -b option
+    are invalid. Or the paths specified do not exist.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.cut.CutApp.validate_args">
 <span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.cut.CutApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ensures the options are valid.
-:raises AppRunException: If -b option is missing or -b is not the only
-option.</p>
+<dd><p>Ensures the options are valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>AppRunException</strong> – If -b option is missing.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -450,16 +482,46 @@ option.</p>
 </div>
 <span class="target" id="module-apps.echo"></span><div class="section" id="echo">
 <h2>echo<a class="headerlink" href="#echo" title="Permalink to this headline">¶</a></h2>
-<p>This module represents the echo bash command.</p>
+<p>This module represents the echo bash command.
+Usage in shell: echo [ARGS]…</p>
+<p class="rubric">Example</p>
+<p><cite>echo hello world</cite></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="apps.echo.EchoApp">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EchoApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.echo.EchoApp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
-<p>echo [INPUT] [INPUT] …</p>
+<p>A class representing the echo shell command</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options of
+the instruction.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.echo.EchoApp.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.echo.EchoApp.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns all the input args as a space seperated string.</p>
+<dd><p>Executes the echo command on the given arguments.</p>
+<p>Simply appends the space seperated arguments supplied.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command,
+only used for piping and redirects.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store the
+result of execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The deque will contain the input arguments,</dt><dd><p>each seperated by whitespace.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -473,20 +535,62 @@ option.</p>
 </div>
 <span class="target" id="module-apps.find"></span><div class="section" id="find">
 <h2>find<a class="headerlink" href="#find" title="Permalink to this headline">¶</a></h2>
+<p>Module representing the find application
+Usage in shell: find -name [PATTERN] [PATH]</p>
+<p class="rubric">Example</p>
+<p>find -name *.py project/spaghetti-code</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="apps.find.FindApp">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FindApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.find.FindApp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
+<p>A class representing the find shell instruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options</p></li>
+<li><p><strong>instruction</strong> (<em>of the</em>) – </p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.find.FindApp.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.find.FindApp.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Executes the find command on the given path.</p>
+<p>Will match all files with the pattern supplied in the name option.
+If no path is supplied the current directory is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command,
+only used for piping and redirects.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store
+the result of execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The output deque will contain each of the files that
+matched the specified pattern</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.RunError" title="exceptions.exceptions.RunError"><strong>RunError</strong></a> – If the root path supplied does not exist.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.find.FindApp.validate_args">
 <span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.find.FindApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether the given args are appropriate for the application.</p>
-<p>Does <strong>NOT</strong> affect actual execution behaviour</p>
+<dd><p>Ensures that the -name option is present and only one argument is
+given</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If more than one argument is given or the -name
+    option is missing.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -494,25 +598,63 @@ option.</p>
 </div>
 <span class="target" id="module-apps.grep"></span><div class="section" id="grep">
 <h2>grep<a class="headerlink" href="#grep" title="Permalink to this headline">¶</a></h2>
+<p>Module representing the grep application
+Usage in shell: grep [PATTERN] [FILE]*</p>
+<p class="rubric">Example</p>
+<p>grep BARRY! bee-movie.txt</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="apps.grep.GrepApp">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GrepApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.grep.GrepApp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
-<p>Application representing the bash command:
-grep [PATTERN] [FILE]*</p>
+<p>A class representing the grep shell intstruction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options</p></li>
+<li><p><strong>instruction</strong> (<em>of the</em>) – </p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.grep.GrepApp.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.grep.GrepApp.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Performs the grep operation on all specified paths.
-:param inp: The input args of the command, only used for piping
-and redirects.</p>
+<dd><p>Executes the grep command on the given arguments.</p>
+<p>Reads the specified files and returns all lines that match a specified
+regex pattern. If no files are given, stdin is grepped instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command,
+only used for piping and redirects.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store
+the result of execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The deque will contain the lines of the files,</dt><dd><p>which match the pattern supplied.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.RunError" title="exceptions.exceptions.RunError"><strong>RunError</strong></a> – If the path specified does not exist/is not a valid file.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.grep.GrepApp.validate_args">
 <span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.grep.GrepApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether the given args are appropriate for the application.</p>
-<p>Does <strong>NOT</strong> affect actual execution behaviour</p>
+<dd><p>Ensures that arguments are supplied to the application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.ContextError" title="exceptions.exceptions.ContextError"><strong>ContextError</strong></a> – If no arguments are supplied.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -520,21 +662,52 @@ and redirects.</p>
 </div>
 <span class="target" id="module-apps.head"></span><div class="section" id="head">
 <h2>head<a class="headerlink" href="#head" title="Permalink to this headline">¶</a></h2>
+<p>Module representing the head application
+Usage in shell: head [OPTIONS] [FILE]</p>
+<p class="rubric">Example</p>
+<p>head -n 12 text.txt</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="apps.head.HeadApp">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HeadApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.head.HeadApp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#apps.app.App" title="apps.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">apps.app.App</span></code></a></p>
-<p>head [OPTIONS] [FILE]</p>
+<p>A class representing the head shell application</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Contains all the arguments and options
+of the instruction</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.head.HeadApp.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#apps.head.HeadApp.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Executes the head command on the given arguments.</p>
+<p>Returns the first few lines of a file. The amount is specified by
+the -n option. If this option is not supplied it is defaulted to 10.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inp</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>, <em>optional</em>) – The input args of the command,
+only used for piping and redirects.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">deque</span></code>) – The output deque, used to store
+the result of execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The deque will contain the first few lines of the file.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">deque</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#exceptions.exceptions.RunError" title="exceptions.exceptions.RunError"><strong>RunError</strong></a> – If any of the paths specified do not exist.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="apps.head.HeadApp.validate_args">
 <span class="sig-name descname"><span class="pre">validate_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apps.head.HeadApp.validate_args" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether the given args are appropriate for the application.</p>
-<p>Does <strong>NOT</strong> affect actual execution behaviour</p>
+<dd><p>No args need to be checked for this application.</p>
 </dd></dl>
 
 </dd></dl>

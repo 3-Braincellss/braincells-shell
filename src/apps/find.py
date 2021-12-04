@@ -5,7 +5,7 @@ Module representing the find application
 Usage in shell: find -name [PATTERN] [PATH]
 
 Example:
-    find -name *.py project/spaghetti-code
+    find -name \*.py project/spaghetti-code
 """
 from apps.app import App
 import os
