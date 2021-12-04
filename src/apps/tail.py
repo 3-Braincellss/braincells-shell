@@ -5,7 +5,7 @@ Module representing the tail application
 Usage in shell: tail [OPTIONS] [FILE]
 
 Example:
-    `tail [OPTIONS] [FILES]`
+    `tail some-file.py`
 """
 from apps.app import App
 from getopt import getopt, GetoptError
