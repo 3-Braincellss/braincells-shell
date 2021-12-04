@@ -1,6 +1,0 @@
-import unittest
-
-
-class TestFactory(unittest.TestCase):
-    def init_test(self):
-        pass

@@ -1,55 +1,75 @@
 """
-This module represents the cd bash command
+cd
+==
+Module representing the cd application
+Usage in shell: cd PATH
+
+Example:
+    `cd foo/bar/baz`
 """
 import os
 
+from exceptions import ContextError, RunError
 from apps import App
-from exceptions import AppContextException, AppRunException
 
 
 class CdApp(App):
-    """
-    Application representing the bash command:
-    cd [DIRECTORY]
-    """
+    """A class representing the cd shell instruction
 
-    def __init__(self, args=[]):
-        self.args = args
+    Args:
+        args (:obj:`list`): Contains all the arguments and options of
+            the instruction.
 
+    """
     def run(self, inp, out):
-        """
-        Changes current working directory
+        """Executes the cd command on the given arguments.
 
-        If a FULL DIRECTORY is supplied changes current directory to the given
-        one
+        If no arguments are given, the current directory is changed to the
+        users **HOME** directory. If not the users current working directory
+        is changed to the directory given. This path can be relative or
+        absolute.
 
-        If a RELATIVE DIRECTORY is supplied changed current directory to the
-        given one
+        Args:
+            inp (:obj:`deque`, *optional*): The input args of the command, only
+                used for piping and redirects. In context of this specific
+                application, it does not support piping and will therefore
+                be ignored.
+            out (:obj:`deque`): The output deque, used to store the result
+                of execution.
 
-        If NO DIRECTORY is given changes directory to the root
+        Returns:
+            ``deque``: Since the cd application does not return anything,
+            output will be unaltered.
+
+        Raises:
+            RunError: If the path supplied is not a directory.
+
         """
         if len(self.args) == 0:
-            os.chdir("/")
+            os.chdir(os.path.expanduser("~"))
         else:
             try:
                 os.chdir(self.args[0])
             except OSError:
-                raise AppRunException(
+                raise RunError(
                     "cd",
                     f"{self.args[0]} is not a directory\
                 .",
-                )
+                ) from None
         return out
 
     def validate_args(self):
-        """
-        Check that the number of arguments is greater than 1
-        and if the given path exists.
+        """Check that the number of arguments is greater than 1 and if
+        the given path exists.
+
+        Raises:
+            ContextError: If more than one argument is supplied or
+                the path given does not exist.
         """
         if len(self.args) > 1:
-            raise AppContextException("cd", "Wrong number of arguments")
+            raise ContextError("cd", "Wrong number of arguments")
         if self.args and not os.path.exists(self.args[0]):
-            raise AppContextException(
+            raise ContextError(
                 "cd",
                 f"path '{self.args[0]}' doesn't \
             exist",

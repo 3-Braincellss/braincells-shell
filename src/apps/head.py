@@ -1,19 +1,50 @@
+"""
+head
+====
+Module representing the head application
+Usage in shell: head [OPTIONS] [FILE]
+
+Example:
+    `head -n 12 text.txt`
+"""
 from apps.app import App
-from getopt import getopt
-from exceptions.app_run import AppRunException
+from getopt import getopt, GetoptError
+from exceptions import ContextError
 from common.tools import read_lines_from_file
 
 
 class HeadApp(App):
-    """
-    head [OPTIONS] [FILE]
-    """
+    """A class representing the head shell application
 
+    Args:
+        args (:obj:`list`): Contains all the arguments and options
+            of the instruction
+    """
     def __init__(self, args):
-        self.options, self.args = getopt(args, "n:")
+        super().__init__(args)
+        try:
+            self.options, self.args = getopt(args, "n:")
+        except GetoptError as error:
+            raise ContextError("head", str(error)) from error
 
     def run(self, inp, out):
-        """ """
+        """Executes the head command on the given arguments.
+
+        Returns the first few lines of a file. The amount is specified by
+        the -n option. If this option is not supplied it is defaulted to 10.
+
+        Args:
+            inp (:obj:`deque`, *optional*): The input args of the command,
+                only used for piping and redirects.
+            out (:obj:`deque`): The output deque, used to store
+                the result of execution.
+
+        Returns:
+            ``deque``: The deque will contain the first few lines of the file.
+
+        Raises:
+            RunError: If any of the paths specified do not exist.
+        """
         if self.options:
             lines = int(self.options[0][1])
         else:
@@ -42,11 +73,5 @@ class HeadApp(App):
             out.append(text[i].strip("\n"))
 
     def validate_args(self):
-        # if not self.args:
-        #     raise AppRunException(
-        #         "head", "Missing option: [FILE]")
-        if self.options:
-            if self.options[0][0] != "-n":
-                raise AppContextException(
-                    "head", f"Invalid option: {self.options[0][0]}"
-                )
+        """No args need to be checked for this application."""
+        pass

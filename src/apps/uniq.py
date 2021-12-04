@@ -1,24 +1,50 @@
+"""
+uniq
+====
+Module representing the uniq application
+Usage in shell: uniq [OPTIONS] [FILE]..
+
+Example:
+    `uniq -i test-ans.txt`
+
+"""
 from apps import App
-from getopt import getopt
-from exceptions import AppRunException
+from getopt import getopt, GetoptError
+from exceptions import ContextError
 from common.tools import read_lines_from_file
 
 
 class UniqApp(App):
-    """ """
+    """Class representing the uniq shell application
 
+    Args:
+        args (:obj:`list`): Contains all the arguments and options
+            of the instruction
+    """
     def __init__(self, args):
-        self.options, self.args = getopt(args, "i")
+        super().__init__(args)
+        try:
+            self.options, self.args = getopt(args, "i")
+        except GetoptError as error:
+            raise ContextError("uniq", str(error)) from None
 
     def run(self, inp, out):
+        """ Executes the uniq command on the given arguments.
+
+        Args:
+            inp (:obj:`deque`, *optional*): The input args of the command,
+                only used for piping and redirects.
+            out (:obj:`deque`): The output deque, used to store
+                the result of execution.
+
+        Returns:
+            ``deque``: The deque will contain all lines of the file that are
+            identical to the previous line in the file.
+
+        Raises:
+            RunError: If any of the paths specified do not exist.
         """
-        Executes that uniq command on the given arguments.
-        :param inp: The input args of the command, only used for piping
-        and redirects.
-        :param out: The output deque.
-        :return: Returns the output deque.
-        """
-        case = False if self.options else True
+        case = not bool(self.options)
         if inp:
             contents = inp
         elif not self.args:
@@ -32,11 +58,13 @@ class UniqApp(App):
         return out
 
     def _run(self, lines, out):
-        """
-        Removes duplicate lines and appends each line to the
+        """Removes duplicate lines and appends each line to the
         output deque.
-        :param lines: The lines to filter through.
-        :param deque: The output deque
+
+        Args:
+            lines (:obj: `list`, *optional*): The lines to filter through.
+            out (:obj:`deque`): The output deque, used to store
+                the result of execution.
         """
         out.append(lines[0].strip("\n"))
         prev = lines[0]
@@ -46,11 +74,13 @@ class UniqApp(App):
                 out.append(lines[i].strip("\n"))
 
     def _run_unsensitive(self, lines, out):
-        """
-        Removes duplicate lines (irrespective of case) and appends each line to the
-        output deque.
-        :param lines: The lines to filter through.
-        :param deque: The output deque
+        """Removes duplicate lines (irrespective of case) and appends
+        each line to the output deque.
+
+        Args:
+            lines (:obj: `list`, *optional*): The lines to filter through.
+            out (:obj:`deque`): The output deque, used to store
+                the result of execution.
         """
         out.append(lines[0])
         prev = lines[0]
@@ -60,14 +90,5 @@ class UniqApp(App):
                 out.append(lines[i])
 
     def validate_args(self):
-        """
-        Ensures the options are valid.
-        :raises AppRunException: If any other option other than -i is
-        given, or multiple paths are given as args
-        """
-        if len(self.args) > 1:
-            raise AppContextException("uniq", "too many arguments")
-        if len(self.options) > 1:
-            raise AppContextException("uniq", "too many options")
-        if self.options and self.options[0][0] != "-i":
-            raise AppContextException("uniq", f"invalid option {option}")
+        """No args need to be checked for this application"""
+        pass

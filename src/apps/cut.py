@@ -1,31 +1,60 @@
+"""
+cut
+===
+Module representing the cut application
+Usage in shell: cut -b [RANGES] [FILES]...
+
+Example:
+    `cut -b 0-23 rick-roll.txt`
+"""
+
+from getopt import getopt, GetoptError
 from apps import App
-from getopt import getopt
-from exceptions import AppRunException, AppContextException
-from common.tools import read_from_file, read_lines_from_file
+from exceptions import RunError, ContextError
+from common.tools import read_lines_from_file
 
 
 class CutApp(App):
-    """
-    Executes bash application cut:
-    cut -b [INTERVALS] [PATHS]*
-    If paths is empty or '-' stdin is used
-    """
+    """A class representing the cut shell instruction
 
+    Args:
+        args (:obj:`list`): Contains all the arguments and options
+            of the instruction
+
+    """
     def __init__(self, args):
-        self.options, self.args = getopt(args, "b:")
+        super().__init__(args)
+        try:
+            self.options, self.args = getopt(args, "b:")
+        except GetoptError as error:
+            raise ContextError("cut", str(error)) from None
 
     def run(self, inp, out):
-        """
-        Executes the cut command extracting specified bytes from text.
-        :param inp: The string text to cut bytes from.
-        :param out: The deque used to store the result of the application
+        """Executes the cut command on the given arguments.
+
+        Removes the bytes not specified in the -b option.
+        If no arguments are given then the bytes are taken from stdin.
+
+        Args:
+            inp (:obj:`deque`, *optional*): The input args of the command,
+                only used for piping and redirects.
+            out (:obj:`deque`): The output deque, used to store
+                the result of execution.
+
+        Returns:
+            ``deque``: The deque will contain the contents of the file,
+            seperated by line after removing bytes.
+
+        Raises:
+            RunError: If the intervals specified by the -b option
+                are invalid. Or the paths specified do not exist.
         """
 
         intervals = self._get_intervals()
         if inp:
             self._run(inp, intervals, out)
             return out
-        elif not self.args:
+        if not self.args:
             self._run([input()], intervals, out)
             return out
         for arg in self.args:
@@ -56,12 +85,13 @@ class CutApp(App):
         """
         new_string = ""
         new_intervals = self._unfold(intervals, len(string))
-        for i in range(len(string)):
-            if i + 1 in new_intervals:
-                new_string += string[i]
+        for pos, char in enumerate(string):
+            if pos + 1 in new_intervals:
+                new_string += char
         return new_string
 
-    def _unfold(self, intervals, length):
+    @staticmethod
+    def _unfold(intervals, length):
         """
         Takes in a list of intervals and spreads them out to a set of integers.
         :param intervals: The intervals to be unfolded.
@@ -101,22 +131,24 @@ class CutApp(App):
         """
         Converts an interval into a tuple consisting of ints or 'end'
         :param interval: The interval being converted into a tuple.
-        :raises AppRunException: If an interval is invalid.
+        :raises RunError: If an interval is invalid.
         :returns new_interval: The new interval
         """
         try:
             start, end = interval.split("-")
         except ValueError:
-            raise AppRunException("cut", f"Invalid option argument: {interval}")
+            raise RunError("cut",
+                           f"Invalid option argument: {interval}") from None
+
         new_interval = []
         try:
             new_interval.append(self._get_boundary(start, False))
         except ValueError:
-            raise AppRunException("cut", f"Invalid interval value: {start}")
+            raise RunError("cut", f"Invalid interval value: {start}") from None
         try:
             new_interval.append(self._get_boundary(end, True))
         except ValueError:
-            raise AppRunException("cut", f"Invalid interval value: {end}")
+            raise RunError("cut", f"Invalid interval value: {end}") from None
         self._validate_interval(new_interval)
         return new_interval
 
@@ -135,40 +167,38 @@ class CutApp(App):
         self._validate_int(num)
         return int(num)
 
-    def _validate_int(self, num):
+    @staticmethod
+    def _validate_int(num):
         """
         Determines whether a number can be represented as a positive integer.
         :param num: The string to be checked.
-        :raises AppRunException: If the string given is invalid (not a positive
+        :raises RunError: If the string given is invalid (not a positive
         integer)
         """
         digits = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
         for char in num:
             if char not in digits:
-                raise AppRunException("cut", "Invalid option argument {num}")
+                raise RunError("cut", "Invalid option argument {num}")
         if num == "0":
-            raise AppRunException("cut", "Cut intervals are 1 indexed.")
+            raise RunError("cut", "Cut intervals are 1 indexed.")
 
-    def _validate_interval(self, interval):
+    @staticmethod
+    def _validate_interval(interval):
         """
         Ensures the interval is increasing.
         :param interval: The interval to be checked.
-        :raises AppRunException: If the interval is not increasing
+        :raises RunError: If the interval is not increasing
         """
         if interval[1] != "end" and interval[0] > interval[1]:
-            raise AppRunException(
-                "cut", f"Invalid decreasing interval: {interval[0]}-{interval[1]}"
-            )
+            raise RunError(
+                "cut",
+                f"Invalid decreasing interval: {interval[0]}-{interval[1]}")
 
     def validate_args(self):
-        """
-        Ensures the options are valid.
-        :raises AppRunException: If -b option is missing or -b is not the only
-        option.
+        """Ensures the options are valid.
+
+        Raises:
+            AppRunException: If -b option is missing.
         """
         if not self.options:
-            raise AppContextException("cut", "Missing option: -b [INTERVAL],.. >=[")
-        if len(self.options) != 1:
-            raise AppContextException("cut", "Invalid number of options >=[")
-        if self.options[0][0] != "-b":
-            raise AppContextException("cut", f"Invalid option: {self.options[0][0]}")
+            raise ContextError("cut", "Missing option: -b [INTERVAL],.. >=[")

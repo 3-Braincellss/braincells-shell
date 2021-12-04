@@ -1,29 +1,47 @@
+"""
+cat
+===
+Module representing the cat application:
+Usage in shell: cat [FILES]...
+
+Example:
+    cat bee-movie-script.txt
+"""
+
+from getopt import getopt, GetoptError
+from common.tools import read_lines_from_file
+from exceptions import ContextError
 from apps import App
-from getopt import getopt
-from glob import glob
-from common.tools import read_lines_from_file
-from exceptions import AppRunException, AppContextException
-from common.tools import read_lines_from_file
 
 
 class CatApp(App):
-    """
-    Application representing the bash command:
-    cat [FILES]...
-    """
+    """A class representing the cat command line instruction
 
-    allowed_options = {}
+    Args:
+        args (:obj:`list`): Contains all the arguments and options of the cat
+            instruction
 
+    """
     def __init__(self, args):
-        self.options, self.args = getopt(args, "")
+        super().__init__(args)
+        try:
+            self._options, self.args = getopt(self.args, "")
+        except GetoptError as e:
+            raise ContextError("cat", str(e)) from None
 
     def run(self, inp, out):
-        """
-        Executes that cat command on the given arguments.
-        :param inp: The input args of the command, only used for piping
-        and redirects.
-        :param out: The output queue.
-        :return: Returns the output queue.
+        """Executes the cat command on the given arguments.
+
+        Args:
+            inp (:obj:`deque`, optional): The input args of the command, only
+                used for piping and redirects.
+            out (:obj:`deque`): The output deque, used to store the result of
+                execution.
+
+        Returns:
+            ``deque``: Each value of this ``deque`` will be a single line from
+            the input file or piped data.
+
         """
         if inp:
             out.extend(inp)
@@ -37,26 +55,13 @@ class CatApp(App):
 
         return out
 
-    def _run(self, paths, out):
-        """
-        Reads all the contents in the given list of paths.
-        :param paths: The paths to read from.
-        :return out: The text of all the files.
-        """
-
+    @classmethod
+    def _run(cls, paths, out):
         for path in paths:
-            out.extend(map(str.rstrip, read_lines_from_file(path, "cat")))
-
+            contents = read_lines_from_file(path, "cat")
+            for line in contents:
+                out.append(line.rstrip("\n"))
         return out
 
     def validate_args(self):
-        """
-        Ensures the options are valid.
-        :raises AppRunException: If any option is given.
-        """
-        for option in self.options:
-            raise AppContextException(
-                "cat",
-                f"{option}: is an unsupported option \
-            :(",
-            )
+        pass

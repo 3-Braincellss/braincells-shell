@@ -1,36 +1,63 @@
-import os
+"""
+sort
+====
+Module representing the sort application
+Usage in shell: sort [OPTIONS] [FILE]
+
+Example:
+    `sort my-life.txt`
+
+"""
 
 from getopt import getopt, GetoptError
 
 from apps import App
-from exceptions import AppContextException, AppRunException
+from exceptions import ContextError
 from common.tools import read_lines_from_file
 
 
 class SortApp(App):
+    """A class representing the sort shell instruction.
+
+    Args:
+        args (:obj:`list`): Contains all the arguments and options of
+            the instruction.
+
     """
-    Sorts the contents of a file/stdin line by line and prints the result to stdout.
-
-    sort [OPTIONS] [FILE]
-
-    OPTIONS:
-
-        -r sorts lines in reverse order
-
-    FILE is the name of the file. If not specified, uses stdin.
-    """
-
     def __init__(self, args):
-        self.args = args
+        super().__init__(args)
+        try:
+            opts, args = getopt(args, "r")
+        except GetoptError as goe:
+            raise ContextError("sort", str(goe)) from None
+        self.args = opts, args
 
     def run(self, inp, out):
-        """ """
+        """Executes the sort command on the given arguments.
+
+        Sorts the contents of a file/stdin line by line and prints the result
+        to stdout. If the -r option is present then the result is reversed.
+        If no file is supplied, sorts the text supplied by stdin.
+
+        Args:
+            inp (:obj:`deque`, *optional*): The input args of the command, only
+                used for piping and redirects.
+            out (:obj:`deque`): The output deque, used to store the result
+                of execution.
+
+        Returns:
+            ``deque``: Contains the file, sorted by line.
+
+        Raises:
+            RunError: If the path supplied is not a directory.
+
+        """
 
         opts = self.args[0]
         args = self.args[1]
 
         # Reverse order when -r option is provided
-        rev = True if opts else False
+        rev = bool(opts)
 
         # if args array is non zero then use file as the input
         if args:
@@ -47,17 +74,11 @@ class SortApp(App):
             out.append(line.rstrip())
 
     def validate_args(self):
+        """Ensures that the correct amount of arguments are supplied.
 
-        # possible number of args: 0 - 2
+        Raises:
+            ContextError: If too many arguments are given.
+
+        """
         if len(self.args) > 2:
-            raise AppContextException("sort", "too many arguments")
-
-        # check options and arguments
-        try:
-            opts, args = getopt(self.args, "r")
-
-        except GetoptError as goe:
-            raise AppContextException("sort", "bad options")
-
-        # after splitting self.args into opts and args
-        self.args = opts, args
+            raise ContextError("sort", "too many arguments")

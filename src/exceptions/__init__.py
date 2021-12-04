@@ -1,3 +1,11 @@
-from .app_context import AppContextException
-from .app_not_found import AppNotFoundException
-from .app_run import AppRunException
+"""
+This module contains exceptions that shell will be raising and handling.
+There is one common interface ``AppExcpetion`` and 3 concrete implementations
+of that interface.
+
+"""
+
+from .shellerr import ShellError
+from .contexterr import ContextError
+from .appnotfounderr import AppNotFoundError
+from .runerr import RunError
