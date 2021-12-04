@@ -9,3 +9,10 @@ from .shellerr import ShellError
 from .contexterr import ContextError
 from .appnotfounderr import AppNotFoundError
 from .runerr import RunError
+
+__all__ = [
+    "ShellError",
+    "ContextError",
+    "AppNotFoundError",
+    "RunError",
+]

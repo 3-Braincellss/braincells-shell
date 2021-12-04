@@ -8,3 +8,11 @@ from .call import Call
 from .pipe import Pipe
 from .sequence import Sequence
 from .operation_factory import OperationFactory
+
+__all__ = [
+    "Operation",
+    "Call",
+    "Pipe",
+    "Sequence",
+    "OperationFactory",
+]

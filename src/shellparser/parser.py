@@ -67,6 +67,7 @@ class ShellTransformer(Transformer):
         """
 
         # Removes `None` and `tuple`
+
         returnargs = [
             x for x in args if x is not None and not isinstance(x, tuple)
         ]
@@ -157,7 +158,8 @@ class ShellTransformer(Transformer):
             the parse tree
 
         Parameters:
-            args (list): A list of a single string of the text inside the quotes
+            args (list): A list of a single string of the text inside the
+                quotes
 
         Returns:
             str: the string that was in the quotes
@@ -199,7 +201,9 @@ class ShellTransformer(Transformer):
         Returns:
             str: the output string from the command that was run
         """
-        from shell import Shell  # putting this at top level causes circular import pylint: disable=import-outside-toplevel
+
+        # Putting this at top level causes circular import
+        from shell import Shell  # pylint: disable=import-outside-toplevel
 
         string = " ".join(Shell.execute(args[0])).strip()
         return string

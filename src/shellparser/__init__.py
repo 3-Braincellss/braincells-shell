@@ -1,4 +1,5 @@
-#pylint: skip-file
+# pylint: skip-file
+# flake8: noqa
 """
 grammar.lark
 ============
@@ -31,3 +32,7 @@ grammar.lark
     WHITESPACE           : /[\\s]+/
 """
 from .parser import run_parser
+
+__all__ = [
+    "run_parser",
+]
