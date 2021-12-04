@@ -1,5 +1,5 @@
 """
-operation_factory
+Operation Factory
 =================
 Operation Factory is used to create operation objects on given string."""
 
@@ -25,9 +25,9 @@ class OperationFactory:
 
         Parameters:
             op_str(:obj:`str`): Name of the operation.
-            ctx(:obj:`dict`):a context dictionary containing information required
-                for initialisation of a certain concrete ``Operation`` object
-                Maps property name to arbitrarily typed data.
+            ctx(:obj:`dict`):a context dictionary containing information
+                required for initialisation of a certain concrete ``Operation``
+                object. Maps property name to arbitrarily typed data.
 
         Returns:
             Operation: Concrete operation object.
