@@ -21,6 +21,7 @@ class PwdApp(App):
             the instruction, which should be empty.
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         self.args = args
@@ -43,7 +44,7 @@ class PwdApp(App):
             ``deque``: Will contain the current working directory.
         """
         self.validate_args()
-        out.append(os.path.abspath(".") + "\n")
+        out.append(os.path.abspath("."))
         return out
 
     def validate_args(self):
