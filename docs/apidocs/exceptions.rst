@@ -30,3 +30,9 @@ exceptions
    :members:
    :undoc-members:
    :show-inheritance:
+
+
+.. automodule:: exceptions.syntaxerr
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -17,20 +17,3 @@ from .sort import SortApp
 from .unsafe import UnsafeApp
 from .app_factory import AppFactory
 
-__all__ = [
-    "App",
-    "LsApp",
-    "EchoApp",
-    "PwdApp",
-    "CdApp",
-    "CatApp",
-    "HeadApp",
-    "TailApp",
-    "GrepApp",
-    "CutApp",
-    "FindApp",
-    "UniqApp",
-    "SortApp",
-    "UnsafeApp",
-    "AppFactory",
-]
