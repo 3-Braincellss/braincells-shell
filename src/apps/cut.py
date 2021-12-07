@@ -22,6 +22,7 @@ class CutApp(App):
             of the instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -141,14 +142,8 @@ class CutApp(App):
                            f"Invalid option argument: {interval}") from None
 
         new_interval = []
-        try:
-            new_interval.append(self._get_boundary(start, False))
-        except ValueError:
-            raise RunError("cut", f"Invalid interval value: {start}") from None
-        try:
-            new_interval.append(self._get_boundary(end, True))
-        except ValueError:
-            raise RunError("cut", f"Invalid interval value: {end}") from None
+        new_interval.append(self._get_boundary(start, False))
+        new_interval.append(self._get_boundary(end, True))
         self._validate_interval(new_interval)
         return new_interval
 
@@ -178,7 +173,7 @@ class CutApp(App):
         digits = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
         for char in num:
             if char not in digits:
-                raise RunError("cut", "Invalid option argument {num}")
+                raise RunError("cut", f"Invalid option argument {num}")
         if num == "0":
             raise RunError("cut", "Cut intervals are 1 indexed.")
 
