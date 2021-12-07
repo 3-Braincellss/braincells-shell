@@ -16,4 +16,4 @@ class ShellSyntaxError(ShellError):
     """
     def __init__(self, message="Wrong Syntax"):
         super().__init__("", message)
-        self.message = f"Syntax Error: {message}"
+        self.message = f"Syntax Error:\n{message}"

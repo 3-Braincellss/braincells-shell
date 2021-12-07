@@ -57,15 +57,15 @@ class Shell:
                 cur_dir = prettify_path(os.getcwd())
                 print(f"{user_host} {cur_dir} {self.PREFIX}", end="")
                 text = input()
+                if text:
+                    try:
+                        out = self.execute(text)
+                    except ShellError as err:
+                        out = deque()
+                        out.append(err.message)
 
-                try:
-                    out = self.execute(text)
-                except ShellError as err:
-                    out = deque()
-                    out.append(err.message)
-
-                while len(out) > 0:
-                    print(out.popleft())
+                    while len(out) > 0:
+                        print(out.popleft())
 
     @staticmethod
     def execute(input_str):
@@ -84,17 +84,8 @@ class Shell:
         """
 
         out = deque()
-        try:
-            command = run_parser(input_str + " ")
-        except VisitError as err:
-            # A hacky way to go around the problem with lark
-            # Lark's Visit error hides all other exceptions in the context
-            # So to check for our defined exceptions we check the context
-            # of the visit error
-            if isinstance(err.__context__, ShellError):
-                raise err.__context__
-            raise err
 
+        command = run_parser(input_str + " ")
         if command:
             out = command.run(None, out)
 

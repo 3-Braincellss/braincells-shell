@@ -5,7 +5,9 @@ Module which handles parsing and transforming the parse tree"""
 import os
 from lark import Lark
 from lark.visitors import Transformer
+from lark.exceptions import UnexpectedInput, VisitError
 from operations import OperationFactory
+from exceptions import ShellSyntaxError, ShellError
 
 
 class ShellTransformer(Transformer):
@@ -237,5 +239,17 @@ def run_parser(text):
     with open(filename, encoding="utf-8") as grammar:
         lark_parser = Lark(grammar.read(), start="command")
 
-    tree = lark_parser.parse(text)
-    return ShellTransformer(visit_tokens=True).transform(tree)
+    try:
+        tree = lark_parser.parse(text)
+    except UnexpectedInput as err:
+        raise ShellSyntaxError(err.get_context(text))
+
+    try:
+        oper = ShellTransformer(visit_tokens=True).transform(tree)
+    except VisitError as err:
+        if isinstance(err.__context__, ShellError):
+            raise err.__context__
+        raise ShellSyntaxError("cannot transform")
+        
+        
+    return oper
