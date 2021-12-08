@@ -7,8 +7,10 @@ from collections import deque
 from prompt_toolkit import PromptSession
 from prompt_toolkit.styles import Style
 from prompt_toolkit.formatted_text import FormattedText
+from prompt_toolkit.lexers import PygmentsLexer
 
 from common.tools import prettify_path
+from pretty_colours import KeyWordLexer
 from exceptions import ShellError
 from shell import Shell
 from shellprompt.shellcompleter import ShellPathCompleter
@@ -20,9 +22,11 @@ class ShellSession(PromptSession):
         self.style = Style.from_dict({
             "user_host": "#ff006e",
             "path": "#06d6a0",
-            "arrow": "#118ab2"
+            "arrow": "#118ab2",
+            "pygments.keyword": "#ffc09f bold"
         })
-        super().__init__(style=self.style, completer=ShellPathCompleter())
+        self.lexer = PygmentsLexer(KeyWordLexer)
+        super().__init__(style=self.style, completer=ShellPathCompleter(), lexer=self.lexer)
 
     def run(self):
 
