@@ -21,6 +21,7 @@ class ShellTransformer(Transformer):
 
         Returns:
             Operation: Operation object to be executed
+
         """
 
         # Removes `None`
@@ -157,7 +158,7 @@ class ShellTransformer(Transformer):
 
     def quoted(self, args):
         """Passes on the string that was inside any type of quote higher up
-            the parse tree
+        the parse tree
 
         Parameters:
             args (list): A list of a single string of the text inside the
@@ -232,6 +233,11 @@ def run_parser(text):
 
     Returns:
         Operation: Concrete operation object.
+
+    Raises:
+        ShellSyntaxError: Raises the syntax error if either
+            parsing or transforming fails.
+        
     """
 
     dirname = os.path.dirname(__file__)
