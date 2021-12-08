@@ -18,7 +18,6 @@ class Operation(metaclass=ABCMeta):
     def __init__(self, ctx):
         self.ctx = ctx
 
-
     @abstractmethod
     def run(self, inp, out):
         """Runs the operation

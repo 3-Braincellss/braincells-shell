@@ -58,5 +58,3 @@ class Call(Operation):
             self.app.validate_args()
             self.app.run(new_inp, out)
         return out
-
-        

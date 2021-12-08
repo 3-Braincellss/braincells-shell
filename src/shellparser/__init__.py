@@ -32,4 +32,3 @@ grammar.lark
     WHITESPACE           : /[\\s]+/
 """
 from .parser import run_parser
-

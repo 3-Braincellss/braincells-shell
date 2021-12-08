@@ -17,5 +17,3 @@ from .sort import SortApp
 from .clear import ClearApp
 from .unsafe import UnsafeApp
 from .app_factory import AppFactory
-
-

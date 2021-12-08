@@ -19,4 +19,3 @@ if __name__ == "__main__":
     else:
         session = ShellSession()
         session.run()
-    

@@ -21,7 +21,6 @@ class ContextError(ShellError):
 
     These errors **WILL** be ignored with **unsafe** apps.
     """
-
     def __init__(self, app_str, message="GO AWAY >=["):
         super().__init__(app_str, message)
         self.message = f"Context error in {app_str}: " + message

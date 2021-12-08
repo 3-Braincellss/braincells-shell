@@ -256,6 +256,5 @@ def run_parser(text):
         if isinstance(err.__context__, ShellError):
             raise err.__context__
         raise ShellSyntaxError("cannot transform")
-        
-        
+
     return oper

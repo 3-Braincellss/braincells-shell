@@ -10,4 +10,3 @@ from .contexterr import ContextError
 from .appnotfounderr import AppNotFoundError
 from .runerr import RunError
 from .syntaxerr import ShellSyntaxError
-
