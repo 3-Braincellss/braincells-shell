@@ -23,7 +23,7 @@ class ShellSession(PromptSession):
             "user_host": "#ff006e",
             "path": "#06d6a0",
             "arrow": "#118ab2",
-            "pygments.keyword": "#f96900",
+            "pygments.keyword": "#118ab2",
         })
         self.lexer = PygmentsLexer(KeyWordLexer)
         super().__init__(style=self.style, completer=ShellPathCompleter(), lexer=self.lexer)
