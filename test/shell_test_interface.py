@@ -15,7 +15,7 @@ class ShellTestCase(unittest.TestCase):
             "file-2": "Lakad Matataaag",
             "file-3": "",
             "file-4": "depression",
-            "file-5": "what is this",
+            "file-5": "AAA\nBBB\nDDD\nI don't know any more letters",
         },
         "dir_nested": {
             "dir_nested.txt": "A file in the nested directory",
