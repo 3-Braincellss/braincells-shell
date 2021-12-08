@@ -20,10 +20,10 @@ class ShellSession(PromptSession):
     def __init__(self):
         self.shell = Shell()
         self.style = Style.from_dict({
-            "user_host": "#ff006e",
-            "path": "#06d6a0",
-            "arrow": "#118ab2",
-            "pygments.keyword": "#a5f3fc",
+            "user_host": "#A78BFA",
+            "path": "#4ADE80",
+            "arrow": "#60A5FA",
+            "pygments.keyword": "#38BDF8",
         })
         self.lexer = PygmentsLexer(KeyWordLexer)
         super().__init__(style=self.style, completer=ShellPathCompleter(), lexer=self.lexer)
