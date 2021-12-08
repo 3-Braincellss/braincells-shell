@@ -78,12 +78,10 @@ class FindApp(App):
         if not self.options:
             raise ContextError(
                 "find",
-                "No pattern supplied. usage: find \
-            [PATH] -name PATTERN ",
+                "No pattern supplied. usage: find [PATH] -name PATTERN ",
             )
         if len(self.args) > 1:
             raise ContextError(
                 "find",
-                "Too many arguments supplied usage: \
-            find [PATH] -name PATTERN",
+                "Too many arguments supplied usage: find [PATH] -name PATTERN",
             )

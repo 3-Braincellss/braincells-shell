@@ -11,6 +11,7 @@ from prompt_toolkit.formatted_text import FormattedText
 from common.tools import prettify_path
 from exceptions import ShellError
 from shell import Shell
+from shellprompt.shellcompleter import ShellPathCompleter
 
 
 class ShellSession(PromptSession):
@@ -21,7 +22,7 @@ class ShellSession(PromptSession):
             "path": "#06d6a0",
             "arrow": "#118ab2"
         })
-        super().__init__(style=self.style)
+        super().__init__(style=self.style, completer=ShellPathCompleter())
 
     def run(self):
 
