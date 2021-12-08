@@ -29,5 +29,3 @@ class Sequence(Operation):
         out = self.op1.run(None, out)
         return self.op2.run(None, out)
 
-    def validate_context(self, ctx):
-        pass

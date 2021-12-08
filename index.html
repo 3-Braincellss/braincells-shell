@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nosetests.xml</title>
+    <style type="text/css">
+        body {
+    background-color: white;
+    padding-bottom: 20em;
+    margin: 0;
+    min-height: 15cm;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+    font-family: sans-serif;
+}
+
+h1 {
+    background-color: #007acc;
+    color: white;
+    padding: 3mm;
+    margin-top: 0;
+    margin-bottom: 1mm;
+}
+
+.footer {
+    font-style: italic;
+    font-size: small;
+    text-align: right;
+    padding: 1em;
+}
+
+.testsuite {
+    padding-bottom: 2em;
+    margin-left: 1em;
+}
+
+.proplist {
+    width: 100%;
+    margin-bottom: 2em;
+    border-collapse: collapse;
+    border: 1px solid grey;
+}
+
+.proplist th {
+    background-color: silver;
+    width: 5em;
+    padding: 2px;
+    padding-right: 1em;
+    text-align: left;
+}
+
+.proplist td {
+    padding: 2px;
+}
+
+.index-table {
+    width: 90%;
+    margin-left: 1em;
+}
+
+.index-table td {
+    vertical-align: top;
+    width: 50%;
+}
+
+.failure-index {
+
+}
+
+.toc {
+    margin-bottom: 2em;
+    font-family: monospace;
+}
+
+.stdio, pre {
+    min-height: 1em;
+    background-color: #1e1e1e;
+    color: silver;
+    padding: 0.5em;
+}
+.tdpre {
+    background-color: #1e1e1e;
+}
+
+.test {
+    margin-left: 0.5cm;
+}
+
+.outcome {
+    border-left: 1em;
+    padding: 2px;
+}
+
+.outcome-failed {
+    border-left: 1em solid lightcoral;
+}
+
+.stats-table {
+}
+
+.stats-table td {
+    min-width: 4em;
+    text-align: right;
+}
+
+.stats-table .failed {
+    background-color: lightcoral;
+}
+
+.stats-table .passed {
+    background-color: lightgreen;
+}
+
+.matrix-table {
+    table-layout: fixed;
+    border-spacing: 0;
+    width: available;
+    margin-left: 1em;
+}
+
+.matrix-table td {
+    vertical-align: center;
+}
+
+.matrix-table td:last-child {
+    width: 0;
+}
+
+.matrix-axis-name {
+    white-space: nowrap;
+    padding-left: 0.5em;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.matrix-axis-line {
+    border-left: 1px solid black;
+    width: 0.5em;
+}
+
+.matrix-classname {
+    text-align: left;
+    width: 100%;
+    border-top: 2px solid grey;
+    border-bottom: 1px solid silver;
+}
+
+.matrix-casename {
+    text-align: left;
+    font-weight: normal;
+    font-style: italic;
+    padding-left: 1em;
+    border-bottom: 1px solid silver;
+}
+
+.matrix-result {
+    display: block;
+    width: 1em;
+    text-align: center;
+    padding: 1mm;
+    margin: 0;
+}
+
+.matrix-result-combined {
+    white-space: nowrap;
+    padding-right: 0.2em;
+    text-align: right;
+}
+
+.matrix-result-failed {
+    background-color: lightcoral;
+}
+
+.matrix-result-passed {
+    background-color: lightgreen;
+}
+
+.matrix-result-skipped {
+    background-color: lightyellow;
+}
+    </style>
+</head>
+<body>
+    
+<h1>
+    Test Report : nosetests.xml
+</h1>
+<a id="toc"></a>
+<table class="index-table">
+    <tr>
+        <td>
+            <ul class="toc">
+            
+                
+                <li>nose.failure.Failure
+                <ul>
+                    
+                    <li><a href="#48b34f2b-da4c-428a-aece-bb8c8c0c5f1e">runTest</a></li>
+                    
+                    <li><a href="#68d850de-e2f1-4d3c-b952-06ab9bb344f0">runTest</a></li>
+                    
+                    <li><a href="#ecf8cff6-a09b-4688-a8a9-fb92f4f61552">runTest</a></li>
+                    
+                    <li><a href="#d7e3a614-9662-4751-af01-c96a4ea43903">runTest</a></li>
+                    
+                    <li><a href="#91954e7b-ced5-4b07-9db1-1d3ec2c0791d">runTest</a></li>
+                    
+                    <li><a href="#6df72402-cb0e-4d41-8027-580cbe13d313">runTest</a></li>
+                    
+                    <li><a href="#2fcb4358-a5a5-486b-9a5e-524ee77a9809">runTest</a></li>
+                    
+                    <li><a href="#65599764-ba24-4911-b139-2ad6edf858e5">runTest</a></li>
+                    
+                    <li><a href="#aef855e8-3275-4c59-80b9-805fbf193c17">runTest</a></li>
+                    
+                    <li><a href="#57117d2a-c2ad-4964-9ea4-bdcc65d5b4c1">runTest</a></li>
+                    
+                    <li><a href="#a6721cf0-7b68-4ad9-a52e-368fcaff37dc">runTest</a></li>
+                    
+                    <li><a href="#fc80beca-09aa-44b5-994a-2e6ade2ae221">runTest</a></li>
+                    
+                    <li><a href="#07df3831-14e2-46ed-aae7-486d845dd064">runTest</a></li>
+                    
+                    <li><a href="#545228a8-7d47-4325-b509-e1d54c394c9d">runTest</a></li>
+                    
+                </ul>
+                </li>
+                
+                <li>test_shell.TestShell
+                <ul>
+                    
+                    <li><a href="#9069e8de-8d76-4d2e-a86e-9abef59b56e4">test_execute_simple</a></li>
+                    
+                    <li><a href="#85dc7821-764b-4565-929b-6b42db037258">test_run_app_not_found</a></li>
+                    
+                    <li><a href="#bd775a81-0496-4ca1-a50e-cb58677aa853">test_run_app_run_error</a></li>
+                    
+                    <li><a href="#77b7b68c-08e4-4f07-b423-ea7396e13b8b">test_run_context</a></li>
+                    
+                    <li><a href="#f31eee47-8ebf-4443-b00b-fc258c2ce836">test_run_syntax_error</a></li>
+                    
+                </ul>
+                </li>
+                
+            
+            </ul>
+        </td>
+        <td class="failure-index">
+            <ul class="toc">
+            
+                
+                    
+                    
+                    <li><a href="#48b34f2b-da4c-428a-aece-bb8c8c0c5f1e">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#68d850de-e2f1-4d3c-b952-06ab9bb344f0">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#ecf8cff6-a09b-4688-a8a9-fb92f4f61552">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#d7e3a614-9662-4751-af01-c96a4ea43903">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#91954e7b-ced5-4b07-9db1-1d3ec2c0791d">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#6df72402-cb0e-4d41-8027-580cbe13d313">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#2fcb4358-a5a5-486b-9a5e-524ee77a9809">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#65599764-ba24-4911-b139-2ad6edf858e5">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#aef855e8-3275-4c59-80b9-805fbf193c17">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#57117d2a-c2ad-4964-9ea4-bdcc65d5b4c1">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#a6721cf0-7b68-4ad9-a52e-368fcaff37dc">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#fc80beca-09aa-44b5-994a-2e6ade2ae221">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#07df3831-14e2-46ed-aae7-486d845dd064">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                    
+                    <li><a href="#545228a8-7d47-4325-b509-e1d54c394c9d">[F] nose.failure.Failure : runTest</a></li>
+                    
+                    
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
+            
+            </ul>
+        </td>
+    </tr>
+</table>
+
+
+    <div class="testsuite">
+        <h2>Test Suite: nosetests</h2>
+        <a id="da0fd227-8f7e-4d50-b84b-d3b35c070f9d"></a>
+        
+        
+        <h3>Results</h3>
+        <table class="proplist">
+            <tr>
+                <th>Duration</th><td>0.0 sec</td>
+            </tr>
+            <tr>
+                <th>Tests</th><td>19</td>
+            </tr>
+            <tr>
+                <th>Failures</th><td>14</td>
+            </tr>
+        </table>
+
+        <div class="testclasses">
+            <h3>Tests</h3>
+            
+            <div class="testclass">
+                <h4>nose.failure.Failure</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="48b34f2b-da4c-428a-aece-bb8c8c0c5f1e"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_app_factory.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="68d850de-e2f1-4d3c-b952-06ab9bb344f0"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_cat.py&#34;, line 2, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="ecf8cff6-a09b-4688-a8a9-fb92f4f61552"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_cd.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="d7e3a614-9662-4751-af01-c96a4ea43903"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_cut.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="91954e7b-ced5-4b07-9db1-1d3ec2c0791d"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_echo.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="6df72402-cb0e-4d41-8027-580cbe13d313"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_find.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="2fcb4358-a5a5-486b-9a5e-524ee77a9809"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_grep.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="65599764-ba24-4911-b139-2ad6edf858e5"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_head.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="aef855e8-3275-4c59-80b9-805fbf193c17"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_ls.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="57117d2a-c2ad-4964-9ea4-bdcc65d5b4c1"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_pwd.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="a6721cf0-7b68-4ad9-a52e-368fcaff37dc"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_sort.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="fc80beca-09aa-44b5-994a-2e6ade2ae221"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_tail.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="07df3831-14e2-46ed-aae7-486d845dd064"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_uniq.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-failed">
+                        <a id="545228a8-7d47-4325-b509-e1d54c394c9d"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>runTest</b></td></tr>
+                            <tr><th>Outcome:</th><td>Failed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>No module named &#39;hypothesis&#39;</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>Traceback (most recent call last):
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 60, in testPartExecutor
+    yield
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 676, in run
+    self._callTestMethod(testMethod)
+  File &#34;/usr/lib64/python3.8/unittest/case.py&#34;, line 633, in _callTestMethod
+    method()
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/failure.py&#34;, line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/loader.py&#34;, line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File &#34;/home/mow/.local/lib/python3.8/site-packages/nose/importer.py&#34;, line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 234, in load_module
+    return load_source(name, filename, file)
+  File &#34;/usr/lib64/python3.8/imp.py&#34;, line 171, in load_source
+    module = _load(spec)
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 702, in _load
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 671, in _load_unlocked
+  File &#34;&lt;frozen importlib._bootstrap_external&gt;&#34;, line 843, in exec_module
+  File &#34;&lt;frozen importlib._bootstrap&gt;&#34;, line 219, in _call_with_frames_removed
+  File &#34;/home/mow/Documents/code/comp0010-shell-python-p14/test/test_unsafe.py&#34;, line 1, in &lt;module&gt;
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named &#39;hypothesis&#39;
+</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div class="testclass">
+                <h4>test_shell.TestShell</h4>
+                <div class="testcases">
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="9069e8de-8d76-4d2e-a86e-9abef59b56e4"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>test_execute_simple</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="85dc7821-764b-4565-929b-6b42db037258"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>test_run_app_not_found</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="bd775a81-0496-4ca1-a50e-cb58677aa853"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>test_run_app_run_error</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="77b7b68c-08e4-4f07-b423-ea7396e13b8b"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>test_run_context</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                    <div class="test outcome outcome-passed">
+                        <a id="f31eee47-8ebf-4443-b00b-fc258c2ce836"></a>
+                        <table class="proplist">
+                            <tr><th>Test case:</th><td><b>test_run_syntax_error</b></td></tr>
+                            <tr><th>Outcome:</th><td>Passed</td></tr>
+                            <tr><th>Duration:</th><td>0.0 sec</td></tr>
+                        
+                            <tr><th>Failed</th><td>None</td></tr>
+                        
+                        
+                        </table>
+
+                        
+                        <pre>None</pre>
+                        
+                        
+
+                        
+                        
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+
+
+
+<p class="footer">
+    Generated by junit2html
+</p>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite name="nosetests" tests="19" errors="14" failures="0" skip="0"><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_app_factory.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_cat.py", line 2, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_cd.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_cut.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_echo.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_find.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_grep.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_head.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_ls.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_pwd.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="test_shell.TestShell" name="test_execute_simple" time="0.037"></testcase><testcase classname="test_shell.TestShell" name="test_run_app_not_found" time="0.021"></testcase><testcase classname="test_shell.TestShell" name="test_run_app_run_error" time="0.023"></testcase><testcase classname="test_shell.TestShell" name="test_run_context" time="0.022"></testcase><testcase classname="test_shell.TestShell" name="test_run_syntax_error" time="0.021"></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_sort.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_tail.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_uniq.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.ModuleNotFoundError" message="No module named 'hypothesis'"><![CDATA[Traceback (most recent call last):
+  File "/usr/lib64/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/usr/lib64/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/usr/lib64/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/loader.py", line 417, in loadTestsFromName
+    module = self.importer.importFromPath(
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/home/mow/.local/lib/python3.8/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/usr/lib64/python3.8/imp.py", line 234, in load_module
+    return load_source(name, filename, file)
+  File "/usr/lib64/python3.8/imp.py", line 171, in load_source
+    module = _load(spec)
+  File "<frozen importlib._bootstrap>", line 702, in _load
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 843, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/mow/Documents/code/comp0010-shell-python-p14/test/test_unsafe.py", line 1, in <module>
+    from hypothesis import given, strategies as st
+ModuleNotFoundError: No module named 'hypothesis'
+]]></error></testcase></testsuite>

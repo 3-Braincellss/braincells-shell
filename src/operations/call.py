@@ -59,5 +59,4 @@ class Call(Operation):
             self.app.run(new_inp, out)
         return out
 
-    def validate_context(self, ctx):
-        pass
+        
