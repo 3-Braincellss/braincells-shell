@@ -2,6 +2,7 @@ import sys
 
 from shell import Shell
 from shellprompt.shellsession import ShellSession
+from pretty_colours import KeyWordLexer
 
 if __name__ == "__main__":
     ARGS_NUM = len(sys.argv) - 1
