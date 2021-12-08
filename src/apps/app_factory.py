@@ -18,6 +18,7 @@ from apps import (
     UniqApp,
     UnsafeApp,
     FindApp,
+    ClearApp,
 )
 from exceptions import AppNotFoundError
 from common.tools import simple_globbing
@@ -39,6 +40,7 @@ class AppFactory:
         "find": FindApp,
         "uniq": UniqApp,
         "sort": SortApp,
+        "clear": ClearApp,
     }
     """(:obj:`dict`): A dictionary that maps app names to their classes"""
 

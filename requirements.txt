@@ -6,3 +6,4 @@ lark
 pdoc3
 pylint
 hypothesis
+prompt_toolkit

@@ -14,6 +14,8 @@ from .cut import CutApp
 from .find import FindApp
 from .uniq import UniqApp
 from .sort import SortApp
+from .clear import ClearApp
 from .unsafe import UnsafeApp
 from .app_factory import AppFactory
+
 
