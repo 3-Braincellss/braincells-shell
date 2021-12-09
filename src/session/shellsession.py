@@ -1,6 +1,8 @@
 """
-This module contains the shell prompt session.
+Shell Session
+=============
 
+This module contains the shell prompt session.
 """
 
 import os
@@ -27,10 +29,7 @@ __all__ = [
 
 
 class ShellSession(PromptSession):
-    """This class is responsible for managing the prompt session.
-
-
-    """
+    """This class is responsible for managing the prompt session."""
     def __init__(self):
         self.style = Style.from_dict({
             "user_host": "#A78BFA",

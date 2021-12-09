@@ -1,4 +1,7 @@
 """
+Run
+===
+
 This module runs the application.
 
 1) If ``-c`` flag was provided it will execute the shell
