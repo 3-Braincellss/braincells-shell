@@ -1,7 +1,9 @@
 """
-parser
+Parser
 ======
-Module which handles parsing and transforming the parse tree"""
+
+Module which handles parsing and transforming the parse tree
+"""
 import os
 from lark import Lark
 from lark.visitors import Transformer
@@ -206,9 +208,9 @@ class ShellTransformer(Transformer):
         """
 
         # Putting this at top level causes circular import
-        from shell import Shell  # pylint: disable=import-outside-toplevel
+        from shell import execute  # pylint: disable=import-outside-toplevel
 
-        string = " ".join(Shell.execute(args[0])).strip()
+        string = " ".join(execute(args[0]).split("\n"))
         return string
 
     def WHITESPACE(self, tok):  # pylint: disable=invalid-name
