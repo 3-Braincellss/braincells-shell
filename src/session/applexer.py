@@ -12,7 +12,7 @@ from apps import AppFactory
 
 class AppLexer(RegexLexer):
 
-    apps = "|".join(AppFactory().apps.keys())
+    apps = "|".join(map(lambda x: f"^{x}( )*$", AppFactory().apps.keys()))
 
     tokens = {
         "root": [
