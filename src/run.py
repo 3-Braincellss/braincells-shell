@@ -1,8 +1,17 @@
+"""
+This module runs the application.
+
+1) If ``-c`` flag was provided it will execute the shell
+   directly and print out the output.
+
+2) If run normally it will start an interactive shell prompt session.
+
+"""
+
 import sys
 
-from shell import Shell
-from shellprompt.shellsession import ShellSession
-from pretty_colours import KeyWordLexer
+from shell import execute
+from session import ShellSession
 
 if __name__ == "__main__":
     ARGS_NUM = len(sys.argv) - 1
@@ -13,10 +22,8 @@ if __name__ == "__main__":
         if sys.argv[1] != "-c":
             raise ValueError(f"unexpected command line argument {sys.argv[1]}")
 
-        sh = Shell()
-        out = sh.execute(sys.argv[2])
-        while len(out) > 0:
-            print(out.popleft())
+        out = execute(sys.argv[2])
+        print(out)
     else:
         session = ShellSession()
         session.run()

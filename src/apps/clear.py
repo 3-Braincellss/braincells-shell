@@ -13,7 +13,6 @@ Usage in shell: ``clear``
 import os
 
 from apps import App
-
 from exceptions import ContextError
 
 
@@ -27,7 +26,7 @@ class ClearApp(App):
     def run(self, inp, out):
         """ Clears the terminal"""
 
-        command = 'cls' if os.name in ['nt', 'dos'] else 'clear'
+        command = "cls" if os.name in ["nt", "dos"] else "clear"
 
         os.system(command)
 

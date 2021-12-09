@@ -1,3 +1,8 @@
+"""
+This module contains the shell prompt session.
+
+"""
+
 import os
 import getpass
 import socket
@@ -5,30 +10,44 @@ import socket
 from collections import deque
 
 from prompt_toolkit import PromptSession
+from prompt_toolkit.shortcuts import CompleteStyle
 from prompt_toolkit.styles import Style
 from prompt_toolkit.formatted_text import FormattedText
 from prompt_toolkit.lexers import PygmentsLexer
 
 from common.tools import prettify_path
-from pretty_colours import KeyWordLexer
+from session import AppLexer
 from exceptions import ShellError
-from shell import Shell
-from shellprompt.shellcompleter import ShellPathCompleter
+from shell import execute
+from session import ShellPathCompleter
+
+__all__ = [
+    'ShellSession',
+]
 
 
 class ShellSession(PromptSession):
+    """This class is responsible for managing the prompt session.
+
+
+    """
     def __init__(self):
-        self.shell = Shell()
         self.style = Style.from_dict({
             "user_host": "#A78BFA",
             "path": "#4ADE80",
             "arrow": "#60A5FA",
-            "pygments.keyword": "#38BDF8",
+            "pygments.keyword": "#38BDF8 bold",
         })
-        self.lexer = PygmentsLexer(KeyWordLexer)
-        super().__init__(style=self.style, completer=ShellPathCompleter(), lexer=self.lexer)
+        self.lexer = PygmentsLexer(AppLexer)
+        super().__init__(
+            style=self.style,
+            completer=ShellPathCompleter(),
+            lexer=self.lexer,
+            complete_style=CompleteStyle.MULTI_COLUMN,
+        )
 
     def run(self):
+        """Runs the prompt session."""
 
         while True:
 
@@ -40,15 +59,19 @@ class ShellSession(PromptSession):
 
             if text:
                 try:
-                    out = self.shell.execute(text)
+                    out = execute(text)
                 except ShellError as err:
-                    out = deque()
-                    out.append(err.message)
-
-                while len(out) > 0:
-                    print(out.popleft())
+                    out = err.message
+                if len(out) > 0:
+                    print(out)
 
     def _prompt_message(self):
+        """ Creates a string that will be printed with
+        every prompt.
+
+        Returns:
+            FormattedText: prompt text
+        """
         username = getpass.getuser()
         hostname = socket.gethostname()
         user_host = f"[{username}@{hostname}]"
