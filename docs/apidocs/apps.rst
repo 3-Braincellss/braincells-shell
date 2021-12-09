@@ -32,6 +32,12 @@ apps
    :show-inheritance:
 
 
+.. automodule:: apps.clear
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
 .. automodule:: apps.cut
    :members:
    :undoc-members:

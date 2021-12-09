@@ -1,3 +1,9 @@
+"""
+Shell Path Completer
+====================
+
+"""
+
 from prompt_toolkit.completion import PathCompleter
 from prompt_toolkit.document import Document
 

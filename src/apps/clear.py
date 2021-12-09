@@ -2,12 +2,9 @@
 clear
 =====
 
-
-Module representing the clear application
+Module representing the clear application.
 
 Usage in shell: ``clear``
-
-
 """
 
 import os
@@ -18,6 +15,7 @@ from exceptions import ContextError
 
 class ClearApp(App):
     """ A class representing the clear application
+
     Args:
         args (:obj:`list`): Contains all the arguments and options of
             the instruction.

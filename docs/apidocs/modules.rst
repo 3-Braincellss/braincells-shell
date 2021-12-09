@@ -8,5 +8,7 @@ src
    common
    exceptions
    operations
+   run
+   session
    shell
    shellparser

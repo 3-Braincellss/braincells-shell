@@ -1,6 +1,13 @@
 Welcome to Comp0010 Shell Python P14's documentation!
 =====================================================
 
+.. note::
+   This shell was designed and developed by team-14-python for the
+   COMP0010-Software engineering coursework, entirely for learning
+   purposes. It is not intended to be practically usable.
+
+.. image:: images/demo.gif   
+
 .. toctree::
    :maxdepth: 1
    :caption: Getting Started
@@ -43,12 +50,16 @@ All development related information that will make it easier to understand our c
 .. toctree::
    :maxdepth: 1
    :caption: Source Code
-      
+
+   apidocs/shell
+   apidocs/run
+   apidocs/session
    apidocs/apps
    apidocs/common
    apidocs/exceptions
    apidocs/operations
-   apidocs/shell
    apidocs/shellparser
+
+
 
 
