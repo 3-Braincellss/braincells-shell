@@ -36,3 +36,4 @@ class TestShell(ShellTestCase):
     def test_run_syntax_error(self):
         with self.assertRaises(ShellSyntaxError):
             execute(";;;")
+

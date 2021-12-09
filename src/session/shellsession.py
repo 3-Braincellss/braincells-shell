@@ -56,13 +56,14 @@ class ShellSession(PromptSession):
             except KeyboardInterrupt:
                 exit()
 
-            if text:
-                try:
-                    out = execute(text)
-                except ShellError as err:
-                    out = err.message
-                if len(out) > 0:
-                    print(out)
+
+            try:
+                out = execute(text)
+            except ShellError as err:
+                out = err.message
+                
+            if len(out) > 0:
+                print(out)
 
     def _prompt_message(self):
         """ Creates a string that will be printed with
