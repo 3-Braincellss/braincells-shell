@@ -12,10 +12,8 @@ from exceptions import (
 
 class TestShell(ShellTestCase):
     def test_execute_simple(self):
-
-        command_text = "echo hello"
-        out = execute(command_text)
-
+        text = "echo hello"
+        out = execute(text)
         self.assertEqual(out, "hello")
 
     def test_run_app_not_found(self):
@@ -37,3 +35,7 @@ class TestShell(ShellTestCase):
         with self.assertRaises(ShellSyntaxError):
             execute(";;;")
 
+    def test_execute_empty(self):
+        text = "    "
+        out = execute(text)
+        self.assertEqual(out, "")
