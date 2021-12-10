@@ -30,7 +30,10 @@ class AppLexer(RegexLexer):
         out = []
         for root, dirs, files in os.walk('.'):
             for dir in dirs:
-                out.append(os.path.join(root, dir)[2:])
+                path_str = os.path.join(root, dir)[2:]
+                out.append(path_str)
+                if path_str[-1] != "/":
+                    out.append(path_str + "/")
             for file in files:
                 out.append(os.path.join(root, file)[2:])
         regex = "|".join(
