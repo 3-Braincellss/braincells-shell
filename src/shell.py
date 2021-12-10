@@ -22,7 +22,7 @@ def execute(input_str):
     Returns:
         (:obj:`str`): output as a string
     """
-    
+
     out = deque()
     out_str = ""
     if len(input_str.strip()) != 0:
