@@ -6,6 +6,7 @@ Lexer that detects our defined apps """
 
 from pygments.lexer import RegexLexer
 from pygments.token import Keyword, Name, Text
+from prompt_toolkit.lexers import PygmentsLexer
 import os
 
 from apps import AppFactory
@@ -15,12 +16,11 @@ class AppLexer(RegexLexer):
 
     apps = "|".join(
         map(lambda x: f"{x}(?![^ ;\|><])", AppFactory().apps.keys()))
-    valid_paths = "run.py"
 
     tokens = {
         "root": [
             (f"{apps}", Keyword.Reserved),
-            # (f"{valid_paths}", Name.Namespace),
+            ("run.py", Name.Namespace),
             (f"(^ )+", Text)
         ]
     }
@@ -33,5 +33,10 @@ class AppLexer(RegexLexer):
                 out.append(os.path.join(root, dir)[2:])
             for file in files:
                 out.append(os.path.join(root, file)[2:])
-        cls.valid_paths = "|".join(
-            map(lambda x: f"^{x}(( )*| +.*)$", out))
+        regex = "|".join(
+            map(lambda x: f"{x}(?![^ ])", out))
+        cls.tokens["root"][1] = (f"{regex}", Name.Namespace)
+
+
+def get_lexer():
+    return PygmentsLexer(AppLexer)

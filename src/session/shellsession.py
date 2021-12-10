@@ -15,13 +15,14 @@ from prompt_toolkit import PromptSession
 from prompt_toolkit.shortcuts import CompleteStyle
 from prompt_toolkit.styles import Style
 from prompt_toolkit.formatted_text import FormattedText
-from prompt_toolkit.lexers import PygmentsLexer
+from prompt_toolkit.lexers import PygmentsLexer, DynamicLexer
 
 from common.tools import prettify_path
-from session import AppLexer
+import session
 from exceptions import ShellError
 from shell import execute
 from session import ShellPathCompleter
+import inspect
 
 __all__ = [
     'ShellSession',
@@ -30,26 +31,30 @@ __all__ = [
 
 class ShellSession(PromptSession):
     """This class is responsible for managing the prompt session."""
+
     def __init__(self):
         self.style = Style.from_dict({
             "user_host": "#A78BFA",
             "path": "#4ADE80",
             "arrow": "#60A5FA",
-            "pygments.keyword": "#38BDF8 bold",
+            "pygments.keyword.reserved": "#38BDF8 bold",
+            "pygments.text": "#FFFFFF",
+            "pygments.name.namespace": "#FFFFFF underline",
         })
-        self.lexer = PygmentsLexer(AppLexer)
+        self.lexer = DynamicLexer(session.get_lexer)
         super().__init__(
             style=self.style,
             completer=ShellPathCompleter(),
             lexer=self.lexer,
             complete_style=CompleteStyle.MULTI_COLUMN,
         )
+        # print(inspect.getmembers(super()))
 
     def run(self):
         """Runs the prompt session."""
 
         while True:
-
+            session.AppLexer.update_dirs()
             try:
 
                 text = self.prompt(self._prompt_message())
