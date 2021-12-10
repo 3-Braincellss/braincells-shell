@@ -56,12 +56,11 @@ class ShellSession(PromptSession):
             except KeyboardInterrupt:
                 exit()
 
-
             try:
                 out = execute(text)
             except ShellError as err:
                 out = err.message
-                
+
             if len(out) > 0:
                 print(out)
 

@@ -57,7 +57,7 @@ class TestCut(unittest.TestCase):
     def test_cut_individual_interval(self, x):
         string_intervals = [str(val) for val in x]
         lines = read_lines_from_file(TEST_TEXT_PATH, "cut_test")
-        expected = self.my_test_cut(lines, set(x))
+        expected = self.cut_expected(lines, set(x))
         args = ["-b", f"{','.join(string_intervals)}", TEST_TEXT_PATH]
         out = []
         CutApp(args).run(None, out)
@@ -133,7 +133,7 @@ class TestCut(unittest.TestCase):
             CutApp(args).validate_args()
 
     @staticmethod
-    def my_test_cut(lines, intervals):
+    def cut_expected(lines, intervals):
         out = []
         for line in lines:
             str = ""

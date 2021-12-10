@@ -2,25 +2,9 @@ import unittest
 
 from collections import deque
 
-from apps import App
+from dummies import DummyApp
 from shell_test_interface import ShellTestCase
 from operations import Call
-
-
-class DummyApp(App):
-    """DummyApp class made to make Call
-    independent of the App class
-    """
-    def __init__(self):
-        pass
-
-    def run(self, inp, out):
-        if inp:
-            out.extend(inp)
-        return out
-
-    def validate_args(self):
-        return
 
 
 class TestCall(ShellTestCase):

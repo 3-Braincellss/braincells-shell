@@ -22,12 +22,12 @@ def execute(input_str):
     Returns:
         (:obj:`str`): output as a string
     """
-    
+
     out = deque()
     out_str = ""
     if len(input_str.strip()) != 0:
         command = run_parser(input_str)
-        command.run(None, out)
+        out = command.run(None, out)
         out_str = "\n".join(out)
 
     return out_str
