@@ -46,7 +46,7 @@ class ShellSession(PromptSession):
             style=self.style,
             completer=ShellPathCompleter(),
             lexer=self.lexer,
-            complete_style=CompleteStyle.MULTI_COLUMN,
+            complete_style=CompleteStyle.READLINE_LIKE,
         )
         # print(inspect.getmembers(super()))
 
