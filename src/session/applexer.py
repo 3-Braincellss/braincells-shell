@@ -15,7 +15,7 @@ from apps import AppFactory
 class AppLexer(RegexLexer):
 
     apps = "|".join(
-        map(lambda x: f"{x}(?![^ ;\|><])", AppFactory().apps.keys()))
+        map(lambda x: f"\\b{x}(?![^ \|;><])", AppFactory().apps.keys()))
 
     tokens = {
         "root": [
