@@ -10,7 +10,7 @@ from shell_test_interface import ShellTestCase
 
 class TestCat(ShellTestCase):
 
-    TEST_PATH = "dir_files/file-3"
+    TEST_PATH = "./dir_files/file-3"
 
     @staticmethod
     def filter_ws(arr):
