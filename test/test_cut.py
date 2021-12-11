@@ -7,7 +7,7 @@ from exceptions import RunError, ContextError
 from shell_test_interface import ShellTestCase
 
 IPSUM_MAX = 592
-TEST_TEXT_PATH = "dir_files/file-5"
+TEST_TEXT_PATH = "./dir_files/file-5"
 
 
 class TestCut(ShellTestCase):
@@ -50,7 +50,7 @@ class TestCut(ShellTestCase):
     def test_cut_individual_interval(self, x):
         string_intervals = [str(val) for val in x]
         lines = read_lines_from_file(TEST_TEXT_PATH, "cut_test")
-        expected = self.my_test_cut(lines, set(x))
+        expected = self.my_cut(lines, set(x))
         args = ["-b", f"{','.join(string_intervals)}", TEST_TEXT_PATH]
         out = []
         CutApp(args).run(None, out)
@@ -126,7 +126,7 @@ class TestCut(ShellTestCase):
             CutApp(args).validate_args()
 
     @staticmethod
-    def my_test_cut(lines, intervals):
+    def my_cut(lines, intervals):
         out = []
         for line in lines:
             str = ""
