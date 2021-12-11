@@ -48,13 +48,11 @@ class ShellSession(PromptSession):
             lexer=self.lexer,
             complete_style=CompleteStyle.READLINE_LIKE,
         )
-        # print(inspect.getmembers(super()))
 
     def run(self):
         """Runs the prompt session."""
 
         while True:
-            session.AppLexer.update_dirs()
             try:
 
                 text = self.prompt(self._prompt_message())
