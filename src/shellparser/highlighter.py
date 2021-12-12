@@ -100,10 +100,16 @@ class HighlightTransformer(Transformer):
         return ("class:quotes", args[0])
 
     def double_quoted(self, args):
-        return f"\"{args[0]}\""
+        if args:
+            return f"\"{args[0]}\""
+        else:
+            return "\"\""
 
     def single_quoted(self, args):
-        return f"'{args[0]}'"
+        if args:
+            return f"'{args[0]}'"
+        else:
+            return "''"
 
     def back_quoted(self, args):
         return f"`{args[0]}`"
@@ -145,7 +151,8 @@ class ShellHighlighter(Lexer):
         try:
             highlighted = HighlightTransformer(
                 visit_tokens=True).transform(tree)
-        except VisitError:
+        except VisitError as err:
+            print(err)
             return default
 
         return lambda _: highlighted
