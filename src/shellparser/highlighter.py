@@ -135,9 +135,7 @@ class ShellHighlighter(Lexer):
 
     def lex_document(self, document):
         text = document.lines[0]
-        default = lambda _: [
-            ("class:err", text),
-        ]
+        default = lambda _: [("class:err", text)]
 
         try:
             tree = self.parser.parse(text)
