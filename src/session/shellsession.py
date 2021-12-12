@@ -35,7 +35,7 @@ class ShellSession(PromptSession):
     def __init__(self):
         self.style = Style.from_dict(STYLE_DICT)
         self.lexer = ShellHighlighter()
-        
+
         super().__init__(
             style=self.style,
             completer=ShellPathCompleter(),
