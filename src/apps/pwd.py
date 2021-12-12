@@ -25,7 +25,6 @@ class PwdApp(App):
         super().__init__(args)
         self.args = args
 
-
     def run(self, inp, out):
         """Executes the pwd command.
 
