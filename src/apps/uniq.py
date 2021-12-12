@@ -21,6 +21,7 @@ class UniqApp(App):
         args (:obj:`list`): Contains all the arguments and options
             of the instruction
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -66,12 +67,12 @@ class UniqApp(App):
             out (:obj:`deque`): The output deque, used to store
                 the result of execution.
         """
-        out.append(lines[0].strip("\n"))
         prev = lines[0]
+        out.append(prev.rstrip())
         for i in range(1, len(lines)):
-            if lines[i] != prev:
+            if lines[i].rstrip() != prev.rstrip():
                 prev = lines[i]
-                out.append(lines[i].strip("\n"))
+                out.append(lines[i].rstrip())
 
     def _run_unsensitive(self, lines, out):
         """Removes duplicate lines (irrespective of case) and appends
@@ -82,13 +83,12 @@ class UniqApp(App):
             out (:obj:`deque`): The output deque, used to store
                 the result of execution.
         """
-        out.append(lines[0])
         prev = lines[0]
+        out.append(prev.rstrip())
         for i in range(1, len(lines)):
-            if lines[i].upper() != prev.upper():
+            if lines[i].rstrip().upper() != prev.rstrip().upper():
                 prev = lines[i]
-                out.append(lines[i])
+                out.append(lines[i].rstrip())
 
     def validate_args(self):
         """No args need to be checked for this application"""
-        pass
