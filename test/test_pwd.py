@@ -6,7 +6,6 @@ import os
 
 
 class TestPwd(unittest.TestCase):
-
     def test_pwd(self):
         expected = os.path.abspath(".")
         out = []

@@ -4,5 +4,3 @@ import unittest
 
 class TestUnsafe(unittest.TestCase):
     pass
-
-

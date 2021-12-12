@@ -1,23 +1,9 @@
 from hypothesis import given, strategies as st
 import unittest
 from exceptions import AppNotFoundError
-from apps import (
-    App,
-    LsApp,
-    EchoApp,
-    CdApp,
-    CatApp,
-    CutApp,
-    PwdApp,
-    HeadApp,
-    TailApp,
-    SortApp,
-    GrepApp,
-    UniqApp,
-    UnsafeApp,
-    FindApp,
-    AppFactory
-)
+from apps import (App, LsApp, EchoApp, CdApp, CatApp, CutApp, PwdApp, HeadApp,
+                  TailApp, SortApp, GrepApp, UniqApp, UnsafeApp, FindApp,
+                  AppFactory)
 
 
 class TestAppFactory(unittest.TestCase):
@@ -45,8 +31,9 @@ class TestAppFactory(unittest.TestCase):
     def test_get_unsafe_application(self):
         for app in self.apps:
             new_app = AppFactory().get_app("_" + app, self.apps[app][1])
-            self.assertTrue(isinstance(new_app, UnsafeApp)
-                            and isinstance(new_app.app, self.apps[app][0]))
+            self.assertTrue(
+                isinstance(new_app, UnsafeApp)
+                and isinstance(new_app.app, self.apps[app][0]))
 
     def test_non_existent_app(self):
         with self.assertRaises(AppNotFoundError):

@@ -4,5 +4,3 @@ import unittest
 
 class TestTail(unittest.TestCase):
     pass
-
-

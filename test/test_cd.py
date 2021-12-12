@@ -9,7 +9,6 @@ TEST_PATH = os.getcwd() + "/_test"
 
 
 class TestCd(ShellTestCase):
-
     def tearDown(self):
         os.chdir(TEST_PATH)
         super().tearDown()
@@ -35,4 +34,3 @@ class TestCd(ShellTestCase):
     def test_cd_into_file_raises_exception(self):
         with self.assertRaises(RunError):
             CdApp(["dir_files/file_1"]).run([], [])
-

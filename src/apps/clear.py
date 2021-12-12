@@ -9,6 +9,8 @@ Usage in shell: ``clear``
 
 import os
 
+from collections import deque
+
 from apps import App
 from exceptions import ContextError
 
@@ -27,6 +29,8 @@ class ClearApp(App):
         command = "cls" if os.name in ["nt", "dos"] else "clear"
 
         os.system(command)
+
+        out = deque()
 
         return out
 

@@ -56,5 +56,5 @@ class Call(Operation):
                     f.write("\n")
         else:
             self.app.validate_args()
-            self.app.run(new_inp, out)
+            out = self.app.run(new_inp, out)
         return out

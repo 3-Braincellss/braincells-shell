@@ -31,15 +31,20 @@ __all__ = [
 
 class ShellSession(PromptSession):
     """This class is responsible for managing the prompt session."""
-
     def __init__(self):
         self.style = Style.from_dict({
-            "user_host": "#A78BFA",
-            "path": "#4ADE80",
-            "arrow": "#60A5FA",
-            "pygments.keyword.reserved": "#38BDF8 bold",
-            "pygments.text": "#FFFFFF",
-            "pygments.name.namespace": "#FFFFFF underline",
+            "user_host":
+            "#A78BFA",
+            "path":
+            "#4ADE80",
+            "arrow":
+            "#60A5FA",
+            "pygments.keyword.reserved":
+            "#38BDF8 bold",
+            "pygments.text":
+            "#FFFFFF",
+            "pygments.name.namespace":
+            "#FFFFFF underline",
         })
         self.lexer = DynamicLexer(session.get_lexer)
         super().__init__(

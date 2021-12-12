@@ -4,5 +4,3 @@ import unittest
 
 class TestUniq(unittest.TestCase):
     pass
-
-

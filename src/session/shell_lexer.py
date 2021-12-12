@@ -14,7 +14,6 @@ class ShellLexer(PygmentsLexer):
         lexer (:obj:`RegexLexer`): The lexer used to lex the user's
             input
     """
-
     def __init__(self, lexer):
         super().__init__(lexer)
 
@@ -31,6 +30,7 @@ class ShellLexer(PygmentsLexer):
         line_builder = super().lex_document(document)
         line = line_builder(0)
         for index, token_pair in enumerate(line):
-            if token_pair[0] == "class:pygments.text" and os.path.exists(token_pair[1]):
+            if token_pair[0] == "class:pygments.text" and os.path.exists(
+                    token_pair[1]):
                 line[index] = ("class:pygments.name.namespace", token_pair[1])
         return line_builder

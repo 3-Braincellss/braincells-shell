@@ -26,5 +26,7 @@ class Sequence(Operation):
         """
 
         # None is passed since it's impossible to pass an input to a sequence
+
         out = self.op1.run(None, out)
-        return self.op2.run(None, out)
+        out = self.op2.run(None, out)
+        return out

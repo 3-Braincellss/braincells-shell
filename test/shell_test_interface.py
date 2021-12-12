@@ -43,7 +43,6 @@ class ShellTestCase(unittest.TestCase):
         except FileExistsError:
             shutil.rmtree("_test")
             os.mkdir(self.TOP_LEVEL)
-            
 
         def recur_dir(dirs, current_path):
 

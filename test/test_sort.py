@@ -4,4 +4,3 @@ import unittest
 
 class TestSort(unittest.TestCase):
     pass
-
