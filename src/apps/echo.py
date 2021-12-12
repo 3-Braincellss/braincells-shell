@@ -45,3 +45,4 @@ class EchoApp(App):
         """
         Checks whether the given arguments are valid.
         """
+        pass

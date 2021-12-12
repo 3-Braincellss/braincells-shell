@@ -1,6 +1,50 @@
 from hypothesis import given, strategies as st
-import unittest
+from apps import HeadApp
+from shell_test_interface import ShellTestCase
+from exceptions import ContextError
 
 
-class TestHead(unittest.TestCase):
-    pass
+class TestHead(ShellTestCase):
+    def test_head_singlefile(self):
+        app = HeadApp(["dir_files/file-5"])
+        out = []
+        app.run(None, out)
+        self.assertEqual(
+            out, ["AAA", "BBB", "DDD", "I don't know any more letters"])
+
+    def test_head_multifile(self):
+        app = HeadApp(["dir_files/file-5", "dir_files/file-4"])
+        out = []
+        app.run(None, out)
+        self.assertEqual(out, [
+            "\n--> dir_files/file-5 <--\n", "AAA", "BBB", "DDD",
+            "I don't know any more letters", "\n--> dir_files/file-4 <--\n",
+            "depression"
+        ])
+
+    def test_head_argument(self):
+        app = HeadApp(["-n", "1", "dir_files/file-5"])
+        out = []
+        app.run(None, out)
+        self.assertEqual(out, ["AAA"])
+
+    def test_head_input(self):
+        app = HeadApp([])
+        out = []
+        app.run(["AAA", "BBB"], out)
+        self.assertEqual(out, ["AAA", "BBB"])
+
+    def test_head_input_with_arguments(self):
+        app = HeadApp(["-n", "1"])
+        out = []
+        app.run(["AAA", "BBB"], out)
+        self.assertEqual(out, ["AAA"])
+
+    def test_head_get_opt_error(self):
+        with self.assertRaises(ContextError):
+            HeadApp(["-f", "1"])
+
+    def test_head_validate_args(self):
+        app = HeadApp(["-n", "d"])
+        with self.assertRaises(ContextError):
+            app.validate_args()
