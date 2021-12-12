@@ -62,6 +62,8 @@ class SortApp(App):
             self._run(contents, rev, out)
         elif inp:
             self._run(inp, rev, out)
+        else:
+            raise ContextError("sort", f"No input arguments supplied")
 
         return out
 

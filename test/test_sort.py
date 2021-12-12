@@ -18,7 +18,9 @@ class TestSort(ShellTestCase):
         inp = ["It's pretty good!", "Sup Surgey!",
                "Have you watched peaky blinders?"]
         out = []
-        SortApp([]).run(inp, out)
+        app = SortApp([])
+        app.validate_args()
+        app.run(inp, out)
         self.assertEqual(expected, out)
         pass
 
@@ -31,6 +33,10 @@ class TestSort(ShellTestCase):
         with self.assertRaises(ContextError):
             SortApp(["-r", "im-scared.txt", "like_really_scared!"]
                     ).validate_args()
+
+    def test_no_args_raises_an_exception(self):
+        with self.assertRaises(ContextError):
+            SortApp([]).run(None, [])
 
     def test_sort_reversed(self):
         expected = ["I don't know any more letters", "DDD", "BBB", "AAA"]
