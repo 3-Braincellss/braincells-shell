@@ -51,13 +51,23 @@ class HighlightTransformer(Transformer):
         for arg in args:
             if isinstance(arg, list):
                 new_args.extend(arg)
-            elif arg[0] == "class:arg" and first:
-                first = False
-                style, app = arg
-                style = "class:app" if app in AppFactory.apps else "class:err"
-                new_args.append((style, app))
+
             else:
                 new_args.append(arg)
+
+        for i, arg in enumerate(new_args):
+            if arg[0] == "class:arg":
+                style, app = arg
+                style = "class:app"
+                app_u = app
+                if app[0] == "_":
+                    app_u = app[1:]
+                    style = "class:unsafe"
+
+                style = style if app_u in AppFactory.apps else "class:err"
+                new_args.insert(i, (style, app))
+                new_args.pop(i + 1)
+                break
 
         return new_args
 
@@ -86,7 +96,7 @@ class HighlightTransformer(Transformer):
         new_args.append(("class:redir", ">"))
 
         for arg in args:
-            if isinstance(arg,list):
+            if isinstance(arg, list):
                 new_args.append(arg[0])
             elif arg[0] == "class:arg":
                 style, path = arg
@@ -104,8 +114,8 @@ class HighlightTransformer(Transformer):
                 new_args.append(arg)
             else:
                 style = "class:arg"
-                new_args.append((style,arg))
-        
+                new_args.append((style, arg))
+
         return new_args
 
     def quoted(self, args):
@@ -119,7 +129,6 @@ class HighlightTransformer(Transformer):
             else:
                 body = body + arg
         return f"\"{body}\""
-            
 
     def single_quoted(self, args):
         body = ""
@@ -178,7 +187,6 @@ class ShellHighlighter(Lexer):
             highlighted = HighlightTransformer(
                 visit_tokens=True).transform(tree)
         except VisitError as err:
-            print(err)
             return default
 
         return lambda _: highlighted
