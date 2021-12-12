@@ -69,7 +69,9 @@ class HighlightTransformer(Transformer):
         new_args.append(("class:redir", "<"))
 
         for arg in args:
-            if arg[0] == "class:arg":
+            if isinstance(arg, list):
+                new_args.append(arg[0])
+            elif arg[0] == "class:arg":
                 style, path = arg
                 check = os.getcwd() + f"/{path}"
                 style = "class:path" if os.path.exists(check) else "class:err"
@@ -84,7 +86,9 @@ class HighlightTransformer(Transformer):
         new_args.append(("class:redir", ">"))
 
         for arg in args:
-            if arg[0] == "class:arg":
+            if isinstance(arg,list):
+                new_args.append(arg[0])
+            elif arg[0] == "class:arg":
                 style, path = arg
                 style = "class:path"
                 new_args.append((style, path))
@@ -94,25 +98,46 @@ class HighlightTransformer(Transformer):
         return new_args
 
     def arguments(self, args):
-        return args[0]
+        new_args = []
+        for arg in args:
+            if isinstance(arg, tuple):
+                new_args.append(arg)
+            else:
+                style = "class:arg"
+                new_args.append((style,arg))
+        
+        return new_args
 
     def quoted(self, args):
         return ("class:quotes", args[0])
 
     def double_quoted(self, args):
-        if args:
-            return f"\"{args[0]}\""
-        else:
-            return "\"\""
+        body = ""
+        for arg in args:
+            if isinstance(arg, tuple):
+                body = body + arg[1]
+            else:
+                body = body + arg
+        return f"\"{body}\""
+            
 
     def single_quoted(self, args):
-        if args:
-            return f"'{args[0]}'"
-        else:
-            return "''"
+        body = ""
+        for arg in args:
+            if isinstance(arg, tuple):
+                body = body + arg[1]
+            else:
+                body = body + arg
+        return f"'{body}'"
 
     def back_quoted(self, args):
-        return f"`{args[0]}`"
+        body = ""
+        for arg in args:
+            if isinstance(arg, tuple):
+                body = body + arg[1]
+            else:
+                body = body + arg
+        return f"`{body}`"
 
     UNQUOTED = lambda _, x: ("class:arg", str(x))
     DOUBLE_QUOTE_CONTENT = str
@@ -128,6 +153,7 @@ def highlight(text):
         parser = Lark(grammar.read(), start="command")
 
     tree = parser.parse(text)
+    print(tree.pretty())
 
     print(HighlightTransformer(visit_tokens=True).transform(tree))
 
