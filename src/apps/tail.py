@@ -56,7 +56,7 @@ class TailApp(App):
             return out
         if len(self.args) > 1:
             for arg in self.args:
-                out.extend("\n--> " + arg + " <--\n")
+                out.append("\n--> " + arg + " <--\n")
                 contents = read_lines_from_file(arg, "tail")
                 self._run(contents, lines, out)
         else:
@@ -70,5 +70,13 @@ class TailApp(App):
             out.append(text[i].strip("\n"))
 
     def validate_args(self):
-        """No args need to be checked for this application."""
-        pass
+        """Ensures the options are valid.
+
+        Raises:
+            ContextError:
+        """
+        if self.options:
+            try:
+                int(self.options[0][1])
+            except ValueError as err:
+                raise ContextError("tail", str(err)) from err

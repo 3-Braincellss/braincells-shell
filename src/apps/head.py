@@ -11,6 +11,7 @@ from apps.app import App
 from getopt import getopt, GetoptError
 from exceptions import ContextError
 from common.tools import read_lines_from_file
+import exceptions
 
 
 class HeadApp(App):
@@ -24,8 +25,8 @@ class HeadApp(App):
         super().__init__(args)
         try:
             self.options, self.args = getopt(args, "n:")
-        except GetoptError as error:
-            raise ContextError("head", str(error)) from error
+        except GetoptError as err:
+            raise ContextError("head", str(err)) from err
 
     def run(self, inp, out):
         """Executes the head command on the given arguments.
@@ -58,7 +59,7 @@ class HeadApp(App):
             return out
         if len(self.args) > 1:
             for arg in self.args:
-                out.extend("\n--> " + arg + " <--\n")
+                out.append("\n--> " + arg + " <--\n")
                 contents = read_lines_from_file(arg, "head")
                 self._run(contents, lines, out)
         else:
@@ -73,5 +74,13 @@ class HeadApp(App):
             out.append(text[i].strip("\n"))
 
     def validate_args(self):
-        """No args need to be checked for this application."""
-        pass
+        """Ensures the options are valid.
+
+        Raises:
+            ContextError:
+        """
+        if self.options:
+            try:
+                int(self.options[0][1])
+            except ValueError as err:
+                raise ContextError("head", str(err)) from err
