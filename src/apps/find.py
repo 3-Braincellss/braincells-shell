@@ -22,6 +22,7 @@ class FindApp(App):
         of the instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         for i in range(len(args)):
@@ -55,11 +56,7 @@ class FindApp(App):
         return out
 
     def _run(self, root, out):
-        try:
-            matched_files = glob(f"./{root}/**/{self.pattern}", recursive=True)
-        except OSError:
-            raise RunError("find",
-                           f"{root}: No such file or directory") from None
+        matched_files = glob(f"./{root}/**/{self.pattern}", recursive=True)
         for file in matched_files:
             if not os.path.isdir(file):
                 if root != "":
@@ -85,3 +82,6 @@ class FindApp(App):
                 "find",
                 "Too many arguments supplied usage: find [PATH] -name PATTERN",
             )
+        if self.args and not os.path.exists(self.args[0]):
+            raise RunError("find",
+                           f"{self.args[0]}: No such file or directory") from None

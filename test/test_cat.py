@@ -5,9 +5,12 @@ from apps import CatApp
 from exceptions import ContextError
 from unittest.mock import patch
 import os
+from shell_test_interface import ShellTestCase
 
 
-class TestCat(unittest.TestCase):
+class TestCat(ShellTestCase):
+
+    TEST_PATH = "./dir_files/file-3"
 
     @staticmethod
     def filter_ws(arr):
@@ -16,11 +19,10 @@ class TestCat(unittest.TestCase):
     @given(st.from_regex("([a-zA-Z0-9]+\n)+", fullmatch=True))
     def test_cat_read_contents_is_file_contents(self, text):
         expected = self.filter_ws(text.split("\n"))
-        with open("test.txt", "w") as file:
+        with open(self.TEST_PATH, "w") as file:
             file.write(text)
         out = []
-        CatApp(["test.txt"]).run(None, out)
-        os.remove("test.txt")
+        CatApp([self.TEST_PATH]).run(None, out)
         out = self.filter_ws(out)
         self.assertEqual(out, expected)
 
