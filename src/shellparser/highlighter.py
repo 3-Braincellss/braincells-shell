@@ -81,7 +81,8 @@ class HighlightTransformer(Transformer):
         for arg in args:
             if arg[0] == "class:arg":
                 style, path = arg
-                style = "class:path" if os.path.exists(path) else "class:err"
+                check = os.getcwd() + f"/{path}"
+                style = "class:path" if os.path.exists(check) else "class:err"
                 new_args.append((style,path))
             else:
                 new_args.append(arg)
