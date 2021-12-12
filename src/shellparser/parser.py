@@ -239,7 +239,6 @@ def run_parser(text):
     Raises:
         ShellSyntaxError: Raises the syntax error if either
             parsing or transforming fails.
-        
     """
 
     dirname = os.path.dirname(__file__)

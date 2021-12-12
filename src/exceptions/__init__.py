@@ -10,3 +10,11 @@ from .contexterr import ContextError
 from .appnotfounderr import AppNotFoundError
 from .runerr import RunError
 from .syntaxerr import ShellSyntaxError
+
+__all__ = [
+    "ShellError",
+    "ContextError",
+    "AppNotFoundError",
+    "RunError",
+    "ShellSyntaxError",
+]
