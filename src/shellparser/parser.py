@@ -256,6 +256,6 @@ def run_parser(text):
     except VisitError as err:
         if isinstance(err.__context__, ShellError):
             raise err.__context__
-        raise err
+        raise ShellSyntaxError("cannot transform")
 
     return oper

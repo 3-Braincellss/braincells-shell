@@ -21,6 +21,8 @@ class AppLexer(RegexLexer):
 
     tokens = {"root": [(f"{apps}", Keyword.Reserved), (f"\S+", Text)]}
 
+    
+
 
 def get_lexer():
     """
