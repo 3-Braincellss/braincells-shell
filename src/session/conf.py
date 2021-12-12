@@ -6,8 +6,9 @@ STYLE_DICT = {
     "oper": "#A3E635",  # |, ;
     "quotes": "#FDE047",  # "", ``, ''
     "app": "#22D3EE",  # apps that are supported
-    "err": "#F87171",  # apps that aren't supported
+    "err": "#DC2626",  # apps that aren't supported
     "space": "",
     "redir": "",
     "arg": "#38BDF8",
+    "unsafe": "#F472B6",
 }
