@@ -84,6 +84,6 @@ class FindApp(App):
                 "Too many arguments supplied usage: \
             find [PATH] -name PATTERN",
             )
-        if not os.path.exists(self.args[0]):
+        if self.args and not os.path.exists(self.args[0]):
             raise RunError("find",
                            f"{self.args[0]}: No such file or directory") from None
