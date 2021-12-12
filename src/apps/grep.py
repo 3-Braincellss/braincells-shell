@@ -23,6 +23,7 @@ class GrepApp(App):
         args (:obj:`list`): Contains all the arguments and options
         of the instruction
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -59,9 +60,6 @@ class GrepApp(App):
             return out
         paths = self.args[1:]
         for path in paths:
-            if path == "-":  # nani?
-                self._run(input().split("\n"), out)
-                continue
             contents = read_lines_from_file(path, "grep")
             self._run(contents, out, path, len(paths) > 1)
         return out
