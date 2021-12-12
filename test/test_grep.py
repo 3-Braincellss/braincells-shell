@@ -21,7 +21,9 @@ class TestGrep(ShellTestCase):
     def test_normal_grep(self):
         expected = ["AAA", "I don't know any more letters"]
         out = []
-        GrepApp(["a|A", TEST_PATH_5]).run(None, out)
+        app = GrepApp(["a|A", TEST_PATH_5])
+        app.validate_args()
+        app.run(None, out)
         self.assertEqual(expected, out)
 
     def test_no_args_raises_exception(self):
