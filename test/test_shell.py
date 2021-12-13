@@ -1,13 +1,10 @@
 import unittest
 
 from shell_test_interface import ShellTestCase
+
+from exceptions import (AppNotFoundError, ContextError, RunError,
+                        ShellSyntaxError)
 from shell import execute
-from exceptions import (
-    AppNotFoundError,
-    ContextError,
-    RunError,
-    ShellSyntaxError,
-)
 
 
 class TestShell(ShellTestCase):

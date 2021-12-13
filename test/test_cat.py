@@ -1,11 +1,14 @@
-import unittest
-from hypothesis import given, strategies as st
-from common.tools import read_lines_from_file
-from apps import CatApp
-from exceptions import ContextError
-from unittest.mock import patch
 import os
+import unittest
+from unittest.mock import patch
+
+from hypothesis import given
+from hypothesis import strategies as st
 from shell_test_interface import ShellTestCase
+
+from apps import CatApp
+from common.tools import read_lines_from_file
+from exceptions import ContextError
 
 
 class TestCat(ShellTestCase):

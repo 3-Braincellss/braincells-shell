@@ -1,13 +1,13 @@
 import os
 
-from hypothesis import given, settings, strategies as st
+from hypothesis import given, settings
+from hypothesis import strategies as st
 from hypothesis.extra.lark import from_lark
-
 from lark import Lark
 from prompt_toolkit.document import Document
-from shellparser import HighlightTransformer, ShellHighlighter
-
 from shell_test_interface import ShellTestCase
+
+from shellparser import HighlightTransformer, ShellHighlighter
 
 dirname = os.path.join(os.path.dirname(__file__), '..')
 filename = os.path.join(dirname, 'src/shellparser/grammar.lark')
@@ -214,7 +214,6 @@ class TestHighlighter(ShellTestCase):
 
 
 class TestShellHighlighter(ShellTestCase):
-
     @settings(deadline=400)
     @given(from_lark(GRAMMAR))
     def test_random_invariant(self, s):

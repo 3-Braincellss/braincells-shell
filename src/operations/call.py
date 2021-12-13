@@ -3,10 +3,11 @@ Call
 ====
 An operation primitive that contains an app that it runs.
 """
-from operations import Operation
-from apps import AppFactory
 from collections import deque
+
+from apps import AppFactory
 from common.tools import read_lines_from_file
+from operations import Operation
 
 
 class Call(Operation):

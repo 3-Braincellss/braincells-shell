@@ -1,10 +1,13 @@
-from hypothesis import given, strategies as st
-import unittest
-from shellparser import parser
-from operations import Call, Sequence, Pipe
-from exceptions import ShellSyntaxError
-from shell_test_interface import ShellTestCase
 import os
+import unittest
+
+from hypothesis import given
+from hypothesis import strategies as st
+from shell_test_interface import ShellTestCase
+
+from exceptions import ShellSyntaxError
+from operations import Call, Pipe, Sequence
+from shellparser import parser
 
 
 class TestParser(ShellTestCase):

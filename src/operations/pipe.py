@@ -2,8 +2,9 @@
 Pipe
 ====
 """
-from operations.operation import Operation
 from collections import deque
+
+from operations.operation import Operation
 
 
 class Pipe(Operation):

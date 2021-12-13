@@ -3,11 +3,7 @@ Operation Factory
 =================
 Operation Factory is used to create operation objects on given string."""
 
-from operations import (
-    Call,
-    Pipe,
-    Sequence,
-)
+from operations import Call, Pipe, Sequence
 
 
 class OperationFactory:

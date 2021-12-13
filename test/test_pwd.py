@@ -1,8 +1,11 @@
-from hypothesis import given, strategies as st
+import os
 import unittest
+
+from hypothesis import given
+from hypothesis import strategies as st
+
 from apps import PwdApp
 from exceptions import ContextError
-import os
 
 
 class TestPwd(unittest.TestCase):

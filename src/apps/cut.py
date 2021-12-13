@@ -8,10 +8,11 @@ Example:
     `cut -b 0-23 rick-roll.txt`
 """
 
-from getopt import getopt, GetoptError
+from getopt import GetoptError, getopt
+
 from apps import App
-from exceptions import RunError, ContextError
 from common.tools import read_lines_from_file
+from exceptions import ContextError, RunError
 
 
 class CutApp(App):

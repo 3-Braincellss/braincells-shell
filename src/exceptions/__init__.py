@@ -4,10 +4,9 @@ There is one common interface ``AppExcpetion`` and 3 concrete implementations
 of that interface.
 
 """
-
 from .shellerr import ShellError
-from .contexterr import ContextError
 from .appnotfounderr import AppNotFoundError
+from .contexterr import ContextError
 from .runerr import RunError
 from .syntaxerr import ShellSyntaxError
 

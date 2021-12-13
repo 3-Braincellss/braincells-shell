@@ -9,8 +9,8 @@ Example:
 """
 import os
 
-from exceptions import ContextError, RunError
 from apps import App
+from exceptions import ContextError, RunError
 
 
 class CdApp(App):

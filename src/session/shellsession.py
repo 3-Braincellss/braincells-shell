@@ -5,25 +5,25 @@ Shell Session
 This module contains the shell prompt session.
 """
 
-import os
 import getpass
+import inspect
+import os
 import socket
-
 from collections import deque
 
 from prompt_toolkit import PromptSession
-from prompt_toolkit.shortcuts import CompleteStyle
-from prompt_toolkit.styles import Style
 from prompt_toolkit.formatted_text import FormattedText
 from prompt_toolkit.lexers import Lexer
+from prompt_toolkit.shortcuts import CompleteStyle
+from prompt_toolkit.styles import Style
 
-from shellparser import ShellHighlighter
 from common.tools import prettify_path
 from exceptions import ShellError
-from shell import execute
 from session import ShellPathCompleter
+from shell import execute
+from shellparser import ShellHighlighter
+
 from .conf import STYLE_DICT
-import inspect
 
 __all__ = [
     'ShellSession',

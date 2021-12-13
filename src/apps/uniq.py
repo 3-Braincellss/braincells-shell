@@ -8,10 +8,11 @@ Example:
     `uniq -i test-ans.txt`
 
 """
+from getopt import GetoptError, getopt
+
 from apps import App
-from getopt import getopt, GetoptError
-from exceptions import ContextError
 from common.tools import read_lines_from_file
+from exceptions import ContextError
 
 
 class UniqApp(App):

@@ -8,10 +8,11 @@ Example:
     cat bee-movie-script.txt
 """
 
-from getopt import getopt, GetoptError
+from getopt import GetoptError, getopt
+
+from apps import App
 from common.tools import read_lines_from_file
 from exceptions import ContextError
-from apps import App
 
 
 class CatApp(App):

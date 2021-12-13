@@ -1,11 +1,10 @@
 import unittest
-
 from collections import deque
-
-from operations import Pipe
 
 from dummies import DummyOperation
 from shell_test_interface import ShellTestCase
+
+from operations import Pipe
 
 
 class TestPipe(ShellTestCase):

@@ -1,8 +1,11 @@
-from hypothesis import given, strategies as st
 import unittest
+
+from hypothesis import given
+from hypothesis import strategies as st
+from shell_test_interface import ShellTestCase
+
 from apps import FindApp
 from exceptions import ContextError, RunError
-from shell_test_interface import ShellTestCase
 
 
 class TestFind(ShellTestCase):

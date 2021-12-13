@@ -1,9 +1,9 @@
 import unittest
-
 from collections import deque
 
 from dummies import DummyApp
 from shell_test_interface import ShellTestCase
+
 from operations import Call
 
 

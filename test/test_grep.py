@@ -1,9 +1,12 @@
-from hypothesis import given, strategies as st
 import unittest
+
+from hypothesis import given
+from hypothesis import strategies as st
+from shell_test_interface import ShellTestCase
+
 from apps import GrepApp
 from common.tools import read_lines_from_file
 from exceptions import ContextError, RunError
-from shell_test_interface import ShellTestCase
 
 TEST_PATH_5 = "dir_files/file-5"
 TEST_PATH_1 = "dir_files/file-1"

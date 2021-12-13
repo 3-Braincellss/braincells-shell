@@ -2,9 +2,9 @@
 Tools
 =====
 """
-from exceptions import RunError
-
 from glob import glob
+
+from exceptions import RunError
 
 
 def prettify_path(path):

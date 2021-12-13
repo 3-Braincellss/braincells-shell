@@ -7,11 +7,12 @@ Usage in shell: head [OPTIONS] [FILE]
 Example:
     `head -n 12 text.txt`
 """
-from apps.app import App
-from getopt import getopt, GetoptError
-from exceptions import ContextError
-from common.tools import read_lines_from_file
+from getopt import GetoptError, getopt
+
 import exceptions
+from apps.app import App
+from common.tools import read_lines_from_file
+from exceptions import ContextError
 
 
 class HeadApp(App):
