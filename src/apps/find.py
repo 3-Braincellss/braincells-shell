@@ -22,6 +22,7 @@ class FindApp(App):
         of the instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         for i in range(len(args)):
@@ -57,11 +58,10 @@ class FindApp(App):
     def _run(self, root, out):
         matched_files = glob(f"./{root}/**/{self.pattern}", recursive=True)
         for file in matched_files:
-            if not os.path.isdir(file):
-                if root != "":
-                    out.append(file[2:])  # Omit the ./
-                else:
-                    out.append(file)
+            if root != "":
+                out.append(file[2:])  # Omit the ./
+            else:
+                out.append(file)
 
     def validate_args(self):
         """Ensures that the -name option is present and only one argument is
