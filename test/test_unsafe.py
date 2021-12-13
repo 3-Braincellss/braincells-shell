@@ -1,10 +1,6 @@
-import os
-import unittest
-
 from shell_test_interface import ShellTestCase
 
 from apps import LsApp, UnsafeApp
-from exceptions import ContextError
 
 
 class TestUnsafe(ShellTestCase):

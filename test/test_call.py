@@ -1,4 +1,3 @@
-import unittest
 from collections import deque
 
 from dummies import DummyApp

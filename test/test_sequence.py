@@ -1,6 +1,3 @@
-import unittest
-from collections import deque
-
 from dummies import DummyOperation
 from shell_test_interface import ShellTestCase
 

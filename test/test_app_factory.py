@@ -1,7 +1,4 @@
-import unittest
-
-from hypothesis import given
-from hypothesis import strategies as st
+from shell_test_interface import ShellTestCase
 
 from apps import (
     App,
@@ -23,7 +20,7 @@ from apps import (
 from exceptions import AppNotFoundError
 
 
-class TestAppFactory(unittest.TestCase):
+class TestAppFactory(ShellTestCase):
 
     apps = {
         "ls": [LsApp, []],

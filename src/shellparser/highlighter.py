@@ -3,7 +3,6 @@ import os
 from lark import Lark
 from lark.exceptions import UnexpectedInput, VisitError
 from lark.visitors import Transformer
-from prompt_toolkit.document import Document
 from prompt_toolkit.lexers import Lexer
 
 from apps import AppFactory
@@ -21,7 +20,7 @@ class HighlightTransformer(Transformer):
         ```
         command : pipe | seq | call | WHITESPACE
         ```
-        
+
         Parameters:
             oper(:obj:`list`): Either formatted text, or a single formatted token.
 
@@ -56,7 +55,7 @@ class HighlightTransformer(Transformer):
 
     def pipe(self, opers):
         """Syntax:
-        
+
         ```
         pipe : call "|" call
              | pipe "|" call
@@ -189,11 +188,11 @@ class HighlightTransformer(Transformer):
                 body = body + arg
         return f"`{body}`"
 
-    UNQUOTED = lambda _, x: ("class:arg", str(x))
+    def UNQUOTED(_, x): return ("class:arg", str(x))
     DOUBLE_QUOTE_CONTENT = str
     SINGLE_QUOTE_CONTENT = str
     BACKQUOTED = str
-    WHITESPACE = lambda _, x: ("class:space", str(x))
+    def WHITESPACE(_, x): return ("class:space", str(x))
 
 
 class ShellHighlighter(Lexer):
@@ -205,7 +204,7 @@ class ShellHighlighter(Lexer):
 
     def lex_document(self, document):
         text = document.lines[0]
-        default = lambda _: [("class:err", text)]
+        def default(_): return [("class:err", text)]
 
         try:
             tree = self.parser.parse(text)

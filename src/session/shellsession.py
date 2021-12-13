@@ -6,14 +6,11 @@ This module contains the shell prompt session.
 """
 
 import getpass
-import inspect
 import os
 import socket
-from collections import deque
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.formatted_text import FormattedText
-from prompt_toolkit.lexers import Lexer
 from prompt_toolkit.shortcuts import CompleteStyle
 from prompt_toolkit.styles import Style
 
@@ -32,6 +29,7 @@ __all__ = [
 
 class ShellSession(PromptSession):
     """This class is responsible for managing the prompt session."""
+
     def __init__(self):
         self.style = Style.from_dict(STYLE_DICT)
         self.lexer = ShellHighlighter()

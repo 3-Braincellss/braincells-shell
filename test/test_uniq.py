@@ -1,9 +1,7 @@
-import unittest
-
 from shell_test_interface import ShellTestCase
 
 from apps import UniqApp
-from exceptions import ContextError, RunError
+from exceptions import ContextError
 
 
 class TestUniq(ShellTestCase):

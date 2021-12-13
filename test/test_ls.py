@@ -1,5 +1,4 @@
 import os
-import unittest
 
 from shell_test_interface import ShellTestCase
 
