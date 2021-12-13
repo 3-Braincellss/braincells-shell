@@ -8,6 +8,7 @@ This module contains the shell prompt session.
 import getpass
 import os
 import socket
+import traceback
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.formatted_text import FormattedText
@@ -55,6 +56,11 @@ class ShellSession(PromptSession):
                 out = execute(text)
             except ShellError as err:
                 out = err.message
+
+            except KeyboardInterrupt as err:
+                print(f"Keyboard interrupt")
+                traceback.print_tb(err.__traceback__)
+                
 
             if len(out) > 0:
                 print(out)
