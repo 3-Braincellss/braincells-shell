@@ -1,5 +1,3 @@
-import unittest
-
 from shell_test_interface import ShellTestCase
 
 from exceptions import (AppNotFoundError, ContextError, RunError,

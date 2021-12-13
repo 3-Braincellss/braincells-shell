@@ -24,6 +24,7 @@ class SortApp(App):
             the instruction.
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -62,7 +63,7 @@ class SortApp(App):
         elif inp:
             self._run(inp, rev, out)
         else:
-            raise ContextError("sort", f"No input arguments supplied")
+            raise ContextError("sort", "No input arguments supplied")
 
         return out
 

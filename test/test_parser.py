@@ -1,5 +1,3 @@
-import os
-
 from shell_test_interface import ShellTestCase
 
 from exceptions import ShellSyntaxError

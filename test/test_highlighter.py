@@ -1,7 +1,6 @@
 import os
 
 from hypothesis import given, settings
-from hypothesis import strategies as st
 from hypothesis.extra.lark import from_lark
 from lark import Lark
 from prompt_toolkit.document import Document
@@ -217,7 +216,7 @@ class TestShellHighlighter(ShellTestCase):
     @settings(deadline=400)
     @given(from_lark(GRAMMAR))
     def test_random_invariant(self, s):
-        tree = GRAMMAR.parse(s)
+        GRAMMAR.parse(s)
         hlr = ShellHighlighter()
         document = Document(s)
         out = hlr.lex_document(document)(0)

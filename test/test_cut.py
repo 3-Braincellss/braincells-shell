@@ -1,6 +1,3 @@
-import os
-import unittest
-
 from hypothesis import given
 from hypothesis import strategies as st
 from shell_test_interface import ShellTestCase

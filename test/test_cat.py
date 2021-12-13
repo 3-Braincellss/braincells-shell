@@ -1,11 +1,8 @@
-import os
-
 from hypothesis import given
 from hypothesis import strategies as st
 from shell_test_interface import ShellTestCase
 
 from apps import CatApp
-from common.tools import read_lines_from_file
 from exceptions import ContextError
 
 
@@ -39,7 +36,7 @@ class TestCat(ShellTestCase):
     @given(st.from_regex("-[a-zA-z]", fullmatch=True))
     def test_cat_accepts_no_options(self, text):
         with self.assertRaises(ContextError):
-            app = CatApp([text])
+            CatApp([text])
 
     @given(st.from_regex("([a-zA-Z0-9 ]+\n)+", fullmatch=True))
     def test_cat_validation_never_does_anything(self, text):

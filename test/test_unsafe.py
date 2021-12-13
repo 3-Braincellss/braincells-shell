@@ -15,7 +15,7 @@ class TestUnsafe(ShellTestCase):
         unsafe_app.run(None, out)
         self.assertEqual(out, expected)
 
-    def test_unsafe_no_error(self):
+    def test_unsafe_error_message(self):
         expected = [
             "(\'ls\', \"[Errno 2] No such file or directory: \'where_am_i\'\")"
         ]

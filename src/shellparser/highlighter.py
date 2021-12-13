@@ -22,7 +22,8 @@ class HighlightTransformer(Transformer):
         ```
 
         Parameters:
-            oper(:obj:`list`): Either formatted text, or a single formatted token.
+            oper(:obj:`list`): Either formatted text, or a single
+            formatted token.
 
         Returns:
             :obj:`list`: Formatted text as a list of tuples.
@@ -82,7 +83,8 @@ class HighlightTransformer(Transformer):
         """Transforms a list of arguments into formatted text.
 
         Parameters:
-            args(:obj:`list`): A list of formatted text instances or singular tokens.
+            args(:obj:`list`): A list of formatted text instances or
+            singular tokens.
 
         Returns:
             :obj:`list`: Formatted text.
@@ -215,7 +217,7 @@ class ShellHighlighter(Lexer):
         try:
             highlighted = HighlightTransformer(
                 visit_tokens=True).transform(tree)
-        except VisitError as err:
+        except VisitError:
             return default
 
         return lambda _: highlighted

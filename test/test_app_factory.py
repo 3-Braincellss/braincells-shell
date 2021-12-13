@@ -1,7 +1,6 @@
 from shell_test_interface import ShellTestCase
 
 from apps import (
-    App,
     AppFactory,
     CatApp,
     CdApp,

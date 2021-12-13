@@ -1,6 +1,6 @@
 from shell_test_interface import ShellTestCase
 
-from common.tools import *
+from common.tools import read_from_file, read_lines_from_file, prettify_path
 from exceptions import RunError
 
 
@@ -12,11 +12,11 @@ class TestTools(ShellTestCase):
 
     def test_reading_contents_from_non_existant_file_raises_exception(self):
         with self.assertRaises(RunError):
-            out = read_from_file("dir_files/file-6", "tool_test")
+            read_from_file("dir_files/file-6", "tool_test")
 
     def test_reading_contents_from_a_directory_raises_exception(self):
         with self.assertRaises(RunError):
-            out = read_from_file("dir_files", "tool_test")
+            read_from_file("dir_files", "tool_test")
 
     def test_read_lines(self):
         expected = ["AAA\n", "BBB\n", "DDD\n", "I don't know any more letters"]
@@ -25,11 +25,11 @@ class TestTools(ShellTestCase):
 
     def test_reading_lines_from_non_existant_file_raises_exception(self):
         with self.assertRaises(RunError):
-            out = read_lines_from_file("dir_files/file-6", "tool_test")
+            read_lines_from_file("dir_files/file-6", "tool_test")
 
     def test_reading_lines_from_a_directory_raises_exception(self):
         with self.assertRaises(RunError):
-            out = read_lines_from_file("dir_files", "tool_test")
+            read_lines_from_file("dir_files", "tool_test")
 
     def test_pretty_path(self):
         expected = "h/t/i/m/p/path.txt"
