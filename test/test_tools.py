@@ -5,7 +5,6 @@ from exceptions import RunError
 
 
 class TestTools(ShellTestCase):
-
     def test_read_contents(self):
         expected = "AAA\nBBB\nDDD\nI don't know any more letters"
         out = read_from_file("dir_files/file-5", "tool_test")

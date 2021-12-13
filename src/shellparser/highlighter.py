@@ -8,6 +8,11 @@ from apps import AppFactory
 from prompt_toolkit.lexers import Lexer
 from prompt_toolkit.document import Document
 
+__all__ = [
+    "HighlightTransformer",
+    "ShellHighlighter",
+]
+
 
 class HighlightTransformer(Transformer):
     def command(self, oper):
@@ -49,7 +54,7 @@ class HighlightTransformer(Transformer):
 
         return new_args
 
-    def pipe(self, op1, op2):
+    def pipe(self, opers):
         """Syntax:
         
         ```
@@ -68,9 +73,9 @@ class HighlightTransformer(Transformer):
         """
 
         new_args = []
-        new_args.extend(op1)
+        new_args.extend(opers[0])
         new_args.append(("class:oper", "|"))
-        new_args.extend(op2)
+        new_args.extend(opers[1])
 
         return new_args
 
@@ -113,11 +118,7 @@ class HighlightTransformer(Transformer):
         return redirect[0]
 
     def l_redirection(self, args):
-        """Takes in an optional whitespace and arguments.
-
-        
-
-        """
+        """Takes in an optional whitespace and arguments."""
 
         new_args = []
         new_args.append(("class:redir", "<"))
@@ -129,40 +130,32 @@ class HighlightTransformer(Transformer):
             args.pop(0)
             paths = args[0]
 
-        if len(paths) > 1:
-            for i in range(len(paths)):
-                tmp = paths[i][1]
-                paths[i] = ("class:err", tmp)
-        else:
-            style = "class:path" if os.path.exists(paths[0][1]) else "class:err"
-            new_args.append((style, paths[0][1]))
+        new_args.extend(paths)
 
         return new_args
 
     def r_redirection(self, args):
         new_args = []
         new_args.append(("class:redir", ">"))
+        paths = args[0]
 
-        for arg in args:
-            if isinstance(arg, list):
-                new_args.append(arg[0])
-            elif arg[0] == "class:arg":
-                style, path = arg
-                style = "class:path"
-                new_args.append((style, path))
-            else:
-                new_args.append(arg)
+        if isinstance(args[0], tuple):
+            whitespace = args[0]
+            new_args.append(whitespace)
+            args.pop(0)
+            paths = args[0]
+
+        new_args.extend(paths)
 
         return new_args
 
     def arguments(self, args):
         new_args = []
-        for arg in args:
-            if isinstance(arg, tuple):
-                new_args.append(arg)
-            else:
-                style = "class:arg"
-                new_args.append((style, arg))
+        for style, path in args:
+
+            if style == "class:arg":
+                style = "class:path" if os.path.exists(path) else "class:arg"
+            new_args.append((style, path))
 
         return new_args
 
@@ -203,18 +196,6 @@ class HighlightTransformer(Transformer):
     WHITESPACE = lambda _, x: ("class:space", str(x))
 
 
-def highlight(text):
-    dirname = os.path.dirname(__file__)
-    filename = os.path.join(dirname, "grammar.lark")
-    with open(filename, encoding="utf-8") as grammar:
-        parser = Lark(grammar.read(), start="command")
-
-    tree = parser.parse(text)
-    print(tree.pretty())
-
-    print(HighlightTransformer(visit_tokens=True).transform(tree))
-
-
 class ShellHighlighter(Lexer):
     def __init__(self):
         dirname = os.path.dirname(__file__)
@@ -228,6 +209,7 @@ class ShellHighlighter(Lexer):
 
         try:
             tree = self.parser.parse(text)
+
         except UnexpectedInput:
             return default
 
@@ -235,7 +217,6 @@ class ShellHighlighter(Lexer):
             highlighted = HighlightTransformer(
                 visit_tokens=True).transform(tree)
         except VisitError as err:
-            raise err
             return default
 
         return lambda _: highlighted

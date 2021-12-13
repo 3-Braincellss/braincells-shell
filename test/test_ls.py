@@ -6,10 +6,11 @@ import os
 
 
 class TestLs(ShellTestCase):
-
     def test_ls(self):
-        expected = sorted(["dir_empty", "dir_files", "dir_nested",
-                           "dir_out", "no_extension", "other_extension.py", "toplevel.txt"])
+        expected = sorted([
+            "dir_empty", "dir_files", "dir_nested", "dir_out", "no_extension",
+            "other_extension.py", "toplevel.txt"
+        ])
         out = []
         app = LsApp([])
         app.validate_args()

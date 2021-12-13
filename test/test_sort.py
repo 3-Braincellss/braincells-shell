@@ -5,7 +5,6 @@ from exceptions import ContextError, RunError
 
 
 class TestSort(ShellTestCase):
-
     def test_sort(self):
         expected = ["AAA", "BBB", "DDD", "I don't know any more letters"]
         out = []
@@ -13,10 +12,14 @@ class TestSort(ShellTestCase):
         self.assertEqual(expected, out)
 
     def test_sort_redirection(self):
-        expected = ["Have you watched peaky blinders?",
-                    "It's pretty good!", "Sup Surgey!"]
-        inp = ["It's pretty good!", "Sup Surgey!",
-               "Have you watched peaky blinders?"]
+        expected = [
+            "Have you watched peaky blinders?", "It's pretty good!",
+            "Sup Surgey!"
+        ]
+        inp = [
+            "It's pretty good!", "Sup Surgey!",
+            "Have you watched peaky blinders?"
+        ]
         out = []
         app = SortApp([])
         app.validate_args()
@@ -31,8 +34,8 @@ class TestSort(ShellTestCase):
 
     def test_too_many_args_raises_an_exception(self):
         with self.assertRaises(ContextError):
-            SortApp(["-r", "im-scared.txt", "like_really_scared!"]
-                    ).validate_args()
+            SortApp(["-r", "im-scared.txt",
+                     "like_really_scared!"]).validate_args()
 
     def test_no_args_raises_an_exception(self):
         with self.assertRaises(ContextError):

@@ -32,4 +32,4 @@ grammar.lark
     WHITESPACE           : /[\\s]+/
 """
 from .parser import run_parser
-from .highlighter import ShellHighlighter
+from .highlighter import ShellHighlighter, HighlightTransformer

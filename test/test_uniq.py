@@ -5,7 +5,6 @@ from exceptions import ContextError, RunError
 
 
 class TestUniq(ShellTestCase):
-
     def setUp(self):
         super().setUp()
         with open("dir_files/file-3", "w") as file:

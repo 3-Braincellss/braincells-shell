@@ -23,7 +23,6 @@ class GrepApp(App):
         args (:obj:`list`): Contains all the arguments and options
         of the instruction
     """
-
     def __init__(self, args):
         super().__init__(args)
         try:
