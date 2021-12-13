@@ -23,6 +23,7 @@ class CatApp(App):
             instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -44,17 +45,10 @@ class CatApp(App):
             the input file or piped data.
 
         """
-        if inp:
-            out.extend(inp)
-            return out
-
         if not self.args:
-            out.append("")
-            while True:
-                try:
-                    out.append(input())
-                except KeyboardInterrupt:
-                    return out
+            next_out = inp if inp else self._get_input()
+            out.extend(next_out)
+            return out
 
         self._run(self.args, out)
 
@@ -67,6 +61,15 @@ class CatApp(App):
             for line in contents:
                 out.append(line.rstrip("\n"))
         return out
+
+    @staticmethod
+    def _get_input():
+        text = [""]
+        while True:
+            try:
+                text.append(input())
+            except KeyboardInterrupt:
+                return text
 
     def validate_args(self):
         pass
