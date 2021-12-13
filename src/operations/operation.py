@@ -4,7 +4,7 @@ Operation
 This is an interface definition for an Operation class.
 """
 
-from abc import abstractmethod, ABCMeta
+from abc import ABCMeta, abstractmethod
 
 
 class Operation(metaclass=ABCMeta):

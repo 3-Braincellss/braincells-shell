@@ -1,10 +1,6 @@
-
-
-
-from session import ShellSession
 from shell_test_interface import ShellTestCase
 
-
+from session import ShellSession
 
 
 class TestSession(ShellTestCase):

@@ -5,11 +5,13 @@ Parser
 Module which handles parsing and transforming the parse tree
 """
 import os
+
 from lark import Lark
-from lark.visitors import Transformer
 from lark.exceptions import UnexpectedInput, VisitError
+from lark.visitors import Transformer
+
+from exceptions import ShellError, ShellSyntaxError
 from operations import OperationFactory
-from exceptions import ShellSyntaxError, ShellError
 
 
 class ShellTransformer(Transformer):

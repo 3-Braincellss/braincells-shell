@@ -8,7 +8,6 @@ Usage in shell: ``clear``
 """
 
 import os
-
 from collections import deque
 
 from apps import App

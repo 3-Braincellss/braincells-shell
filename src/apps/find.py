@@ -7,11 +7,12 @@ Usage in shell: find -name [PATTERN] [PATH]
 Example:
     ``find -name *.py project/spaghetti-code``
 """
-from apps.app import App
 import os
-from glob import glob
 from getopt import gnu_getopt
-from exceptions import RunError, ContextError
+from glob import glob
+
+from apps.app import App
+from exceptions import ContextError, RunError
 
 
 class FindApp(App):

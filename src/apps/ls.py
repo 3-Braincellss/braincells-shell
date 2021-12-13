@@ -7,10 +7,10 @@ Usage in shell: ls [PATH]
 Example:
     `ls super/secret/directory`
 """
+import os
+
 from apps import App
 from exceptions import ContextError, RunError
-
-import os
 
 
 class LsApp(App):

@@ -1,8 +1,10 @@
+import os
 import unittest
+
 from shell_test_interface import ShellTestCase
+
 from apps import LsApp
 from exceptions import ContextError, RunError
-import os
 
 
 class TestLs(ShellTestCase):

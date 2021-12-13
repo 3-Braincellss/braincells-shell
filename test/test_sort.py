@@ -1,5 +1,7 @@
 import unittest
+
 from shell_test_interface import ShellTestCase
+
 from apps import SortApp
 from exceptions import ContextError, RunError
 

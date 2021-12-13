@@ -1,5 +1,8 @@
-from hypothesis import given, strategies as st
 import unittest
+
+from hypothesis import given
+from hypothesis import strategies as st
+
 from apps import EchoApp
 
 

@@ -8,9 +8,10 @@ Example:
     `pwd`
 
 """
+import os
+
 from apps.app import App
 from exceptions import ContextError
-import os
 
 
 class PwdApp(App):

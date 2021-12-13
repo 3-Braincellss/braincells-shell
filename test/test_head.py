@@ -1,6 +1,8 @@
-from hypothesis import given, strategies as st
-from apps import HeadApp
+from hypothesis import given
+from hypothesis import strategies as st
 from shell_test_interface import ShellTestCase
+
+from apps import HeadApp
 from exceptions import ContextError
 
 

@@ -13,8 +13,8 @@ This module runs the application.
 
 import sys
 
-from shell import execute
 from session import ShellSession
+from shell import execute
 
 if __name__ == "__main__":
     ARGS_NUM = len(sys.argv) - 1

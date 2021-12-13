@@ -31,5 +31,5 @@ grammar.lark
     UNQUOTED             : /[^\\s"'`\\n;|<>]+/
     WHITESPACE           : /[\\s]+/
 """
+from .highlighter import HighlightTransformer, ShellHighlighter
 from .parser import run_parser
-from .highlighter import ShellHighlighter, HighlightTransformer

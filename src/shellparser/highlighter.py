@@ -1,12 +1,12 @@
 import os
 
 from lark import Lark
-from lark.visitors import Transformer
 from lark.exceptions import UnexpectedInput, VisitError
+from lark.visitors import Transformer
+from prompt_toolkit.document import Document
+from prompt_toolkit.lexers import Lexer
 
 from apps import AppFactory
-from prompt_toolkit.lexers import Lexer
-from prompt_toolkit.document import Document
 
 __all__ = [
     "HighlightTransformer",

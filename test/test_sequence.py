@@ -1,11 +1,10 @@
 import unittest
-
 from collections import deque
-
-from operations import Sequence
 
 from dummies import DummyOperation
 from shell_test_interface import ShellTestCase
+
+from operations import Sequence
 
 
 class TestSequence(ShellTestCase):

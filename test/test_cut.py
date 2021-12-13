@@ -1,10 +1,13 @@
-from hypothesis import given, strategies as st
-import unittest
 import os
+import unittest
+
+from hypothesis import given
+from hypothesis import strategies as st
+from shell_test_interface import ShellTestCase
+
 from apps import CutApp
 from common.tools import read_lines_from_file
-from exceptions import RunError, ContextError
-from shell_test_interface import ShellTestCase
+from exceptions import ContextError, RunError
 
 IPSUM_MAX = 592
 TEST_TEXT_PATH = "./dir_files/file-5"

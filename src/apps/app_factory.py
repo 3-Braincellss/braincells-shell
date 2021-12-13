@@ -5,23 +5,23 @@ Module for creating applications.
 """
 from apps import (
     App,
-    LsApp,
-    EchoApp,
-    CdApp,
     CatApp,
+    CdApp,
+    ClearApp,
     CutApp,
-    PwdApp,
-    HeadApp,
-    TailApp,
-    SortApp,
+    EchoApp,
+    FindApp,
     GrepApp,
+    HeadApp,
+    LsApp,
+    PwdApp,
+    SortApp,
+    TailApp,
     UniqApp,
     UnsafeApp,
-    FindApp,
-    ClearApp,
 )
-from exceptions import AppNotFoundError
 from common.tools import simple_globbing
+from exceptions import AppNotFoundError
 
 
 class AppFactory:

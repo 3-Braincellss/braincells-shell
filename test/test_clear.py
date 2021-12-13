@@ -1,6 +1,7 @@
+from collections import deque
+
 from shell_test_interface import ShellTestCase
 
-from collections import deque
 from apps import ClearApp
 from exceptions import ContextError
 

@@ -1,23 +1,26 @@
-from hypothesis import given, strategies as st
 import unittest
-from exceptions import AppNotFoundError
+
+from hypothesis import given
+from hypothesis import strategies as st
+
 from apps import (
     App,
-    LsApp,
-    EchoApp,
-    CdApp,
+    AppFactory,
     CatApp,
+    CdApp,
     CutApp,
-    PwdApp,
-    HeadApp,
-    TailApp,
-    SortApp,
+    EchoApp,
+    FindApp,
     GrepApp,
+    HeadApp,
+    LsApp,
+    PwdApp,
+    SortApp,
+    TailApp,
     UniqApp,
     UnsafeApp,
-    FindApp,
-    AppFactory,
 )
+from exceptions import AppNotFoundError
 
 
 class TestAppFactory(unittest.TestCase):
