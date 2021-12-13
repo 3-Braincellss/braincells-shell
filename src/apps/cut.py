@@ -23,6 +23,7 @@ class CutApp(App):
             of the instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -167,10 +168,8 @@ class CutApp(App):
         :raises RunError: If the string given is invalid (not a positive
         integer)
         """
-        digits = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
-        for char in num:
-            if char not in digits:
-                raise RunError("cut", f"Invalid option argument {num}")
+        if not num.isdigit():
+            raise RunError("cut", f"Invalid option argument {num}")
         if num == "0":
             raise RunError("cut", "Cut intervals are 1 indexed.")
 

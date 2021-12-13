@@ -28,8 +28,8 @@ class CatApp(App):
         super().__init__(args)
         try:
             self._options, self.args = getopt(self.args, "")
-        except GetoptError as e:
-            raise ContextError("cat", str(e)) from None
+        except GetoptError as error:
+            raise ContextError("cat", str(error)) from None
 
     def run(self, inp, out):
         """Executes the cat command on the given arguments.
@@ -46,8 +46,8 @@ class CatApp(App):
 
         """
         if not self.args:
-            next_out = inp if inp else self._get_input()
-            out.extend(next_out)
+            result = inp if inp else self._get_input()
+            out.extend(result)
             return out
 
         self._run(self.args, out)
@@ -59,7 +59,7 @@ class CatApp(App):
         for path in paths:
             contents = read_lines_from_file(path, "cat")
             for line in contents:
-                out.append(line.rstrip("\n"))
+                out.append(line.rstrip())
         return out
 
     @staticmethod
