@@ -10,43 +10,80 @@ from prompt_toolkit.document import Document
 
 
 class HighlightTransformer(Transformer):
-    def command(self, args):
-        return args[0]
+    def command(self, oper):
+        """Syntax:
 
-    def seq(self, args):
+        ```
+        command : pipe | seq | call | WHITESPACE
+        ```
+        
+        Parameters:
+            oper(:obj:`list`): Either formatted text, or a single formatted token.
+
+        Returns:
+            :obj:`list`: Formatted text as a list of tuples.
+        """
+        if isinstance(oper[0], list):
+            return oper[0]
+        else:
+            return oper
+
+    def seq(self, opers):
+        """Syntax:
+
+        ```
+        seq : command ";" command
+            | command ";"
+        ```
+
+        Parameters:
+            opers(:obj:`list`): 1 or 2 Formatted text instances.
+        Returns:
+            :obj:`list`: Formatted text.
+        """
         new_args = []
-
-        if isinstance(args[0], list):
-            new_args.extend(args[0])
-        else:
-            new_args.append(args[0])
-
+        new_args.extend(opers[0])
         new_args.append(("class:oper", ";"))
-
-        if isinstance(args[1], list):
-            new_args.extend(args[1])
-        else:
-            new_args.append(args[1])
+        if len(opers) > 1:
+            new_args.extend(opers[1])
 
         return new_args
 
-    def pipe(self, args):
+    def pipe(self, op1, op2):
+        """Syntax:
+        
+        ```
+        pipe : call "|" call
+             | pipe "|" call
+
+        ```
+
+        Parameters:
+            op1(:obj:`list`): Formatted text.
+
+            op1(:obj:`list`): Formatted text.
+
+        Returns:
+            :obj:`list`: Formatted text.
+        """
+
         new_args = []
-        if isinstance(args[0], list):
-            new_args.extend(args[0])
-        else:
-            new_args.append(args[0])
-
+        new_args.extend(op1)
         new_args.append(("class:oper", "|"))
+        new_args.extend(op2)
 
-        if isinstance(args[1], list):
-            new_args.extend(args[1])
-        else:
-            new_args.append(args[1])
         return new_args
 
     def call(self, args):
-        first = True
+        """Transforms a list of arguments into formatted text.
+
+        Parameters:
+            args(:obj:`list`): A list of formatted text instances or singular tokens.
+
+        Returns:
+            :obj:`list`: Formatted text.
+
+        """
         new_args = []
         for arg in args:
             if isinstance(arg, list):
@@ -65,29 +102,40 @@ class HighlightTransformer(Transformer):
                     style = "class:unsafe"
 
                 style = style if app_u in AppFactory.apps else "class:err"
-                new_args.insert(i, (style, app))
-                new_args.pop(i + 1)
+                new_args[i] = (style, app)
                 break
 
         return new_args
 
-    def redirection(self, args):
-        return args[0]
+    def redirection(self, redirect):
+        """Just simply forwards a redirection."""
+
+        return redirect[0]
 
     def l_redirection(self, args):
+        """Takes in an optional whitespace and arguments.
+
+        
+
+        """
+
         new_args = []
         new_args.append(("class:redir", "<"))
+        paths = args[0]
 
-        for arg in args:
-            if isinstance(arg, list):
-                new_args.append(arg[0])
-            elif arg[0] == "class:arg":
-                style, path = arg
-                check = os.getcwd() + f"/{path}"
-                style = "class:path" if os.path.exists(check) else "class:err"
-                new_args.append((style, path))
-            else:
-                new_args.append(arg)
+        if isinstance(args[0], tuple):
+            whitespace = args[0]
+            new_args.append(whitespace)
+            args.pop(0)
+            paths = args[0]
+
+        if len(paths) > 1:
+            for i in range(len(paths)):
+                tmp = paths[i][1]
+                paths[i] = ("class:err", tmp)
+        else:
+            style = "class:path" if os.path.exists(paths[0][1]) else "class:err"
+            new_args.append((style, paths[0][1]))
 
         return new_args
 
@@ -187,6 +235,7 @@ class ShellHighlighter(Lexer):
             highlighted = HighlightTransformer(
                 visit_tokens=True).transform(tree)
         except VisitError as err:
+            raise err
             return default
 
         return lambda _: highlighted
