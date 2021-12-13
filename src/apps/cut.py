@@ -22,6 +22,7 @@ class CutApp(App):
             of the instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -58,11 +59,8 @@ class CutApp(App):
             self._run([input()], intervals, out)
             return out
         for arg in self.args:
-            if arg == "-":
-                self._run([input()], intervals, out)
-            else:
-                contents = read_lines_from_file(arg, "cut")
-                self._run(contents, intervals, out)
+            contents = read_lines_from_file(arg, "cut")
+            self._run(contents, intervals, out)
         return out
 
     def _run(self, strings, intervals, out):

@@ -20,6 +20,7 @@ class TestCd(ShellTestCase):
 
     def test_change_dir(self):
         app = CdApp(["dir_empty"])
+        app.validate_args()
         app.run([], [])
         self.assertEqual(TEST_PATH + "/dir_empty", os.getcwd())
 

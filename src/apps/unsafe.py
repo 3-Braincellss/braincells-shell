@@ -17,6 +17,7 @@ class UnsafeApp(App):
     Args:
         app (:obj:`App`): The application be decorated.
     """
+
     def __init__(self, app):
         super().__init__(app)
         self.app = app
@@ -37,4 +38,3 @@ class UnsafeApp(App):
 
     def validate_args(self):
         """No validation needed for an unsafe application"""
-        pass

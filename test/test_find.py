@@ -20,6 +20,7 @@ class TestFind(ShellTestCase):
     def test_find_from_dir(self):
         out = []
         app = FindApp(["-name", "dir*", "dir_nested"])
+        app.validate_args()
         app.run(None, out)
         self.assertEqual(
             set([
