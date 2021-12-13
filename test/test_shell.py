@@ -16,6 +16,11 @@ class TestShell(ShellTestCase):
         out = execute(text)
         self.assertEqual(out, "hello")
 
+    def test_execute_sequence(self):
+        text = "echo hello; cat dir_files/file-4"
+        out = execute(text)
+        self.assertEqual(out, "hello\ndepression")
+
     def test_run_app_not_found(self):
 
         with self.assertRaises(AppNotFoundError):

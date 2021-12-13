@@ -1,6 +1,6 @@
 import os
 
-from hypothesis import given, strategies as st
+from hypothesis import given, settings, strategies as st
 from hypothesis.extra.lark import from_lark
 
 from lark import Lark
@@ -190,13 +190,14 @@ class TestHighlighter(ShellTestCase):
         expected = "`BACAAAAAAA`"
         self.assertEqual(res, expected)
 
+    @settings(deadline=400)
     @given(from_lark(GRAMMAR))
     def test_random_invariant(self, s):
         """Testing invariant with random testing
 
         One assumption here that must hold true for
         everything to work is:
-        
+
         Output of the transformer MUST be a list
         of tuples of 2 strings.
 
@@ -212,9 +213,9 @@ class TestHighlighter(ShellTestCase):
             self.assertIsInstance(each[1], str)
 
 
-
 class TestShellHighlighter(ShellTestCase):
 
+    @settings(deadline=400)
     @given(from_lark(GRAMMAR))
     def test_random_invariant(self, s):
         tree = GRAMMAR.parse(s)
@@ -225,14 +226,3 @@ class TestShellHighlighter(ShellTestCase):
             self.assertIsInstance(each, tuple)
             self.assertIsInstance(each[0], str)
             self.assertIsInstance(each[1], str)
-
-        
-        
-        
-        
-
-        
-
-        
-        
-        

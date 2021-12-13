@@ -30,3 +30,9 @@ class TestTools(ShellTestCase):
     def test_reading_lines_from_a_directory_raises_exception(self):
         with self.assertRaises(RunError):
             out = read_lines_from_file("dir_files", "tool_test")
+
+    def test_pretty_path(self):
+        expected = "h/t/i/m/p/path.txt"
+        path = "/hello/this/is/my/pretty/path.txt"
+        out = prettify_path(path)
+        self.assertEqual(out, expected)

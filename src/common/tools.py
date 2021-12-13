@@ -16,7 +16,7 @@ def prettify_path(path):
 
     Into this:
 
-    ``/h/m/D/file.txt``
+    ``h/m/D/file.txt``
 
     Parameters:
         path(:obj:`str`): path to be prettified.
