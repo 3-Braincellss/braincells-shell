@@ -22,6 +22,7 @@ class CatApp(App):
             instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -48,8 +49,12 @@ class CatApp(App):
             return out
 
         if not self.args:
-            out.append(input())
-            return out
+            out.append("")
+            while True:
+                try:
+                    out.append(input())
+                except KeyboardInterrupt:
+                    return out
 
         self._run(self.args, out)
 
