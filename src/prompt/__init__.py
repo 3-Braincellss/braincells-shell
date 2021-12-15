@@ -1,6 +1,6 @@
 """
-Prompt Module
-=============
+Module Contents
+===============
 
 This module is where the user interaction happens.
 

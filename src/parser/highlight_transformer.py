@@ -1,3 +1,49 @@
+"""
+Highlighter
+===========
+
+Contains a lark parser that converts a given string
+into a formatted text instance.
+
+Any mention of formatted text in this document means:
+
+A list of tuples of the following format:
+
+.. code-block:: python
+
+    [("style_str1", "text_2"), ("style_str2", "text_2"), ...]
+
+Our syntax highlighter does the following.
+
+Standard highlighting features
+------------------------------
+
+Our shell uses different colors for all of the following:
+
+- commands symbols like ``|`` or ``;``
+
+- Quoted strings
+
+- App names
+
+- App arguments
+
+Contextual argument highlighting
+--------------------------------
+
+- Highlights unsafe apps differently to normal apps.
+
+- Will only highlight apps that are supported by the shell.
+  If it's not supported highlights it red.
+
+- If the argument is an existing path, underlines it.
+
+Syntax Hinting
+--------------
+
+- Whenever the syntax is incorrect highlights the whole input red.
+"""
+
 import os
 
 from lark import Lark
@@ -34,13 +80,7 @@ class HighlightTransformer(Transformer):
             return oper
 
     def seq(self, opers):
-        """Syntax:
-
-        ```
-        seq : command ";" command
-            | command ";"
-        ```
-
+        """
         Parameters:
             opers(:obj:`list`): 1 or 2 Formatted text instances.
         Returns:
@@ -55,14 +95,7 @@ class HighlightTransformer(Transformer):
         return new_args
 
     def pipe(self, opers):
-        """Syntax:
-
-        ```
-        pipe : call "|" call
-             | pipe "|" call
-
-        ```
-
+        """
         Parameters:
             op1(:obj:`list`): Formatted text.
 

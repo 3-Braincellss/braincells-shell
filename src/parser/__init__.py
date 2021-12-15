@@ -1,8 +1,13 @@
 # pylint: skip-file
 # flake8: noqa
 """
+Module Contents
+===============
+
+We use ``lark`` to produce an AST from the following grammar:
+
 grammar.lark
-============
+------------
 .. code-block:: text
 
     %import common.LETTER
@@ -30,6 +35,23 @@ grammar.lark
     SINGLE_QUOTE_CONTENT : /[^\\n']+/
     UNQUOTED             : /[^\\s"'`\\n;|<>]+/
     WHITESPACE           : /[\\s]+/
+
+
+We then transform the resultant **AST** in 2 ways:
+
+1. Into a command object that our shell will execute
+2. Into a formatted text list that is then used for syntax highlighting.
+
+Henceforth, we have 2 modules that do exactly that:
+
+
 """
-from .highlighter import HighlightTransformer, ShellHighlighter
-from .parser import run_parser
+from .highlight_transformer import HighlightTransformer, ShellHighlighter
+from .command_transformer import CommandTransformer
+from .parser import ShellParser
+
+__all__ = [
+    "HighlightTransformer",
+    "CommandTransformer",
+    "ShellParser",
+]

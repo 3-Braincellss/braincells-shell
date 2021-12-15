@@ -53,7 +53,7 @@ All development related information that will make it easier to understand our c
 
    apidocs/shell
    apidocs/run
-   apidocs/session
+   apidocs/prompt
    apidocs/apps
    apidocs/common
    apidocs/exceptions

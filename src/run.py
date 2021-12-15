@@ -14,7 +14,7 @@ This module runs the application.
 import sys
 
 from prompt import ShellSession
-from shell import execute
+from shell import Shell
 
 if __name__ == "__main__":
     ARGS_NUM = len(sys.argv) - 1
@@ -24,8 +24,8 @@ if __name__ == "__main__":
             raise ValueError("wrong number of command line arguments")
         if sys.argv[1] != "-c":
             raise ValueError(f"unexpected command line argument {sys.argv[1]}")
-
-        out = execute(sys.argv[2])
+        sh = Shell()
+        out = sh.execute(sys.argv[2])
         print(out)
     else:
         session = ShellSession()

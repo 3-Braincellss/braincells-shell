@@ -18,8 +18,8 @@ from prompt_toolkit.styles import Style
 from common.tools import prettify_path
 from exceptions import ShellError
 from prompt import ShellPathCompleter
-from shell import execute
-from shellparser import ShellHighlighter
+from shell import Shell
+from parser import ShellHighlighter
 
 from .conf import STYLE_DICT
 
@@ -33,6 +33,7 @@ class ShellSession(PromptSession):
     def __init__(self):
         self.style = Style.from_dict(STYLE_DICT)
         self.lexer = ShellHighlighter()
+        self.shell = Shell()
 
         super().__init__(
             style=self.style,
@@ -52,7 +53,7 @@ class ShellSession(PromptSession):
                 exit()
 
             try:
-                out = execute(text)
+                out = self.shell.execute(text)
             except ShellError as err:
                 out = err.message
 

@@ -1,14 +1,20 @@
-shellparser
-===========
+Transformers
+============
 
-.. automodule:: shellparser
+.. automodule:: transformers
+
+.. automodule:: transformers.command_transformer
    :members:
    :undoc-members:
    :show-inheritance:
 
 
 
-.. automodule:: shellparser.parser
+
+
+.. automodule:: transformers.highlight_transformer
    :members:
    :undoc-members:
    :show-inheritance:
+
+

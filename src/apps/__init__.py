@@ -24,6 +24,7 @@ from .app_factory import AppFactory
 
 __all__ = [
     "App",
+    "AppFactory",
     "LsApp",
     "EchoApp",
     "PwdApp",
@@ -38,5 +39,4 @@ __all__ = [
     "SortApp",
     "ClearApp",
     "UnsafeApp",
-    "AppFactory",
 ]

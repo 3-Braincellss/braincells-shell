@@ -1,6 +1,6 @@
 """
-Parser
-======
+Command Transformer
+===================
 
 Module which handles parsing and transforming the parse tree
 """
@@ -13,8 +13,12 @@ from lark.visitors import Transformer
 from exceptions import ShellError, ShellSyntaxError
 from operations import OperationFactory
 
+__all__ = [
+    "CommandTransformer",
+]
 
-class ShellTransformer(Transformer):
+
+class CommandTransformer(Transformer):
     """Custom transformer inheriting lark.visitors.Transformer"""
     def command(self, args):
         """Starting point of grammar
@@ -254,7 +258,7 @@ def run_parser(text):
         raise ShellSyntaxError(err.get_context(text))
 
     try:
-        oper = ShellTransformer(visit_tokens=True).transform(tree)
+        oper = CommandTransformer(visit_tokens=True).transform(tree)
     except VisitError as err:
         if isinstance(err.__context__, ShellError):
             raise err.__context__

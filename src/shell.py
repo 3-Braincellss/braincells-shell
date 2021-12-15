@@ -7,28 +7,42 @@ Contains the execute function to run shell on a given input string.
 
 from collections import deque
 
-from shellparser import run_parser
+from parser import ShellParser, CommandTransformer
 
 __all__ = [
-    "execute",
+    "Shell",
 ]
 
 
-def execute(input_str):
-    """Parses and executes the input string
 
-    Parameters:
-        input_str (:obj:`str`): input string representing a command.
+class Shell:
+    """ Main shell class
 
-    Returns:
-        (:obj:`str`): output as a string
+    Initialises parser and transformer instances.
+
     """
 
-    out = deque()
-    out_str = ""
-    if len(input_str.strip()) != 0:
-        command = run_parser(input_str)
-        out = command.run(None, out)
-        out_str = "\n".join(out)
+    def __init__(self):
+        self.parser = ShellParser()
+        self.transformer = CommandTransformer(visit_tokens=True)
 
-    return out_str
+        
+    def execute(self, input_str):
+        """Parses and executes the input string
+
+        Parameters:
+            input_str (:obj:`str`): input string representing a command.
+
+        Returns:
+            (:obj:`str`): output as a string
+        """
+
+        out = deque()
+        out_str = ""
+        if len(input_str.strip()) != 0:
+            tree = self.parser.parse(input_str)
+            command = self.transformer.transform(tree)
+            out = command.run(None, out)
+            out_str = "\n".join(out)
+            
+        return out_str
