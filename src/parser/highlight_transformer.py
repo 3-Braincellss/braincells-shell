@@ -36,7 +36,6 @@ Possible style classes are:
 
 import os
 
-
 from lark.exceptions import VisitError
 from lark.visitors import Transformer
 

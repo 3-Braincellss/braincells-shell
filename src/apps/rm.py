@@ -17,7 +17,6 @@ from exceptions import ContextError
 
 
 class RmApp(App):
-
     """A class representing the rm shell instruction.
 
     Args:
@@ -28,7 +27,6 @@ class RmApp(App):
         ContextError: If any invalid options are given.
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -85,8 +83,7 @@ class RmApp(App):
 
         for arg in self.args:
             if not self._valid_path(arg):
-                raise ContextError(
-                    "rm", (f"cannot delete directory '{arg}': "
-                           "No such file or directory"))
+                raise ContextError("rm", (f"cannot delete directory '{arg}': "
+                                          "No such file or directory"))
         if not self.args:
             raise ContextError("rm", "Missing operand.")

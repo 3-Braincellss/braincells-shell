@@ -3,25 +3,9 @@ app_factory
 ===========
 Module for creating applications.
 """
-from apps import (
-    App,
-    CatApp,
-    CdApp,
-    ClearApp,
-    CutApp,
-    EchoApp,
-    FindApp,
-    GrepApp,
-    HeadApp,
-    LsApp,
-    PwdApp,
-    SortApp,
-    TailApp,
-    UniqApp,
-    UnsafeApp,
-    MkdirApp,
-    RmApp
-)
+from apps import (App, CatApp, CdApp, ClearApp, CutApp, EchoApp, FindApp,
+                  GrepApp, HeadApp, LsApp, PwdApp, SortApp, TailApp, UniqApp,
+                  UnsafeApp, MkdirApp, RmApp)
 from common.tools import simple_globbing
 from exceptions import AppNotFoundError
 

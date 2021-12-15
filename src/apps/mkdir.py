@@ -1,6 +1,6 @@
 """
 mkdir
-====
+=====
 Module representing the mkdir application
 Usage in shell: mkdir [PATH]+
 
@@ -15,7 +15,6 @@ from exceptions import ContextError
 
 
 class MkdirApp(App):
-
     """A class representing the mkdir shell instruction.
 
     Args:
@@ -23,7 +22,6 @@ class MkdirApp(App):
     of the instruction.
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         self.args = args
@@ -68,14 +66,10 @@ class MkdirApp(App):
         """
 
         if not self.args:
-            raise ContextError(
-                "mkdir", f"Missing operands")
+            raise ContextError("mkdir", "Missing operands")
         for arg in self.args:
             if not self._valid_path(arg):
-                raise ContextError(
-                    "mkdir", (f"cannot create directory '{arg}': "
-                              "No such file or directory"))
+                raise ContextError("mkdir",
+                                   f"'{arg}': No such file or directory")
             if os.path.exists(arg):
-                raise ContextError(
-                    "mkdir", (f"cannot create directory '{arg}': "
-                              "Path already exists"))
+                raise ContextError("mkdir", f"'{arg}':Path already exists")

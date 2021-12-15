@@ -92,10 +92,23 @@ Apps
    :undoc-members:
    :show-inheritance:
 
+.. automodule:: apps.mkdir
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: apps.rm
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 .. automodule:: apps.unsafe
    :members:
    :undoc-members:
    :show-inheritance:
+
+
+      
 
 

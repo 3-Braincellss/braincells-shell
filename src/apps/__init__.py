@@ -39,6 +39,8 @@ __all__ = [
     "FindApp",
     "UniqApp",
     "SortApp",
+    "MkdirApp",
     "ClearApp",
+    "RmApp",
     "UnsafeApp",
 ]
