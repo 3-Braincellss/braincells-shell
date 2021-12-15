@@ -4,16 +4,13 @@ The features listed in our specification for the development of the shell consis
 
 This section will highlight the additional features added to the shell that were not requested but we thought would make a more effective shell.
 
-## Clear Command
+## clear
 
 Just like in traditional shell, the Comp0010 Shell supports the `clear` command, which will remove all text from the terminal.
 
 ```
 clear
 ```
-
-
-
 
 ## Command Buffer
 
@@ -27,3 +24,7 @@ Unlike the standard terminal found on most systems, the Comp0010 shell has synta
 * Operations (`|`, `>`, `;`)
 * Valid file paths
 * Invalid commands
+
+## Text Completion
+
+Pressing tab while typing a command in the Comp0010 Shell will automatically insert valid paths.
