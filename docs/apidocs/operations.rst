@@ -1,17 +1,9 @@
-operations
+Operations
 ==========
 
 .. automodule:: operations
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 
-
-.. automodule:: operations.call
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 
 .. automodule:: operations.operation
@@ -21,6 +13,12 @@ operations
 
 
 .. automodule:: operations.operation_factory
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+.. automodule:: operations.call
    :members:
    :undoc-members:
    :show-inheritance:
@@ -36,3 +34,4 @@ operations
    :members:
    :undoc-members:
    :show-inheritance:
+

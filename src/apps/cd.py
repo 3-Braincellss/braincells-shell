@@ -9,8 +9,8 @@ Example:
 """
 import os
 
-from exceptions import ContextError, RunError
 from apps import App
+from exceptions import ContextError, RunError
 
 
 class CdApp(App):
@@ -53,8 +53,7 @@ class CdApp(App):
             except OSError:
                 raise RunError(
                     "cd",
-                    f"{self.args[0]} is not a directory\
-                .",
+                    f"{self.args[0]} is not a directory",
                 ) from None
         return out
 
@@ -71,6 +70,5 @@ class CdApp(App):
         if self.args and not os.path.exists(self.args[0]):
             raise ContextError(
                 "cd",
-                f"path '{self.args[0]}' doesn't \
-            exist",
+                f"path '{self.args[0]}' doesn't exist",
             )

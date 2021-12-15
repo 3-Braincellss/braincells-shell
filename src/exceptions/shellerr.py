@@ -5,7 +5,7 @@ Shell Error
 General error interface
 """
 
-from abc import abstractmethod, ABCMeta
+from abc import ABCMeta, abstractmethod
 
 
 class ShellError(Exception, metaclass=ABCMeta):

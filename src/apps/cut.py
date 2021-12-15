@@ -8,10 +8,11 @@ Example:
     `cut -b 0-23 rick-roll.txt`
 """
 
-from getopt import getopt, GetoptError
+from getopt import GetoptError, getopt
+
 from apps import App
-from exceptions import RunError, ContextError
 from common.tools import read_lines_from_file
+from exceptions import ContextError, RunError
 
 
 class CutApp(App):
@@ -22,7 +23,6 @@ class CutApp(App):
             of the instruction
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         try:
@@ -59,11 +59,8 @@ class CutApp(App):
             self._run([input()], intervals, out)
             return out
         for arg in self.args:
-            if arg == "-":
-                self._run([input()], intervals, out)
-            else:
-                contents = read_lines_from_file(arg, "cut")
-                self._run(contents, intervals, out)
+            contents = read_lines_from_file(arg, "cut")
+            self._run(contents, intervals, out)
         return out
 
     def _run(self, strings, intervals, out):
@@ -170,10 +167,8 @@ class CutApp(App):
         :raises RunError: If the string given is invalid (not a positive
         integer)
         """
-        digits = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
-        for char in num:
-            if char not in digits:
-                raise RunError("cut", f"Invalid option argument {num}")
+        if not num.isdigit():
+            raise RunError("cut", f"Invalid option argument {num}")
         if num == "0":
             raise RunError("cut", "Cut intervals are 1 indexed.")
 

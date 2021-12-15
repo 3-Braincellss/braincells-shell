@@ -1,15 +1,14 @@
-from hypothesis import given, strategies as st
-import unittest
-from shell_test_interface import ShellTestCase
-from exceptions import ContextError, RunError
-from apps import CdApp
 import os
+
+from shell_test_interface import ShellTestCase
+
+from apps import CdApp
+from exceptions import ContextError, RunError
 
 TEST_PATH = os.getcwd() + "/_test"
 
 
 class TestCd(ShellTestCase):
-
     def tearDown(self):
         os.chdir(TEST_PATH)
         super().tearDown()
@@ -21,6 +20,7 @@ class TestCd(ShellTestCase):
 
     def test_change_dir(self):
         app = CdApp(["dir_empty"])
+        app.validate_args()
         app.run([], [])
         self.assertEqual(TEST_PATH + "/dir_empty", os.getcwd())
 

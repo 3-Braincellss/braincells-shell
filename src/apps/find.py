@@ -7,11 +7,12 @@ Usage in shell: find -name [PATTERN] [PATH]
 Example:
     ``find -name *.py project/spaghetti-code``
 """
-from apps.app import App
 import os
-from glob import glob
 from getopt import gnu_getopt
-from exceptions import RunError, ContextError
+from glob import glob
+
+from apps.app import App
+from exceptions import ContextError, RunError
 
 
 class FindApp(App):
@@ -22,7 +23,6 @@ class FindApp(App):
         of the instruction
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         for i in range(len(args)):
@@ -58,11 +58,10 @@ class FindApp(App):
     def _run(self, root, out):
         matched_files = glob(f"./{root}/**/{self.pattern}", recursive=True)
         for file in matched_files:
-            if not os.path.isdir(file):
-                if root != "":
-                    out.append(file[2:])  # Omit the ./
-                else:
-                    out.append(file)
+            if root != "":
+                out.append(file[2:])  # Omit the ./
+            else:
+                out.append(file)
 
     def validate_args(self):
         """Ensures that the -name option is present and only one argument is
@@ -75,15 +74,13 @@ class FindApp(App):
         if not self.options:
             raise ContextError(
                 "find",
-                "No pattern supplied. usage: find \
-            [PATH] -name PATTERN ",
+                "No pattern supplied. usage: find [PATH] -name PATTERN ",
             )
         if len(self.args) > 1:
             raise ContextError(
                 "find",
-                "Too many arguments supplied usage: \
-            find [PATH] -name PATTERN",
+                "Too many arguments supplied usage: find [PATH] -name PATTERN",
             )
         if self.args and not os.path.exists(self.args[0]):
-            raise RunError("find",
-                           f"{self.args[0]}: No such file or directory") from None
+            raise RunError(
+                "find", f"{self.args[0]}: No such file or directory") from None

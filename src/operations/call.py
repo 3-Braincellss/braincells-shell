@@ -3,10 +3,11 @@ Call
 ====
 An operation primitive that contains an app that it runs.
 """
-from operations import Operation
-from apps import AppFactory
 from collections import deque
+
+from apps import AppFactory
 from common.tools import read_lines_from_file
+from operations import Operation
 
 
 class Call(Operation):
@@ -56,7 +57,5 @@ class Call(Operation):
                     f.write("\n")
         else:
             self.app.validate_args()
-            self.app.run(new_inp, out)
+            out = self.app.run(new_inp, out)
         return out
-
-        

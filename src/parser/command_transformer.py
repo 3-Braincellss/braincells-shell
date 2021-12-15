@@ -1,17 +1,64 @@
 """
-parser
-======
-Module which handles parsing and transforming the parse tree"""
+Command Transformer
+===================
+
+Module which handles parsing and transforming the parse tree
+"""
 import os
+
 from lark import Lark
-from lark.visitors import Transformer
 from lark.exceptions import UnexpectedInput, VisitError
+from lark.visitors import Transformer
+
+from exceptions import ShellError, ShellSyntaxError
 from operations import OperationFactory
-from exceptions import ShellSyntaxError, ShellError
+
+__all__ = [
+    "CommandTransformer",
+]
 
 
-class ShellTransformer(Transformer):
-    """Custom transformer inheriting lark.visitors.Transformer"""
+class CommandTransformer(Transformer):
+    """Custom transformer inheriting lark.visitors.Transformer
+
+    Takes in the AST and transforms it into a single ``Operation`` object with
+    potentially multiple ``Operation`` and ``App`` objects nested in that object.
+
+    Each method corresponds to how each non-terminal in the AST is transformed.
+
+    Attributes define how each terminal is transformed.
+
+    """
+    def __init__(self):
+        super().__init__(visit_tokens=True)
+
+    def transform(self, tree):
+        """ Overriding transform method
+        to support our exception interface
+
+        Parameters:
+            tree: Abstract syntax tree
+        Returns:
+            Operation: operaion object.
+        Raises:
+            ShellSyntaxError: whenever tranforming cannot happen
+                for whatever reason
+            
+            ShellError: propagated errors from the subshell that
+                is run in the backquotes.
+        """
+
+        try:
+            oper = super().transform(tree)
+        except VisitError as err:
+            # Visit error doesn't properly propagate
+            # underlying errors, so we have to do this trick
+            # to bring shell errors higher.
+            if isinstance(err.__context__, ShellError):
+                raise err.__context__
+            raise ShellSyntaxError("cannot transform")
+        return oper
+
     def command(self, args):
         """Starting point of grammar
 
@@ -207,8 +254,8 @@ class ShellTransformer(Transformer):
 
         # Putting this at top level causes circular import
         from shell import Shell  # pylint: disable=import-outside-toplevel
-
-        string = " ".join(Shell.execute(args[0])).strip()
+        sh = Shell()
+        string = " ".join(sh.execute(args[0]).split("\n"))
         return string
 
     def WHITESPACE(self, tok):  # pylint: disable=invalid-name
@@ -223,39 +270,3 @@ class ShellTransformer(Transformer):
     DOUBLE_QUOTE_CONTENT = str
     SINGLE_QUOTE_CONTENT = str
     BACKQUOTED = str
-
-
-def run_parser(text):
-    """Parses input string
-
-    Parameters:
-        text (:obj:`str`): input string
-
-    Returns:
-        Operation: Concrete operation object.
-
-    Raises:
-        ShellSyntaxError: Raises the syntax error if either
-            parsing or transforming fails.
-        
-    """
-
-    dirname = os.path.dirname(__file__)
-    filename = os.path.join(dirname, "grammar.lark")
-    with open(filename, encoding="utf-8") as grammar:
-        lark_parser = Lark(grammar.read(), start="command")
-
-    try:
-        tree = lark_parser.parse(text)
-    except UnexpectedInput as err:
-        raise ShellSyntaxError(err.get_context(text))
-
-    try:
-        oper = ShellTransformer(visit_tokens=True).transform(tree)
-    except VisitError as err:
-        if isinstance(err.__context__, ShellError):
-            raise err.__context__
-        raise ShellSyntaxError("cannot transform")
-        
-        
-    return oper

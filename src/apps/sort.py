@@ -9,11 +9,11 @@ Example:
 
 """
 
-from getopt import getopt, GetoptError
+from getopt import GetoptError, getopt
 
 from apps import App
-from exceptions import ContextError
 from common.tools import read_lines_from_file
+from exceptions import ContextError
 
 
 class SortApp(App):
@@ -27,10 +27,9 @@ class SortApp(App):
     def __init__(self, args):
         super().__init__(args)
         try:
-            opts, args = getopt(args, "r")
+            self.opts, self.args = getopt(args, "r")
         except GetoptError as goe:
             raise ContextError("sort", str(goe)) from None
-        self.args = opts, args
 
     def run(self, inp, out):
         """Executes the sort command on the given arguments.
@@ -53,18 +52,17 @@ class SortApp(App):
 
         """
 
-        opts = self.args[0]
-        args = self.args[1]
-
         # Reverse order when -r option is provided
-        rev = bool(opts)
+        rev = bool(self.opts)
 
         # if args array is non zero then use file as the input
-        if args:
-            contents = read_lines_from_file(args[0], "sort")
+        if self.args:
+            contents = read_lines_from_file(self.args[0], "sort")
             self._run(contents, rev, out)
         elif inp:
             self._run(inp, rev, out)
+        else:
+            raise ContextError("sort", "No input arguments supplied")
 
         return out
 
@@ -80,5 +78,5 @@ class SortApp(App):
             ContextError: If too many arguments are given.
 
         """
-        if len(self.args) > 2:
+        if len(self.args) > 1:
             raise ContextError("sort", "too many arguments")

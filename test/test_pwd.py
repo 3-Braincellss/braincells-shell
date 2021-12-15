@@ -1,12 +1,11 @@
-from hypothesis import given, strategies as st
-import unittest
-from apps import PwdApp
-from exceptions import ContextError
 import os
 
+from apps import PwdApp
+from exceptions import ContextError
+from shell_test_interface import ShellTestCase
 
-class TestPwd(unittest.TestCase):
 
+class TestPwd(ShellTestCase):
     def test_pwd(self):
         expected = os.path.abspath(".")
         out = []

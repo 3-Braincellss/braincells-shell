@@ -1,8 +1,19 @@
 # pylint: skip-file
 # flake8: noqa
 """
+Module Contents
+===============
+
+This modules defines anything related with parsing.
+Input text first has to be converted to an **AST**.
+This is done with our ``ShellParser`` module which is a 
+wrapper to ``lark``'s default parser.
+
+Here is the grammar according to which ``ShellParser`` produces
+the **AST**.
+
 grammar.lark
-============
+------------
 .. code-block:: text
 
     %import common.LETTER
@@ -30,6 +41,27 @@ grammar.lark
     SINGLE_QUOTE_CONTENT : /[^\\n']+/
     UNQUOTED             : /[^\\s"'`\\n;|<>]+/
     WHITESPACE           : /[\\s]+/
-"""
-from .parser import run_parser
 
+
+We then transform the resultant **AST** in 2 ways:
+
+1. Into a command object that our shell will execute
+2. Into a formatted text list that is then used for syntax highlighting.
+
+Having said that, our ``Parser`` module contains the following submodules:
+
+- ``ShellParser``
+- ``CommandTransformer``
+- ``HighlightTransformer``
+
+
+"""
+from .parser import ShellParser
+from .highlight_transformer import HighlightTransformer
+from .command_transformer import CommandTransformer
+
+__all__ = [
+    "HighlightTransformer",
+    "CommandTransformer",
+    "ShellParser",
+]

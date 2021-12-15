@@ -1,10 +1,7 @@
-exceptions
+Exceptions
 ==========
 
 .. automodule:: exceptions
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 
 
@@ -36,3 +33,4 @@ exceptions
    :members:
    :undoc-members:
    :show-inheritance:
+

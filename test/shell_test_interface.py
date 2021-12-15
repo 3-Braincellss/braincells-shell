@@ -1,6 +1,5 @@
 import os
 import shutil
-
 import unittest
 
 
@@ -38,8 +37,11 @@ class ShellTestCase(unittest.TestCase):
         Initialises testing directory tree and sets it as the
         current directory
         """
-
-        os.mkdir(self.TOP_LEVEL)
+        try:
+            os.mkdir(self.TOP_LEVEL)
+        except FileExistsError:
+            shutil.rmtree("_test")
+            os.mkdir(self.TOP_LEVEL)
 
         def recur_dir(dirs, current_path):
 

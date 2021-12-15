@@ -5,22 +5,23 @@ Module for creating applications.
 """
 from apps import (
     App,
-    LsApp,
-    EchoApp,
-    CdApp,
     CatApp,
+    CdApp,
+    ClearApp,
     CutApp,
-    PwdApp,
-    HeadApp,
-    TailApp,
-    SortApp,
+    EchoApp,
+    FindApp,
     GrepApp,
+    HeadApp,
+    LsApp,
+    PwdApp,
+    SortApp,
+    TailApp,
     UniqApp,
     UnsafeApp,
-    FindApp,
 )
-from exceptions import AppNotFoundError
 from common.tools import simple_globbing
+from exceptions import AppNotFoundError
 
 
 class AppFactory:
@@ -39,6 +40,7 @@ class AppFactory:
         "find": FindApp,
         "uniq": UniqApp,
         "sort": SortApp,
+        "clear": ClearApp,
     }
     """(:obj:`dict`): A dictionary that maps app names to their classes"""
 

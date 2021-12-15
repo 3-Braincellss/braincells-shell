@@ -9,11 +9,11 @@ Example:
 """
 
 import re
+from getopt import GetoptError, getopt
 
 from apps import App
-from getopt import getopt, GetoptError
-from exceptions import ContextError
 from common.tools import read_lines_from_file
+from exceptions import ContextError
 
 
 class GrepApp(App):
@@ -59,9 +59,6 @@ class GrepApp(App):
             return out
         paths = self.args[1:]
         for path in paths:
-            if path == "-":  # nani?
-                self._run(input().split("\n"), out)
-                continue
             contents = read_lines_from_file(path, "grep")
             self._run(contents, out, path, len(paths) > 1)
         return out

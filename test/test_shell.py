@@ -1,43 +1,45 @@
-import unittest
-
 from shell_test_interface import ShellTestCase
+
+from exceptions import (AppNotFoundError, ContextError, RunError,
+                        ShellSyntaxError)
 from shell import Shell
-from exceptions import (
-    AppNotFoundError,
-    ContextError,
-    RunError,
-    ShellSyntaxError,
-)
 
 
 class TestShell(ShellTestCase):
+    def setUp(self):
+        super().setUp()
+        self.shell = Shell()
+
     def test_execute_simple(self):
+        text = "echo hello"
+        out = self.shell.execute(text)
+        self.assertEqual(out, "hello")
 
-        command_text = "echo hello"
-        out = Shell.execute(command_text)
-        result = "\n".join(out)
-
-        self.assertEqual(result, "hello")
+    def test_execute_sequence(self):
+        text = "echo hello; cat dir_files/file-4"
+        out = self.shell.execute(text)
+        self.assertEqual(out, "hello\ndepression")
 
     def test_run_app_not_found(self):
-        sh = Shell()
 
         with self.assertRaises(AppNotFoundError):
-            sh.run("gcc make file")
+            self.shell.execute("gcc make file")
 
     def test_run_context(self):
-        sh = Shell()
 
         with self.assertRaises(ContextError):
-            sh.run("ls one two three")
+            self.shell.execute("ls one two three")
 
     def test_run_app_run_error(self):
-        sh = Shell()
 
         with self.assertRaises(RunError):
-            sh.run("cat wakanadaaaaaaaaaaaaaaaaa")
+            self.shell.execute("cat wakanadaaaaaaaaaaaaaaaaa")
 
     def test_run_syntax_error(self):
-        sh = Shell()
         with self.assertRaises(ShellSyntaxError):
-            sh.run(";;;")
+            self.shell.execute(";;;")
+
+    def test_execute_empty(self):
+        text = "    "
+        out = self.shell.execute(text)
+        self.assertEqual(out, "")
