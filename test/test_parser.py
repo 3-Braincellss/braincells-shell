@@ -2,38 +2,50 @@ from shell_test_interface import ShellTestCase
 
 from exceptions import ShellSyntaxError
 from operations import Call, Pipe, Sequence
-from shellparser import parser
+from parser import CommandTransformer, ShellParser
 
 
 class TestParser(ShellTestCase):
+    def setUp(self):
+        super().setUp()
+        self.parser = ShellParser()
+        self.transformer = CommandTransformer()
+
     def test_command(self):
-        out = parser.run_parser("echo ")
+        tree = self.parser.parse("echo ")
+        out = self.transformer.transform(tree)
         self.assertIsInstance(out, Call)
 
     def test_seq(self):
-        out = parser.run_parser("echo ; echo ")
+        tree = self.parser.parse("echo ; echo ")
+        out = self.transformer.transform(tree)
         self.assertIsInstance(out, Sequence)
 
     def test_pipe(self):
-        out = parser.run_parser("echo | echo ")
+        tree = self.parser.parse("echo | echo ")
+        out = self.transformer.transform(tree)
         self.assertIsInstance(out, Pipe)
 
     def test_redirects(self):
-        out = parser.run_parser("echo < file1 > file2")
+        tree = self.parser.parse("echo < file1 > file2")
+        out = self.transformer.transform(tree)
         self.assertIsInstance(out, Call)
 
     def test_singlequote(self):
-        out = parser.run_parser("echo \' text \'")
+        tree = self.parser.parse("echo \' text \'")
+        out = self.transformer.transform(tree)
         self.assertIsInstance(out, Call)
 
     def test_doublequote(self):
-        out = parser.run_parser("echo \" text \"")
+        tree = self.parser.parse("echo \" text \"")
+        out = self.transformer.transform(tree)
         self.assertIsInstance(out, Call)
 
     def test_backquote_call(self):
-        out = parser.run_parser("echo \"`echo text`\"")
+        tree = self.parser.parse("echo \"`echo text`\"")
+        out = self.transformer.transform(tree)
         self.assertIsInstance(out, Call)
 
     def test_raisesyntaxerror(self):
         with self.assertRaises(ShellSyntaxError):
-            parser.run_parser(";")
+            self.parser.parse(";")

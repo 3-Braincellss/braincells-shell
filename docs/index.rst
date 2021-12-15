@@ -58,7 +58,7 @@ All development related information that will make it easier to understand our c
    apidocs/common
    apidocs/exceptions
    apidocs/operations
-   apidocs/shellparser
+   apidocs/parser
 
 
 

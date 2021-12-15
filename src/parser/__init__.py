@@ -4,7 +4,13 @@
 Module Contents
 ===============
 
-We use ``lark`` to produce an AST from the following grammar:
+This modules defines anything related with parsing.
+Input text first has to be converted to an **AST**.
+This is done with our ``ShellParser`` module which is a 
+wrapper to ``lark``'s default parser.
+
+Here is the grammar according to which ``ShellParser`` produces
+the **AST**.
 
 grammar.lark
 ------------
@@ -42,13 +48,17 @@ We then transform the resultant **AST** in 2 ways:
 1. Into a command object that our shell will execute
 2. Into a formatted text list that is then used for syntax highlighting.
 
-Henceforth, we have 2 modules that do exactly that:
+Having said that, our ``Parser`` module contains the following submodules:
+
+- ``ShellParser``
+- ``CommandTransformer``
+- ``HighlightTransformer``
 
 
 """
-from .highlight_transformer import HighlightTransformer, ShellHighlighter
-from .command_transformer import CommandTransformer
 from .parser import ShellParser
+from .highlight_transformer import HighlightTransformer
+from .command_transformer import CommandTransformer
 
 __all__ = [
     "HighlightTransformer",

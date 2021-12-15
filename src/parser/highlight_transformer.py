@@ -1,47 +1,37 @@
 """
-Highlighter
-===========
+Highlight Transformer
+=====================
 
-Contains a lark parser that converts a given string
-into a formatted text instance.
+Converts the **AST** into a formatted text instance.
 
-Any mention of formatted text in this document means:
+Any mention of `formatted text` in this document means:
 
 A list of tuples of the following format:
 
 .. code-block:: python
 
-    [("style_str1", "text_2"), ("style_str2", "text_2"), ...]
+    [("style_str1", "text_1"), ("style_str2", "text_2"), ...]
 
-Our syntax highlighter does the following.
+Possible style classes are:
 
-Standard highlighting features
-------------------------------
+- ``oper``: operation style (|, ;)
 
-Our shell uses different colors for all of the following:
+- ``arg``: Arguments that weren't affected by context changes.
 
-- commands symbols like ``|`` or ``;``
+- ``app``: Apps that are recognised by AppFactory will be styled accordingly.
 
-- Quoted strings
+- ``path``: If an argument is an existing path.
 
-- App names
+- ``err``: Apps that are not recognised by appfactory or general error style.
 
-- App arguments
+- ``unsafe``: Unsafe apps that are recognised by AppFactory
 
-Contextual argument highlighting
---------------------------------
+- ``redir``: redirections (<, >)
 
-- Highlights unsafe apps differently to normal apps.
+- ``quotes``: Any quotes.
 
-- Will only highlight apps that are supported by the shell.
-  If it's not supported highlights it red.
+- ``space``: whitespaces.
 
-- If the argument is an existing path, underlines it.
-
-Syntax Hinting
---------------
-
-- Whenever the syntax is incorrect highlights the whole input red.
 """
 
 import os
@@ -49,17 +39,27 @@ import os
 from lark import Lark
 from lark.exceptions import UnexpectedInput, VisitError
 from lark.visitors import Transformer
-from prompt_toolkit.lexers import Lexer
 
 from apps import AppFactory
+from parser import ShellParser
+from exceptions import ShellSyntaxError
 
 __all__ = [
     "HighlightTransformer",
-    "ShellHighlighter",
 ]
 
 
 class HighlightTransformer(Transformer):
+    def __init__(self):
+        super().__init__(visit_tokens=True)
+
+    def transform(self, tree):
+        try:
+            form_text = super().transform(tree)
+        except VisitError as err:
+            raise ShellSyntaxError("Cannot tranform")
+        return form_text
+
     def command(self, oper):
         """Syntax:
 
@@ -232,31 +232,3 @@ class HighlightTransformer(Transformer):
 
     def WHITESPACE(_, x):
         return ("class:space", str(x))
-
-
-class ShellHighlighter(Lexer):
-    def __init__(self):
-        dirname = os.path.dirname(__file__)
-        filename = os.path.join(dirname, "grammar.lark")
-        with open(filename, encoding="utf-8") as grammar:
-            self.parser = Lark(grammar.read(), start="command")
-
-    def lex_document(self, document):
-        text = document.lines[0]
-
-        def default(_):
-            return [("class:err", text)]
-
-        try:
-            tree = self.parser.parse(text)
-
-        except UnexpectedInput:
-            return default
-
-        try:
-            highlighted = HighlightTransformer(
-                visit_tokens=True).transform(tree)
-        except VisitError:
-            return default
-
-        return lambda _: highlighted

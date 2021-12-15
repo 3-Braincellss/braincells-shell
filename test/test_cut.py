@@ -45,8 +45,9 @@ class TestCut(ShellTestCase):
     def test_cut_input_redirection(self):
         expected = ["AA", "BB", "DD", "Idn"]
         out = []
-        CutApp(["-b", "1,3,5"]).run(["AAA", "BBB", "DDD",
-                                     "I don't know any more letters"], out)
+        CutApp(["-b", "1,3,5"
+                ]).run(["AAA", "BBB", "DDD", "I don't know any more letters"],
+                       out)
         self.assertEqual(out, expected)
 
     def test_decreasing_interval_raises_exception(self):

@@ -6,19 +6,15 @@ from lark import Lark
 from prompt_toolkit.document import Document
 from shell_test_interface import ShellTestCase
 
-from shellparser import HighlightTransformer, ShellHighlighter
+from parser import HighlightTransformer, ShellParser
 
-dirname = os.path.join(os.path.dirname(__file__), '..')
-filename = os.path.join(dirname, 'src/shellparser/grammar.lark')
-with open(filename, "r", encoding="utf-8") as grammar:
-    g = grammar.read()
-    GRAMMAR = Lark(g, start="command")
+PARSER = ShellParser()
 
 
 class TestHighlighter(ShellTestCase):
     def setUp(self):
         super().setUp()
-        self.tran = HighlightTransformer(visit_tokens=True)
+        self.tran = HighlightTransformer()
 
     @staticmethod
     def form_text(styles=None):
@@ -190,7 +186,7 @@ class TestHighlighter(ShellTestCase):
         self.assertEqual(res, expected)
 
     @settings(deadline=400)
-    @given(from_lark(GRAMMAR))
+    @given(from_lark(PARSER))
     def test_random_invariant(self, s):
         """Testing invariant with random testing
 
@@ -203,23 +199,9 @@ class TestHighlighter(ShellTestCase):
         if that's not the case, prompt_toolkit
         will get VERY angry so we want to avoid it at all costs.
         """
-        tree = GRAMMAR.parse(s)
+        tree = PARSER.parse(s)
 
         out = self.tran.transform(tree)
-        for each in out:
-            self.assertIsInstance(each, tuple)
-            self.assertIsInstance(each[0], str)
-            self.assertIsInstance(each[1], str)
-
-
-class TestShellHighlighter(ShellTestCase):
-    @settings(deadline=400)
-    @given(from_lark(GRAMMAR))
-    def test_random_invariant(self, s):
-        GRAMMAR.parse(s)
-        hlr = ShellHighlighter()
-        document = Document(s)
-        out = hlr.lex_document(document)(0)
         for each in out:
             self.assertIsInstance(each, tuple)
             self.assertIsInstance(each[0], str)

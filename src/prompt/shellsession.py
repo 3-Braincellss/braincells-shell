@@ -19,7 +19,7 @@ from common.tools import prettify_path
 from exceptions import ShellError
 from prompt import ShellPathCompleter
 from shell import Shell
-from parser import ShellHighlighter
+from prompt import ShellHighlighter
 
 from .conf import STYLE_DICT
 
