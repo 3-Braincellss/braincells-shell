@@ -1,7 +1,7 @@
 from shell_test_interface import ShellTestCase
 
 from exceptions import ShellSyntaxError
-from operations import Call, Pipe, Sequence
+from commands import Call, Pipe, Sequence
 from parser import CommandTransformer, ShellParser
 
 

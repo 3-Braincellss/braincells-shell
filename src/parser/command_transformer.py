@@ -11,7 +11,7 @@ from lark.exceptions import UnexpectedInput, VisitError
 from lark.visitors import Transformer
 
 from exceptions import ShellError, ShellSyntaxError
-from operations import OperationFactory
+from commands import CommandFactory
 
 __all__ = [
     "CommandTransformer",
@@ -86,7 +86,7 @@ class CommandTransformer(Transformer):
 
         """
         data = {"op1": args[0], "op2": args[1]}
-        seq = OperationFactory.get_operation("seq", data)
+        seq = CommandFactory.get_command("seq", data)
 
         return seq
 
@@ -101,7 +101,7 @@ class CommandTransformer(Transformer):
 
         """
         data = {"op1": args[0], "op2": args[1]}
-        pipe = OperationFactory.get_operation("pipe", data)
+        pipe = CommandFactory.get_command("pipe", data)
 
         return pipe
 
@@ -146,7 +146,7 @@ class CommandTransformer(Transformer):
             "left_red": left_red,
             "right_red": right_red,
         }
-        call = OperationFactory.get_operation("call", data)
+        call = CommandFactory.get_command("call", data)
 
         return call
 

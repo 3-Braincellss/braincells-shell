@@ -10,10 +10,10 @@ our testing on specific parts of our code.
 from collections import deque
 
 from apps import App
-from operations import Operation
+from commands import Command
 
 
-class DummyOperation(Operation):
+class DummyCommand(Command):
     """A dummy Operation"""
     def __init__(self, custom_output: deque = None):
         self.custom_output = custom_output
