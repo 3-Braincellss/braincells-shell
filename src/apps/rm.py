@@ -72,7 +72,7 @@ class RmApp(App):
         path_to = "/".join(split_args[:-1]
                            ) if split_args[-1] != ""\
             else "/".join(arg.split("/")[:-2])
-        if path_to or os.path.exists(path_to):
+        if not path_to or os.path.exists(path_to):
             return True
         return False
 
@@ -86,7 +86,7 @@ class RmApp(App):
         for arg in self.args:
             if not self._valid_path(arg):
                 raise ContextError(
-                    "rm", f"cannot create directory '{arg}':\
-                    No such file or directory")
-            if not self.args:
-                raise ContextError("rm", "Missing operand.")
+                    "rm", (f"cannot delete directory '{arg}': "
+                           "No such file or directory"))
+        if not self.args:
+            raise ContextError("rm", "Missing operand.")

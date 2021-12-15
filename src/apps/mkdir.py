@@ -67,6 +67,9 @@ class MkdirApp(App):
             ContextError: If the path to the path being added does not exist.
         """
 
+        if not self.args:
+            raise ContextError(
+                "mkdir", f"Missing operands")
         for arg in self.args:
             if not self._valid_path(arg):
                 raise ContextError(
