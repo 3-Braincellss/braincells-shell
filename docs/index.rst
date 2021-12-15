@@ -66,8 +66,6 @@ that our shell follows. You can see original documentation below.
 - :doc:`markdown/applications`
 - :doc:`markdown/interface`
 
-
-
 .. toctree::
    :maxdepth: 1
    :caption: Extra Functionality
@@ -97,9 +95,3 @@ All development related information that will make it easier to understand our c
    apidocs/commands
    apidocs/exceptions
    apidocs/common
-
-
-
-
-
-
