@@ -29,6 +29,8 @@ author = 'Adi Bozzhanov, Ilya Kosorukov, Oluwaponmile Femi-Sunmaila'
 # ones.
 extensions = ['sphinx.ext.napoleon', 'sphinx.ext.autodoc', 'recommonmark']
 
+pygments_style = 'native'
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
