@@ -17,7 +17,7 @@ from prompt_toolkit.styles import Style
 
 from common.tools import prettify_path
 from exceptions import ShellError
-from session import ShellPathCompleter
+from prompt import ShellPathCompleter
 from shell import execute
 from shellparser import ShellHighlighter
 
@@ -30,7 +30,6 @@ __all__ = [
 
 class ShellSession(PromptSession):
     """This class is responsible for managing the prompt session."""
-
     def __init__(self):
         self.style = Style.from_dict(STYLE_DICT)
         self.lexer = ShellHighlighter()
@@ -58,9 +57,8 @@ class ShellSession(PromptSession):
                 out = err.message
 
             except KeyboardInterrupt as err:
-                print(f"Keyboard interrupt")
+                print("Keyboard interrupt")
                 traceback.print_tb(err.__traceback__)
-                
 
             if len(out) > 0:
                 print(out)
@@ -84,8 +82,3 @@ class ShellSession(PromptSession):
         ])
 
         return msg
-
-
-if __name__ == "__main__":
-    sh = ShellSession()
-    sh.run()

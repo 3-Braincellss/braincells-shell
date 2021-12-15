@@ -24,7 +24,6 @@ class SortApp(App):
             the instruction.
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         try:

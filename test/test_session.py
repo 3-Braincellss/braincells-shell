@@ -1,6 +1,6 @@
 from shell_test_interface import ShellTestCase
 
-from session import ShellSession
+from prompt import ShellSession
 
 
 class TestSession(ShellTestCase):

@@ -190,11 +190,15 @@ class HighlightTransformer(Transformer):
                 body = body + arg
         return f"`{body}`"
 
-    def UNQUOTED(_, x): return ("class:arg", str(x))
+    def UNQUOTED(_, x):
+        return ("class:arg", str(x))
+
     DOUBLE_QUOTE_CONTENT = str
     SINGLE_QUOTE_CONTENT = str
     BACKQUOTED = str
-    def WHITESPACE(_, x): return ("class:space", str(x))
+
+    def WHITESPACE(_, x):
+        return ("class:space", str(x))
 
 
 class ShellHighlighter(Lexer):
@@ -206,7 +210,9 @@ class ShellHighlighter(Lexer):
 
     def lex_document(self, document):
         text = document.lines[0]
-        def default(_): return [("class:err", text)]
+
+        def default(_):
+            return [("class:err", text)]
 
         try:
             tree = self.parser.parse(text)

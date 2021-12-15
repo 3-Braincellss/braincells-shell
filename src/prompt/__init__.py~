@@ -1,3 +1,13 @@
+"""
+Prompt Module
+=============
+
+
+
+
+"""
+
+
 from .completer import ShellPathCompleter
 from .shellsession import ShellSession
 

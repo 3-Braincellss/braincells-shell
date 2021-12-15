@@ -13,7 +13,7 @@ This module runs the application.
 
 import sys
 
-from session import ShellSession
+from prompt import ShellSession
 from shell import execute
 
 if __name__ == "__main__":

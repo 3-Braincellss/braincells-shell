@@ -23,7 +23,6 @@ class FindApp(App):
         of the instruction
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         for i in range(len(args)):
