@@ -4,9 +4,10 @@ from hypothesis import given, settings
 from hypothesis.extra.lark import from_lark
 from lark import Lark
 from prompt_toolkit.document import Document
-from shell_test_interface import ShellTestCase
 
 from parser import HighlightTransformer, ShellParser
+
+from shell_test_interface import ShellTestCase
 
 PARSER = ShellParser()
 
