@@ -23,6 +23,7 @@ class FindApp(App):
         of the instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         for i in range(len(args)):
@@ -44,8 +45,8 @@ class FindApp(App):
                 the result of execution.
 
         Returns:
-            ``deque``: The output deque will contain each of the files that
-            matched the specified pattern
+        ``deque``: The output deque will contain each of the files that
+        matched the specified pattern
 
         Raises:
             RunError: If the root path supplied does not exist.

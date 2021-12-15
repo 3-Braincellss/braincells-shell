@@ -15,6 +15,7 @@ from .find import FindApp
 from .grep import GrepApp
 from .head import HeadApp
 from .ls import LsApp
+from .mkdir import MkdirApp
 from .pwd import PwdApp
 from .sort import SortApp
 from .tail import TailApp
