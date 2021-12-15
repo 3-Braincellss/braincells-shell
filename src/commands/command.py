@@ -7,7 +7,7 @@ This is an interface definition for an Operation class.
 from abc import ABCMeta, abstractmethod
 
 
-class Operation(metaclass=ABCMeta):
+class Command(metaclass=ABCMeta):
     """Interface for an operation
 
     Operations are created on the transforming stage.

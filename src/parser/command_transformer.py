@@ -11,7 +11,7 @@ from lark.exceptions import UnexpectedInput, VisitError
 from lark.visitors import Transformer
 
 from exceptions import ShellError, ShellSyntaxError
-from operations import OperationFactory
+from commands import CommandFactory
 
 __all__ = [
     "CommandTransformer",
@@ -39,7 +39,7 @@ class CommandTransformer(Transformer):
         Parameters:
             tree: Abstract syntax tree
         Returns:
-            Operation: operaion object.
+            Command: operaion object.
         Raises:
             ShellSyntaxError: whenever tranforming cannot happen
                 for whatever reason
@@ -67,7 +67,7 @@ class CommandTransformer(Transformer):
                 object to be executed
 
         Returns:
-            Operation: Operation object to be executed
+            Command: Command object to be executed
 
         """
 
@@ -82,11 +82,11 @@ class CommandTransformer(Transformer):
             args (list): List of two operation objects
 
         Returns:
-            Operation: A sequence operation object
+            Command: A sequence operation object
 
         """
         data = {"op1": args[0], "op2": args[1]}
-        seq = OperationFactory.get_operation("seq", data)
+        seq = CommandFactory.get_command("seq", data)
 
         return seq
 
@@ -97,11 +97,11 @@ class CommandTransformer(Transformer):
             args (list): List of two operation objects
 
         Returns:
-            Operation: A pipe operation object
+            Command: A pipe operation object
 
         """
         data = {"op1": args[0], "op2": args[1]}
-        pipe = OperationFactory.get_operation("pipe", data)
+        pipe = CommandFactory.get_command("pipe", data)
 
         return pipe
 
@@ -113,7 +113,7 @@ class CommandTransformer(Transformer):
             args (list): List of strings possible `None` and possible `tuple`
 
         Returns:
-            Operation: A call operation object.
+            Command: A call operation object.
         """
 
         # Removes `None` and `tuple`
@@ -146,7 +146,7 @@ class CommandTransformer(Transformer):
             "left_red": left_red,
             "right_red": right_red,
         }
-        call = OperationFactory.get_operation("call", data)
+        call = CommandFactory.get_command("call", data)
 
         return call
 

@@ -4,10 +4,10 @@ Sequence
 
 Sequence operation denoted as ';' will sequentially call 2 commands in a row.
 """
-from operations.operation import Operation
+from commands import Command
 
 
-class Sequence(Operation):
+class Sequence(Command):
     """ Sequence Class
 
     Attributes:

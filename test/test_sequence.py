@@ -1,7 +1,7 @@
-from dummies import DummyOperation
+from dummies import DummyCommand
 from shell_test_interface import ShellTestCase
 
-from operations import Sequence
+from commands import Sequence
 
 
 class TestSequence(ShellTestCase):
@@ -9,8 +9,8 @@ class TestSequence(ShellTestCase):
         super().setUp()
 
         ctx = {
-            "op1": DummyOperation(),
-            "op2": DummyOperation(),
+            "op1": DummyCommand(),
+            "op2": DummyCommand(),
         }
 
         self.op = Sequence(ctx)

@@ -4,10 +4,10 @@ Pipe
 """
 from collections import deque
 
-from operations.operation import Operation
+from commands import Command
 
 
-class Pipe(Operation):
+class Pipe(Command):
     """Pipe Class
 
     Attributes:

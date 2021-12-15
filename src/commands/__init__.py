@@ -2,16 +2,16 @@
 This module contains operations that can execute apps and combine
 their behaviours. All operations are created with Operation Factory.
 """
-from .operation import Operation
+from .command import Command
 from .call import Call
 from .pipe import Pipe
 from .sequence import Sequence
-from .operation_factory import OperationFactory
+from .command_factory import CommandFactory
 
 __all__ = [
-    "Operation",
+    "Command",
     "Call",
     "Pipe",
     "Sequence",
-    "OperationFactory",
+    "CommandFactory",
 ]

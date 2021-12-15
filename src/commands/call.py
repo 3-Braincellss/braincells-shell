@@ -7,10 +7,10 @@ from collections import deque
 
 from apps import AppFactory
 from common.tools import read_lines_from_file
-from operations import Operation
+from commands import Command
 
 
-class Call(Operation):
+class Call(Command):
     """Call operation that executes some app.
 
     Attributes:

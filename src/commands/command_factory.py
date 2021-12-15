@@ -3,20 +3,20 @@ Operation Factory
 =================
 Operation Factory is used to create operation objects on given string."""
 
-from operations import Call, Pipe, Sequence
+from commands import Call, Pipe, Sequence
 
 
-class OperationFactory:
+class CommandFactory:
     """A class that is used to create operations objects"""
 
-    operations = {
+    commands = {
         "call": Call,
         "pipe": Pipe,
         "seq": Sequence,
     }
     """Operations ``dict`` that maps operation names to their classes"""
     @classmethod
-    def get_operation(cls, op_str, ctx):
+    def get_command(cls, op_str, ctx):
         """Returns an operation object given the operation name and context data
 
         Parameters:
@@ -28,4 +28,4 @@ class OperationFactory:
         Returns:
             Operation: Concrete operation object.
         """
-        return cls.operations[op_str](ctx)
+        return cls.commands[op_str](ctx)
