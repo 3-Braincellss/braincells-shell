@@ -2,7 +2,7 @@
 Sequence
 ========
 
-Sequence operation denoted as ';' will sequentially call 2 commands in a row.
+Sequence command denoted as ``;`` will sequentially call 2 commands in a row.
 """
 from commands import Command
 
@@ -11,8 +11,8 @@ class Sequence(Command):
     """ Sequence Class
 
     Attributes:
-        op1(Operation): Operation that is run first.
-        op2(Operation): Operation that is run second.
+        op1(Command): Command that is run first.
+        op2(Command): Command that is run second.
     """
     def __init__(self, ctx):
         super().__init__(ctx)
@@ -20,9 +20,9 @@ class Sequence(Command):
         self.op2 = ctx["op2"]
 
     def run(self, inp, out):
-        """ Runs 2 operations in sequence.
+        """ Runs 2 commands in sequence.
 
-        Each operation runs with an empty input.
+        Each command runs with an empty input.
         """
 
         # None is passed since it's impossible to pass an input to a sequence

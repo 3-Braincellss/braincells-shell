@@ -1,7 +1,7 @@
 """
 Call
 ====
-An operation primitive that contains an app that it runs.
+A command primitive that contains an app that it runs.
 """
 from collections import deque
 
@@ -11,7 +11,7 @@ from commands import Command
 
 
 class Call(Command):
-    """Call operation that executes some app.
+    """Call command that executes some app.
 
     Attributes:
         app(App): The app to be run.

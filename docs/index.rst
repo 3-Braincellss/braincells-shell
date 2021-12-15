@@ -49,16 +49,18 @@ All development related information that will make it easier to understand our c
 
 .. toctree::
    :maxdepth: 1
-   :caption: Source Code
+   :caption: Reference
 
    apidocs/shell
+   apidocs/parser
    apidocs/run
    apidocs/prompt
    apidocs/apps
-   apidocs/common
+   apidocs/commands
    apidocs/exceptions
-   apidocs/operations
-   apidocs/parser
+   apidocs/common
+
+
 
 
 

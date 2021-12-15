@@ -1,36 +1,36 @@
-Operations
-==========
+Commands
+========
 
-.. automodule:: operations
-
-
+.. automodule:: commands
 
 
-.. automodule:: operations.operation
+
+
+.. automodule:: commands.command
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: operations.operation_factory
+.. automodule:: commands.command_factory
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: operations.call
+.. automodule:: commands.call
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: operations.pipe
+.. automodule:: commands.pipe
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: operations.sequence
+.. automodule:: commands.sequence
    :members:
    :undoc-members:
    :show-inheritance:

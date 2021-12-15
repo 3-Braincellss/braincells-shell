@@ -1,6 +1,19 @@
 """
-This module contains operations that can execute apps and combine
-their behaviours. All operations are created with Operation Factory.
+Module Contents
+===============
+
+This module contains definitions for different types
+of commands that can be executed in our shell, as well
+as the common command interface and a command factory
+for easy object creation.
+
+The list of supported commands:
+
+- ``Call`` - Command primitive which runs a specific app.
+
+- ``Pipe`` - Can redirect output of one command as the input of another
+
+- ``Sequence`` - Runs 2 commands in a sequence
 """
 from .command import Command
 from .call import Call
