@@ -39,7 +39,7 @@ class CommandTransformer(Transformer):
         Parameters:
             tree: Abstract syntax tree
         Returns:
-            Operation: operaion object.
+            Command: operaion object.
         Raises:
             ShellSyntaxError: whenever tranforming cannot happen
                 for whatever reason
@@ -67,7 +67,7 @@ class CommandTransformer(Transformer):
                 object to be executed
 
         Returns:
-            Operation: Operation object to be executed
+            Command: Command object to be executed
 
         """
 
@@ -82,7 +82,7 @@ class CommandTransformer(Transformer):
             args (list): List of two operation objects
 
         Returns:
-            Operation: A sequence operation object
+            Command: A sequence operation object
 
         """
         data = {"op1": args[0], "op2": args[1]}
@@ -97,7 +97,7 @@ class CommandTransformer(Transformer):
             args (list): List of two operation objects
 
         Returns:
-            Operation: A pipe operation object
+            Command: A pipe operation object
 
         """
         data = {"op1": args[0], "op2": args[1]}
@@ -113,7 +113,7 @@ class CommandTransformer(Transformer):
             args (list): List of strings possible `None` and possible `tuple`
 
         Returns:
-            Operation: A call operation object.
+            Command: A call operation object.
         """
 
         # Removes `None` and `tuple`
