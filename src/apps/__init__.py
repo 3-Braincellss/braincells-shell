@@ -17,6 +17,7 @@ from .head import HeadApp
 from .ls import LsApp
 from .mkdir import MkdirApp
 from .pwd import PwdApp
+from .rm import RmApp
 from .sort import SortApp
 from .tail import TailApp
 from .uniq import UniqApp

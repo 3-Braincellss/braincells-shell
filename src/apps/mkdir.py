@@ -2,7 +2,7 @@
 mkdir
 ====
 Module representing the mkdir application
-Usage in shell: mkdir [PATH]*
+Usage in shell: mkdir [PATH]+
 
 Example:
     ``mkdir mega_dir ultra_dir turbo_dir``
@@ -52,13 +52,12 @@ class MkdirApp(App):
         split_args = arg.split("/")
         path_to = "/".join(split_args[:-1]
                            ) if split_args[-1] != "" else "/".join(arg.split("/")[:-2])
-        print(len(path_to))
         if not len(path_to) or os.path.exists(path_to):
             return True
         return False
 
     def validate_args(self):
-        """Ensures all paths are arguments either represent a valid path
+        """Ensures all arguments either represent a valid path
         or a single new directory name.
 
         Raises:
@@ -66,6 +65,6 @@ class MkdirApp(App):
         """
 
         for arg in self.args:
-            if not self._valid_path(arg) == 1:
+            if not self._valid_path(arg):
                 raise ContextError(
                     "mkdir", f"cannot create directory '{arg}': No such file or directory")
