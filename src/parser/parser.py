@@ -19,7 +19,6 @@ class ShellParser(Lark):
     """
     Parser that is capable of parsing our grammar
     that is defined in the ``grammar.lark``
-
     """
     def __init__(self):
         dirname = os.path.dirname(__file__)
@@ -31,7 +30,7 @@ class ShellParser(Lark):
         """
         We overrode the default parse method to support
         our exception interface.
-        
+
         Parameters:
             text(:obj:`str`): Input text to be parsed
         Returns:

@@ -14,7 +14,9 @@ __all__ = [
 
 class ShellHighlighter(Lexer):
     """
+    ShellHighlighter, Wrapper to ``prompt_toolkit`` Lexer.
 
+    Needed to make our highlighter compatible with ``PromptSession``.
     """
     def __init__(self):
         self.parser = ShellParser()
@@ -33,7 +35,7 @@ class ShellHighlighter(Lexer):
 
         try:
             highlighted = self.transformer.transform(tree)
-        except ShellError as err:
+        except ShellError:
             return default
 
         return lambda _: highlighted

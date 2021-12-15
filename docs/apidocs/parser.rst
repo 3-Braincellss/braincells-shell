@@ -13,10 +13,6 @@ Parser
    :undoc-members:
    :show-inheritance:
 
-
-
-
-
 .. automodule:: parser.highlight_transformer
    :members:
    :undoc-members:

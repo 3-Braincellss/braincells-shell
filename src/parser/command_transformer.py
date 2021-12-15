@@ -4,10 +4,8 @@ Command Transformer
 
 Module which handles parsing and transforming the parse tree
 """
-import os
 
-from lark import Lark
-from lark.exceptions import UnexpectedInput, VisitError
+from lark.exceptions import VisitError
 from lark.visitors import Transformer
 
 from exceptions import ShellError, ShellSyntaxError
@@ -21,8 +19,9 @@ __all__ = [
 class CommandTransformer(Transformer):
     """Custom transformer inheriting lark.visitors.Transformer
 
-    Takes in the AST and transforms it into a single ``Operation`` object with
-    potentially multiple ``Operation`` and ``App`` objects nested in that object.
+    Takes in the AST and transforms it into a single ``Operation``
+    object with potentially multiple ``Operation`` and ``App``
+    objects nested in that object.
 
     Each method corresponds to how each non-terminal in the AST is transformed.
 
@@ -43,7 +42,6 @@ class CommandTransformer(Transformer):
         Raises:
             ShellSyntaxError: whenever tranforming cannot happen
                 for whatever reason
-            
             ShellError: propagated errors from the subshell that
                 is run in the backquotes.
         """

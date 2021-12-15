@@ -36,12 +36,11 @@ Possible style classes are:
 
 import os
 
-from lark import Lark
-from lark.exceptions import UnexpectedInput, VisitError
+
+from lark.exceptions import VisitError
 from lark.visitors import Transformer
 
 from apps import AppFactory
-from parser import ShellParser
 from exceptions import ShellSyntaxError
 
 __all__ = [
@@ -56,7 +55,7 @@ class HighlightTransformer(Transformer):
     def transform(self, tree):
         try:
             form_text = super().transform(tree)
-        except VisitError as err:
+        except VisitError:
             raise ShellSyntaxError("Cannot tranform")
         return form_text
 
