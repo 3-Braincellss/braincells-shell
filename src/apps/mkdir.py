@@ -11,7 +11,7 @@ Example:
 import os
 
 from apps.app import App
-from exceptions import ContextError, RunError
+from exceptions import ContextError
 
 
 class MkdirApp(App):
@@ -25,6 +25,7 @@ class MkdirApp(App):
     """
 
     def __init__(self, args):
+        super().__init__(args)
         self.args = args
 
     def run(self, inp, out):
@@ -48,11 +49,13 @@ class MkdirApp(App):
             os.mkdir(arg)
         return out
 
-    def _valid_path(self, arg):
+    @staticmethod
+    def _valid_path(arg):
         split_args = arg.split("/")
         path_to = "/".join(split_args[:-1]
-                           ) if split_args[-1] != "" else "/".join(arg.split("/")[:-2])
-        if not len(path_to) or os.path.exists(path_to):
+                           ) if (split_args[-1] != "")\
+            else "/".join(arg.split("/")[:-2])
+        if not path_to or os.path.exists(path_to):
             return True
         return False
 
@@ -67,4 +70,9 @@ class MkdirApp(App):
         for arg in self.args:
             if not self._valid_path(arg):
                 raise ContextError(
-                    "mkdir", f"cannot create directory '{arg}': No such file or directory")
+                    "mkdir", (f"cannot create directory '{arg}': "
+                              "No such file or directory"))
+            if os.path.exists(arg):
+                raise ContextError(
+                    "mkdir", (f"cannot create directory '{arg}': "
+                              "Path already exists"))
