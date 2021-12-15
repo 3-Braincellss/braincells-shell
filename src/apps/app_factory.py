@@ -20,6 +20,7 @@ from apps import (
     UniqApp,
     UnsafeApp,
     MkdirApp,
+    RmApp
 )
 from common.tools import simple_globbing
 from exceptions import AppNotFoundError
@@ -43,6 +44,7 @@ class AppFactory:
         "sort": SortApp,
         "clear": ClearApp,
         "mkdir": MkdirApp,
+        "rm": RmApp
     }
     """(:obj:`dict`): A dictionary that maps app names to their classes"""
 
