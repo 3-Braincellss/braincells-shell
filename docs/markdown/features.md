@@ -1,20 +1,53 @@
-# Added Features
-
 The features listed in our specification for the development of the shell consisted of adding more applications, unsafe application variants, piping, redirecting, command substitution as well as general refactoring.
 
 This section will highlight the additional features added to the shell that were not requested but we thought would make a more effective shell.
 
+# Applications
+
+These are additional commands that the original shell did not contain, allowing users to perform more tasks through their terminal.
+
 ## clear
 
-Just like in traditional shell, the Comp0010 Shell supports the `clear` command, which will remove all text from the terminal.
+Will remove all text from the terminal.
 
 ```
 clear
 ```
 
+## mkdir
+
+Creates directories at the specified paths.
+
+```
+mkdir [PATH]...
+```
+
+* `PATH` represents the directory to be created.
+
+## rm
+
+Deletes empty directories and files.
+
+```
+rmd [OPTIONS] [PATH]...
+```
+* `PATH` represents the directory to be created.
+* `OPTIONS`:
+   * `-r` Recursively deletes items within a directory, then the directory itself.
+
+# Extra Utility
+
+Additions here are essentially quality of life changes, slowing users to make use of the shell in a more effective manner.
+
 ## Command Buffer
 
 The Comp0010 has it's own command buffer, meaning that users will be able to use the up and down arrow keys in order to quickly navigate between previously entered commands.
+
+## Text Completion
+
+Pressing tab while typing a command in the Comp0010 Shell will automatically insert valid paths.
+
+# Highlighting
 
 ## Syntax Highlighting
 
@@ -24,7 +57,3 @@ Unlike the standard terminal found on most systems, the Comp0010 shell has synta
 * Operations (`|`, `>`, `;`)
 * Valid file paths
 * Invalid commands
-
-## Text Completion
-
-Pressing tab while typing a command in the Comp0010 Shell will automatically insert valid paths.
