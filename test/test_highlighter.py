@@ -33,10 +33,6 @@ class TestHighlighter(ShellTestCase):
         inp = [ftext]
         self.assertEqual(self.tran.command(inp), ftext)
 
-    def test_command_whitespace(self):
-        ftext = [self.form_token()]
-        self.assertEqual(self.tran.command(ftext), ftext)
-
     def test_seq_single_command(self):
         command = [self.form_text()]
         res = self.tran.seq(command)
@@ -79,35 +75,45 @@ class TestHighlighter(ShellTestCase):
 
         thing1[0] = ("class:arg", "ls")
 
-        thing2 = self.form_token()
-        thing3 = self.form_text([
+        thing2 = self.form_text([
             "class:arg",
             "class:path",
             "class:arg",
             "class:arg",
         ])
 
-        inp = [thing1, thing2, thing3]
+        inp = [thing1, thing2]
         res = self.tran.call(inp)
 
-        thing = thing1.copy()
-        thing[0] = ("class:app", thing[0][1])
-
         expected = []
-        expected.extend(thing)
-        expected.append(thing2)
-        expected.extend(thing3)
+        expected.extend(thing1)
+        expected.extend(thing2)
+        expected[0] = ("class:app", "ls")
 
         self.assertEqual(res, expected)
 
     def test_call_unsafe(self):
-        inp = self.form_text()
-        inp[0] = ("class:arg", "_ls")
+        a = self.form_text([
+            "class:arg",
+            "class:arg",
+        ])
+        a[0] = ("class:arg", "_ls")
+
+        b = self.form_text([
+            "class:arg",
+            "class:arg",
+        ])
+
+        inp = []
+        inp.append(a)
+        inp.append(b)
+
+        expected = []
+        expected.extend(a)
+        expected.extend(b)
+        expected[0] = ("class:unsafe", "_ls")
 
         res = self.tran.call(inp)
-
-        expected = inp.copy()
-        expected[0] = ("class:unsafe", "_ls")
 
         self.assertEqual(res, expected)
 
@@ -118,31 +124,28 @@ class TestHighlighter(ShellTestCase):
         self.assertEqual(res, expected)
 
     def test_l_redirection(self):
-        whitespace = self.form_token()
-        paths = self.form_text()
-
-        inp = [whitespace, paths]
+        inp = [[("a", "b")], [("a", "b")]]
 
         res = self.tran.l_redirection(inp)
 
-        expected = []
-        expected.append(("class:redir", "<"))
-        expected.append(whitespace)
-        expected.extend(paths)
+        expected = [
+            ("class:redir", "<"),
+            ("a", "b"),
+            ("a", "b"),
+        ]
         self.assertEqual(res, expected)
 
     def test_r_redirection(self):
-        whitespace = self.form_token()
-        paths = self.form_text()
-
-        inp = [whitespace, paths]
+        inp = [[("a", "b")], [("a", "b")]]
 
         res = self.tran.r_redirection(inp)
 
-        expected = []
-        expected.append(("class:redir", ">"))
-        expected.append(whitespace)
-        expected.extend(paths)
+        expected = [
+            ("class:redir", ">"),
+            ("a", "b"),
+            ("a", "b"),
+        ]
+
         self.assertEqual(res, expected)
 
     def test_arguments(self):
@@ -163,27 +166,21 @@ class TestHighlighter(ShellTestCase):
         self.assertEqual(res, expected)
 
     def test_double_quoted(self):
-        inp = self.form_text()
-        inp[0] = "B"
-        inp[2] = "C"
+        inp = ["hello", "`world`"]
         res = self.tran.double_quoted(inp)
-        expected = "\"BACAAAAAAA\""
+        expected = "\"hello`world`\""
         self.assertEqual(res, expected)
 
     def test_single_quoted(self):
-        inp = self.form_text()
-        inp[0] = "B"
-        inp[2] = "C"
+        inp = ["HELLO"]
         res = self.tran.single_quoted(inp)
-        expected = "'BACAAAAAAA'"
+        expected = "'HELLO'"
         self.assertEqual(res, expected)
 
     def test_back_quoted(self):
-        inp = self.form_text()
-        inp[0] = "B"
-        inp[2] = "C"
+        inp = ["HELLO"]
         res = self.tran.back_quoted(inp)
-        expected = "`BACAAAAAAA`"
+        expected = "`HELLO`"
         self.assertEqual(res, expected)
 
     @settings(deadline=400)

@@ -13,6 +13,14 @@ Welcome to Comp0010 Shell Python P14's documentation!
    markdown/interface
 
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Extra Functionality
+   :hidden:
+         
+   markdown/features
+
+
 
 
 .. note::
@@ -66,13 +74,13 @@ that our shell follows. You can see original documentation below.
 - :doc:`markdown/applications`
 - :doc:`markdown/interface`
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Extra Functionality
-         
-   markdown/features
+Extra Functionality
+-------------------
 
-Some extra functionality we added to our shell.
+Apart from implementing required functionality, we have also made a few additions
+ourselves. You can see all of them here:
+
+- :doc:`markdown/features`
 
          
 .. toctree::

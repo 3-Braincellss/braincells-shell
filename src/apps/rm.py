@@ -35,7 +35,7 @@ class RmApp(App):
             raise ContextError("rm", str(error)) from None
 
     def run(self, inp, out):
-        """ Executes the rm command on the given path.
+        """Executes the rm command on the given path.
 
         Deletes a directory/file for each argument specified.
 
@@ -67,9 +67,8 @@ class RmApp(App):
     @staticmethod
     def _valid_path(arg):
         split_args = arg.split("/")
-        path_to = "/".join(split_args[:-1]
-                           ) if split_args[-1] != ""\
-            else "/".join(arg.split("/")[:-2])
+        path_to = ("/".join(split_args[:-1])
+                   if split_args[-1] != "" else "/".join(arg.split("/")[:-2]))
         if not path_to or os.path.exists(path_to):
             return True
         return False
@@ -83,7 +82,10 @@ class RmApp(App):
 
         for arg in self.args:
             if not self._valid_path(arg):
-                raise ContextError("rm", (f"cannot delete directory '{arg}': "
-                                          "No such file or directory"))
+                raise ContextError(
+                    "rm",
+                    (f"cannot delete directory '{arg}': "
+                     "No such file or directory"),
+                )
         if not self.args:
             raise ContextError("rm", "Missing operand.")

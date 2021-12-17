@@ -8,7 +8,7 @@ from commands import Command
 
 
 class Sequence(Command):
-    """ Sequence Class
+    """Sequence Class
 
     Attributes:
         op1(Command): Command that is run first.
@@ -20,7 +20,7 @@ class Sequence(Command):
         self.op2 = ctx["op2"]
 
     def run(self, inp, out):
-        """ Runs 2 commands in sequence.
+        """Runs 2 commands in sequence.
 
         Each command runs with an empty input.
         """

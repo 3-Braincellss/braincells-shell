@@ -7,6 +7,7 @@ This module contains the shell prompt session.
 
 import getpass
 import os
+import sys
 import socket
 import traceback
 
@@ -17,14 +18,13 @@ from prompt_toolkit.styles import Style
 
 from common.tools import prettify_path
 from exceptions import ShellError
-from prompt import ShellPathCompleter
+from prompt import ShellPathCompleter, ShellHighlighter
 from shell import Shell
-from prompt import ShellHighlighter
 
 from .conf import STYLE_DICT
 
 __all__ = [
-    'ShellSession',
+    "ShellSession",
 ]
 
 
@@ -50,7 +50,7 @@ class ShellSession(PromptSession):
 
                 text = self.prompt(self._prompt_message())
             except KeyboardInterrupt:
-                exit()
+                sys.exit()
 
             try:
                 out = self.shell.execute(text)
@@ -65,7 +65,7 @@ class ShellSession(PromptSession):
                 print(out)
 
     def _prompt_message(self):
-        """ Creates a string that will be printed with
+        """Creates a string that will be printed with
         every prompt.
 
         Returns:

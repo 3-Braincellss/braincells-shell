@@ -27,7 +27,7 @@ class MkdirApp(App):
         self.args = args
 
     def run(self, inp, out):
-        """ Executes the mkdir command on the given path.
+        """Executes the mkdir command on the given path.
 
         Creates a directory for each argument specified.
 
@@ -50,9 +50,8 @@ class MkdirApp(App):
     @staticmethod
     def _valid_path(arg):
         split_args = arg.split("/")
-        path_to = "/".join(split_args[:-1]
-                           ) if (split_args[-1] != "")\
-            else "/".join(arg.split("/")[:-2])
+        path_to = ("/".join(split_args[:-1]) if
+                   (split_args[-1] != "") else "/".join(arg.split("/")[:-2]))
         if not path_to or os.path.exists(path_to):
             return True
         return False

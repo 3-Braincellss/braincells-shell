@@ -41,5 +41,5 @@ class ShellParser(Lark):
         try:
             tree = super().parse(text)
         except UnexpectedInput as err:
-            raise ShellSyntaxError(err.get_context(text))
+            raise ShellSyntaxError(err.get_context(text)) from err
         return tree

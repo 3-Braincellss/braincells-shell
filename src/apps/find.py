@@ -32,7 +32,7 @@ class FindApp(App):
         self.options, self.args = gnu_getopt(args, "", ["name="])
 
     def run(self, inp, out):
-        """ Executes the find command on the given path.
+        """Executes the find command on the given path.
 
         Will match all files with the pattern supplied in the name option.
         If no path is supplied the current directory is used.

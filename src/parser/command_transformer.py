@@ -32,7 +32,7 @@ class CommandTransformer(Transformer):
         super().__init__(visit_tokens=True)
 
     def transform(self, tree):
-        """ Overriding transform method
+        """Overriding transform method
         to support our exception interface
 
         Parameters:
@@ -54,7 +54,7 @@ class CommandTransformer(Transformer):
             # to bring shell errors higher.
             if isinstance(err.__context__, ShellError):
                 raise err.__context__
-            raise ShellSyntaxError("cannot transform")
+            raise ShellSyntaxError("cannot transform") from err
         return oper
 
     def command(self, args):
@@ -252,6 +252,7 @@ class CommandTransformer(Transformer):
 
         # Putting this at top level causes circular import
         from shell import Shell  # pylint: disable=import-outside-toplevel
+
         sh = Shell()
         string = " ".join(sh.execute(args[0]).split("\n"))
         return string

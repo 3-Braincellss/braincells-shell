@@ -1,6 +1,6 @@
 %import common.LETTER
 
-command : pipe | seq | call | WHITESPACE
+command : pipe | seq | call
 seq     : command ";" command
 	| command ";"
 pipe    : call "|" call

@@ -13,7 +13,7 @@ __all__ = [
 
 
 class ShellPathCompleter(PathCompleter):
-    """ Path completer wrapper for our shell"""
+    """Path completer wrapper for our shell"""
     def get_completions(self, document, complete_event):
         """The original PathCompleter wasn't working quite as
         we needed it to work so we tweaked it a very tiny bit.

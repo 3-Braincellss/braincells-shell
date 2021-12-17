@@ -32,7 +32,7 @@ from .completer import ShellPathCompleter
 from .shellsession import ShellSession
 
 __all__ = [
-    'ShellPathCompleter',
-    'ShellSession',
-    'ShellHighlighter',
+    "ShellPathCompleter",
+    "ShellSession",
+    "ShellHighlighter",
 ]

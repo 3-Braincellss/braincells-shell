@@ -33,20 +33,20 @@ class TailApp(App):
     def run(self, inp, out):
         """Executes the tail command on the given arguments.
 
-         Returns the last few lines of a file. The amount is specified by
-         the -n option. If this option is not supplied it is defaulted to 10.
+        Returns the last few lines of a file. The amount is specified by
+        the -n option. If this option is not supplied it is defaulted to 10.
 
-         Args:
-             inp (:obj:`deque`, *optional*): The input args of the command,
-                 only used for piping and redirects.
-             out (:obj:`deque`): The output deque, used to store
-                 the result of execution.
+        Args:
+            inp (:obj:`deque`, *optional*): The input args of the command,
+                only used for piping and redirects.
+            out (:obj:`deque`): The output deque, used to store
+                the result of execution.
 
-         Returns:
-             ``deque``: The deque will contain the last few lines of the file.
+        Returns:
+            ``deque``: The deque will contain the last few lines of the file.
 
-         Raises:
-             RunError: If any of the paths specified do not exist.
+        Raises:
+            RunError: If any of the paths specified do not exist.
         """
         if self.options:
             lines = int(self.options[0][1])

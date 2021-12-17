@@ -15,13 +15,13 @@ __all__ = [
 
 
 class Shell:
-    """ Main shell class
+    """Main shell class
 
     Initialises parser and transformer instances.
 
     Attributes:
         parser(ShellParser): Parser that is used in producing the AST.
-        
+
         transformer(CommandTransformer): Transformer that is used in
             creation of the ``Command`` object to be run.
     """

@@ -30,7 +30,7 @@ class UniqApp(App):
             raise ContextError("uniq", str(error)) from None
 
     def run(self, inp, out):
-        """ Executes the uniq command on the given arguments.
+        """Executes the uniq command on the given arguments.
 
         Args:
             inp (:obj:`deque`, *optional*): The input args of the command,

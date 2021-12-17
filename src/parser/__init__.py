@@ -12,8 +12,6 @@ wrapper to ``lark``'s default parser.
 Here is the grammar according to which ``ShellParser`` produces
 the **AST**.
 
-grammar.lark
-------------
 .. code-block:: text
 
     %import common.LETTER

@@ -1,3 +1,11 @@
+"""
+Configuration
+=============
+
+Our default style for prompt.
+
+"""
+
 STYLE_DICT = {
     "user_host": "#A78BFA",  # [user@hostname]
     "start_path": "#4ADE80",

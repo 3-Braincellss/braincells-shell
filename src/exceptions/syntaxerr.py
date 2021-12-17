@@ -10,10 +10,7 @@ from exceptions import ShellError
 
 
 class ShellSyntaxError(ShellError):
-    """ Errors that appears on failed parsing of the input string.
-
-
-    """
+    """Errors that appears on failed parsing of the input string."""
     def __init__(self, message="Wrong Syntax"):
         super().__init__("", message)
         self.message = f"Syntax Error:\n{message}"
