@@ -4,17 +4,17 @@ Highlight Transformer
 
 Converts the **AST** into a formatted text instance.
 
-Any mention of `formatted text` in this document means:
+Any mention of **formatted text** in this document means:
 
 A list of tuples of the following format:
 
-.. code-block:: python
+.. code:: python
 
     [("style_str1", "text_1"), ("style_str2", "text_2"), ...]
 
-Possible style classes are:
 
-- ``oper``: operation style (|, ;)
+Possible style classes are
+- ``oper``: operation style (``|``, ``;``)
 
 - ``arg``: Arguments that weren't affected by context changes.
 
@@ -26,12 +26,11 @@ Possible style classes are:
 
 - ``unsafe``: Unsafe apps that are recognised by AppFactory
 
-- ``redir``: redirections (<, >)
+- ``redir``: redirections (``<``, ``>``)
 
 - ``quotes``: Any quotes.
 
 - ``space``: whitespaces.
-
 """
 
 import os
@@ -52,6 +51,17 @@ class HighlightTransformer(Transformer):
         super().__init__(visit_tokens=True)
 
     def transform(self, tree):
+        """
+        Overriding transform method to support
+        our exceptions.
+
+        Parameters:
+            tree: Abstract Syntax tree produced by lark.
+        Returns:
+            :obj:`list`: Formatted text.
+
+
+        """
         try:
             form_text = super().transform(tree)
         except VisitError:
@@ -59,18 +69,14 @@ class HighlightTransformer(Transformer):
         return form_text
 
     def command(self, oper):
-        """Syntax:
-
-        ```
-        command : pipe | seq | call | WHITESPACE
-        ```
+        """Transforms a command nonterminal to formatted text.
 
         Parameters:
             oper(:obj:`list`): Either formatted text, or a single
             formatted token.
 
         Returns:
-            :obj:`list`: Formatted text as a list of tuples.
+            :obj:`list`: Formatted text.
         """
         if isinstance(oper[0], list):
             return oper[0]
@@ -150,7 +156,14 @@ class HighlightTransformer(Transformer):
         return redirect[0]
 
     def l_redirection(self, args):
-        """Takes in an optional whitespace and arguments."""
+        """Takes in an optional whitespace and arguments.
+        
+        Parameters:
+            args(:obj:`list`): First value of args can either
+                be a tuple for a whitespace or the could be no
+                whitespace at all and it's just arguments formatted
+                text
+        """
 
         new_args = []
         new_args.append(("class:redir", "<"))
@@ -216,6 +229,7 @@ class HighlightTransformer(Transformer):
         body = ""
         for arg in args:
             if isinstance(arg, tuple):
+                print(arg)
                 body = body + arg[1]
             else:
                 body = body + arg

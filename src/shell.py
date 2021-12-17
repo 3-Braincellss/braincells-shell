@@ -19,6 +19,11 @@ class Shell:
 
     Initialises parser and transformer instances.
 
+    Attributes:
+        parser(ShellParser): Parser that is used in producing the AST.
+        
+        transformer(CommandTransformer): Transformer that is used in
+            creation of the ``Command`` object to be run.
     """
     def __init__(self):
         self.parser = ShellParser()
@@ -31,7 +36,7 @@ class Shell:
             input_str (:obj:`str`): input string representing a command.
 
         Returns:
-            (:obj:`str`): output as a string
+            (:obj:`str`): outuput text
         """
 
         out = deque()

@@ -16,7 +16,7 @@ r_redirection : ">" WHITESPACE? arguments
 
 quoted        : single_quoted | double_quoted | back_quoted
 double_quoted : "\"" (back_quoted | DOUBLE_QUOTE_CONTENT)* "\""
-back_quoted    : "`" BACKQUOTED "`" 
+back_quoted    : "`" BACKQUOTED* "`" 
 single_quoted : "'" SINGLE_QUOTE_CONTENT* "'"
 
 BACKQUOTED           : /[^\n`]+/
