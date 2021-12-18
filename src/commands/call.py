@@ -5,7 +5,6 @@ A command primitive that contains an app that it runs.
 """
 from collections import deque
 
-from apps import AppFactory
 from commands import Command
 from common.tools import read_lines_from_file
 
@@ -22,10 +21,7 @@ class Call(Command):
     """
     def __init__(self, ctx):
         super().__init__(ctx)
-        self.app = AppFactory.get_app(
-            ctx["app"],
-            ctx["args"],
-        )
+        self.app = ctx["app"]
         self.left_red = ctx["left_red"]
         self.right_red = ctx["right_red"]
 

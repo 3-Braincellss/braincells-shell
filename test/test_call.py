@@ -9,20 +9,14 @@ from commands import Call
 class TestCall(ShellTestCase):
     def setUp(self):
         super().setUp()
-        # Just to make the constructor happy
-        # TODO:
-        # Move appfactory up a level
-        # so that I don't have to use an existing app
-        # while testing call
+        
         ctx = {
-            "app": "ls",
-            "args": [],
+            "app": DummyApp(),
             "left_red": None,
             "right_red": None,
         }
 
         self.call = Call(ctx)
-        self.call.app = DummyApp()
 
     def test_run_no_redirects(self):
 

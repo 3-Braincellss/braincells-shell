@@ -8,6 +8,7 @@ Module which handles parsing and transforming the parse tree
 from lark.exceptions import VisitError
 from lark.visitors import Transformer
 
+from apps import AppFactory
 from commands import CommandFactory
 from exceptions import ShellError, ShellSyntaxError
 
@@ -139,8 +140,7 @@ class CommandTransformer(Transformer):
             left_red = None
 
         data = {
-            "app": returnargs[0],
-            "args": returnargs[1:],
+            "app": AppFactory.get_app(returnargs[0], returnargs[1:]),
             "left_red": left_red,
             "right_red": right_red,
         }

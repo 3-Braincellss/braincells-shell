@@ -56,7 +56,6 @@ class AppFactory:
         temp_app = app_str[1:] if unsafe else app_str
 
         if temp_app in AppFactory.apps:
-
             # conditional globbing to take in account for functions like 'find'
             if temp_app not in AppFactory.no_glob:
                 opts = simple_globbing(opts)
