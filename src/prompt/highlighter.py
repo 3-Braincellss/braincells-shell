@@ -2,9 +2,10 @@
 TO DO: add comments here
 """
 
+from parser import HighlightTransformer, ShellParser
+
 from prompt_toolkit.lexers import Lexer
 
-from parser import ShellParser, HighlightTransformer
 from exceptions import ShellError
 
 __all__ = [

@@ -13,8 +13,9 @@ class TestSort(ShellTestCase):
 
     def test_sort_redirection(self):
         expected = [
-            "Have you watched peaky blinders?", "It's pretty good!",
-            "Sup Surgey!"
+            "Have you watched peaky blinders?",
+            "It's pretty good!",
+            "Sup Surgey!",
         ]
         inp = [
             "It's pretty good!", "Sup Surgey!",

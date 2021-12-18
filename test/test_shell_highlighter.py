@@ -1,11 +1,11 @@
+from parser import ShellParser
+
 from hypothesis import given, settings
 from hypothesis.extra.lark import from_lark
 from prompt_toolkit.document import Document
-
-from parser import ShellParser
-from prompt import ShellHighlighter
-
 from shell_test_interface import ShellTestCase
+
+from prompt import ShellHighlighter
 
 PARSER = ShellParser()
 

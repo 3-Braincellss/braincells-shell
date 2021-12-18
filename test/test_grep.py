@@ -30,8 +30,9 @@ class TestGrep(ShellTestCase):
 
     def test_multifile_grep(self):
         expected = [
-            "dir_files/file-1:AA", "dir_files/file-5:AAA",
-            "dir_files/file-5:I don't know any more letters"
+            "dir_files/file-1:AA",
+            "dir_files/file-5:AAA",
+            "dir_files/file-5:I don't know any more letters",
         ]
         out = []
         GrepApp(["a|A", TEST_PATH_1, TEST_PATH_5]).run(None, out)

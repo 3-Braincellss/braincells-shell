@@ -1,6 +1,6 @@
 from shell_test_interface import ShellTestCase
 
-from common.tools import read_from_file, read_lines_from_file, prettify_path
+from common.tools import prettify_path, read_from_file, read_lines_from_file
 from exceptions import RunError
 
 

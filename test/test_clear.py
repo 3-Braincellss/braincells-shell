@@ -7,11 +7,11 @@ from exceptions import ContextError
 
 
 class TestClear(ShellTestCase):
-    """ In order to properly test shell we have to
+    """In order to properly test shell we have to
     access previous terminal command history, which
     is a big pain and something that can't be done
     consistently across different terminal emulators.
-    
+
     So we just check that argument validation works as intended
     and that clear doesn't raise any errors.
     """
@@ -23,7 +23,7 @@ class TestClear(ShellTestCase):
         self.assertFalse(out)
 
     def test_arg_validation(self):
-        args = ['a', 'b', 'hello']
+        args = ["a", "b", "hello"]
         app = ClearApp(args)
 
         with self.assertRaises(ContextError):

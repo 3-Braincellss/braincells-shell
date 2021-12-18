@@ -10,6 +10,7 @@ from .contexterr import ContextError
 from .runerr import RunError
 from .syntaxerr import ShellSyntaxError
 
+
 __all__ = [
     "ShellError",
     "ContextError",

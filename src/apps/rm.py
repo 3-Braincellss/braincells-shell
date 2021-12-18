@@ -9,8 +9,8 @@ Example:
 """
 
 import os
+from getopt import GetoptError, getopt
 from shutil import rmtree
-from getopt import getopt, GetoptError
 
 from apps.app import App
 from exceptions import ContextError

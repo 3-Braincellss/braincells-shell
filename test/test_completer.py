@@ -1,19 +1,14 @@
-
-
 from prompt_toolkit.document import Document
+from shell_test_interface import ShellTestCase
 
 from prompt import ShellPathCompleter
 
-from shell_test_interface import ShellTestCase
-
-
 
 class TestCompleter(ShellTestCase):
-
     def test_completions(self):
         completer = ShellPathCompleter()
         test_doc = Document("hello dir_", 4)
-        
+
         completions = completer.get_completions(test_doc, None)
         out = []
         for each in completions:
@@ -31,7 +26,4 @@ class TestCompleter(ShellTestCase):
 
         out = set(map(lambda x: x.text, completions))
 
-        self.assertEqual(out,set([]))
-        
-        
-        
+        self.assertEqual(out, set([]))

@@ -1,12 +1,12 @@
-from apps import MkdirApp
-from shell_test_interface import ShellTestCase
-from exceptions import ContextError
-
 import os
+
+from shell_test_interface import ShellTestCase
+
+from apps import MkdirApp
+from exceptions import ContextError
 
 
 class TestMkdir(ShellTestCase):
-
     def test_mkdir(self):
         app = MkdirApp(["cool_dir"])
         app.validate_args()

@@ -1,8 +1,9 @@
 import os
 
+from shell_test_interface import ShellTestCase
+
 from apps import PwdApp
 from exceptions import ContextError
-from shell_test_interface import ShellTestCase
 
 
 class TestPwd(ShellTestCase):

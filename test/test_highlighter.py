@@ -1,12 +1,9 @@
-import os
-
-from hypothesis import given, settings
-from hypothesis.extra.lark import from_lark
-from lark import Lark
-from prompt_toolkit.document import Document
 
 from parser import HighlightTransformer, ShellParser
 
+from hypothesis import given, settings
+from hypothesis.extra.lark import from_lark
+from prompt_toolkit.document import Document
 from shell_test_interface import ShellTestCase
 
 PARSER = ShellParser()
@@ -168,7 +165,7 @@ class TestHighlighter(ShellTestCase):
     def test_double_quoted(self):
         inp = ["hello", "`world`"]
         res = self.tran.double_quoted(inp)
-        expected = "\"hello`world`\""
+        expected = '"hello`world`"'
         self.assertEqual(res, expected)
 
     def test_single_quoted(self):

@@ -27,8 +27,8 @@ We transform user given data into formatted string list using a lark
 transformer, which give us a lot of flexibility in comparison to the
 default RegexLexer recommended by ``prompt_toolkit``.
 """
-from .highlighter import ShellHighlighter
 from .completer import ShellPathCompleter
+from .highlighter import ShellHighlighter
 from .shellsession import ShellSession
 
 __all__ = [

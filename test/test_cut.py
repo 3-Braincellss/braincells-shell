@@ -60,7 +60,7 @@ class TestCut(ShellTestCase):
 
     def test_non_int_interval_raises_exception(self):
         with self.assertRaises(RunError):
-            CutApp(["-b", f"2.0-4", TEST_TEXT_PATH]).run(None, [])
+            CutApp(["-b", "2.0-4", TEST_TEXT_PATH]).run(None, [])
 
     def test_interval_starting_with_zero_raises_exception(self):
         with self.assertRaises(RunError):

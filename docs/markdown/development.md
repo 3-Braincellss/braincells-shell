@@ -8,30 +8,15 @@ Our design includes a total of 7 modules.
 - Parser
 - Commands
 - Apps
-- Exceptions (Global)
-- Common (Global)
+- Exceptions 
+- Common
 
-The ones that we marked as `Global` can potentially be used
-in any module.
-
-## Main Modules
-
-Here is the UML diagram for our main modules.
-
-![image uml1](../images/uml1.svg)
+![image](../images/uml1.svg)
 
 
-blah blah blah add some text here
-
-
-## Global Modules
-
-Exceptions and common.
-
-![image uml2](../images/uml2.svg)
-
-blah blah blah add more text here.
 
 # Testing
+
+added a word to test the command.
 
 # Code style

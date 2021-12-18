@@ -7,8 +7,8 @@ This module contains the shell prompt session.
 
 import getpass
 import os
-import sys
 import socket
+import sys
 import traceback
 
 from prompt_toolkit import PromptSession
@@ -18,7 +18,7 @@ from prompt_toolkit.styles import Style
 
 from common.tools import prettify_path
 from exceptions import ShellError
-from prompt import ShellPathCompleter, ShellHighlighter
+from prompt import ShellHighlighter, ShellPathCompleter
 from shell import Shell
 
 from .conf import STYLE_DICT

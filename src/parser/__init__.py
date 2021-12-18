@@ -54,9 +54,9 @@ Having said that, our ``Parser`` module contains the following submodules:
 
 
 """
-from .parser import ShellParser
-from .highlight_transformer import HighlightTransformer
 from .command_transformer import CommandTransformer
+from .highlight_transformer import HighlightTransformer
+from .parser import ShellParser
 
 __all__ = [
     "HighlightTransformer",

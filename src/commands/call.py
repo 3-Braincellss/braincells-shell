@@ -6,8 +6,8 @@ A command primitive that contains an app that it runs.
 from collections import deque
 
 from apps import AppFactory
-from common.tools import read_lines_from_file
 from commands import Command
+from common.tools import read_lines_from_file
 
 
 class Call(Command):

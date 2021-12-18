@@ -23,7 +23,7 @@ class ShellTestCase(unittest.TestCase):
             },
             "nest_2": {
                 "dir_nested_2.txt": "What is this?",
-            }
+            },
         },
         "dir_out": {},
         "no_extension": "A file without extension",
@@ -60,6 +60,6 @@ class ShellTestCase(unittest.TestCase):
         os.chdir(self.TOP_LEVEL)
 
     def tearDown(self):
-        """ Deletes the test directory """
+        """Deletes the test directory"""
         os.chdir("..")
         shutil.rmtree("_test")

@@ -6,8 +6,7 @@ Contains the execute function to run shell on a given input string.
 """
 
 from collections import deque
-
-from parser import ShellParser, CommandTransformer
+from parser import CommandTransformer, ShellParser
 
 __all__ = [
     "Shell",

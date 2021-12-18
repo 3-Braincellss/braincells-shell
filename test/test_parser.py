@@ -1,8 +1,9 @@
+from parser import CommandTransformer, ShellParser
+
 from shell_test_interface import ShellTestCase
 
-from exceptions import ShellSyntaxError
 from commands import Call, Pipe, Sequence
-from parser import CommandTransformer, ShellParser
+from exceptions import ShellSyntaxError
 
 
 class TestParser(ShellTestCase):
@@ -32,17 +33,17 @@ class TestParser(ShellTestCase):
         self.assertIsInstance(out, Call)
 
     def test_singlequote(self):
-        tree = self.parser.parse("echo \' text \'")
+        tree = self.parser.parse("echo ' text '")
         out = self.transformer.transform(tree)
         self.assertIsInstance(out, Call)
 
     def test_doublequote(self):
-        tree = self.parser.parse("echo \" text \"")
+        tree = self.parser.parse('echo " text "')
         out = self.transformer.transform(tree)
         self.assertIsInstance(out, Call)
 
     def test_backquote_call(self):
-        tree = self.parser.parse("echo \"`echo text`\"")
+        tree = self.parser.parse('echo "`echo text`"')
         out = self.transformer.transform(tree)
         self.assertIsInstance(out, Call)
 

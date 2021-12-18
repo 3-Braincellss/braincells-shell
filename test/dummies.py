@@ -19,8 +19,8 @@ class DummyCommand(Command):
         self.custom_output = custom_output
 
     def run(self, inp, out):
-        """ Will just extend output by provided input
-        
+        """Will just extend output by provided input
+
         Will also output whatever was passed with the
         custom output during the initialisation.
         """
@@ -41,11 +41,11 @@ class DummyApp(App):
         pass
 
     def run(self, inp, out):
-        """ Will just extend output by provided input"""
+        """Will just extend output by provided input"""
         if inp:
             out.extend(inp)
         return out
 
     def validate_args(self):
-        """ Doesn't raise any errors"""
+        """Doesn't raise any errors"""
         return

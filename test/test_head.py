@@ -16,11 +16,18 @@ class TestHead(ShellTestCase):
         app = HeadApp(["dir_files/file-5", "dir_files/file-4"])
         out = []
         app.run(None, out)
-        self.assertEqual(out, [
-            "\n--> dir_files/file-5 <--\n", "AAA", "BBB", "DDD",
-            "I don't know any more letters", "\n--> dir_files/file-4 <--\n",
-            "depression"
-        ])
+        self.assertEqual(
+            out,
+            [
+                "\n--> dir_files/file-5 <--\n",
+                "AAA",
+                "BBB",
+                "DDD",
+                "I don't know any more letters",
+                "\n--> dir_files/file-4 <--\n",
+                "depression",
+            ],
+        )
 
     def test_head_argument(self):
         app = HeadApp(["-n", "1", "dir_files/file-5"])

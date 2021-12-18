@@ -8,8 +8,8 @@ Module which handles parsing and transforming the parse tree
 from lark.exceptions import VisitError
 from lark.visitors import Transformer
 
-from exceptions import ShellError, ShellSyntaxError
 from commands import CommandFactory
+from exceptions import ShellError, ShellSyntaxError
 
 __all__ = [
     "CommandTransformer",

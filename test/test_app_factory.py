@@ -1,21 +1,7 @@
 from shell_test_interface import ShellTestCase
 
-from apps import (
-    AppFactory,
-    CatApp,
-    CdApp,
-    CutApp,
-    EchoApp,
-    FindApp,
-    GrepApp,
-    HeadApp,
-    LsApp,
-    PwdApp,
-    SortApp,
-    TailApp,
-    UniqApp,
-    UnsafeApp,
-)
+from apps import (AppFactory, CatApp, CdApp, CutApp, EchoApp, FindApp, GrepApp,
+                  HeadApp, LsApp, PwdApp, SortApp, TailApp, UniqApp, UnsafeApp)
 from exceptions import AppNotFoundError
 
 

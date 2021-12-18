@@ -1,12 +1,12 @@
-from apps import RmApp
-from shell_test_interface import ShellTestCase
-from exceptions import ContextError
-
 import os
+
+from shell_test_interface import ShellTestCase
+
+from apps import RmApp
+from exceptions import ContextError
 
 
 class TestRm(ShellTestCase):
-
     def test_rm(self):
         app = RmApp(["dir_empty"])
         app.validate_args()
