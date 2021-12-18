@@ -1,26 +1,13 @@
 """
-app_factory
+App Factory
 ===========
 Module for creating applications.
 """
-from apps import (
-    App,
-    LsApp,
-    EchoApp,
-    CdApp,
-    CatApp,
-    CutApp,
-    PwdApp,
-    HeadApp,
-    TailApp,
-    SortApp,
-    GrepApp,
-    UniqApp,
-    UnsafeApp,
-    FindApp,
-)
-from exceptions import AppNotFoundError
+from apps import (App, CatApp, CdApp, ClearApp, CutApp, EchoApp, FindApp,
+                  GrepApp, HeadApp, LsApp, MkdirApp, PwdApp, RmApp, SortApp,
+                  TailApp, UniqApp, UnsafeApp)
 from common.tools import simple_globbing
+from exceptions import AppNotFoundError
 
 
 class AppFactory:
@@ -39,6 +26,9 @@ class AppFactory:
         "find": FindApp,
         "uniq": UniqApp,
         "sort": SortApp,
+        "clear": ClearApp,
+        "mkdir": MkdirApp,
+        "rm": RmApp,
     }
     """(:obj:`dict`): A dictionary that maps app names to their classes"""
 
@@ -66,7 +56,6 @@ class AppFactory:
         temp_app = app_str[1:] if unsafe else app_str
 
         if temp_app in AppFactory.apps:
-
             # conditional globbing to take in account for functions like 'find'
             if temp_app not in AppFactory.no_glob:
                 opts = simple_globbing(opts)

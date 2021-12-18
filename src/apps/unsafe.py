@@ -37,4 +37,3 @@ class UnsafeApp(App):
 
     def validate_args(self):
         """No validation needed for an unsafe application"""
-        pass

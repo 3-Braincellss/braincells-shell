@@ -3,7 +3,7 @@ app
 ===
 This module provides an interface for an App.
 """
-from abc import abstractmethod, ABCMeta
+from abc import ABCMeta, abstractmethod
 
 
 class App(metaclass=ABCMeta):

@@ -1,12 +1,7 @@
-apps
+Apps
 ====
 
 .. automodule:: apps
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
 
 .. automodule:: apps.app
    :members:
@@ -27,6 +22,12 @@ apps
 
 
 .. automodule:: apps.cd
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+.. automodule:: apps.clear
    :members:
    :undoc-members:
    :show-inheritance:
@@ -91,8 +92,23 @@ apps
    :undoc-members:
    :show-inheritance:
 
+.. automodule:: apps.mkdir
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: apps.rm
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 .. automodule:: apps.unsafe
    :members:
    :undoc-members:
    :show-inheritance:
+
+
+      
+
+

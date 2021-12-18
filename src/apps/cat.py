@@ -8,10 +8,11 @@ Example:
     cat bee-movie-script.txt
 """
 
-from getopt import getopt, GetoptError
+from getopt import GetoptError, getopt
+
+from apps import App
 from common.tools import read_lines_from_file
 from exceptions import ContextError
-from apps import App
 
 
 class CatApp(App):
@@ -26,8 +27,8 @@ class CatApp(App):
         super().__init__(args)
         try:
             self._options, self.args = getopt(self.args, "")
-        except GetoptError as e:
-            raise ContextError("cat", str(e)) from None
+        except GetoptError as error:
+            raise ContextError("cat", str(error)) from None
 
     def run(self, inp, out):
         """Executes the cat command on the given arguments.
@@ -43,12 +44,9 @@ class CatApp(App):
             the input file or piped data.
 
         """
-        if inp:
-            out.extend(inp)
-            return out
-
         if not self.args:
-            out.append(input())
+            result = inp if inp else self._get_input()
+            out.extend(result)
             return out
 
         self._run(self.args, out)
@@ -60,8 +58,17 @@ class CatApp(App):
         for path in paths:
             contents = read_lines_from_file(path, "cat")
             for line in contents:
-                out.append(line.rstrip("\n"))
+                out.append(line.rstrip())
         return out
+
+    @staticmethod
+    def _get_input():
+        text = [""]
+        while True:
+            try:
+                text.append(input())
+            except KeyboardInterrupt:
+                return text
 
     def validate_args(self):
         pass

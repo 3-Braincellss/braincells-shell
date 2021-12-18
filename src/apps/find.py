@@ -7,11 +7,12 @@ Usage in shell: find -name [PATTERN] [PATH]
 Example:
     ``find -name *.py project/spaghetti-code``
 """
-from apps.app import App
 import os
-from glob import glob
 from getopt import gnu_getopt
-from exceptions import RunError, ContextError
+from glob import glob
+
+from apps.app import App
+from exceptions import ContextError, RunError
 
 
 class FindApp(App):
@@ -31,7 +32,7 @@ class FindApp(App):
         self.options, self.args = gnu_getopt(args, "", ["name="])
 
     def run(self, inp, out):
-        """ Executes the find command on the given path.
+        """Executes the find command on the given path.
 
         Will match all files with the pattern supplied in the name option.
         If no path is supplied the current directory is used.
@@ -43,8 +44,8 @@ class FindApp(App):
                 the result of execution.
 
         Returns:
-            ``deque``: The output deque will contain each of the files that
-            matched the specified pattern
+        ``deque``: The output deque will contain each of the files that
+        matched the specified pattern
 
         Raises:
             RunError: If the root path supplied does not exist.
@@ -55,17 +56,12 @@ class FindApp(App):
         return out
 
     def _run(self, root, out):
-        try:
-            matched_files = glob(f"./{root}/**/{self.pattern}", recursive=True)
-        except OSError:
-            raise RunError("find",
-                           f"{root}: No such file or directory") from None
+        matched_files = glob(f"./{root}/**/{self.pattern}", recursive=True)
         for file in matched_files:
-            if not os.path.isdir(file):
-                if root != "":
-                    out.append(file[2:])  # Omit the ./
-                else:
-                    out.append(file)
+            if root != "":
+                out.append(file[2:])  # Omit the ./
+            else:
+                out.append(file)
 
     def validate_args(self):
         """Ensures that the -name option is present and only one argument is
@@ -78,12 +74,13 @@ class FindApp(App):
         if not self.options:
             raise ContextError(
                 "find",
-                "No pattern supplied. usage: find \
-            [PATH] -name PATTERN ",
+                "No pattern supplied. usage: find [PATH] -name PATTERN ",
             )
         if len(self.args) > 1:
             raise ContextError(
                 "find",
-                "Too many arguments supplied usage: \
-            find [PATH] -name PATTERN",
+                "Too many arguments supplied usage: find [PATH] -name PATTERN",
             )
+        if self.args and not os.path.exists(self.args[0]):
+            raise RunError(
+                "find", f"{self.args[0]}: No such file or directory") from None

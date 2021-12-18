@@ -8,9 +8,10 @@ Example:
     `pwd`
 
 """
+import os
+
 from apps.app import App
 from exceptions import ContextError
-import os
 
 
 class PwdApp(App):
@@ -24,7 +25,6 @@ class PwdApp(App):
     def __init__(self, args):
         super().__init__(args)
         self.args = args
-        pass
 
     def run(self, inp, out):
         """Executes the pwd command.
@@ -43,7 +43,7 @@ class PwdApp(App):
             ``deque``: Will contain the current working directory.
         """
         self.validate_args()
-        out.append(os.path.abspath(".") + "\n")
+        out.append(os.path.abspath("."))
         return out
 
     def validate_args(self):

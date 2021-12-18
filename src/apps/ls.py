@@ -7,10 +7,10 @@ Usage in shell: ls [PATH]
 Example:
     `ls super/secret/directory`
 """
+import os
+
 from apps import App
 from exceptions import ContextError, RunError
-
-import os
 
 
 class LsApp(App):
@@ -47,6 +47,7 @@ class LsApp(App):
             ContextError: If the path supplied is not a directory.
 
         """
+
         if len(self.args) == 0:
             ls_dirs = [os.getcwd()]
         else:
@@ -56,9 +57,10 @@ class LsApp(App):
             try:
                 files = sorted(
                     [each for each in os.listdir(path) if each[0] != "."])
-                out.append("\n".join(files) + "\n")
+                out.extend(files)
             except OSError as error:
                 raise RunError("ls", str(error)) from None
+
         return out
 
     def validate_args(self):
