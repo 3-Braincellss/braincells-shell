@@ -15,9 +15,7 @@ from shutil import rmtree
 from apps.app import App
 from exceptions import ContextError
 
-__all__ = [
-    "RmApp"
-]
+__all__ = ["RmApp"]
 
 
 class RmApp(App):
@@ -31,7 +29,6 @@ class RmApp(App):
         ContextError: If any invalid options are given.
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         try:

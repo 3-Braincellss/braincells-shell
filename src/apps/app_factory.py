@@ -9,9 +9,7 @@ from apps import (App, CatApp, CdApp, ClearApp, CutApp, EchoApp, FindApp,
 from common.tools import simple_globbing
 from exceptions import AppNotFoundError
 
-__all__ = [
-    "AppFactory"
-]
+__all__ = ["AppFactory"]
 
 
 class AppFactory:

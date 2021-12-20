@@ -11,8 +11,8 @@ __all__ = [
     "simple_globbing",
     "read_from_file",
     "read_lines_from_file",
-    
 ]
+
 
 def prettify_path(path):
     """Prettifies a given path

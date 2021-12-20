@@ -15,9 +15,7 @@ from apps import App
 from common.tools import read_lines_from_file
 from exceptions import ContextError
 
-__all__ = [
-    "SortApp"
-]
+__all__ = ["SortApp"]
 
 
 class SortApp(App):
@@ -28,7 +26,6 @@ class SortApp(App):
             the instruction.
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         try:

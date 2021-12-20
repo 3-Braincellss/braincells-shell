@@ -11,6 +11,7 @@ __all__ = [
     "AppNotFoundError",
 ]
 
+
 class AppNotFoundError(ShellError):
     """Errors that occur when shell doesn't know the app you are trying to run
 

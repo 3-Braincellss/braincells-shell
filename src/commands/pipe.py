@@ -14,6 +14,7 @@ __all__ = [
     "Pipe",
 ]
 
+
 class Pipe(Command):
     """Pipe Class
 

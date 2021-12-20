@@ -11,6 +11,7 @@ __all__ = [
     "ContextError",
 ]
 
+
 class ContextError(ShellError):
     """Context errors that prevent apps from being run
 

@@ -1,4 +1,3 @@
-
 from parser import HighlightTransformer, ShellParser
 
 from hypothesis import given, settings

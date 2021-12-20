@@ -9,7 +9,7 @@ from commands import Call
 class TestCall(ShellTestCase):
     def setUp(self):
         super().setUp()
-        
+
         ctx = {
             "app": DummyApp(),
             "left_red": None,

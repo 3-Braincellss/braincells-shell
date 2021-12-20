@@ -1,5 +1,3 @@
-
-
 from shell_test_interface import ShellTestCase
 
 from apps import LsApp

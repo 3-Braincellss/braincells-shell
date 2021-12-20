@@ -12,9 +12,7 @@ import os
 from apps import App
 from exceptions import ContextError, RunError
 
-__all__ = [
-    "CdApp"
-]
+__all__ = ["CdApp"]
 
 
 class CdApp(App):
@@ -25,7 +23,6 @@ class CdApp(App):
             the instruction.
 
     """
-
     def run(self, inp, out):
         """Executes the cd command on the given arguments.
 

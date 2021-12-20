@@ -69,6 +69,4 @@ class TestParser(ShellTestCase):
         except ShellError:
             correct = True
 
-
-
         self.assertTrue(correct)

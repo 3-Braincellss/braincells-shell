@@ -8,10 +8,9 @@ Errors that are raised during runtime.
 from exceptions import ShellError
 
 __all__ = [
-
     "RunError",
-
 ]
+
 
 class RunError(ShellError):
     """Errors that occur during app's runtime
