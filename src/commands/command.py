@@ -10,6 +10,7 @@ __all__ = [
     "Command",
 ]
 
+
 class Command(metaclass=ABCMeta):
     """Interface for a command
 

@@ -9,8 +9,8 @@ from abc import ABCMeta, abstractmethod
 
 __all__ = [
     "ShellError",
-
 ]
+
 
 class ShellError(Exception, metaclass=ABCMeta):
     """

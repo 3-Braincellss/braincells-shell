@@ -9,6 +9,7 @@ __all__ = [
     "CommandFactory",
 ]
 
+
 class CommandFactory:
     """A class that is used to create operations objects"""
 

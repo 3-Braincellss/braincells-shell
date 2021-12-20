@@ -13,9 +13,7 @@ import os
 from apps.app import App
 from exceptions import ContextError
 
-__all__ = [
-    "PwdApp"
-]
+__all__ = ["PwdApp"]
 
 
 class PwdApp(App):
@@ -26,7 +24,6 @@ class PwdApp(App):
             the instruction, which should be empty.
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         self.args = args

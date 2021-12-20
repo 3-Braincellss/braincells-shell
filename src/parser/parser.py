@@ -16,7 +16,6 @@ from exceptions import ShellSyntaxError
 
 __all__ = [
     "ShellParser",
-
 ]
 
 

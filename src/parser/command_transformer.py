@@ -227,7 +227,7 @@ class CommandTransformer(Transformer):
         """
         if not args:
             raise ShellSyntaxError("command cannot be empty")
-        
+
         return "".join(args)
 
     def single_quoted(self, args):
@@ -242,7 +242,7 @@ class CommandTransformer(Transformer):
         """
         if not args:
             raise ShellSyntaxError("command cannot be empty")
-        
+
         return args[0]
 
     def back_quoted(self, args):

@@ -14,9 +14,7 @@ from apps import App
 from common.tools import read_lines_from_file
 from exceptions import ContextError
 
-__all__ = [
-    "UniqApp"
-]
+__all__ = ["UniqApp"]
 
 
 class UniqApp(App):
@@ -26,7 +24,6 @@ class UniqApp(App):
         args (:obj:`list`): Contains all the arguments and options
             of the instruction
     """
-
     def __init__(self, args):
         super().__init__(args)
         try:

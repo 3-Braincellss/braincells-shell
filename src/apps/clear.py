@@ -13,9 +13,7 @@ from collections import deque
 from apps import App
 from exceptions import ContextError
 
-__all__ = [
-    "ClearApp"
-]
+__all__ = ["ClearApp"]
 
 
 class ClearApp(App):
@@ -26,7 +24,6 @@ class ClearApp(App):
             the instruction.
 
     """
-
     def run(self, inp, out):
         """Clears the terminal"""
 

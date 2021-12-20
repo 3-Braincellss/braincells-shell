@@ -10,6 +10,7 @@ __all__ = [
     "Sequence",
 ]
 
+
 class Sequence(Command):
     """Sequence Class
 

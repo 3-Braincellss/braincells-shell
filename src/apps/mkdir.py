@@ -13,10 +13,7 @@ import os
 from apps.app import App
 from exceptions import ContextError
 
-
-__all__ = [
-    "MkdirApp"
-]
+__all__ = ["MkdirApp"]
 
 
 class MkdirApp(App):
@@ -27,7 +24,6 @@ class MkdirApp(App):
     of the instruction.
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         self.args = args

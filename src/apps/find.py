@@ -14,9 +14,7 @@ from glob import glob
 from apps.app import App
 from exceptions import ContextError, RunError
 
-__all__ = [
-    "FindApp"
-]
+__all__ = ["FindApp"]
 
 
 class FindApp(App):
@@ -27,7 +25,6 @@ class FindApp(App):
         of the instruction
 
     """
-
     def __init__(self, args):
         super().__init__(args)
         for i in range(len(args)):

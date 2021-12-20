@@ -10,9 +10,7 @@ Example:
 from apps import App
 from exceptions import ShellError
 
-__all__ = [
-    "UnsafeApp"
-]
+__all__ = ["UnsafeApp"]
 
 
 class UnsafeApp(App):
@@ -21,7 +19,6 @@ class UnsafeApp(App):
     Args:
         app (:obj:`App`): The application be decorated.
     """
-
     def __init__(self, app):
         super().__init__(app)
         self.app = app
