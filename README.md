@@ -5,6 +5,11 @@ Similarly to other shells, it provides a [REPL](https://en.wikipedia.org/wiki/Re
 
 ## Documentation
 
-- [Language](doc/language.md)
-- [Applications](doc/applications.md)
-- [Command Line Interface](doc/interface.md)
+- [Language](docs/markdown/language.md)
+- [Applications](docs/markdown/applications.md)
+- [Command Line Interface](docs/markdown/interface.md)
+
+# Extended Docs
+
+To access full documentation: https://3-braincellss.github.io/
+
