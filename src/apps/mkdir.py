@@ -22,6 +22,7 @@ class MkdirApp(App):
     of the instruction.
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         self.args = args
@@ -52,9 +53,7 @@ class MkdirApp(App):
         split_args = arg.split("/")
         path_to = ("/".join(split_args[:-1]) if
                    (split_args[-1] != "") else "/".join(arg.split("/")[:-2]))
-        if not path_to or os.path.exists(path_to):
-            return True
-        return False
+        return not path_to or os.path.exists(path_to)
 
     def validate_args(self):
         """Ensures all arguments either represent a valid path
