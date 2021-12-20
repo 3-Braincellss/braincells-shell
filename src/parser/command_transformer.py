@@ -55,7 +55,8 @@ class CommandTransformer(Transformer):
             # to bring shell errors higher.
             if isinstance(err.__context__, ShellError):
                 raise err.__context__
-            raise ShellSyntaxError("cannot transform") from err
+            raise err
+            # raise ShellSyntaxError("cannot transform") from err
         return oper
 
     def command(self, args):
@@ -224,6 +225,9 @@ class CommandTransformer(Transformer):
         Returns:
             str: the string that was in the double quotes
         """
+        if not args:
+            raise ShellSyntaxError("command cannot be empty")
+        
         return "".join(args)
 
     def single_quoted(self, args):
@@ -236,6 +240,9 @@ class CommandTransformer(Transformer):
         Returns:
             str: the string that was in the single quotes
         """
+        if not args:
+            raise ShellSyntaxError("command cannot be empty")
+        
         return args[0]
 
     def back_quoted(self, args):
@@ -253,6 +260,8 @@ class CommandTransformer(Transformer):
         # Putting this at top level causes circular import
         from shell import Shell  # pylint: disable=import-outside-toplevel
 
+        if not args:
+            raise ShellSyntaxError("command cannot be empty")
         sh = Shell()
         string = " ".join(sh.execute(args[0]).split("\n"))
         return string

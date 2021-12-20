@@ -1,15 +1,20 @@
-from parser import CommandTransformer, ShellParser
+from hypothesis import given, settings
+from hypothesis.extra.lark import from_lark
+
+from parser import CommandTransformer, ShellParser, ShellParser
 
 from shell_test_interface import ShellTestCase
 
-from commands import Call, Pipe, Sequence
-from exceptions import ShellSyntaxError
+from commands import Call, Pipe, Sequence, Command
+from exceptions import ShellSyntaxError, ShellError
+
+PARSER = ShellParser()
 
 
 class TestParser(ShellTestCase):
     def setUp(self):
         super().setUp()
-        self.parser = ShellParser()
+        self.parser = PARSER
         self.transformer = CommandTransformer()
 
     def test_command(self):
@@ -50,3 +55,20 @@ class TestParser(ShellTestCase):
     def test_raisesyntaxerror(self):
         with self.assertRaises(ShellSyntaxError):
             self.parser.parse(";")
+
+    @settings(deadline=400)
+    @given(from_lark(PARSER))
+    def test_random(self, s):
+
+        correct = False
+        tree = PARSER.parse(s)
+
+        try:
+            out = self.transformer.transform(tree)
+            correct = isinstance(out, Command)
+        except ShellError:
+            correct = True
+
+
+
+        self.assertTrue(correct)
