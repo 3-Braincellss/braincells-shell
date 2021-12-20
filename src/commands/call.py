@@ -8,6 +8,10 @@ from collections import deque
 from commands import Command
 from common.tools import read_lines_from_file
 
+__all__ = [
+    "Call",
+]
+
 
 class Call(Command):
     """Call command that executes some app.

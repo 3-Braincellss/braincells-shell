@@ -10,6 +10,9 @@ from collections import deque
 
 from commands import Command
 
+__all__ = [
+    "Pipe",
+]
 
 class Pipe(Command):
     """Pipe Class

@@ -7,6 +7,9 @@ An error that is raised whenever an app is not found.
 
 from exceptions import ShellError
 
+__all__ = [
+    "AppNotFoundError",
+]
 
 class AppNotFoundError(ShellError):
     """Errors that occur when shell doesn't know the app you are trying to run

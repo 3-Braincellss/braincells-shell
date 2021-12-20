@@ -7,6 +7,9 @@ They prevent apps from being run.
 
 from exceptions import ShellError
 
+__all__ = [
+    "ContextError",
+]
 
 class ContextError(ShellError):
     """Context errors that prevent apps from being run

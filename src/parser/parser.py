@@ -14,6 +14,11 @@ from lark.exceptions import UnexpectedInput
 
 from exceptions import ShellSyntaxError
 
+__all__ = [
+    "ShellParser",
+
+]
+
 
 class ShellParser(Lark):
     """

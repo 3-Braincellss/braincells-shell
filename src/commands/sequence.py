@@ -6,6 +6,9 @@ Sequence command denoted as ``;`` will sequentially call 2 commands in a row.
 """
 from commands import Command
 
+__all__ = [
+    "Sequence",
+]
 
 class Sequence(Command):
     """Sequence Class

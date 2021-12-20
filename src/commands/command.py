@@ -6,6 +6,9 @@ This is an interface definition for an Command class.
 
 from abc import ABCMeta, abstractmethod
 
+__all__ = [
+    "Command",
+]
 
 class Command(metaclass=ABCMeta):
     """Interface for a command

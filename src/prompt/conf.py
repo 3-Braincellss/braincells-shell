@@ -6,6 +6,10 @@ Our default style for prompt.
 
 """
 
+__all__ = [
+    "STYLE_DICT",
+]
+
 STYLE_DICT = {
     "user_host": "#A78BFA",  # [user@hostname]
     "start_path": "#4ADE80",

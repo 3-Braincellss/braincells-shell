@@ -8,6 +8,10 @@ It is raised whenever the parsing fails.
 
 from exceptions import ShellError
 
+__all__ = [
+    "ShellSyntaxError"
+]
+
 
 class ShellSyntaxError(ShellError):
     """Errors that appears on failed parsing of the input string."""

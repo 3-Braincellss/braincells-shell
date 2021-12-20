@@ -5,6 +5,9 @@ Command Factory is used to create operation objects on given string."""
 
 from commands import Call, Pipe, Sequence
 
+__all__ = [
+    "CommandFactory",
+]
 
 class CommandFactory:
     """A class that is used to create operations objects"""
