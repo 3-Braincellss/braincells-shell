@@ -12,6 +12,10 @@ import os
 from apps import App
 from exceptions import ContextError, RunError
 
+__all__ = [
+    "LsApp"
+]
+
 
 class LsApp(App):
     """A class representing the ls shell instruction
@@ -23,6 +27,7 @@ class LsApp(App):
         args (:obj:`list`): Contains all the arguments and options of the
         instruction.
     """
+
     def __init__(self, args):
         super().__init__(args)
         self.args = args

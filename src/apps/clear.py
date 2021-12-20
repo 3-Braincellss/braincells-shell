@@ -13,15 +13,20 @@ from collections import deque
 from apps import App
 from exceptions import ContextError
 
+__all__ = [
+    "ClearApp"
+]
+
 
 class ClearApp(App):
-    """A class representing the clear application
+    """A class representing the clear application.
 
     Args:
         args (:obj:`list`): Contains all the arguments and options of
             the instruction.
 
     """
+
     def run(self, inp, out):
         """Clears the terminal"""
 

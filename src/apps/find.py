@@ -1,7 +1,7 @@
 """
 find
 ====
-Module representing the find application
+Module representing the find application.
 Usage in shell: find -name [PATTERN] [PATH]
 
 Example:
@@ -14,6 +14,10 @@ from glob import glob
 from apps.app import App
 from exceptions import ContextError, RunError
 
+__all__ = [
+    "FindApp"
+]
+
 
 class FindApp(App):
     """A class representing the find shell instruction
@@ -23,6 +27,7 @@ class FindApp(App):
         of the instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         for i in range(len(args)):

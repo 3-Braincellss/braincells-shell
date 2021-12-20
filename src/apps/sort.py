@@ -15,6 +15,10 @@ from apps import App
 from common.tools import read_lines_from_file
 from exceptions import ContextError
 
+__all__ = [
+    "SortApp"
+]
+
 
 class SortApp(App):
     """A class representing the sort shell instruction.
@@ -24,6 +28,7 @@ class SortApp(App):
             the instruction.
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:

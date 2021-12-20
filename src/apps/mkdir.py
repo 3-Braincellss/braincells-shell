@@ -14,6 +14,11 @@ from apps.app import App
 from exceptions import ContextError
 
 
+__all__ = [
+    "MkdirApp"
+]
+
+
 class MkdirApp(App):
     """A class representing the mkdir shell instruction.
 

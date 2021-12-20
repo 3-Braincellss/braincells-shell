@@ -13,6 +13,10 @@ import os
 from apps.app import App
 from exceptions import ContextError
 
+__all__ = [
+    "PwdApp"
+]
+
 
 class PwdApp(App):
     """A class representing the pwd shell instruction
@@ -22,6 +26,7 @@ class PwdApp(App):
             the instruction, which should be empty.
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         self.args = args

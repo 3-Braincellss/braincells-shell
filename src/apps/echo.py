@@ -9,6 +9,10 @@ Example:
 """
 from apps.app import App
 
+__all__ = [
+    "EchoApp"
+]
+
 
 class EchoApp(App):
     """A class representing the echo shell command
@@ -18,6 +22,7 @@ class EchoApp(App):
             the instruction.
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         self.args = args

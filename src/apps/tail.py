@@ -13,6 +13,10 @@ from apps.app import App
 from common.tools import read_lines_from_file
 from exceptions import ContextError
 
+__all__ = [
+    "TailApp"
+]
+
 
 class TailApp(App):
     """
@@ -23,6 +27,7 @@ class TailApp(App):
             the instruction.
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:

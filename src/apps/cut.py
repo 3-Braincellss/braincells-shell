@@ -14,6 +14,10 @@ from apps import App
 from common.tools import read_lines_from_file
 from exceptions import ContextError, RunError
 
+__all__ = [
+    "CutApp"
+]
+
 
 class CutApp(App):
     """A class representing the cut shell instruction
@@ -23,6 +27,7 @@ class CutApp(App):
             of the instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:

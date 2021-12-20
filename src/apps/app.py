@@ -5,6 +5,10 @@ This module provides an interface for an App.
 """
 from abc import ABCMeta, abstractmethod
 
+__all__ = [
+    "App"
+]
+
 
 class App(metaclass=ABCMeta):
     """An abstract class representing the format of all Apps.
@@ -13,6 +17,7 @@ class App(metaclass=ABCMeta):
         args (:obj:`list`): Contains all the arguments and options of
             the application.
     """
+
     def __init__(self, args):
         self.args = args
 

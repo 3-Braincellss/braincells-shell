@@ -13,6 +13,10 @@ from apps.app import App
 from common.tools import read_lines_from_file
 from exceptions import ContextError
 
+__all__ = [
+    "HeadApp"
+]
+
 
 class HeadApp(App):
     """A class representing the head shell application
@@ -21,6 +25,7 @@ class HeadApp(App):
         args (:obj:`list`): Contains all the arguments and options
             of the instruction
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:

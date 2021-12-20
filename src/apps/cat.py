@@ -14,6 +14,10 @@ from apps import App
 from common.tools import read_lines_from_file
 from exceptions import ContextError
 
+__all__ = [
+    "CatApp"
+]
+
 
 class CatApp(App):
     """A class representing the cat command line instruction
@@ -23,6 +27,7 @@ class CatApp(App):
             instruction
 
     """
+
     def __init__(self, args):
         super().__init__(args)
         try:

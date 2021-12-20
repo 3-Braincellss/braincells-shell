@@ -12,15 +12,20 @@ import os
 from apps import App
 from exceptions import ContextError, RunError
 
+__all__ = [
+    "CdApp"
+]
+
 
 class CdApp(App):
-    """A class representing the cd shell instruction
+    """A class representing the cd shell instruction.
 
     Args:
         args (:obj:`list`): Contains all the arguments and options of
             the instruction.
 
     """
+
     def run(self, inp, out):
         """Executes the cd command on the given arguments.
 
