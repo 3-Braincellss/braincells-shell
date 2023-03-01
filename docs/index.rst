@@ -17,7 +17,7 @@ Welcome to Comp0010 Shell Python P14's documentation!
    :maxdepth: 1
    :caption: Extra Functionality
    :hidden:
-         
+
    markdown/features
 
 
@@ -40,7 +40,7 @@ Installation
 To install all project dependencies run this from the root directory:
 
 .. code:: bash
-	  
+
    $ python -m pip install -r requirements.txt
 
 
@@ -82,7 +82,7 @@ ourselves. You can see all of them here:
 
 - :doc:`markdown/features`
 
-         
+
 .. toctree::
    :maxdepth: 1
    :caption: Development
